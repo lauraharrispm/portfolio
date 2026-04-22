@@ -1,0 +1,100 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(46, 40, 32, 0.95);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding-bottom: 16px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 1.25rem;
+  color: rgba(250, 249, 246, 0.6);
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  z-index: 201;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: var(--warm-white);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+/* ── Image ── */
+.imageWrap {
+  position: relative;
+  width: 90vw;
+  height: 78vh;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.fading {
+  opacity: 0;
+}
+
+.image {
+  object-fit: contain;
+}
+
+/* ── Navigation row: prev · counter · next (below the image) ── */
+.navRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+.counter {
+  font-size: 0.8rem;
+  color: rgba(250, 249, 246, 0.5);
+  white-space: nowrap;
+  min-width: 56px;
+  text-align: center;
+}
+
+.navBtn {
+  font-size: 2rem;
+  line-height: 1;
+  color: rgba(250, 249, 246, 0.6);
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  min-width: 52px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtn:hover:not(:disabled) {
+  color: var(--warm-white);
+}
+
+.navBtn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}

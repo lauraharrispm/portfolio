@@ -1,0 +1,108 @@
+.hero {
+  position: relative;
+  background: var(--warm-white);
+  padding-top: calc(var(--nav-height) + var(--section-padding-v));
+  padding-bottom: var(--section-padding-v);
+  overflow: hidden;
+}
+
+/* Oversized typographic background element */
+.bgMark {
+  position: absolute;
+  right: -0.05em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-headline);
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 300;
+  color: rgba(46, 40, 32, 0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.content {
+  position: relative;
+  max-width: 760px;
+  text-align: left;
+}
+
+.headline {
+  font-family: var(--font-headline);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+
+.subhead {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--charcoal);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+
+.ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background var(--transition);
+}
+
+.ctaPrimary:hover {
+  background: var(--coral-dark);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  border: 1.5px solid var(--charcoal);
+  color: var(--charcoal);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.ctaSecondary:hover {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: calc(var(--nav-height) + var(--section-padding-v-mobile));
+    padding-bottom: var(--section-padding-v-mobile);
+  }
+
+  .bgMark {
+    font-size: 40vw;
+    opacity: 0.5;
+  }
+
+  .ctas {
+    flex-direction: column;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    justify-content: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+.about {
+  background: var(--blush-peach);
+  padding: var(--section-padding-v) 0;
+}
+
+.sectionLabel {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Grid row: copy left (1fr), headshot right (auto sized via aspect-ratio) ── */
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 56px;
+  align-items: stretch;
+}
+
+/* ── Body copy ── */
+.copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.body {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--charcoal);
+  max-width: 560px;
+}
+
+.companyLink {
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--charcoal);
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.companyLink:hover {
+  color: var(--coral);
+}
+
+/* ── Right side: headshot ──
+   Grid item in the auto column. The grid row height is set by the copy column.
+   aspect-ratio: 1/1 tells the grid to size the auto column = row height,
+   giving us a square that spans the full section content height. */
+.headshotWrap {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.headshotImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: var(--section-padding-v-mobile) 0;
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    justify-items: center;
+  }
+
+  .copy {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .headshotWrap {
+    width: 140px;
+    height: 140px;
+    aspect-ratio: 1 / 1;
+  }
+}

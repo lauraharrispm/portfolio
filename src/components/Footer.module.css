@@ -1,0 +1,44 @@
+.footer {
+  background: var(--charcoal);
+  color: var(--warm-white);
+  padding: 40px 0 24px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(250, 249, 246, 0.1);
+}
+
+.name {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.sep {
+  color: var(--coral);
+  font-size: 0.875rem;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: var(--warm-white);
+  transition: color var(--transition);
+}
+
+.link:hover {
+  color: var(--blush-peach);
+}
+
+.bottom {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: rgba(250, 249, 246, 0.35);
+  text-align: center;
+}

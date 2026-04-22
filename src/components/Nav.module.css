@@ -1,0 +1,126 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: var(--warm-white);
+  z-index: 100;
+  transition: box-shadow var(--transition);
+}
+
+.scrolled {
+  box-shadow: 0 1px 0 rgba(46, 40, 32, 0.08);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.wordmark {
+  font-family: var(--font-headline);
+  font-size: 2.03rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--coral);
+  transition: color var(--transition);
+}
+
+.wordmark:hover {
+  color: var(--coral-dark);
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
+}
+
+.links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+}
+
+.links a:hover {
+  color: var(--coral);
+}
+
+.fitLink {
+  color: var(--coral) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.bar,
+.barOpen1,
+.barOpen2,
+.barOpen3 {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--charcoal);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.barOpen1 {
+  transform: translateY(7px) rotate(45deg);
+}
+.barOpen2 {
+  opacity: 0;
+}
+.barOpen3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ── */
+.drawer {
+  background: var(--warm-white);
+  border-top: 1px solid rgba(46, 40, 32, 0.08);
+  padding: 20px 0 28px;
+}
+
+.drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 20px;
+}
+
+.drawer li a {
+  display: block;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  border-bottom: 1px solid rgba(46, 40, 32, 0.06);
+}
+
+.drawer li:last-child a {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

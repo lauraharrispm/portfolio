@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["/tmp/portfolio-start.sh"],
+      "port": 3000
+    }
+  ]
+}

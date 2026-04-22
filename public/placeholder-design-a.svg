@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <rect width="1200" height="750" fill="#F0EDE8"/>
+  <rect x="1" y="1" width="1198" height="748" fill="none" stroke="#D8D0C8" stroke-width="1.5"/>
+  <rect x="0" y="0" width="1200" height="60" fill="#E6E0D8"/>
+  <rect x="24" y="18" width="120" height="24" rx="4" fill="#D0C8C0"/>
+  <rect x="900" y="18" width="80" height="24" rx="4" fill="#D0C8C0"/>
+  <rect x="1000" y="18" width="80" height="24" rx="4" fill="#F07052" opacity="0.6"/>
+  <rect x="60" y="100" width="460" height="580" rx="8" fill="#E8E2DC"/>
+  <rect x="80" y="120" width="320" height="20" rx="4" fill="#D0C8C0"/>
+  <rect x="80" y="156" width="400" height="14" rx="3" fill="#D8D0C8"/>
+  <rect x="80" y="178" width="360" height="14" rx="3" fill="#D8D0C8"/>
+  <rect x="80" y="200" width="300" height="14" rx="3" fill="#D8D0C8"/>
+  <rect x="80" y="240" width="420" height="1" fill="#C8C0B8"/>
+  <rect x="80" y="268" width="200" height="200" rx="6" fill="#D8D0C8"/>
+  <rect x="296" y="268" width="200" height="200" rx="6" fill="#D8D0C8"/>
+  <rect x="80" y="484" width="200" height="80" rx="6" fill="#F07052" opacity="0.2"/>
+  <rect x="296" y="484" width="200" height="80" rx="6" fill="#F07052" opacity="0.12"/>
+  <rect x="560" y="100" width="580" height="580" rx="8" fill="#EDE8E2"/>
+  <rect x="580" y="120" width="200" height="16" rx="3" fill="#D0C8C0"/>
+  <rect x="580" y="148" width="520" height="340" rx="6" fill="#D8D0C8"/>
+  <rect x="580" y="508" width="240" height="14" rx="3" fill="#D0C8C0"/>
+  <rect x="580" y="530" width="180" height="14" rx="3" fill="#D8D0C8"/>
+  <rect x="580" y="552" width="200" height="14" rx="3" fill="#D8D0C8"/>
+  <rect x="580" y="600" width="120" height="36" rx="4" fill="#F07052" opacity="0.5"/>
+  <text x="600" y="718" font-family="system-ui, sans-serif" font-size="13" fill="#9B9087" text-anchor="middle">Design screenshot — placeholder A</text>
+</svg>
