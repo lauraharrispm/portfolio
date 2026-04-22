@@ -40,7 +40,8 @@ export default function About() {
               alt="Laura Harris"
               fill
               className={styles.headshotImg}
-              sizes="(max-width: 768px) 140px, 240px"
+              sizes="(max-width: 768px) 140px, 400px"
+              quality={90}
               priority
             />
           </div>
