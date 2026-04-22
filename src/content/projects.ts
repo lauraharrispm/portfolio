@@ -374,7 +374,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "Nearly invisible in the channel that matters most",
         body: [
-          "Most people looking for mental healthcare start with a Google search, but Rula was nearly invisible in those results, leaving a huge patient demand channel untapped. Competing for high-volume searches like \"therapist near me\" wasn't realistic. The only viable path was to play a different game.",
+          "Millions of people looking for mental healthcare start with a Google search, but Rula was nearly invisible in those results, leaving a huge patient demand channel untapped. Competing for high-volume searches like \"therapist near me\" wasn't realistic. The only viable path was to play a different game.",
         ],
       },
       {
@@ -391,8 +391,8 @@ export const projects: Project[] = [
         heading: "Breadth, speed, and a 30-second load time",
         body: [
           "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale.",
-          "I scoped for speed. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, let the index build over time.",
-          "A 30-second load time was a hard blocker. Results needed to load on page arrival, not behind a sign-up form and not after a wait. I championed a cross-functional initiative to bring load time under one second and remove the sign-up gate that had previously preceded results.",
+          "I scoped for speed to launch because organic search is a long-game, and we needed to get in the game ASAP. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, let the index build over time.",
+          "A 20-second load time was a hard blocker. Results needed to load on page arrival, not behind a sign-up form and not after a wait. I championed a cross-functional initiative to bring load time under one second and remove the sign-up gate that had previously preceded results.",
         ],
         boldPrefixes: [
           "The strategy was breadth, not depth.",
@@ -405,7 +405,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Zero friction between search and results",
         body: [
-          "A patient searches for the therapy type they need. Google incorporates location automatically in most cases. Results take them directly to a filtered therapist list with no sign-up required. If location is unknown, a lightweight modal collects state and insurance before loading results.",
+          "A patient Google searches for the therapy type they need. Google incorporates location automatically in most cases. The page link in search results take them directly to a filtered therapist list showing therapists they could actually book (state and insurance pre-filtered) with no sign-up required. If location is unknown, a lightweight modal collects state and insurance before loading results.",
         ],
         images: [
           "/rula-directory-1.gif",
@@ -470,8 +470,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "High-quality PM output required assembling a team",
         body: [
-          "For most of my career, high-quality PM output required a high-functioning full team: design, engineering, data, marketing, and more. Even in lean startups, I've spent countless hours on work resulting from this setup, even in the most efficient of lean startups. The work that required my judgment competed constantly with the overhead of getting things done.",
-          "The bottleneck wasn't effort. It was access.",
+          "For most of my career, high-quality PM output required a high-functioning full team: design, engineering, data, marketing, and more. Even in the most efficient of lean startups, the meaty work that required my judgment competed constantly with the overhead of getting things done.",
         ],
       },
       {
