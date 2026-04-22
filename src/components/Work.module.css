@@ -159,7 +159,6 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 40px;
   padding: 40px 48px 44px;
 }
@@ -167,7 +166,6 @@
 .heroContent {
   flex: 1;
   min-width: 0;
-  text-align: center;
 }
 
 .heroCompany {
@@ -195,8 +193,6 @@
   margin-bottom: 0;
   line-height: 1.55;
   max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Metric circle — warm-white fill so it lifts off the salmon background */
@@ -302,7 +298,7 @@
 
 .bafHeader {
   display: grid;
-  grid-template-columns: 1fr 28px 1fr;
+  grid-template-columns: 1fr 1fr;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(46, 40, 32, 0.12);
   margin-bottom: 2px;
@@ -315,7 +311,7 @@
 
 .bafRow {
   display: grid;
-  grid-template-columns: 1fr 28px 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: baseline;
   padding: 9px 0;
   border-bottom: 1px solid rgba(46, 40, 32, 0.06);
@@ -333,9 +329,8 @@
 }
 
 .bafArrow {
-  font-size: 0.875rem;
   color: var(--coral);
-  text-align: center;
+  margin-right: 5px;
 }
 
 .bafAfter {
@@ -343,7 +338,6 @@
   color: var(--charcoal);
   font-weight: 500;
   line-height: 1.5;
-  padding-left: 8px;
 }
 
 
@@ -424,7 +418,8 @@
 
 /* ── Stack list ── */
 .stackList {
-  list-style: none;
+  list-style: disc;
+  padding-left: 1.4em;
   display: flex;
   flex-direction: column;
   gap: 10px;

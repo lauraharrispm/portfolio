@@ -220,13 +220,19 @@ export const projects: Project[] = [
         body: [
           "The challenge was communicating two simultaneous changes without creating confusion or triggering price sensitivity among existing subscribers who weren't affected. Key decisions: a clear plan comparison UI making annual vs. monthly value immediately legible, a simplified pricing page, and copy framing the price lock for existing subscribers as reassuring rather than defensive.",
         ],
-        images: ["/placeholder-design-a.svg", "/placeholder-design-b.svg"],
+        images: ["/gg-annual-1.png", "/gg-annual-2.png", "/gg-annual-3.png"],
         altTexts: [
-          "Pricing page before and after redesign — plan comparison UI",
-          "Plan selection UI and subscription settings screen",
+          "Website pricing page positioning annual subscriptions as a discount for prospective subscribers",
+          "Annual subscription awareness message for monthly subscribers",
+          "View plans modal for logged in subscribers",
         ],
-        imageWidths: [1200, 1200],
-        imageHeights: [750, 750],
+        captions: [
+          "Website pricing page for prospective subscribers positions annual subscriptions as a discount.",
+          "Annual subscription awareness message for monthly subscribers.",
+          '"View plans" modal for logged in subscribers.',
+        ],
+        imageWidths: [1601, 960, 550],
+        imageHeights: [1163, 473, 316],
       },
       {
         id: "results",
@@ -305,7 +311,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Purpose-built for speed, not browsing",
         body: [
-          "The flow starts with a short intake form that captures the member's state and insurance coverage, pre-filtering everything that follows. The calendar view then shows only bookable slots with therapist filters accessible on the side if the member has specific preferences. The whole interaction is purpose-built for speed on a live call, not patient browsing. The existing therapist list was not scalable for this demand channel for exactly that reason.",
+          "The flow starts with a short intake form that captures the member's state and insurance coverage, pre-filtering everything that follows. The calendar view then shows only bookable slots, with therapist filters accessible on the side if the member has specific preferences. The whole interaction is purpose-built for speed on a live call, not patient browsing. The existing therapist directory page works for patients booking themselves, but it was not scalable for this partnership demand channel.",
         ],
         images: [
           "/rula-scheduling-1.png",
@@ -318,8 +324,8 @@ export const projects: Project[] = [
           "The existing therapist list — built for patient browsing, not agent scheduling",
         ],
         captions: [
-          "The intake form captures state and insurance coverage upfront, so every slot shown in the calendar is already confirmed bookable for the member on the call. No dead ends mid-booking.",
-          "The calendar view is the primary interface. Filters are accessible on the side for cases where the member requests a specific therapist specialty, gender, or language, but they don't interrupt the default booking flow.",
+          "The intake form captures state and insurance coverage upfront so every slot shown in the calendar is confirmed bookable for the member on the call.",
+          "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
           "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure. Giving phone agents this format was an effective MVP to prove the channel, but its limitations prevented scaling within and across insurance partners.",
         ],
         imageWidths: [713, 860, 820],
@@ -409,7 +415,12 @@ export const projects: Project[] = [
         altTexts: [
           "Therapist directory search flow — from Google result to filtered therapist list",
           "Directory results page with location and insurance modal",
-          "Therapist directory — additional view",
+          "Desktop therapist directory experience",
+        ],
+        captions: [
+          "Directory requires state and insurance to load plausible therapists for patient, then shows list of therapists with filters.",
+          "Content below the therapists is optimized for SEO with blog links, Rula success data, links to other directory pages based on specialty and state, and FAQ content. This content contributes to user experience while helping search engines find and serve relevant pages.",
+          "Desktop experience.",
         ],
         imageWidths: [1206, 800, 1350],
         imageHeights: [2622, 1739, 1261],

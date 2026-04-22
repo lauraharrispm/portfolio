@@ -188,14 +188,15 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
             <div className={styles.bafList}>
               <div className={styles.bafHeader}>
                 <span>BEFORE ☹️</span>
-                <span />
                 <span>AFTER 🤩</span>
               </div>
               {project.beforeAfterTable.map((row, i) => (
                 <div key={i} className={styles.bafRow}>
                   <span className={styles.bafBefore}>{row.before}</span>
-                  <span className={styles.bafArrow} aria-hidden="true">→</span>
-                  <span className={styles.bafAfterText}>{row.after}</span>
+                  <span className={styles.bafAfterText}>
+                    <span className={styles.bafArrow} aria-hidden="true">→</span>
+                    {row.after}
+                  </span>
                 </div>
               ))}
             </div>
