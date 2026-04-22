@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="container">
         <div className={styles.content}>
           <h1 className={styles.headline}>
-            Senior growth PM impact without a full-time hire.
+            Senior Growth PM impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
             I work with marketplace, subscription, and DTC ecommerce businesses

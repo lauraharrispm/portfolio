@@ -5,10 +5,11 @@ export default function About() {
   return (
     <section id="about" className={styles.about}>
       <div className="container">
+        {/* Heading sits above the grid so the headshot aligns with body copy only */}
+        <h2 className={styles.sectionLabel}>About</h2>
         <div className={styles.inner}>
-          {/* Body copy — left, with heading inside */}
+          {/* Body copy */}
           <div className={styles.copy}>
-            <h2 className={styles.sectionLabel}>About</h2>
             <p className={styles.body}>
               I&apos;ve spent 7+ years driving growth at consumer startups. I started
               in DTC ecommerce at{" "}
@@ -16,7 +17,7 @@ export default function About() {
               {" "}and{" "}
               <a href="https://burrow.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>Burrow</a>
               , building the first digital product function at Burrow from the ground up.
-              Then I moved into marketplace businesses, leading growth product at{" "}
+              Then I moved into marketplace businesses, leading product growth at{" "}
               <a href="https://www.rula.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>Rula Health</a>
               {" "}across patients, providers, and payers, and most recently owning
               onboarding and monetization at{" "}
@@ -24,16 +25,17 @@ export default function About() {
               , helping beauty and wellness entrepreneurs run and grow their businesses.
             </p>
             <p className={styles.body}>
-              I do my best work untangling messy problems and figuring out what
+              I do my best work untangling messy problems to figure out what
               actually matters, all before reaching for solutions. PM knowledge is
               becoming a commodity in the world of AI, but judgment isn&apos;t. I know what people want
-              and why, and I know what good looks like. I also adapt quickly, learn
-              continuously, and bring that same instinct to the teams I work with.
+              and why, and I know what good looks like.
+            </p>
+            <p className={styles.body}>
+              I love working with people who are smart, dynamic, considerate, and endlessly curious.
             </p>
           </div>
 
-          {/* Right side: headshot — circle is the flex item itself so
-               aspect-ratio:1/1 correctly derives width from stretch-height */}
+          {/* Headshot — circle aligns with body copy, not the heading */}
           <div className={styles.headshotWrap}>
             <Image
               src="/headshot.jpg"
