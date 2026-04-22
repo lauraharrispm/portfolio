@@ -455,7 +455,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "ai-operating-system",
-    company: "Personal Practice / GlossGenius",
+    company: "Personal Practice",
     thumbnail: "/thumb-gg-payments.png",
     title: "AI as a PM Operating System",
     oneLineDesc:
@@ -470,7 +470,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "High-quality PM output required assembling a team",
         body: [
-          "For most of my career, high-quality PM output required assembling a team. Design for visuals. Engineering for feasibility. Data for analysis. Even in lean startups, getting the right people aligned consumed hours I didn't have, and the work that required my actual judgment competed constantly with the overhead of getting there.",
+          "For most of my career, high-quality PM output required a high-functioning full team: design, engineering, data, marketing, and more. Even in lean startups, I've spent countless hours on work resulting from this setup, even in the most efficient of lean startups. The work that required my judgment competed constantly with the overhead of getting things done.",
           "The bottleneck wasn't effort. It was access.",
         ],
       },
@@ -521,28 +521,28 @@ export const projects: Project[] = [
     ],
     stack: [
       {
-        tool: "Claude",
+        tool: "Claude:",
         description:
           "Thought partner, writing, synthesis, strategy, workflow automation. Claude Enterprise at GlossGenius for team-wide deployment.",
       },
       {
-        tool: "Granola",
+        tool: "Granola:",
         description: "Automated meeting capture and structured notes.",
       },
       {
-        tool: "Superwhisper",
+        tool: "Superwhisper:",
         description: "Voice dictation, removing the gap between thinking and writing.",
       },
       {
-        tool: "Devin",
+        tool: "Devin:",
         description: "Coding and personal tool building without an engineering dependency.",
       },
       {
-        tool: "Claude Cowork",
+        tool: "Claude Cowork:",
         description: "Knowledge work execution and personal productivity automation.",
       },
       {
-        tool: "Claude Code",
+        tool: "Claude Code:",
         description: "Building and iterating on personal projects.",
       },
     ],

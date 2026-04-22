@@ -25,36 +25,22 @@ interface Props {
   onLightbox: (state: LightboxState) => void;
 }
 
-// localStorage key for tap hint
-const HINT_KEY = "work_tap_hint_seen";
-
 // ── Component ─────────────────────────────────────────────────────
 
 export default function StoryView({ projectId: initialId, onClose, onLightbox }: Props) {
   const [projectId, setProjectId] = useState(initialId);
-  // 0+ = section index
   const [sectionIdx, setSectionIdx] = useState(0);
-
-  // Slide animation state
   const [slideClass, setSlideClass] = useState<string>("");
-
-  // Slide-out on close
   const [closing, setClosing] = useState(false);
 
-  // Tap hint
-  const [showHint, setShowHint] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return !localStorage.getItem(HINT_KEY);
-  });
-
   const overlayRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const touchStart = useRef<{ x: number; y: number; time: number } | null>(null);
   const isTransitioning = useRef(false);
 
   const project = projects.find((p) => p.id === projectId) ?? projects[0];
   const section = project.sections[sectionIdx];
   const projIdx = projects.findIndex((p) => p.id === projectId);
-  const nextProject = projIdx < projects.length - 1 ? projects[projIdx + 1] : null;
   const isReflection = section?.id === "reflection";
 
   // ── Prevent body scroll ─────────────────────────────────────────
@@ -91,7 +77,6 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
     setTimeout(() => {
       cb();
       setSlideClass(dir === "left" ? styles.slideInRight : styles.slideInLeft);
-      // Remove animation class after it plays
       setTimeout(() => {
         setSlideClass("");
         isTransitioning.current = false;
@@ -104,23 +89,16 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
     if (isTransitioning.current) return;
 
     if (dir === "forward") {
-      if (showHint) {
-        setShowHint(false);
-        localStorage.setItem(HINT_KEY, "1");
-      }
+      const currentSection = project.sections[sectionIdx];
+      const currentIsReflection = currentSection?.id === "reflection";
 
-      if (sectionIdx < project.sections.length - 1) {
+      if (currentIsReflection) {
+        // End of any project — return to work section
+        handleClose();
+      } else if (sectionIdx < project.sections.length - 1) {
         // Next section within project
         animateSlide("left", 250, () => setSectionIdx((i) => i + 1));
-      } else if (projIdx < projects.length - 1) {
-        // Transition to next project — start at first section
-        const next = projects[projIdx + 1];
-        animateSlide("left", 250, () => {
-          setProjectId(next.id);
-          setSectionIdx(0);
-        });
       } else {
-        // Last section of last project — return to work section
         handleClose();
       }
     } else {
@@ -137,7 +115,7 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projIdx, sectionIdx, project.sections.length, showHint]);
+  }, [projIdx, sectionIdx, project.sections, handleClose]);
 
   // ── Touch handling ─────────────────────────────────────────────
   function onTouchStart(e: React.TouchEvent) {
@@ -153,8 +131,9 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
     const dt = Date.now() - touchStart.current.time;
     touchStart.current = null;
 
-    // Swipe down to close
-    if (dy > 80 && dy > Math.abs(dx) * 2 && dt < 500) {
+    // Swipe down to close — only when content is scrolled to top
+    const contentScrollTop = contentRef.current?.scrollTop ?? 0;
+    if (dy > 80 && dy > Math.abs(dx) * 2 && dt < 500 && contentScrollTop === 0) {
       handleClose();
       return;
     }
@@ -308,37 +287,9 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
       </div>
 
       {/* ── Section content ── */}
-      <div className={`${styles.content} ${slideClass}`}>
+      <div ref={contentRef} className={`${styles.content} ${slideClass}`}>
         <span className={styles.sectionLabel}>{section?.label}</span>
         {renderSectionBody()}
-
-        {showHint && sectionIdx === 0 && (
-          <p className={styles.tapHint} aria-hidden="true">tap left or right to navigate</p>
-        )}
-
-        {/* ── Next project card (bottom of reflection only) ── */}
-        {isReflection && nextProject && (
-          <div className={styles.nextProjectWrap}>
-            <p className={styles.nextProjectEyebrow}>Up next</p>
-            <button
-              className={styles.nextProjectCard}
-              onClick={() => navigate("forward")}
-              onTouchStart={(e) => e.stopPropagation()}
-              onTouchEnd={(e) => e.stopPropagation()}
-              aria-label={`Next project: ${nextProject.title}`}
-            >
-              <span className={styles.nextProjectCompany}>{nextProject.company}</span>
-              <span className={styles.nextProjectTitle}>{nextProject.title}</span>
-              {nextProject.oneLineDesc && (
-                <span className={styles.nextProjectDesc}>{nextProject.oneLineDesc}</span>
-              )}
-              <span className={styles.nextProjectMetricRow}>
-                <span className={styles.nextProjectMetricNumber}>{nextProject.keyMetric.number}</span>
-                <span className={styles.nextProjectMetricLabel}>{nextProject.keyMetric.label}</span>
-              </span>
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

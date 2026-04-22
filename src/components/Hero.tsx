@@ -9,7 +9,7 @@ export default function Hero() {
             Senior growth PM impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
-            I work with DTC ecommerce, marketplace, and subscription businesses
+            I work with marketplace, subscription, and DTC ecommerce businesses
             that have found product-market fit and need senior growth PM
             ownership to scale it.
           </p>
