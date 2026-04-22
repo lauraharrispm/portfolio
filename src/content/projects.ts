@@ -64,7 +64,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-gg-payments.png",
     title: "Redesigning Payments Onboarding",
     oneLineDesc:
-      "A broken onboarding flow was limiting growth from one of GlossGenius's most valuable revenue streams. An iterative experimentation program fixed it.",
+      "A broken onboarding flow was limiting adoption of one of GlossGenius's most valuable features. An iterative experimentation program fixed it.",
     keyMetric: {
       number: "80%",
       label: "onboarding completion lift",
@@ -75,10 +75,10 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A broken flow was blocking a high-value feature",
         body: [
-          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. Payments processing is one of its most valuable features: users who process payments generate significantly more revenue and are measurably more likely to remain subscribers. Most GlossGenius users could benefit from it, but most hadn't set it up.",
-          "The onboarding flow was broken in two compounding ways:",
+          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. Payments processing is one of its most valuable features: users who process payments generate significantly more revenue for GlossGenius and are more likely to remain subscribers because they find value in the feature.",
+          "But most subscribers hadn't set up payments processing yet. Why? The onboarding flow was broken in two compounding ways:",
           "The value proposition was hidden. There was no clear answer to \"why should I do this, and why right now?\" Without a reason to continue, the flow was a dead end.",
-          "It was hard to get through even for motivated users. The flow lacked clear steps and context including an externally-managed Stripe identity verification step that felt foreign: a jarring light-mode interface inside a dark-mode app, opening in an external browser without context explaining why users were being asked to share sensitive personal information.",
+          "It was hard to get through even for motivated users. The flow lacked clear steps and context including an externally-managed Stripe identity verification step that felt foreign: a jarring light-mode interface inside a dark-mode app, opening in an external browser without context explaining why users were being asked to share sensitive personal information including SSN.",
         ],
         boldPrefixes: [
           "",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
         heading: "Three compounding complications",
         body: [
           "We had informed hypotheses but needed data to prove them. Each experiment was designed to get a confident answer: learn, iterate, launch, repeat.",
-          "Running experiments across mobile, web, and multiple entry points added complexity. Funnel performance varied significantly by entry point, requiring precision in how we defined success and ensuring no conflicting experiences ran simultaneously.",
+          "Running experiments across mobile, web, and multiple entry points added complexity. Funnel performance varied significantly by persona, entry point, and device, requiring precision in how we designed the experimentation approach for variables, success metrics, MDE, and test duration. We balanced isolating variables that could validate our hypothesis while still taking big enough swings to see a stat sig result.",
           "A persona finding emerged mid-experiment and reshaped the strategy. Established businesses responded well to payments-first flows; newer businesses needed to demonstrate value through service creation first. This came from the data, not the hypothesis, and pointed toward persona-based onboarding as the right next direction.",
         ],
         boldPrefixes: [
@@ -147,11 +147,11 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "A bad onboarding flow can suppress adoption of a feature users already need. Most GlossGenius subscribers hadn't set up payments not because they didn't want it, but because the flow failed them.",
+          "Qualified, motivated users will still abandon a flow that fails them. Most GlossGenius subscribers hadn't set up payments not because they didn't want it, but because the flow failed them. Onboarding has to close the gap between wanting to do something and actually doing it.",
           "A well-run experiment can give you more actionable learnings than you drew up. The unplanned persona finding – that optimal onboarding step ordering varies by business size – emerged from bringing user context to the data analysis rather than reading the numbers in isolation. Once we had that insight, we treated it as a strategic input: it became the foundation for a future direction around persona-based onboarding flows.",
         ],
         boldPrefixes: [
-          "A bad onboarding flow can suppress adoption of a feature users already need.",
+          "Qualified, motivated users will still abandon a flow that fails them.",
           "A well-run experiment can give you more actionable learnings than you drew up.",
         ],
       },
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-gg-annual.png",
     title: "Launching Annual Subscriptions",
     oneLineDesc:
-      "GlossGenius's subscription infrastructure could only support one billing type, limiting revenue growth and future product strategy. I led a full migration and monetization unlock with zero business interruptions.",
+      "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
     keyMetric: {
       number: "✓",
       label: "Unlocked AI product roadmap with zero-interruption migration",
@@ -204,7 +204,7 @@ export const projects: Project[] = [
         heading: "Three decisions that shaped the launch",
         body: [
           "The existing infrastructure couldn't support annual billing at all. After confirming there were no engineering shortcuts, I worked with engineering to scope a full migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
-          "Launching a price increase and a new billing option simultaneously required careful sequencing. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities and a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
+          "Launching a price increase and a new billing option simultaneously required careful sequencing. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
           "The activation risk needed to be modeled precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
         ],
         boldPrefixes: [
@@ -218,7 +218,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Communicating two changes without creating confusion",
         body: [
-          "The challenge was communicating two simultaneous changes without creating confusion or triggering price sensitivity among existing subscribers who weren't affected. Key decisions: a clear plan comparison UI making annual vs. monthly value immediately legible, a simplified pricing page, and copy framing the price lock for existing subscribers as reassuring rather than defensive.",
+          "The challenge was communicating two simultaneous changes without creating confusion or triggering price sensitivity among existing subscribers who weren't affected. Key decisions: a clear plan comparison UI making annual vs. monthly value immediately legible, a simplified pricing page, and copy personalized for users who subscribed before launch (no annual discount) vs users who subscribed after launch (annual discount).",
         ],
         images: ["/gg-annual-1.png", "/gg-annual-2.png", "/gg-annual-3.png"],
         altTexts: [
@@ -228,8 +228,8 @@ export const projects: Project[] = [
         ],
         captions: [
           "Website pricing page for prospective subscribers positions annual subscriptions as a discount.",
-          "Annual subscription awareness message for monthly subscribers.",
-          '"View plans" modal for logged in subscribers.',
+          "Annual subscription awareness message for monthly subscribers who receive a discount on annual subscriptions.",
+          '"View plans" modal for logged in subscribers who receive a discount on annual subscriptions.',
         ],
         imageWidths: [1601, 960, 550],
         imageHeights: [1163, 473, 316],
@@ -252,11 +252,11 @@ export const projects: Project[] = [
         heading: "What this project taught me",
         body: [
           "Monetization is not always an optimization problem. Sometimes it requires rebuilding the foundation entirely before any meaningful progress is possible. This project was the foundation GlossGenius needs to achieve its growth roadmap.",
-          "The other surprise: existing customers adopted annual plans voluntarily without a discount because it genuinely fit how they run their businesses. Your most committed users will often tell you what they want if you give them the option.",
+          "Work led by business growth goals can serve the customer too, if you look for the opportunity. Overhauling subscription infrastructure was prioritized for GlossGenius's monetization and product roadmap goals, but we recognized that larger businesses had been asking for annual billing to simplify their admin. We messaged the launch as the benefit it actually was to these customers, and they adopted it without a discount because it genuinely fit how they run their businesses.",
         ],
         boldPrefixes: [
           "Monetization is not always an optimization problem.",
-          "The other surprise: existing customers adopted annual plans voluntarily without a discount because it genuinely fit how they run their businesses.",
+          "Work led by business growth goals can serve the customer too, if you look for the opportunity.",
         ],
       },
     ],
@@ -271,7 +271,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-rula-scheduling.png",
     title: "Scheduling Tool for Phone Agents",
     oneLineDesc:
-      "Patients calling their insurer for mental healthcare had no direct path to booking. I built the bridge and it became the most impactful launch in Rula's history.",
+      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful launch in Rula's history.",
     keyMetric: {
       number: "21%",
       label: "patient growth",
@@ -282,7 +282,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A huge drop-off between intent and a booked appointment",
         body: [
-          "Most patients who call their insurance company about mental healthcare leave with a referral list, not an appointment. The drop-off between \"I want help\" and \"I have a booking\" was enormous, and Rula had no presence in that moment at all.",
+          "Most patients who call their insurance company about mental healthcare leave with a referral list full of dead ends: providers who may not be accepting new patients, have outdated contact info, or don't meet the patient's full needs. The drop-off between 'I want help' and 'I have an appointment' was enormous, and Rula had no presence in that moment despite offering same-week availability at scale.",
         ],
       },
       {
@@ -290,7 +290,7 @@ export const projects: Project[] = [
         label: "Solution",
         heading: "A real-time scheduling tool built for phone agents",
         body: [
-          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members in real time. A patient calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked.",
+          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members in real time. A patient calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked. This is a win for patients, providers, and insurers because more patients access care quicker.",
         ],
       },
       {
@@ -298,7 +298,7 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Building for speed and scale from day one",
         body: [
-          "The interface needed to be a calendar view, but we only had a therapist list. Phone agents need to book quickly while a patient is on the line. Building the calendar UI required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
+          "The interface needed to be a calendar view to meet user needs, but we only had a therapist list. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
           "I built for scale from day one. The tool launched with one insurance partner, but I set requirements that made onboarding additional partners as frictionless as possible. The use case was too common and too valuable to treat as a one-off.",
         ],
         boldPrefixes: [
@@ -311,7 +311,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Purpose-built for speed, not browsing",
         body: [
-          "The flow starts with a short intake form that captures the member's state and insurance coverage, pre-filtering everything that follows. The calendar view then shows only bookable slots, with therapist filters accessible on the side if the member has specific preferences. The whole interaction is purpose-built for speed on a live call, not patient browsing. The existing therapist directory page works for patients booking themselves, but it was not scalable for this partnership demand channel.",
+          "The flow starts with a short intake form that captures the member's state and insurance coverage, pre-filtering everything that follows. The calendar view then shows only bookable slots, with therapist filters accessible on the side if the member has specific preferences. The whole interaction is purpose-built for speed on a live call, not browsing. The existing therapist directory page works for patients booking themselves, but it was not scalable for this partnership demand channel.",
         ],
         images: [
           "/rula-scheduling-1.png",
@@ -328,8 +328,8 @@ export const projects: Project[] = [
           "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
           "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure. Giving phone agents this format was an effective MVP to prove the channel, but its limitations prevented scaling within and across insurance partners.",
         ],
-        imageWidths: [713, 860, 820],
-        imageHeights: [1575, 469, 766],
+        imageWidths: [713, 1189, 820],
+        imageHeights: [1575, 664, 766],
       },
       {
         id: "results",
@@ -363,7 +363,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-rula-directory.png",
     title: "Therapist Directory",
     oneLineDesc:
-      "Rula was nearly invisible on Google. I built an SEO-driven directory that turned organic search into a zero-cost acquisition channel from scratch.",
+      "Rula was nearly invisible where millions of people search for mental healthcare: Google. I built an SEO-driven directory that turned organic search into a zero-cost acquisition channel from scratch.",
     keyMetric: {
       number: "345%",
       label: "organic patient starts",
@@ -459,7 +459,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-gg-payments.png",
     title: "AI as a PM Operating System",
     oneLineDesc:
-      "PM work used to require assembling a team for every high-quality output. I rebuilt how I work with AI and now move 10x faster from idea to shareable artifact.",
+      "PM work used to require assembling a team for every high-quality output. I rebuilt how I work with AI and now move 10x faster from idea to shareable artifact. It's more fun too.",
     keyMetric: {
       number: "10×",
       label: "faster from idea to shareable artifact",
