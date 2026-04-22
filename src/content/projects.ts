@@ -129,8 +129,8 @@ export const projects: Project[] = [
         altTexts: [
           "Payments onboarding flow redesign — value statement, progress bar, and native Stripe verification",
         ],
-        imageWidths: [1214],
-        imageHeights: [630],
+        imageWidths: [1717],
+        imageHeights: [1021],
       },
       {
         id: "results",
