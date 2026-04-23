@@ -78,7 +78,7 @@ export const projects: Project[] = [
           "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. Payments processing is one of its most valuable features: users who process payments generate significantly more revenue for GlossGenius and are more likely to remain subscribers because they find value in the feature.",
           "But most subscribers hadn't set up payments processing yet. Why? The onboarding flow was broken in two compounding ways:",
           "The value proposition was hidden. There was no clear answer to \"why should I do this, and why right now?\" Without a reason to continue, the flow was a dead end.",
-          "It was hard to get through even for motivated users. The flow lacked clear steps and context including an externally-managed Stripe identity verification step that felt foreign: a jarring light-mode interface inside a dark-mode app, opening in an external browser without context explaining why users were being asked to share sensitive personal information including SSN.",
+          "It was hard to get through even for motivated users. The flow lacked clear steps and context including an externally-managed Stripe identity verification step that felt foreign with a jarring light-mode interface inside a dark-mode app, opening in an external browser without context explaining why users were being asked to share sensitive personal information including SSN.",
         ],
         boldPrefixes: [
           "",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
         body: [
           "I redesigned the flow through an iterative experimentation program, sequencing experiments by expected impact, resources required, and user experience to maximize learning and momentum. Two principles guided every decision:",
           "Make the value unmistakable before asking for effort. We led with a clear value statement so users understood why payments processing was worth setting up before they started.",
-          "Remove friction that creates confusion and add friction that builds confidence. We added a persistent progress bar and more instructional content to guide users through a complex flow. We transformed the Stripe verification step to feel native: matching dark mode, applying brand styles, and rewriting copy to be clearer and more reassuring.",
+          "Remove friction that creates confusion and add friction that builds confidence. We added a persistent progress bar and more instructional content to guide users through a complex flow. We also transformed the Stripe verification step to feel native by applying dark mode, brand styles, and rewriting copy to be clearer and more reassuring.",
         ],
         boldPrefixes: [
           "",
@@ -107,9 +107,9 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Three compounding complications",
         body: [
-          "We had informed hypotheses but needed data to prove them. Each experiment was designed to get a confident answer: learn, iterate, launch, repeat.",
-          "Running experiments across mobile, web, and multiple entry points added complexity. Funnel performance varied significantly by persona, entry point, and device, requiring precision in how we designed the experimentation approach for variables, success metrics, MDE, and test duration. We balanced isolating variables that could validate our hypothesis while still taking big enough swings to see a stat sig result.",
-          "A persona finding emerged mid-experiment and reshaped the strategy. Established businesses responded well to payments-first flows; newer businesses needed to demonstrate value through service creation first. This came from the data, not the hypothesis, and pointed toward persona-based onboarding as the right next direction.",
+          "We had informed hypotheses but needed data to prove them. Each experiment was designed to get a confident answer: learn, iterate, launch, repeat. These answers gave us confidence in larger engineering investments.",
+          "Running experiments across mobile, web, and multiple entry points added complexity. Funnel performance varied significantly by persona, entry point, and device, requiring precision in how we designed the experimentation approach considering variables, success metrics, MDE, and test duration. We balanced isolating variables that could validate our hypothesis while still taking big enough swings to see a stat sig result.",
+          "A persona finding emerged mid-experiment and reshaped the strategy. An experiment was taking longer than projected to reach significance, which the data showed was due to different behavior from different users: established businesses responded well to payments-first flows while newer businesses needed to demonstrate value through setting up their bookable services first. We ended that experiment early to open up traffic for other testing opportunities, and then adjusted our roadmap to address persona-based experiences.",
         ],
         boldPrefixes: [
           "We had informed hypotheses but needed data to prove them.",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "The right friction, not less friction",
         body: [
-          "Friction in onboarding has a bad reputation, but it's not always good or always bad. What matters is the right clicks. In this case, users were being asked for a lot: verify their identity, connect a bank account, and commit to a new revenue stream. Limiting context and clicks to rush them through it didn't help them succeed.",
+          "Friction in onboarding has a bad reputation, but it's not always good or always bad. What matters is the right friction. In this case, users were being asked for a lot: verify their identity, connect a bank account, and commit to a new operations platform. Limiting context and clicks to rush them through it didn't help them succeed.",
           "We led with a value statement, added a persistent progress bar, rewrote instructional copy, and transformed the Stripe verification experience by matching GlossGenius's branding. The result felt native and trustworthy rather than foreign and unclear.",
         ],
         images: ["/gg-payments-1.png"],
@@ -137,8 +137,8 @@ export const projects: Project[] = [
         label: "Results",
         heading: "Measurable impact across the funnel",
         body: [
-          "📈 80% increase in payments onboarding completion rate",
-          "📈 Seven-figure GPV impact as more businesses began actively processing payments",
+          "📈 80% increase in payments processing onboarding completion rate",
+          "📈 Seven-figure GPV impact as more businesses began processing payments",
           "📈 3% lift in subscription activations, validating that payments setup increased the perceived value of a GlossGenius subscription",
         ],
       },
@@ -148,7 +148,7 @@ export const projects: Project[] = [
         heading: "What this project taught me",
         body: [
           "Qualified, motivated users will still abandon a flow that fails them. Most GlossGenius subscribers hadn't set up payments not because they didn't want it, but because the flow failed them. Onboarding has to close the gap between wanting to do something and actually doing it.",
-          "A well-run experiment can give you more actionable learnings than you drew up. The unplanned persona finding – that optimal onboarding step ordering varies by business size – emerged from bringing user context to the data analysis rather than reading the numbers in isolation. Once we had that insight, we treated it as a strategic input: it became the foundation for a future direction around persona-based onboarding flows.",
+          "A well-run experiment can give you more actionable learnings than you drew up, but you have to find them. The unplanned persona finding – that optimal onboarding step ordering varies by business size – emerged from bringing user context to the data analysis rather than accepting at face value that the experiment results indicated low impact based on the primary success metric. Our understanding of the users and their mindset during onboarding helped us find nuances in the data and act on it, saving valuable time to test and launch more impactful experiences.",
         ],
         boldPrefixes: [
           "Qualified, motivated users will still abandon a flow that fails them.",
@@ -178,16 +178,16 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A billing infrastructure that was blocking growth",
         body: [
-          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. GlossGenius had one subscription structure: monthly, one price tier per plan, which varied by feature access. As the company matured, this created compounding problems across revenue, customer experience, and product roadmap.",
-          "Limiting revenue: there was no cash pull-forward, no annual commitment signal, and new customer pricing hadn't kept pace with the value the product now delivered.",
-          "Lackluster customer experience: established businesses often prefer annual billing for accounting ease. Monthly payments were friction for them, not flexibility.",
-          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business were architecturally blocked before they started. Any meaningful monetization evolution was impossible without rebuilding the foundation first.",
+          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. GlossGenius had one subscription structure: three hard-coded subscription tiers that offered a set feature bundle and charged one price on a monthly cadence. As the company matured, this created compounding problems across the product roadmap, revenue optimization, and customer experience.",
+          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business as an add-on to your base subscription were architecturally blocked before they started. Any meaningful monetization evolution was impossible without rebuilding the foundation first.",
+          "Limiting revenue: with only monthly billing, there was no annual commitment signal or cash pull-forward. Pricing for new customers also hadn't kept pace with the increasing value of a subscription because prices had been consistent for years.",
+          "Lackluster customer experience: established businesses often prefer annual over monthly billing for accounting ease, and the ratio of established businesses to solo entrepreneur GlossGenius subscribers was increasing, as designed in the company growth strategy.",
         ],
         boldPrefixes: [
           "",
+          "Limiting product roadmap:",
           "Limiting revenue:",
           "Lackluster customer experience:",
-          "Limiting product roadmap:",
         ],
       },
       {
@@ -203,7 +203,7 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Three decisions that shaped the launch",
         body: [
-          "The existing infrastructure couldn't support annual billing at all. After confirming there were no engineering shortcuts, I worked with engineering to scope a full migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
+          "The existing infrastructure couldn't support annual billing at all. After confirming there were no engineering shortcuts, I worked with engineering to scope a full subscription service migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
           "Launching a price increase and a new billing option simultaneously required careful sequencing. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
           "The activation risk needed to be modeled precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
         ],
@@ -251,8 +251,8 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "Monetization is not always an optimization problem. Sometimes it requires rebuilding the foundation entirely before any meaningful progress is possible. This project was the foundation GlossGenius needs to achieve its growth roadmap.",
-          "Work led by business growth goals can serve the customer too, if you look for the opportunity. Overhauling subscription infrastructure was prioritized for GlossGenius's monetization and product roadmap goals, but we recognized that larger businesses had been asking for annual billing to simplify their admin. We messaged the launch as the benefit it actually was to these customers, and they adopted it without a discount because it genuinely fit how they run their businesses.",
+          "Monetization is not always an optimization problem. Sometimes it requires rebuilding the foundation entirely before any meaningful progress is possible. This project was the foundation GlossGenius needs to achieve its growth roadmap, so it was worth the significant engineering investment.",
+          "Work led by business growth goals can serve the customer too, if you look for the opportunity. Overhauling subscription infrastructure was prioritized for GlossGenius's monetization and product roadmap goals, but we recognized from customer support data that annual billing was also a genuine benefit for larger businesses. So we messaged the annual subscription launch with this framing, and customers adopted it without a discount because it genuinely fit how they run their businesses.",
         ],
         boldPrefixes: [
           "Monetization is not always an optimization problem.",
