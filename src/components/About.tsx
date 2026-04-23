@@ -26,9 +26,9 @@ export default function About() {
             </p>
             <p className={styles.body}>
               I do my best work untangling messy problems to figure out what
-              actually matters, all before reaching for solutions. PM knowledge is
-              becoming a commodity in the world of AI, but judgment isn&apos;t. I know what people want
-              and why, and I know what good looks like.
+              actually matters before jumping to solutions. As PM knowledge becomes
+              increasingly commoditized in an AI-driven world, I lean into what isn&apos;t:
+              a strong sense of what people want, what good looks like, and the judgment to connect the two.
             </p>
             <p className={styles.body}>
               I love working with people who are smart, dynamic, considerate, and endlessly curious.

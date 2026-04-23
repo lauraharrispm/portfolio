@@ -78,13 +78,13 @@ export const projects: Project[] = [
           "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. Payments processing is one of its most valuable features: users who process payments generate significantly more revenue for GlossGenius and are more likely to remain subscribers because they find value in the feature.",
           "But most subscribers hadn't set up payments processing yet. Why? The onboarding flow was broken in two compounding ways:",
           "The value proposition was hidden. There was no clear answer to \"why should I do this, and why right now?\" Without a reason to continue, the flow was a dead end.",
-          "It was hard to get through even for motivated users. The flow lacked clear steps and context including an externally-managed Stripe identity verification step that felt foreign with a jarring light-mode interface inside a dark-mode app, opening in an external browser without context explaining why users were being asked to share sensitive personal information including SSN.",
+          "Onboarding was difficult even for motivated users. The flow lacked clear steps and context, making it feel disjointed and untrustworthy. For example, the Stripe identity verification step opened in an external browser with different branding and no explanation as to why it required sensitive personal information including SSN.",
         ],
         boldPrefixes: [
           "",
           "",
           "The value proposition was hidden.",
-          "It was hard to get through even for motivated users.",
+          "Onboarding was difficult even for motivated users.",
         ],
       },
       {
@@ -92,9 +92,9 @@ export const projects: Project[] = [
         label: "Solution",
         heading: "An iterative experimentation program, guided by two principles",
         body: [
-          "I redesigned the flow through an iterative experimentation program, sequencing experiments by expected impact, resources required, and user experience to maximize learning and momentum. Two principles guided every decision:",
+          "I improved the flow through a structured experimentation program, prioritizing changes based on impact, effort, and ability to drive learning. Two principles guided every decision:",
           "Make the value unmistakable before asking for effort. We led with a clear value statement so users understood why payments processing was worth setting up before they started.",
-          "Remove friction that creates confusion and add friction that builds confidence. We added a persistent progress bar and more instructional content to guide users through a complex flow. We also transformed the Stripe verification step to feel native by applying dark mode, brand styles, and rewriting copy to be clearer and more reassuring.",
+          "Remove friction that creates confusion and add friction that builds confidence. We introduced a persistent progress bar and clearer guidance to support users through a complex flow. We also redesigned the Stripe verification step to feel native with consistent styling and more reassuring, transparent copy.",
         ],
         boldPrefixes: [
           "",
@@ -107,14 +107,14 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Three compounding complications",
         body: [
-          "We had informed hypotheses but needed data to prove them. Each experiment was designed to get a confident answer: learn, iterate, launch, repeat. These answers gave us confidence in larger engineering investments.",
-          "Running experiments across mobile, web, and multiple entry points added complexity. Funnel performance varied significantly by persona, entry point, and device, requiring precision in how we designed the experimentation approach considering variables, success metrics, MDE, and test duration. We balanced isolating variables that could validate our hypothesis while still taking big enough swings to see a stat sig result.",
-          "A persona finding emerged mid-experiment and reshaped the strategy. An experiment was taking longer than projected to reach significance, which the data showed was due to different behavior from different users: established businesses responded well to payments-first flows while newer businesses needed to demonstrate value through setting up their bookable services first. We ended that experiment early to open up traffic for other testing opportunities, and then adjusted our roadmap to address persona-based experiences.",
+          "We had strong hypotheses but needed data to validate them before making larger investments. This was a complex, business-critical onboarding flow with real technical constraints, so we designed experiments to deliver clear answers with small to medium engineering lift. Those insights gave us the confidence to move forward with more significant changes.",
+          "Running experiments across mobile, web, and multiple entry points added meaningful complexity. Funnel performance varied significantly by persona, entry point, and device, so we designed experiments with precision, aligning on variables, success metrics, MDE, and test duration upfront. We balanced isolating variables to validate hypotheses with taking large enough swings to reach statistically significant results.",
+          "A key persona insight emerged mid-experiment and reshaped the strategy. The test was taking longer than expected to reach significance, and the data revealed why: established businesses responded to payments-first flows, while newer businesses needed to see value through setting up bookable services first. We ended the experiment early to free up traffic for other tests and adjusted the roadmap to support more tailored, persona-based experiences.",
         ],
         boldPrefixes: [
-          "We had informed hypotheses but needed data to prove them.",
-          "Running experiments across mobile, web, and multiple entry points added complexity.",
-          "A persona finding emerged mid-experiment and reshaped the strategy.",
+          "We had strong hypotheses but needed data to validate them before making larger investments.",
+          "Running experiments across mobile, web, and multiple entry points added meaningful complexity.",
+          "A key persona insight emerged mid-experiment and reshaped the strategy.",
         ],
       },
       {
@@ -122,8 +122,8 @@ export const projects: Project[] = [
         label: "Design",
         heading: "The right friction, not less friction",
         body: [
-          "Friction in onboarding has a bad reputation, but it's not always good or always bad. What matters is the right friction. In this case, users were being asked for a lot: verify their identity, connect a bank account, and commit to a new operations platform. Limiting context and clicks to rush them through it didn't help them succeed.",
-          "We led with a value statement, added a persistent progress bar, rewrote instructional copy, and transformed the Stripe verification experience by matching GlossGenius's branding. The result felt native and trustworthy rather than foreign and unclear.",
+          "Friction in onboarding isn't inherently bad; what matters is whether it builds or erodes confidence. Users were asked to do a lot: verify their identity, connect a bank account, and commit to a new platform. Reducing steps without enough context made it harder, not easier, to complete.",
+          "We led with a clear value statement, added a persistent progress bar, improved instructional copy, and redesigned the Stripe verification experience to feel fully native. The result was a flow that felt cohesive, trustworthy, and easier to navigate.",
         ],
         images: ["/gg-payments-1.png"],
         altTexts: [
@@ -147,12 +147,12 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "Qualified, motivated users will still abandon a flow that fails them. Most GlossGenius subscribers hadn't set up payments not because they didn't want it, but because the flow failed them. Onboarding has to close the gap between wanting to do something and actually doing it.",
-          "A well-run experiment can give you more actionable learnings than you drew up, but you have to find them. The unplanned persona finding – that optimal onboarding step ordering varies by business size – emerged from bringing user context to the data analysis rather than accepting at face value that the experiment results indicated low impact based on the primary success metric. Our understanding of the users and their mindset during onboarding helped us find nuances in the data and act on it, saving valuable time to test and launch more impactful experiences.",
+          "Qualified, motivated users will still abandon a flow that fails them. Most GlossGenius subscribers hadn't set up payments not due to lack of intent, but because the onboarding experience broke down. Effective onboarding closes the gap between intent and action.",
+          "Well-run experiments often yield more insight than planned, but only if you look for it. A key persona insight emerged when we analyzed results through the lens of user context rather than relying solely on the primary metric, revealing that optimal onboarding sequencing varied by business size. That deeper read helped us act faster on higher-impact opportunities.",
         ],
         boldPrefixes: [
           "Qualified, motivated users will still abandon a flow that fails them.",
-          "A well-run experiment can give you more actionable learnings than you drew up.",
+          "Well-run experiments often yield more insight than planned, but only if you look for it.",
         ],
       },
     ],
@@ -179,9 +179,9 @@ export const projects: Project[] = [
         heading: "A billing infrastructure that was blocking growth",
         body: [
           "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. GlossGenius had one subscription structure: three hard-coded subscription tiers that offered a set feature bundle and charged one price on a monthly cadence. As the company matured, this created compounding problems across the product roadmap, revenue optimization, and customer experience.",
-          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business as an add-on to your base subscription were architecturally blocked before they started. Any meaningful monetization evolution was impossible without rebuilding the foundation first.",
-          "Limiting revenue: with only monthly billing, there was no annual commitment signal or cash pull-forward. Pricing for new customers also hadn't kept pace with the increasing value of a subscription because prices had been consistent for years.",
-          "Lackluster customer experience: established businesses often prefer annual over monthly billing for accounting ease, and the ratio of established businesses to solo entrepreneur GlossGenius subscribers was increasing, as designed in the company growth strategy.",
+          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business as an add-on to your base subscription were architecturally blocked before they started.",
+          "Limiting revenue: With only monthly billing, there was no annual commitment signal or cash pull-forward. Pricing for new customers had been static for years, presenting an opportunity to more accurately reflect the current value of a subscription.",
+          "Lackluster customer experience: As GlossGenius scaled upmarket, more subscribers were established businesses that preferred annual over monthly billing for accounting simplicity.",
         ],
         boldPrefixes: [
           "",
@@ -195,7 +195,7 @@ export const projects: Project[] = [
         label: "Solution",
         heading: "A full infrastructure migration with a careful launch strategy",
         body: [
-          "I led the launch of annual subscription plans alongside a price increase for new customers, requiring a full infrastructure migration, cross-functional coordination across product, engineering, finance, and marketing, and a careful launch strategy to protect against activation risk.",
+          "I led the launch of annual subscription plans alongside a price increase for new customers. This required a full subscription service migration, close cross-functional coordination across product, engineering, finance, and marketing, and a carefully managed launch to mitigate activation risk.",
         ],
       },
       {
@@ -203,14 +203,14 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Three decisions that shaped the launch",
         body: [
-          "The existing infrastructure couldn't support annual billing at all. After confirming there were no engineering shortcuts, I worked with engineering to scope a full subscription service migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
-          "Launching a price increase and a new billing option simultaneously required careful sequencing. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
-          "The activation risk needed to be modeled precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
+          "The existing infrastructure couldn't support annual billing in any way. After confirming there were no engineering shortcuts, I worked with engineering to scope a full subscription service migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
+          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
+          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
         ],
         boldPrefixes: [
-          "The existing infrastructure couldn't support annual billing at all.",
-          "Launching a price increase and a new billing option simultaneously required careful sequencing.",
-          "The activation risk needed to be modeled precisely to avoid harming the bottom line.",
+          "The existing infrastructure couldn't support annual billing in any way.",
+          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally.",
+          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line.",
         ],
       },
       {
@@ -242,8 +242,8 @@ export const projects: Project[] = [
           "In the first month after launch:",
           "✅ Activation held within acceptable thresholds, requiring no corrective pricing action",
           "✅ Zero business interruptions through a full subscription infrastructure migration",
-          "📈 Revenue per customer increased (too early for stat sig results)",
-          "📈 Annual plan adoption exceeded projections, particularly among existing customers who switched voluntarily, signaling genuine long-term product commitment (too early for stat sig results)",
+          "📈 Revenue per customer increased multiple percentage points (early directional signal; not yet statistically significant)",
+          "📈 Annual plan adoption exceeded projections, with strong voluntary uptake from existing customers, signaling real long-term commitment (early directional signal; not yet statistically significant)",
         ],
       },
       {
@@ -251,12 +251,12 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "Monetization is not always an optimization problem. Sometimes it requires rebuilding the foundation entirely before any meaningful progress is possible. This project was the foundation GlossGenius needs to achieve its growth roadmap, so it was worth the significant engineering investment.",
-          "Work led by business growth goals can serve the customer too, if you look for the opportunity. Overhauling subscription infrastructure was prioritized for GlossGenius's monetization and product roadmap goals, but we recognized from customer support data that annual billing was also a genuine benefit for larger businesses. So we messaged the annual subscription launch with this framing, and customers adopted it without a discount because it genuinely fit how they run their businesses.",
+          "Monetization isn't always an optimization problem. Sometimes it requires rebuilding the foundation before meaningful progress is possible. This project laid that foundation for GlossGenius's growth roadmap, making the significant engineering investment well worth it.",
+          "Work driven by business goals can also serve the customer if you look for the overlap. While overhauling subscription infrastructure was prioritized for monetization and roadmap needs, customer support data made it clear that annual billing was a real benefit for larger businesses. We leaned into that in our positioning, and customers adopted annual plans without discounts because it matched how they operate.",
         ],
         boldPrefixes: [
-          "Monetization is not always an optimization problem.",
-          "Work led by business growth goals can serve the customer too, if you look for the opportunity.",
+          "Monetization isn't always an optimization problem.",
+          "Work driven by business goals can also serve the customer if you look for the overlap.",
         ],
       },
     ],
@@ -271,7 +271,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-rula-scheduling.png",
     title: "Scheduling Tool for Phone Agents",
     oneLineDesc:
-      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful launch in Rula's history.",
+      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
     keyMetric: {
       number: "21%",
       label: "patient growth",
@@ -282,7 +282,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A huge drop-off between intent and a booked appointment",
         body: [
-          "Most patients who call their insurance company about mental healthcare leave with a referral list full of dead ends: providers who may not be accepting new patients, have outdated contact info, or don't meet the patient's full needs. The drop-off between 'I want help' and 'I have an appointment' was enormous, and Rula had no presence in that moment despite offering same-week availability at scale.",
+          "The drop-off between 'I want help' and 'I have a booking' was massive, and Rula wasn't bridging that gap despite strong payer partnerships and offering same-week availability at scale.",
         ],
       },
       {
@@ -290,7 +290,7 @@ export const projects: Project[] = [
         label: "Solution",
         heading: "A real-time scheduling tool built for phone agents",
         body: [
-          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members in real time. A patient calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked. This is a win for patients, providers, and insurers because more patients access care quicker.",
+          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members (patients) in real time. A member calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked. This is a win for patients, providers, and insurers because more patients access care quicker.",
         ],
       },
       {
@@ -298,12 +298,12 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Building for speed and scale from day one",
         body: [
-          "The interface needed to be a calendar view to meet the needs of phone agents, but we only had a therapist list. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
-          "I built for scale from day one. The tool launched with one insurance partner, but I set requirements that made onboarding additional partners as frictionless as possible. The use case was too common and too valuable to treat as a one-off. This approach is what helped scale the tool very quickly across insurance partners, making it the biggest launch in Rula history.",
+          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI they wanted required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
+          "We made deliberate scope tradeoffs with scale in mind. We could have launched faster for a single payer, but that would have limited how quickly the scheduling tool could expand across all payers we partnered with. Given strong MVP traction and clear relevance across existing and prospective partners, I included the additional scope needed to scale from the start. That investment paid off, enabling fast adoption across partners and making it the biggest launch in Rula history.",
         ],
         boldPrefixes: [
-          "The interface needed to be a calendar view to meet the needs of phone agents, but we only had a therapist list.",
-          "I built for scale from day one.",
+          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed.",
+          "We made deliberate scope tradeoffs with scale in mind.",
         ],
       },
       {
@@ -324,7 +324,7 @@ export const projects: Project[] = [
           "The existing therapist list — built for patient browsing, not agent scheduling",
         ],
         captions: [
-          "The intake form captures state and insurance coverage upfront so every slot shown in the calendar is confirmed bookable for the member on the call.",
+          "The intake form captures state and insurance coverage upfront so every slot shown in the subsequent calendar is confirmed bookable for the member on the call.",
           "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
           "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure.",
         ],
@@ -391,13 +391,13 @@ export const projects: Project[] = [
         heading: "Breadth, speed, and a 30-second load time",
         body: [
           "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale. This demanded sophisticated SEO strategy, content creation, and technical approach.",
-          "I scoped for speed to launch because organic search is a long-game, and we needed to get in the game ASAP. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
-          "A 20-second load time was a hard blocker. Results needed to load in less than one second for Google to care at all, but the current flow had a 20-second load to fetch therapist availability. That was not a glaring customer experience issue at the time because a required form flow distracted the user from noticing the load by the time they got to the therapist list, but the directory pages couldn't hide the delay.",
+          "Because organic search is a long-game, we needed to get in the game ASAP to create impact. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
+          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment. A slow page load is a nonstarter for Google rankings, and the existing flow took 20 seconds (!) to fetch therapist availability before rendering the directory page. While this delay was masked in the form flow, where required steps kept users engaged, it became fully visible on the directory pages and created a clear performance issue.",
         ],
         boldPrefixes: [
           "The strategy was breadth, not depth.",
-          "I scoped for speed.",
-          "A 30-second load time was a hard blocker.",
+          "Because organic search is a long-game, we needed to get in the game ASAP to create impact.",
+          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment.",
         ],
       },
       {
@@ -405,7 +405,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Zero friction between search and results",
         body: [
-          "A patient Google searches for the therapy type they need. Google incorporates location automatically in most cases. The page link in search results take them directly to a filtered therapist list showing therapists they could actually book (state and insurance pre-filtered) with no sign-up required. If location is unknown, a lightweight modal collects state and insurance before loading results.",
+          "The user flow starts with a prospective patient Google searching for mental health therapy. Google suggests relevant pages to help them find care, including a Rula therapist directory page that speaks to the specific search terms (including location, which Google often adds). When a user clicks on the Rula page link, they land on a filtered therapist list showing therapists they could actually book (state and insurance pre-filtered) right now. If location is unknown, a lightweight modal collects state and insurance before loading results.",
         ],
         images: [
           "/rula-directory-1.gif",
@@ -418,9 +418,9 @@ export const projects: Project[] = [
           "Desktop therapist directory experience",
         ],
         captions: [
-          "Directory requires state and insurance to load plausible therapists for patient, then shows list of therapists with filters.",
-          "Content below the therapists is optimized for SEO with blog links, Rula success data, links to other directory pages based on specialty and state, and FAQ content. This content contributes to user experience while helping search engines find and serve relevant pages.",
-          "Desktop experience.",
+          "Directory requires state and requests insurance to load plausible therapists for patient, then shows list of therapists with additional filters.",
+          "Content below the therapists is optimized for SEO with Rula blog links, Rula success data, FAQ content, and links to more directory pages. This content both contributes to user experience and helps search engines find and serve relevant pages.",
+          "Directory desktop experience.",
         ],
         imageWidths: [1206, 800, 1350],
         imageHeights: [2622, 1739, 1261],
@@ -441,8 +441,8 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and most of the infrastructure already existed. Sometimes the best growth move is finding the game you can actually win.",
-          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to extend the value beyond the original scope. This work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
+          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and we already had most of the infrastructure we needed to build the right content. Sometimes the best growth move is finding the game you can actually win.",
+          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to compound the value beyond the original scope. As a result, this work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
         ],
         boldPrefixes: [
           "The most important decision on this project was strategic, not tactical.",
@@ -490,13 +490,13 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "What actually changed — and what didn't",
         body: [
-          "The biggest unlock was changing how I prompt, not just what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking improves output quality tremendously.",
+          "How I prompt is as important as what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking improves output quality tremendously.",
           "Deploying Claude Enterprise required more than giving people access. I focused on showing concrete workflows rather than making abstract cases, starting with the highest-friction tasks people already complained about and making the before/after undeniable.",
           "The hardest thing to delegate to AI is cross-functional judgment. It's great at synthesis, drafting, and analysis. But product decisions, stakeholder reads, and prioritization calls still require a human. I use AI to assist this process rather than replace it.",
           "Engineering leverage is outpacing PM and design leverage. Small engineering teams now produce dramatically more output with AI. The response isn't to work harder; it's to build a personal operating system that scales your judgment, not just your hours.",
         ],
         boldPrefixes: [
-          "The biggest unlock was changing how I prompt, not just what I prompt.",
+          "How I prompt is as important as what I prompt.",
           "Deploying Claude Enterprise required more than giving people access.",
           "The hardest thing to delegate to AI is cross-functional judgment.",
           "Engineering leverage is outpacing PM and design leverage.",
@@ -513,7 +513,7 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "The lines between product, design, and engineering are blurring. I think that's a good thing. AI doesn't replace the depth of expertise that comes from years of experience practicing a discipline. What it does is give each function more agency in the others' territory. I built this entire portfolio with Claude Code. I could not have built it on my own two years ago. This changes how I show up as a PM: I can prototype instead of spec, experiment without a full team, and bring more informed judgment to design and engineering conversations because I'm closer to the work. We can all collaborate differently to get more out of every hour the team has.",
+          "The lines between product, design, and engineering are blurring. I think that's a good thing. AI doesn't replace the depth of expertise that comes from years of practicing a discipline. What it does is give each function more agency in the others' territory. For example, I built this entire portfolio with Claude Code in a few days. I could not have built anything like it on my own two years ago. This changes how I show up as a PM: I can prototype instead of only spec, launch an experiment on my own, and bring more informed judgment to design and engineering conversations because I'm closer to the work. These shifts help us all get more out of every hour the team has.",
         ],
         boldPrefixes: [
           "The lines between product, design, and engineering are blurring.",
