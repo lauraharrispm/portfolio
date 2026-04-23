@@ -442,9 +442,11 @@ export const projects: Project[] = [
         heading: "What this project taught me",
         body: [
           "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and the infrastructure already existed. Sometimes the best growth move is finding the game you can actually win.",
+          "Good infrastructure work pays off cross-functionally when someone connects the dots. The load-time fix was built for the directory, but I looked for ways to extend the value beyond the original scope and pushed that across teams. It also improved the existing sign-up flow, which boosted patient booking conversion for the majority of traffic.",
         ],
         boldPrefixes: [
           "The most important decision on this project was strategic, not tactical.",
+          "Good infrastructure work pays off cross-functionally when someone connects the dots.",
         ],
       },
     ],
