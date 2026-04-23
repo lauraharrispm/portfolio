@@ -298,11 +298,11 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Building for speed and scale from day one",
         body: [
-          "The interface needed to be a calendar view to meet user needs, but we only had a therapist list. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
-          "I built for scale from day one. The tool launched with one insurance partner, but I set requirements that made onboarding additional partners as frictionless as possible. The use case was too common and too valuable to treat as a one-off.",
+          "The interface needed to be a calendar view to meet the needs of phone agents, but we only had a therapist list. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
+          "I built for scale from day one. The tool launched with one insurance partner, but I set requirements that made onboarding additional partners as frictionless as possible. The use case was too common and too valuable to treat as a one-off. This approach is what helped scale the tool very quickly across insurance partners, making it the biggest launch in Rula history.",
         ],
         boldPrefixes: [
-          "The interface needed to be a calendar view, but we only had a therapist list.",
+          "The interface needed to be a calendar view to meet the needs of phone agents, but we only had a therapist list.",
           "I built for scale from day one.",
         ],
       },
@@ -311,7 +311,7 @@ export const projects: Project[] = [
         label: "Design",
         heading: "Purpose-built for speed, not browsing",
         body: [
-          "The flow starts with a short intake form that captures the member's state and insurance coverage, pre-filtering everything that follows. The calendar view then shows only bookable slots, with therapist filters accessible on the side if the member has specific preferences. The whole interaction is purpose-built for speed on a live call, not browsing. The existing therapist directory page works for patients booking themselves, but it was not scalable for this partnership demand channel.",
+          "The flow starts with a short intake form that captures the member's state, insurance coverage, type of therapy, any other fields a specific payer needs. The calendar view comes after the form, using its data to show only bookable slots. Additional filters are accessible on the side if the member has specific preferences.",
         ],
         images: [
           "/rula-scheduling-1.png",
@@ -326,17 +326,17 @@ export const projects: Project[] = [
         captions: [
           "The intake form captures state and insurance coverage upfront so every slot shown in the calendar is confirmed bookable for the member on the call.",
           "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
-          "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure. Giving phone agents this format was an effective MVP to prove the channel, but its limitations prevented scaling within and across insurance partners.",
+          "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure.",
         ],
-        imageWidths: [713, 1189, 820],
-        imageHeights: [1575, 664, 766],
+        imageWidths: [2840, 2664, 820],
+        imageHeights: [2564, 1228, 766],
       },
       {
         id: "results",
         label: "Results",
         heading: "The largest feature launch in Rula's history",
         body: [
-          "📈 21% patient growth, largest feature launch ever at Rula",
+          "📈 21% patient growth (largest feature launch ever at Rula)",
           "📈 66% conversion increase vs. the previous phone agent flow",
         ],
       },
@@ -345,7 +345,7 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "Sometimes the right answer is a new tool, not a modified one. The instinct early on was to adapt what we already had. But the phone agent's job is completely different from a patient's: on a call, under time pressure, scheduling for someone else. Starting from the user's actual context rather than existing patterns led to a better outcome faster.",
+          "Sometimes the right answer is a new tool, not a modified one. The instinct early on was to adapt what we already had, and that was a successful MVP approach. But the phone agent's job is completely different from a patient's: on a call, under time pressure, scheduling for someone else. Starting from the user's actual context rather than existing patterns led to a tool that was more effective and scalable.",
         ],
         boldPrefixes: [
           "Sometimes the right answer is a new tool, not a modified one.",
@@ -390,9 +390,9 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Breadth, speed, and a 30-second load time",
         body: [
-          "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale.",
-          "I scoped for speed to launch because organic search is a long-game, and we needed to get in the game ASAP. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, let the index build over time.",
-          "A 20-second load time was a hard blocker. Results needed to load on page arrival, not behind a sign-up form and not after a wait. I championed a cross-functional initiative to bring load time under one second and remove the sign-up gate that had previously preceded results.",
+          "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale. This demanded sophisticated SEO strategy, content creation, and technical approach.",
+          "I scoped for speed to launch because organic search is a long-game, and we needed to get in the game ASAP. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
+          "A 20-second load time was a hard blocker. Results needed to load in less than one second for Google to care at all, but the current flow had a 20-second load to fetch therapist availability. That was not a glaring customer experience issue at the time because a required form flow distracted the user from noticing the load by the time they got to the therapist list, but the directory pages couldn't hide the delay.",
         ],
         boldPrefixes: [
           "The strategy was breadth, not depth.",
@@ -441,12 +441,12 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and the infrastructure already existed. Sometimes the best growth move is finding the game you can actually win.",
-          "Good infrastructure work pays off cross-functionally when someone connects the dots. The load-time fix was built for the directory, but I looked for ways to extend the value beyond the original scope and pushed that across teams. It also improved the existing sign-up flow, which boosted patient booking conversion for the majority of traffic.",
+          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and most of the infrastructure already existed. Sometimes the best growth move is finding the game you can actually win.",
+          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to extend the value beyond the original scope. This work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
         ],
         boldPrefixes: [
           "The most important decision on this project was strategic, not tactical.",
-          "Good infrastructure work pays off cross-functionally when someone connects the dots.",
+          "Infrastructure investments can pay off cross-functionally – if someone connects the dots.",
         ],
       },
     ],
