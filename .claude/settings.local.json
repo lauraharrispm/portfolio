@@ -30,7 +30,11 @@
       "Bash(/tmp/node-v22.14.0-darwin-arm64/bin/node \"node_modules/.bin/tsc\" --noEmit)",
       "Bash(/tmp/node-v22.14.0-darwin-arm64/bin/node node_modules/.bin/tsc --noEmit)",
       "Bash(sips -g pixelWidth -g pixelHeight \"/Users/lauraharris/Library/Mobile Documents/com~apple~CloudDocs/Project Portfolio 2026/project design screenshots/payments onboarding/payments onboarding 1.png\")",
-      "Bash(grep pixel *)"
+      "Bash(grep pixel *)",
+      "Bash(sips -g pixelWidth -g pixelHeight ~/Desktop/\"Calendar UI Design Oct 6 2025.png\" ~/Desktop/\"KAB first page booking.rula.com:kaiser.png\")",
+      "Bash(sips -g pixelWidth -g pixelHeight ~/Downloads/\"Calendar UI Design Oct 6 2025.png\" ~/Downloads/\"KAB first page booking.rula.com:kaiser.png\")",
+      "Bash(cp ~/Downloads/\"KAB first page booking.rula.com:kaiser.png\" \"/Users/lauraharris/Library/Mobile Documents/com~apple~CloudDocs/Project Portfolio 2026/public/rula-scheduling-1.png\")",
+      "Bash(cp ~/Downloads/\"Calendar UI Design Oct 6 2025.png\" \"/Users/lauraharris/Library/Mobile Documents/com~apple~CloudDocs/Project Portfolio 2026/public/rula-scheduling-2.png\")"
     ]
   }
 }
