@@ -482,7 +482,7 @@ export const projects: Project[] = [
         body: [
           "I started treating Claude as a thought partner and execution accelerator, effectively a senior generalist available at any time. Over time I developed a personal operating system: a set of workflows where AI has fundamentally changed how I work and how much time I spend on the parts of the job that actually matter.",
           "At GlossGenius, I extended this beyond my own practice, deploying Claude Enterprise with cross-functional connectors and AI-assisted workflows spanning product, engineering, and operations.",
-          "The stack:",
+          "My stack:",
         ],
       },
       {
@@ -490,9 +490,9 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "What actually changed — and what didn't",
         body: [
-          "The biggest unlock was changing how I prompt, not just what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking changed the quality of what came back entirely.",
+          "The biggest unlock was changing how I prompt, not just what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking improves output quality tremendously.",
           "Deploying Claude Enterprise required more than giving people access. I focused on showing concrete workflows rather than making abstract cases, starting with the highest-friction tasks people already complained about and making the before/after undeniable.",
-          "The hardest thing to delegate to AI is cross-functional judgment. Synthesis, drafting, and analysis: AI accelerates all of it. But product decisions, stakeholder reads, and prioritization calls still require a human. Cross-functional coordination is the part of the PM role AI doesn't touch, and arguably makes more important.",
+          "The hardest thing to delegate to AI is cross-functional judgment. It's great at synthesis, drafting, and analysis. But product decisions, stakeholder reads, and prioritization calls still require a human. I use AI to assist this process rather than replace it.",
           "Engineering leverage is outpacing PM and design leverage. Small engineering teams now produce dramatically more output with AI. The response isn't to work harder; it's to build a personal operating system that scales your judgment, not just your hours.",
         ],
         boldPrefixes: [
@@ -513,10 +513,10 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "AI has made me better at the parts of the job that matter most by removing the overhead that used to crowd them out. What remains irreplaceable is taste, judgment, and the ability to align people around hard decisions. Having more time for those things is the point. I got into product management because I find it genuinely interesting. AI gave me more of that back.",
+          "The lines between product, design, and engineering are blurring. I think that's a good thing. AI doesn't replace the depth of expertise that comes from years of experience practicing a discipline. What it does is give each function more agency in the others' territory. I built this entire portfolio with Claude Code. I could not have built it on my own two years ago. This changes how I show up as a PM: I can prototype instead of spec, experiment without a full team, and bring more informed judgment to design and engineering conversations because I'm closer to the work. We can all collaborate differently to get more out of every hour the team has.",
         ],
         boldPrefixes: [
-          "AI has made me better at the parts of the job that matter most by removing the overhead that used to crowd them out.",
+          "The lines between product, design, and engineering are blurring.",
         ],
       },
     ],
@@ -527,24 +527,20 @@ export const projects: Project[] = [
           "Thought partner, writing, synthesis, strategy, workflow automation. Claude Enterprise at GlossGenius for team-wide deployment.",
       },
       {
-        tool: "Granola:",
-        description: "Automated meeting capture and structured notes.",
-      },
-      {
-        tool: "Superwhisper:",
-        description: "Voice dictation, removing the gap between thinking and writing.",
-      },
-      {
-        tool: "Devin:",
-        description: "Coding and personal tool building without an engineering dependency.",
-      },
-      {
         tool: "Claude Cowork:",
         description: "Knowledge work execution and personal productivity automation.",
       },
       {
         tool: "Claude Code:",
         description: "Building and iterating on personal projects.",
+      },
+      {
+        tool: "Fellow, Granola:",
+        description: "Automated meeting capture and structured notes.",
+      },
+      {
+        tool: "Superwhisper:",
+        description: "Voice dictation, removing the gap between thinking and writing.",
       },
     ],
     beforeAfterTable: [

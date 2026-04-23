@@ -211,7 +211,7 @@
 .bafRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: baseline;
+  align-items: start;
   padding: 9px 0;
   border-bottom: 1px solid rgba(46, 40, 32, 0.06);
 }
@@ -230,6 +230,7 @@
 .bafArrow {
   color: var(--coral);
   margin-right: 4px;
+  flex-shrink: 0;
 }
 
 .bafAfterText {
@@ -237,6 +238,8 @@
   color: var(--charcoal);
   font-weight: 500;
   line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* ── Design images (mobile — stacked) ── */
