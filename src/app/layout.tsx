@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     url: "https://laurakayharris.com",
     siteName: "Laura Harris",
     type: "website",
+    images: [],
+  },
+  twitter: {
+    card: "summary",
+    title: "Laura Harris — Fractional Product Manager",
+    description:
+      "Senior growth PM ownership for consumer startups ready to scale.",
   },
 };
 
