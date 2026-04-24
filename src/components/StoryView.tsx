@@ -55,6 +55,13 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
     overlayRef.current?.focus();
   }, []);
 
+  // ── Scroll content to top on every section/project change ──────
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [sectionIdx, projectId]);
+
   // ── Escape key ──────────────────────────────────────────────────
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };

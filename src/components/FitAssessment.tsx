@@ -1,6 +1,7 @@
 "use client";
 
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
+import Image from "next/image";
 import { InlineWidget } from "react-calendly";
 import { caseStudies } from "@/content/caseStudies";
 import type { CaseStudy } from "@/content/caseStudies";
@@ -103,14 +104,14 @@ function score(answers: (number | null)[]): Outcome {
 
 function challengeExplanation(q3Answer: number | null): string {
   if (q3Answer === 0)
-    return "You're building a consumer business that has traction but needs more people finding and trying it. That's exactly where I've driven the most impact — building acquisition programs that actually move the needle.";
+    return "You're building a consumer business that has traction but needs more people finding and trying it. That's exactly where I've driven the most impact: building acquisition programs that actually move the needle.";
   if (q3Answer === 1)
-    return "You have people trying the product but they're not sticking. Activation is often the highest-leverage growth problem at your stage — and it's where I've done my most quantified work.";
+    return "You have people trying the product but they're not sticking. Activation is often the highest-leverage growth problem at your stage, and it's where I've done my most quantified work.";
   if (q3Answer === 2)
-    return "You're leaving revenue on the table between trial and conversion. I've driven significant monetization impact at companies like GlossGenius — this is a well-defined problem with a clear playbook.";
+    return "You're leaving revenue on the table between trial and conversion. I've driven significant monetization impact at companies like GlossGenius. This is a well-defined problem with a clear playbook.";
   if (q3Answer === 3)
-    return "Growth feels stuck across the board — that's actually a good diagnostic starting point. Multi-area stalls usually have a single highest-leverage unlock hiding underneath.";
-  return "The growth problem isn't fully defined yet — which is actually the right time to bring in a diagnostic eye. A focused sprint to figure out what's actually blocking growth is often more valuable than jumping straight to execution.";
+    return "Growth feels stuck across the board, which is actually a good diagnostic starting point. Multi-area stalls usually have a single highest-leverage unlock hiding underneath.";
+  return "The growth problem isn't fully defined yet, which is actually the right time to bring in a diagnostic eye. A focused sprint to figure out what's actually blocking growth is often more valuable than jumping straight to execution.";
 }
 
 function relevantStudies(answers: (number | null)[], outcome: Outcome): CaseStudy[] {
@@ -208,6 +209,13 @@ interface QuestionViewProps {
 function QuestionView({ step, currentStep, totalSteps, dispatch }: QuestionViewProps) {
   const q = QUESTIONS[step];
   const isFirst = step === 0;
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+  function handleSelect(i: number) {
+    if (selectedIdx !== null) return;
+    setSelectedIdx(i);
+    setTimeout(() => dispatch({ type: "ANSWER", step, choice: i }), 200);
+  }
 
   return (
     <div className={styles.questionCard}>
@@ -227,8 +235,9 @@ function QuestionView({ step, currentStep, totalSteps, dispatch }: QuestionViewP
         {q.options.map((opt, i) => (
           <li key={i}>
             <button
-              className={styles.option}
-              onClick={() => dispatch({ type: "ANSWER", step, choice: i })}
+              className={`${styles.option}${selectedIdx === i ? ` ${styles.optionSelected}` : ""}`}
+              onClick={() => handleSelect(i)}
+              disabled={selectedIdx !== null}
             >
               {opt}
             </button>
@@ -266,15 +275,25 @@ function InlineCaseStudy({ study }: { study: CaseStudy }) {
   const anchor = ANCHOR_MAP[study.id] ?? study.id;
   return (
     <a href={`#${anchor}`} className={styles.inlineStudy}>
-      <span className={styles.inlineCompany}>{study.company}</span>
-      <h4 className={styles.inlineTitle}>{study.title}</h4>
-      <p className={styles.inlineDesc}>{study.description}</p>
-      <div className={styles.inlineMetricRow}>
-        <span className={styles.inlineMetricPrefix}>Key Result:</span>
-        <span className={styles.inlineMetricNumber}>{study.metric}</span>
-        <span className={styles.inlineMetricLabel}>{study.metricLabel}</span>
+      {study.thumbnailImage && (
+        <div className={styles.inlineThumb}>
+          <Image
+            src={study.thumbnailImage}
+            alt=""
+            fill
+            className={styles.inlineThumbImg}
+            sizes="100px"
+          />
+        </div>
+      )}
+      <div className={styles.inlineBody}>
+        <span className={styles.inlineCompany}>{study.company}</span>
+        <span className={styles.inlineTitle}>{study.title}</span>
+        <div className={styles.inlineMetricRow}>
+          <span className={styles.inlineMetricNumber}>{study.metric}</span>
+          <span className={styles.inlineMetricLabel}>{study.metricLabel}</span>
+        </div>
       </div>
-      <span className={styles.inlineStudyCta}>View case study →</span>
     </a>
   );
 }
@@ -306,7 +325,7 @@ function ResultView({ outcome, answers, onRestart }: ResultViewProps) {
 
       {outcome === "possible" && (
         <>
-          <h3 className={styles.resultHeading}>Possibly a good fit — let&apos;s find out.</h3>
+          <h3 className={styles.resultHeading}>Possibly a good fit. Let&apos;s find out.</h3>
           <p className={styles.resultBody}>
             You&apos;re at an early stage where the growth problem isn&apos;t fully defined yet, which is actually the right time to bring in a diagnostic eye. A focused sprint to figure out what&apos;s actually blocking growth is often more valuable than jumping straight to execution.
           </p>
@@ -320,22 +339,9 @@ function ResultView({ outcome, answers, onRestart }: ResultViewProps) {
         <>
           <h3 className={styles.resultHeading}>Probably not the right fit, at least right now.</h3>
           <p className={styles.resultBody}>
-            My work is most impactful at companies that have found product-market fit and are working on <em>growing</em> it, not building it. If you&apos;re still finding PMF, the highest-leverage work right now is likely product and customer discovery, not growth optimization. When you&apos;re ready to grow, come back.
+            My work is most impactful at companies that have found product-market fit and are working on growing it, not building it. If you&apos;re still finding PMF, the highest-leverage work right now is likely product and customer discovery, not growth optimization. When you&apos;re ready to grow, come back.
           </p>
         </>
-      )}
-
-      {studies.length > 0 && (
-        <div className={styles.studyLinks}>
-          <p className={styles.studyLinksLabel}>
-            Here&apos;s some of my past work that relates to your business:
-          </p>
-          <div className={styles.studyList}>
-            {studies.map((s) => (
-              <InlineCaseStudy key={s.id} study={s} />
-            ))}
-          </div>
-        </div>
       )}
 
       {outcome !== "not" && (
@@ -350,6 +356,19 @@ function ResultView({ outcome, answers, onRestart }: ResultViewProps) {
               backgroundColor: "FAF9F6",
             }}
           />
+        </div>
+      )}
+
+      {studies.length > 0 && (
+        <div className={styles.studyLinks}>
+          <p className={styles.studyLinksLabel}>
+            Here&apos;s some of my work that relates to you:
+          </p>
+          <div className={styles.studyList}>
+            {studies.map((s) => (
+              <InlineCaseStudy key={s.id} study={s} />
+            ))}
+          </div>
         </div>
       )}
 
