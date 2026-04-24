@@ -11,18 +11,10 @@ export default function About() {
           {/* Body copy */}
           <div className={styles.copy}>
             <p className={styles.body}>
-              I&apos;ve spent 7+ years driving growth at consumer startups. I started
-              in DTC ecommerce at{" "}
-              <a href="https://www.thirdlove.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>ThirdLove</a>
-              {" "}and{" "}
-              <a href="https://burrow.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>Burrow</a>
-              , building the first digital product function at Burrow from the ground up.
-              Then I moved into marketplace businesses, leading product growth at{" "}
-              <a href="https://www.rula.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>Rula Health</a>
-              {" "}across patients, providers, and payers, and most recently owning
-              onboarding and monetization at{" "}
-              <a href="https://glossgenius.com" target="_blank" rel="noopener noreferrer" className={styles.companyLink}>GlossGenius</a>
-              , helping beauty and wellness entrepreneurs run and grow their businesses.
+              I&apos;ve spent 7+ years building growth products at consumer startups across DTC ecommerce,
+              marketplace, subscription, and mental healthcare. I&apos;ve built first product teams from scratch,
+              run experimentation programs, launched monetization infrastructure, and opened acquisition
+              channels that didn&apos;t exist before.
             </p>
             <p className={styles.body}>
               I do my best work untangling messy problems to figure out what

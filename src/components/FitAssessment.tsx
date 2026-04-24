@@ -170,8 +170,9 @@ export default function FitAssessment() {
         <div className={styles.header}>
           <h2 className={styles.heading}>Should We Work Together?</h2>
           <p className={styles.subhead}>
-            Answer a few quick questions about your business. I&apos;ll tell you
-            whether we could be a good fit and point you to relevant case studies.
+            How it works: I take on a small number of part-time engagements at a time, typically 10 to 20
+            hours a week. Answer a few questions about your business and I&apos;ll tell you whether I think
+            we&apos;re a fit and which of my case studies are most relevant to what you&apos;re building.
           </p>
         </div>
 
