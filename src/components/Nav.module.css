@@ -116,6 +116,10 @@
 }
 
 @media (max-width: 768px) {
+  .nav {
+    box-shadow: 0 2px 8px rgba(46, 40, 32, 0.1);
+  }
+
   .links {
     display: none;
   }
