@@ -26,6 +26,19 @@
   font-size: 0.875rem;
 }
 
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sep {
+    font-size: 0.6rem;
+    line-height: 1;
+    margin: 6px 0;
+  }
+}
+
 .link {
   font-size: 0.875rem;
   color: var(--warm-white);

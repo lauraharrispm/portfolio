@@ -12,9 +12,7 @@ export default function About() {
           <div className={styles.copy}>
             <p className={styles.body}>
               I&apos;ve spent 7+ years building growth products at consumer startups across DTC ecommerce,
-              marketplace, subscription, and mental healthcare. I&apos;ve built first product teams from scratch,
-              run experimentation programs, launched monetization infrastructure, and opened acquisition
-              channels that didn&apos;t exist before.
+              marketplace, subscription, and mental healthcare. I&apos;ve opened acquisition channels that didn&apos;t exist before, run experimentation programs, and built a product team from scratch.
             </p>
             <p className={styles.body}>
               I do my best work untangling messy problems to figure out what
