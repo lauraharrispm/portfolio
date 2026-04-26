@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Laura Harris — Fractional Product Manager",
     description:
-      "Senior growth PM ownership for consumer startups ready to scale.",
+      "Lead Growth PM ownership for consumer startups ready to scale.",
     url: "https://laurakayharris.com",
     siteName: "Laura Harris",
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Laura Harris — Fractional Product Manager",
     description:
-      "Senior growth PM ownership for consumer startups ready to scale.",
+      "Lead Growth PM ownership for consumer startups ready to scale.",
   },
 };
 
