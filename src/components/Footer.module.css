@@ -21,21 +21,10 @@
   letter-spacing: 0.01em;
 }
 
-.sep {
-  color: var(--coral);
-  font-size: 0.875rem;
-}
-
 @media (max-width: 768px) {
   .inner {
     flex-direction: column;
-    gap: 0;
-  }
-
-  .sep {
-    font-size: 0.6rem;
-    line-height: 1;
-    margin: 6px 0;
+    gap: 8px;
   }
 }
 
