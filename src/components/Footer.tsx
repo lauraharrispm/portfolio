@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <span className={styles.name}>Laura Harris</span>
-        <a href="mailto:lauraharrispm@gmail.com" className={styles.link}>
-          lauraharrispm@gmail.com
+        <a href="mailto:laura.harris.pm@gmail.com" className={styles.link}>
+          laura.harris.pm@gmail.com
         </a>
         <a
           href="https://www.linkedin.com/in/laurakayharris"
