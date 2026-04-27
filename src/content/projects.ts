@@ -532,7 +532,7 @@ export const projects: Project[] = [
       },
       {
         tool: "Claude Design:",
-        description: "Visual ideation, design iteration, and rapid prototyping without a designer in the room.",
+        description: "Visual ideation, design iteration, and rapid prototyping.",
       },
       {
         tool: "Claude Code:",
