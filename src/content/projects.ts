@@ -531,6 +531,10 @@ export const projects: Project[] = [
         description: "Knowledge work execution and personal productivity automation.",
       },
       {
+        tool: "Claude Design:",
+        description: "Visual ideation, design iteration, and rapid prototyping without a designer in the room.",
+      },
+      {
         tool: "Claude Code:",
         description: "Building and iterating on personal projects.",
       },
