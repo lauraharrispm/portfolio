@@ -602,7 +602,7 @@ export const projects: Project[] = [
     thumbnail: "/placeholder-design-a.svg",
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
-      "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on removing friction across the funnel to support growth.",
+      "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on converting more traffic.",
     keyMetric: {
       number: "4x",
       label: "revenue growth",
@@ -687,8 +687,8 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "This body of work supported Burrow's transition from early traction with a single hero product to a scaled, multi-category furniture brand, driving 4x revenue growth.",
-          "Paid channels were already effective at driving demand. The challenge—and opportunity—was evolving the product experience to handle a broader catalog and more complex decision-making. These initiatives helped shift the site from simple selection to guided discovery, while introducing more mature ecommerce patterns around promotions, merchandising, and purchase signals.",
+          "A strong marketing engine brings in demand, but growth depends on converting that traffic into purchases.",
+          "As Burrow expanded beyond a single hero product into a broader assortment, the experience needed to do more than present options. It needed to guide decisions, surface the right products, and reinforce why to buy.",
         ],
       },
     ],
