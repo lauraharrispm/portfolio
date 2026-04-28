@@ -687,8 +687,10 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
+          "A strong marketing engine brings in demand, but growth depends on converting that traffic into purchases. As Burrow expanded beyond a single hero product into a broader assortment, the experience needed to do more than present options. It needed to guide decisions, surface the right products, and reinforce why to buy.",
+        ],
+        boldPrefixes: [
           "A strong marketing engine brings in demand, but growth depends on converting that traffic into purchases.",
-          "As Burrow expanded beyond a single hero product into a broader assortment, the experience needed to do more than present options. It needed to guide decisions, surface the right products, and reinforce why to buy.",
         ],
       },
     ],
