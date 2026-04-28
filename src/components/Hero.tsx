@@ -13,10 +13,10 @@ export default function Hero() {
             ownership to scale it, across healthtech, ecommerce, and marketplace businesses.
           </p>
           <div className={styles.ctas}>
-            <a href="#work" className={styles.ctaPrimary}>
+            <a href="#work" className={styles.ctaSecondary}>
               See my work
             </a>
-            <a href="#fit" className={styles.ctaSecondary}>
+            <a href="#fit" className={styles.ctaPrimary}>
               See if we&apos;re a fit
             </a>
           </div>
