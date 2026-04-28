@@ -263,197 +263,7 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 3. Scheduling Tool for Phone Agents
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "phone-agent-tool",
-    company: "Rula Health",
-    thumbnail: "/thumb-rula-scheduling.png",
-    title: "Scheduling Tool for Phone Agents",
-    oneLineDesc:
-      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
-    keyMetric: {
-      number: "21%",
-      label: "patient growth",
-    },
-    sections: [
-      {
-        id: "problem",
-        label: "Problem",
-        heading: "A huge drop-off between intent and a booked appointment",
-        body: [
-          "The drop-off between 'I want help' and 'I have a booking' was massive, and Rula wasn't bridging that gap despite strong payer partnerships and offering same-week availability at scale.",
-        ],
-      },
-      {
-        id: "solution",
-        label: "Solution",
-        heading: "A real-time scheduling tool built for phone agents",
-        body: [
-          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members (patients) in real time. A member calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked. This is a win for patients, providers, and insurers because more patients access care quicker.",
-        ],
-      },
-      {
-        id: "challenges",
-        label: "Key Challenges",
-        heading: "Building for speed and scale from day one",
-        body: [
-          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI they wanted required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
-          "We made deliberate scope tradeoffs with scale in mind. We could have launched faster for a single payer, but that would have limited how quickly the scheduling tool could expand across all payers we partnered with. Given strong MVP traction and clear relevance across existing and prospective partners, I included the additional scope needed to scale from the start. That investment paid off, enabling fast adoption across partners and making it the biggest launch in Rula history.",
-        ],
-        boldPrefixes: [
-          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed.",
-          "We made deliberate scope tradeoffs with scale in mind.",
-        ],
-      },
-      {
-        id: "design",
-        label: "Design",
-        heading: "Purpose-built for speed, not browsing",
-        body: [
-          "The flow starts with a short intake form that captures the member's state, insurance coverage, type of therapy, any other fields a specific payer needs. The calendar view comes after the form, using its data to show only bookable slots. Additional filters are accessible on the side if the member has specific preferences.",
-        ],
-        images: [
-          "/rula-scheduling-1.png",
-          "/rula-scheduling-2.png",
-          "/rula-scheduling-3.png",
-        ],
-        altTexts: [
-          "Intake form capturing state and insurance coverage before showing calendar slots",
-          "Calendar view with side filter panel for therapist preferences",
-          "The existing therapist list — built for patient browsing, not agent scheduling",
-        ],
-        captions: [
-          "The intake form captures state and insurance coverage upfront so every slot shown in the subsequent calendar is confirmed bookable for the member on the call.",
-          "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
-          "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure.",
-        ],
-        imageWidths: [2840, 2664, 820],
-        imageHeights: [2564, 1228, 766],
-      },
-      {
-        id: "results",
-        label: "Results",
-        heading: "The largest feature launch in Rula's history",
-        body: [
-          "📈 21% patient growth (largest feature launch ever at Rula)",
-          "📈 66% conversion increase vs. the previous phone agent flow",
-        ],
-      },
-      {
-        id: "reflection",
-        label: "Reflection",
-        heading: "What this project taught me",
-        body: [
-          "Sometimes the right answer is a new tool, not a modified one. The instinct early on was to adapt what we already had, and that was a successful MVP approach. But the phone agent's job is completely different from a patient's: on a call, under time pressure, scheduling for someone else. Starting from the user's actual context rather than existing patterns led to a tool that was more effective and scalable.",
-        ],
-        boldPrefixes: [
-          "Sometimes the right answer is a new tool, not a modified one.",
-        ],
-      },
-    ],
-  },
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // 4. Therapist Directory
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "therapist-directory",
-    company: "Rula Health",
-    thumbnail: "/thumb-rula-directory.png",
-    title: "Therapist Directory",
-    oneLineDesc:
-      "Rula was nearly invisible where millions of people search for mental healthcare: Google. I built an SEO-driven directory that turned organic search into a zero-cost acquisition channel from scratch.",
-    keyMetric: {
-      number: "345%",
-      label: "organic patient starts",
-    },
-    sections: [
-      {
-        id: "problem",
-        label: "Problem",
-        heading: "Nearly invisible in the channel that matters most",
-        body: [
-          "Millions of people looking for mental healthcare start with a Google search, but Rula was nearly invisible in those results, leaving a huge patient demand channel untapped. Competing for high-volume searches like \"therapist near me\" wasn't realistic. The only viable path was to play a different game.",
-        ],
-      },
-      {
-        id: "solution",
-        label: "Solution",
-        heading: "Win the long tail instead of the impossible head terms",
-        body: [
-          "I spearheaded an SEO-driven therapist directory built on a counterintuitive insight: instead of competing for high-volume searches like \"therapist near me\" where established players dominate, we targeted thousands of hyper-specific searches like \"ADHD therapists near me,\" \"grief therapy Texas,\" and \"Aetna therapists in Austin.\" Each term was small on its own, but together they represented substantial traffic we could actually win. Every search term got its own indexed directory page, making it easy for search engines to find and serve to prospective patients.",
-        ],
-      },
-      {
-        id: "challenges",
-        label: "Key Challenges",
-        heading: "Breadth, speed, and a 30-second load time",
-        body: [
-          "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale. This demanded sophisticated SEO strategy, content creation, and technical approach.",
-          "Because organic search is a long-game, we needed to get in the game ASAP to create impact. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
-          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment. A slow page load is a nonstarter for Google rankings, and the existing flow took 20 seconds (!) to fetch therapist availability before rendering the directory page. While this delay was masked in the form flow, where required steps kept users engaged, it became fully visible on the directory pages and created a clear performance issue.",
-        ],
-        boldPrefixes: [
-          "The strategy was breadth, not depth.",
-          "Because organic search is a long-game, we needed to get in the game ASAP to create impact.",
-          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment.",
-        ],
-      },
-      {
-        id: "design",
-        label: "Design",
-        heading: "Zero friction between search and results",
-        body: [
-          "The user flow starts with a prospective patient Google searching for mental health therapy. Google suggests relevant pages to help them find care, including a Rula therapist directory page that speaks to the specific search terms (including location, which Google often adds). When a user clicks on the Rula page link, they land on a filtered therapist list showing therapists they could actually book (state and insurance pre-filtered) right now. If location is unknown, a lightweight modal collects state and insurance before loading results.",
-        ],
-        images: [
-          "/rula-directory-1.gif",
-          "/rula-directory-2.gif",
-          "/rula-directory-3.png",
-        ],
-        altTexts: [
-          "Therapist directory search flow — from Google result to filtered therapist list",
-          "Directory results page with location and insurance modal",
-          "Desktop therapist directory experience",
-        ],
-        captions: [
-          "Directory requires state and requests insurance to load plausible therapists for patient, then shows list of therapists with additional filters.",
-          "Content below the therapists is optimized for SEO with Rula blog links, Rula success data, FAQ content, and links to more directory pages. This content both contributes to user experience and helps search engines find and serve relevant pages.",
-          "Directory desktop experience.",
-        ],
-        imageWidths: [1206, 800, 1350],
-        imageHeights: [2622, 1739, 1261],
-      },
-      {
-        id: "results",
-        label: "Results",
-        heading: "A zero-cost acquisition channel built from scratch",
-        body: [
-          "📈 0 to 1.7M impressions in search results",
-          "📈 290% increase in organic traffic",
-          "📈 345% increase in organic patient starts",
-          "📈 41% improvement in domain ranking",
-        ],
-      },
-      {
-        id: "reflection",
-        label: "Reflection",
-        heading: "What this project taught me",
-        body: [
-          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and we already had most of the infrastructure we needed to build the right content. Sometimes the best growth move is finding the game you can actually win.",
-          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to compound the value beyond the original scope. As a result, this work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
-        ],
-        boldPrefixes: [
-          "The most important decision on this project was strategic, not tactical.",
-          "Infrastructure investments can pay off cross-functionally – if someone connects the dots.",
-        ],
-      },
-    ],
-  },
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // 5. AI as a PM Operating System
+  // 3. AI as a PM Operating System
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "ai-operating-system",
@@ -577,6 +387,294 @@ export const projects: Project[] = [
         workflow: "Coding and personal tools",
         before: "No path to building without engineering",
         after: "Claude Code and Devin make it possible to ship tools as a non-technical PM",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 4. Scheduling Tool for Phone Agents
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "phone-agent-tool",
+    company: "Rula Health",
+    thumbnail: "/thumb-rula-scheduling.png",
+    title: "Scheduling Tool for Phone Agents",
+    oneLineDesc:
+      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
+    keyMetric: {
+      number: "21%",
+      label: "patient growth",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "A huge drop-off between intent and a booked appointment",
+        body: [
+          "The drop-off between 'I want help' and 'I have a booking' was massive, and Rula wasn't bridging that gap despite strong payer partnerships and offering same-week availability at scale.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "A real-time scheduling tool built for phone agents",
+        body: [
+          "I built a scheduling tool that lets insurance phone agents book Rula appointments on behalf of members (patients) in real time. A member calls their insurer, asks about mental healthcare, and leaves the call with an appointment booked. This is a win for patients, providers, and insurers because more patients access care quicker.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "Building for speed and scale from day one",
+        body: [
+          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI they wanted required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
+          "We made deliberate scope tradeoffs with scale in mind. We could have launched faster for a single payer, but that would have limited how quickly the scheduling tool could expand across all payers we partnered with. Given strong MVP traction and clear relevance across existing and prospective partners, I included the additional scope needed to scale from the start. That investment paid off, enabling fast adoption across partners and making it the biggest launch in Rula history.",
+        ],
+        boldPrefixes: [
+          "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed.",
+          "We made deliberate scope tradeoffs with scale in mind.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Purpose-built for speed, not browsing",
+        body: [
+          "The flow starts with a short intake form that captures the member's state, insurance coverage, type of therapy, any other fields a specific payer needs. The calendar view comes after the form, using its data to show only bookable slots. Additional filters are accessible on the side if the member has specific preferences.",
+        ],
+        images: [
+          "/rula-scheduling-1.png",
+          "/rula-scheduling-2.png",
+          "/rula-scheduling-3.png",
+        ],
+        altTexts: [
+          "Intake form capturing state and insurance coverage before showing calendar slots",
+          "Calendar view with side filter panel for therapist preferences",
+          "The existing therapist list — built for patient browsing, not agent scheduling",
+        ],
+        captions: [
+          "The intake form captures state and insurance coverage upfront so every slot shown in the subsequent calendar is confirmed bookable for the member on the call.",
+          "The calendar and filter designs shown are illustrative since the actual tool is not publicly available, but they accurately represent the interaction model that prioritizes scheduling quickly.",
+          "What we didn't use. The existing therapist list was built for patients browsing on their own time, not agents scheduling under pressure.",
+        ],
+        imageWidths: [2840, 2664, 820],
+        imageHeights: [2564, 1228, 766],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "The largest feature launch in Rula's history",
+        body: [
+          "📈 21% patient growth (largest feature launch ever at Rula)",
+          "📈 66% conversion increase vs. the previous phone agent flow",
+        ],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "Sometimes the right answer is a new tool, not a modified one. The instinct early on was to adapt what we already had, and that was a successful MVP approach. But the phone agent's job is completely different from a patient's: on a call, under time pressure, scheduling for someone else. Starting from the user's actual context rather than existing patterns led to a tool that was more effective and scalable.",
+        ],
+        boldPrefixes: [
+          "Sometimes the right answer is a new tool, not a modified one.",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 5. Therapist Directory
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "therapist-directory",
+    company: "Rula Health",
+    thumbnail: "/thumb-rula-directory.png",
+    title: "Therapist Directory",
+    oneLineDesc:
+      "Rula was nearly invisible where millions of people search for mental healthcare: Google. I built an SEO-driven directory that turned organic search into a zero-cost acquisition channel from scratch.",
+    keyMetric: {
+      number: "345%",
+      label: "organic patient starts",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "Nearly invisible in the channel that matters most",
+        body: [
+          "Millions of people looking for mental healthcare start with a Google search, but Rula was nearly invisible in those results, leaving a huge patient demand channel untapped. Competing for high-volume searches like \"therapist near me\" wasn't realistic. The only viable path was to play a different game.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "Win the long tail instead of the impossible head terms",
+        body: [
+          "I spearheaded an SEO-driven therapist directory built on a counterintuitive insight: instead of competing for high-volume searches like \"therapist near me\" where established players dominate, we targeted thousands of hyper-specific searches like \"ADHD therapists near me,\" \"grief therapy Texas,\" and \"Aetna therapists in Austin.\" Each term was small on its own, but together they represented substantial traffic we could actually win. Every search term got its own indexed directory page, making it easy for search engines to find and serve to prospective patients.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "Breadth, speed, and a 30-second load time",
+        body: [
+          "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale. This demanded sophisticated SEO strategy, content creation, and technical approach.",
+          "Because organic search is a long-game, we needed to get in the game ASAP to create impact. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
+          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment. A slow page load is a nonstarter for Google rankings, and the existing flow took 20 seconds (!) to fetch therapist availability before rendering the directory page. While this delay was masked in the form flow, where required steps kept users engaged, it became fully visible on the directory pages and created a clear performance issue.",
+        ],
+        boldPrefixes: [
+          "The strategy was breadth, not depth.",
+          "Because organic search is a long-game, we needed to get in the game ASAP to create impact.",
+          "We initially planned to reuse the existing flow, but a 20-second load time made that impossible without significant performance investment.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Zero friction between search and results",
+        body: [
+          "The user flow starts with a prospective patient Google searching for mental health therapy. Google suggests relevant pages to help them find care, including a Rula therapist directory page that speaks to the specific search terms (including location, which Google often adds). When a user clicks on the Rula page link, they land on a filtered therapist list showing therapists they could actually book (state and insurance pre-filtered) right now. If location is unknown, a lightweight modal collects state and insurance before loading results.",
+        ],
+        images: [
+          "/rula-directory-1.gif",
+          "/rula-directory-2.gif",
+          "/rula-directory-3.png",
+        ],
+        altTexts: [
+          "Therapist directory search flow — from Google result to filtered therapist list",
+          "Directory results page with location and insurance modal",
+          "Desktop therapist directory experience",
+        ],
+        captions: [
+          "Directory requires state and requests insurance to load plausible therapists for patient, then shows list of therapists with additional filters.",
+          "Content below the therapists is optimized for SEO with Rula blog links, Rula success data, FAQ content, and links to more directory pages. This content both contributes to user experience and helps search engines find and serve relevant pages.",
+          "Directory desktop experience.",
+        ],
+        imageWidths: [1206, 800, 1350],
+        imageHeights: [2622, 1739, 1261],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "A zero-cost acquisition channel built from scratch",
+        body: [
+          "📈 0 to 1.7M impressions in search results",
+          "📈 290% increase in organic traffic",
+          "📈 345% increase in organic patient starts",
+          "📈 41% improvement in domain ranking",
+        ],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and we already had most of the infrastructure we needed to build the right content. Sometimes the best growth move is finding the game you can actually win.",
+          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to compound the value beyond the original scope. As a result, this work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
+        ],
+        boldPrefixes: [
+          "The most important decision on this project was strategic, not tactical.",
+          "Infrastructure investments can pay off cross-functionally – if someone connects the dots.",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 6. Burrow — Growing a DTC Ecommerce Site to 4x Revenue
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "burrow-growth",
+    company: "Burrow",
+    thumbnail: "/placeholder-design-a.svg",
+    title: "Growing a DTC Ecommerce Site to 4x Revenue",
+    oneLineDesc:
+      "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on removing friction across the funnel to support growth.",
+    keyMetric: {
+      number: "4x",
+      label: "revenue growth",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "Site experience lagging behind catalog growth",
+        body: [
+          "Burrow's growth was driven by strong paid acquisition, a critical engine for a high price point DTC brand. High intent traffic was consistently arriving on site, but the experience was not converting as efficiently as it should.",
+          "As the catalog expanded, the site became harder to navigate and key differentiators were not clearly communicated. Customers struggled to find the right product, evaluate options, and complete a purchase. Promotions added unnecessary friction at checkout.",
+          "The opportunity was to improve how effectively existing demand converted.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "Three parallel initiatives to remove funnel friction",
+        body: [
+          "I led three initiatives in parallel, each addressing a different point of friction in the funnel.",
+          "Navigation was redesigned and filtering introduced based on how customers shop for home furnishings. This made it easier to browse and narrow to relevant products.",
+          "Fast shipping was reestablished as a core differentiator. Once supply chain timelines improved, in stock and ready to ship messaging was introduced across product pages, cart, and a dedicated landing page integrated into navigation.",
+          "I rebuilt the promotions experience so discounts applied automatically. Customers no longer needed to enter codes at checkout, and this became the standard for future campaigns.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "Coordination, scale, and limited testing infrastructure",
+        body: [
+          "Promotions required tight coordination between marketing and product. Discounts followed a tiered structure where exact savings could only be shown in cart. Messaging stayed simple and consistent while the system handled the complexity.",
+          "Navigation needed to scale with the catalog without overwhelming users. I worked with design and merchandising to create a structure that balanced breadth with clarity, supported by strong homepage entry points.",
+          "We did not have A/B testing infrastructure for large changes. I relied on pre and post analysis and was deliberate about framing results as directional.",
+        ],
+        boldPrefixes: [
+          "Promotions required tight coordination between marketing and product.",
+          "Navigation needed to scale with the catalog without overwhelming users.",
+          "We did not have A/B testing infrastructure for large changes.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Removing friction across browse, evaluate, and buy",
+        body: [
+          "Each initiative addressed a different point of funnel friction, with copy and visual treatments tuned to where customers were getting stuck.",
+        ],
+        images: [
+          "/placeholder-design-a.svg",
+          "/placeholder-design-b.svg",
+          "/placeholder-design-c.svg",
+        ],
+        altTexts: [
+          "Navigation and filtering — design placeholder",
+          "Shipping messaging — design placeholder",
+          "Promotions — design placeholder",
+        ],
+        captions: [
+          "Navigation and filtering reorganized around how customers shop for home furnishings. On mobile, the grid adapted to show more detail as users narrowed results.",
+          "Shipping messaging updated across product pages and cart. A modal provided delivery details, and a landing page supported paid and organic traffic.",
+          "Promotions communicated active discounts without requiring user action. The cart displayed exact savings and allowed code overrides.",
+        ],
+        imageWidths: [1200, 1200, 1200],
+        imageHeights: [750, 750, 750],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "Compounding gains across the funnel",
+        body: [
+          "📈 4x revenue growth during this period",
+          "📈 41% increase in add-to-cart rate from automatically applied promotions",
+          "📈 9% increase in average order value from automatically applied promotions",
+          "📈 Highest revenue day in company history within one week of launching in-stock messaging",
+        ],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "This roadmap drove 4x revenue growth by aligning with the company's shift from early traction to scaled growth. Paid channels were already effective at driving high intent traffic to the site. The next phase was evolving the site to support a broader catalog and more complex purchase decisions. As Burrow expanded from a single product to a full furniture assortment, the experience needed to shift from simple selection to guided discovery, while adopting more mature ecommerce patterns like streamlined promotions and clearer purchase signals.",
+        ],
       },
     ],
   },
