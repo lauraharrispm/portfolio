@@ -213,6 +213,13 @@ function ProjectBlock({ project, onLightbox }: ProjectBlockProps) {
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>
             <span className={styles.heroCompany}>{project.company}</span>
+            {(project.fundingStage || project.employeeRange) && (
+              <span className={styles.heroMeta}>
+                {[project.fundingStage, project.employeeRange]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </span>
+            )}
             <h2 className={styles.heroTitle}>{project.title}</h2>
             {project.oneLineDesc && (
               <p className={styles.heroDesc}>{project.oneLineDesc}</p>

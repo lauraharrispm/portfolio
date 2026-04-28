@@ -288,6 +288,15 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
         <span className={styles.headerSpacer} aria-hidden="true" />
       </div>
 
+      {/* ── Company stage / size metadata ── */}
+      {(project.fundingStage || project.employeeRange) && (
+        <div className={styles.metaStrip}>
+          {[project.company, project.fundingStage, project.employeeRange]
+            .filter(Boolean)
+            .join(" · ")}
+        </div>
+      )}
+
       {/* ── Progress pips ── */}
       <div className={styles.pips} aria-hidden="true">
         {renderPips()}

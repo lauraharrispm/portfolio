@@ -45,6 +45,10 @@ export interface Project {
   oneLineDesc: string;
   title: string;
   keyMetric: { number: string; label: string };
+  /** Optional company stage shown in hero band metadata line */
+  fundingStage?: string;
+  /** Optional employee range shown in hero band metadata line */
+  employeeRange?: string;
   sections: ProjectSection[];
   /** AI project only: structured before/after table, rendered in Results section */
   beforeAfterTable?: BeforeAfterRow[];
@@ -69,6 +73,8 @@ export const projects: Project[] = [
       number: "80%",
       label: "onboarding completion lift",
     },
+    fundingStage: "Series C",
+    employeeRange: "260→330 employees",
     sections: [
       {
         id: "problem",
@@ -172,6 +178,8 @@ export const projects: Project[] = [
       number: "✓",
       label: "Unlocked AI product roadmap with zero-interruption migration",
     },
+    fundingStage: "Series C",
+    employeeRange: "260→330 employees",
     sections: [
       {
         id: "problem",
@@ -405,6 +413,8 @@ export const projects: Project[] = [
       number: "21%",
       label: "patient growth",
     },
+    fundingStage: "Series B→C",
+    employeeRange: "180→550 employees",
     sections: [
       {
         id: "problem",
@@ -497,6 +507,8 @@ export const projects: Project[] = [
       number: "345%",
       label: "organic patient starts",
     },
+    fundingStage: "Series B→C",
+    employeeRange: "180→550 employees",
     sections: [
       {
         id: "problem",
@@ -595,6 +607,8 @@ export const projects: Project[] = [
       number: "4x",
       label: "revenue growth",
     },
+    fundingStage: "Series A→C",
+    employeeRange: "30→110 employees",
     sections: [
       {
         id: "problem",
