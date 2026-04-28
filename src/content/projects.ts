@@ -599,7 +599,7 @@ export const projects: Project[] = [
   {
     id: "burrow-growth",
     company: "Burrow",
-    thumbnail: "/burrow-1.png",
+    thumbnail: "/burrow-3.png",
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
       "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on converting more traffic.",
