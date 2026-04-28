@@ -599,7 +599,7 @@ export const projects: Project[] = [
   {
     id: "burrow-growth",
     company: "Burrow",
-    thumbnail: "/placeholder-design-a.svg",
+    thumbnail: "/burrow-1.png",
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
       "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on converting more traffic.",
@@ -639,7 +639,7 @@ export const projects: Project[] = [
         body: [
           "Promotions required tight coordination across marketing and product. Tiered discounts meant exact savings could only be calculated in cart, so we kept messaging simple while the system handled complexity.",
           "Navigation needed to scale with an expanding catalog without overwhelming users. I partnered with design and merchandising to balance breadth with clarity and reinforce key entry points.",
-          "Measuring results confidently was tricky. We intentionally did not invest in A/B testing infrastructure at this stage because there were too many moving parts changing quickly, and the priority was rapid, informed iteration over precise measurement. I used pre/post analysis and framed most results as directional.",
+          "Measuring results confidently was tricky. We intentionally did not invest in A/B testing infrastructure at this stage because there were too many moving parts changing quickly. The priority was rapid, informed iteration over precise measurement, so I used pre/post analysis and framed most results as directional.",
         ],
         boldPrefixes: [
           "Promotions required tight coordination across marketing and product.",
@@ -655,22 +655,22 @@ export const projects: Project[] = [
           "Each initiative addressed a different point of funnel friction, with copy and visual treatments tuned to where customers were getting stuck.",
         ],
         images: [
-          "/placeholder-design-a.svg",
-          "/placeholder-design-b.svg",
-          "/placeholder-design-c.svg",
+          "/burrow-1.png",
+          "/burrow-2.png",
+          "/burrow-3.png",
         ],
         altTexts: [
-          "Navigation and filtering — design placeholder",
-          "Shipping messaging — design placeholder",
-          "Promotions — design placeholder",
+          "Navigation and filtering",
+          "Shipping messaging",
+          "Promotions",
         ],
         captions: [
           "Navigation and filtering reorganized around how customers shop for home furnishings. On mobile, the grid adapted to show more detail as users narrowed results.",
           "Shipping messaging updated across product pages and cart. A modal provided delivery details, and a landing page supported paid and organic traffic.",
-          "Promotions communicated active discounts without requiring user action. The cart displayed exact savings and allowed code overrides.",
+          "Promotions communicated active discounts without requiring user action. The cart displayed exact savings, promotion tier details, and allowed code overrides to maintain marketing channel attribution.",
         ],
-        imageWidths: [1200, 1200, 1200],
-        imageHeights: [750, 750, 750],
+        imageWidths: [1016, 695, 842],
+        imageHeights: [859, 481, 721],
       },
       {
         id: "results",
