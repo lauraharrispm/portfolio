@@ -18,6 +18,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.svg",
+  },
   title: "Laura Harris — Fractional Product Manager",
   description:
     "Fractional Product Manager for consumer startups — DTC ecommerce, marketplace, and subscription businesses past product-market fit.",
