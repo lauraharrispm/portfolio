@@ -1,10 +1,11 @@
 "use client";
 
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import Image from "next/image";
 import { InlineWidget } from "react-calendly";
 import { caseStudies } from "@/content/caseStudies";
 import type { CaseStudy } from "@/content/caseStudies";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./FitAssessment.module.css";
 
 // ─── Types ───────────────────────────────────────────────────────
@@ -163,6 +164,24 @@ export default function FitAssessment() {
 
   const totalVisibleSteps = result === "not" ? 5 : 6;
   const currentStep = Math.min(step, totalVisibleSteps);
+
+  // Fire once when the user first answers question 0
+  const startedRef = answers[0] !== null;
+  useEffect(() => {
+    if (startedRef) {
+      trackEvent("fit_assessment_start", { cta_location: "fit" });
+    }
+  }, [startedRef]);
+
+  // Fire once when an outcome is reached
+  useEffect(() => {
+    if (result !== null) {
+      trackEvent("fit_assessment_complete", {
+        cta_location: "fit",
+        outcome: result,
+      });
+    }
+  }, [result]);
 
   return (
     <section id="fit" className={styles.section}>

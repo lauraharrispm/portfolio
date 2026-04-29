@@ -1,11 +1,23 @@
+"use client";
+
 import styles from "./Footer.module.css";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <span className={styles.name}>Laura Harris</span>
-        <a href="mailto:laura.harris.pm@gmail.com" className={styles.link}>
+        <a
+          href="mailto:laura.harris.pm@gmail.com"
+          className={styles.link}
+          onClick={() =>
+            trackEvent("cta_click", {
+              cta_label: "email",
+              cta_location: "footer",
+            })
+          }
+        >
           laura.harris.pm@gmail.com
         </a>
         <a
@@ -13,6 +25,12 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}
+          onClick={() =>
+            trackEvent("cta_click", {
+              cta_label: "linkedin",
+              cta_location: "footer",
+            })
+          }
         >
           LinkedIn
         </a>

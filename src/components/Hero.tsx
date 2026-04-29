@@ -1,4 +1,7 @@
+"use client";
+
 import styles from "./Hero.module.css";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Hero() {
   return (
@@ -13,10 +16,28 @@ export default function Hero() {
             ownership to scale it, across healthtech, ecommerce, and marketplace businesses.
           </p>
           <div className={styles.ctas}>
-            <a href="#work" className={styles.ctaSecondary}>
+            <a
+              href="#work"
+              className={styles.ctaSecondary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "see_my_work",
+                  cta_location: "hero",
+                })
+              }
+            >
               See my work
             </a>
-            <a href="#fit" className={styles.ctaPrimary}>
+            <a
+              href="#fit"
+              className={styles.ctaPrimary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "see_if_were_a_fit",
+                  cta_location: "hero",
+                })
+              }
+            >
               See if we&apos;re a fit
             </a>
           </div>

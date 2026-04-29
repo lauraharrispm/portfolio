@@ -11,6 +11,7 @@ import { projects } from "@/content/projects";
 import type { Project, ProjectSection } from "@/content/projects";
 import StoryView from "./StoryView";
 import Lightbox from "./Lightbox";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./Work.module.css";
 
 // Nav height in px — must match --nav-height CSS token
@@ -131,7 +132,13 @@ export default function Work() {
                 <button
                   key={project.id}
                   className={`${styles.projectNavCard} ${isActive ? styles.projectNavCardActive : ""}`}
-                  onClick={() => scrollToProject(project.id)}
+                  onClick={() => {
+                    trackEvent("project_open", {
+                      project_id: project.id,
+                      cta_location: "project_nav_desktop",
+                    });
+                    scrollToProject(project.id);
+                  }}
                   aria-current={isActive ? "true" : undefined}
                 >
                   <div className={styles.projectNavThumb}>
@@ -393,7 +400,13 @@ function MobileCard({ project, onOpen }: MobileCardProps) {
   return (
     <button
       className={styles.mobileCard}
-      onClick={onOpen}
+      onClick={() => {
+        trackEvent("project_open", {
+          project_id: project.id,
+          cta_location: "mobile_card",
+        });
+        onOpen();
+      }}
       aria-label={`Open ${project.title}`}
     >
       <div className={styles.mobileThumbWrap}>

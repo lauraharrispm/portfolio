@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./Nav.module.css";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,19 +16,42 @@ export default function Nav() {
 
   const close = () => setMenuOpen(false);
 
+  const trackNav = (label: string, location: "nav_desktop" | "nav_mobile") => {
+    trackEvent("cta_click", { cta_label: label, cta_location: location });
+  };
+
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#hero" className={styles.wordmark} onClick={close}>
+        <a
+          href="#hero"
+          className={styles.wordmark}
+          onClick={() => {
+            close();
+            trackNav("wordmark", "nav_desktop");
+          }}
+        >
           Laura Harris
         </a>
 
         {/* Desktop links */}
         <ul className={styles.links}>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
           <li>
-            <a href="#fit" className={styles.fitLink}>
+            <a href="#about" onClick={() => trackNav("about", "nav_desktop")}>
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#work" onClick={() => trackNav("work", "nav_desktop")}>
+              Work
+            </a>
+          </li>
+          <li>
+            <a
+              href="#fit"
+              className={styles.fitLink}
+              onClick={() => trackNav("should_we_work_together", "nav_desktop")}
+            >
               Should We Work Together?
             </a>
           </li>
@@ -50,10 +74,37 @@ export default function Nav() {
       {menuOpen && (
         <div className={styles.drawer}>
           <ul>
-            <li><a href="#about" onClick={close}>About</a></li>
-            <li><a href="#work" onClick={close}>Work</a></li>
             <li>
-              <a href="#fit" className={styles.fitLink} onClick={close}>
+              <a
+                href="#about"
+                onClick={() => {
+                  close();
+                  trackNav("about", "nav_mobile");
+                }}
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#work"
+                onClick={() => {
+                  close();
+                  trackNav("work", "nav_mobile");
+                }}
+              >
+                Work
+              </a>
+            </li>
+            <li>
+              <a
+                href="#fit"
+                className={styles.fitLink}
+                onClick={() => {
+                  close();
+                  trackNav("should_we_work_together", "nav_mobile");
+                }}
+              >
                 Should We Work Together?
               </a>
             </li>
