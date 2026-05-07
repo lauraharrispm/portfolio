@@ -165,241 +165,6 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 2. Annual Subscription Plans
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "annual-plans",
-    company: "GlossGenius",
-    thumbnail: "/thumb-gg-annual.png",
-    title: "Launching Annual Subscriptions",
-    oneLineDesc:
-      "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
-    keyMetric: {
-      number: "✓",
-      label: "Unlocked AI product roadmap with zero-interruption migration",
-    },
-    fundingStage: "Series C",
-    employeeRange: "260→330 employees",
-    sections: [
-      {
-        id: "problem",
-        label: "Problem",
-        heading: "A billing infrastructure that was blocking growth",
-        body: [
-          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. GlossGenius had one subscription structure: three hard-coded subscription tiers that offered a set feature bundle and charged one price on a monthly cadence. As the company matured, this created compounding problems across the product roadmap, revenue optimization, and customer experience.",
-          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business as an add-on to your base subscription were architecturally blocked before they started.",
-          "Limiting revenue: With only monthly billing, there was no annual commitment signal or cash pull-forward. Pricing for new customers had been static for years, presenting an opportunity to more accurately reflect the current value of a subscription.",
-          "Lackluster customer experience: As GlossGenius scaled upmarket, more subscribers were established businesses that preferred annual over monthly billing for accounting simplicity.",
-        ],
-        boldPrefixes: [
-          "",
-          "Limiting product roadmap:",
-          "Limiting revenue:",
-          "Lackluster customer experience:",
-        ],
-      },
-      {
-        id: "solution",
-        label: "Solution",
-        heading: "A full infrastructure migration with a careful launch strategy",
-        body: [
-          "I led the launch of annual subscription plans alongside a price increase for new customers. This required a full subscription service migration, close cross-functional coordination across product, engineering, finance, and marketing, and a carefully managed launch to mitigate activation risk.",
-        ],
-      },
-      {
-        id: "challenges",
-        label: "Key Challenges",
-        heading: "Three decisions that shaped the launch",
-        body: [
-          "The existing infrastructure couldn't support annual billing in any way. After confirming there were no engineering shortcuts, I worked with engineering to scope a full subscription service migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
-          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
-          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
-        ],
-        boldPrefixes: [
-          "The existing infrastructure couldn't support annual billing in any way.",
-          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally.",
-          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line.",
-        ],
-      },
-      {
-        id: "design",
-        label: "Design",
-        heading: "Communicating two changes without creating confusion",
-        body: [
-          "The challenge was communicating two simultaneous changes without creating confusion or triggering price sensitivity among existing subscribers who weren't affected. Key decisions: a clear plan comparison UI making annual vs. monthly value immediately legible, a simplified pricing page, and copy personalized for users who subscribed before launch (no annual discount) vs users who subscribed after launch (annual discount).",
-        ],
-        images: ["/gg-annual-1.png", "/gg-annual-2.png", "/gg-annual-3.png"],
-        altTexts: [
-          "Website pricing page positioning annual subscriptions as a discount for prospective subscribers",
-          "Annual subscription awareness message for monthly subscribers",
-          "View plans modal for logged in subscribers",
-        ],
-        captions: [
-          "Website pricing page for prospective subscribers positions annual subscriptions as a discount.",
-          "Annual subscription awareness message for monthly subscribers who receive a discount on annual subscriptions.",
-          '"View plans" modal for logged in subscribers who receive a discount on annual subscriptions.',
-        ],
-        imageWidths: [1601, 960, 550],
-        imageHeights: [1163, 473, 316],
-      },
-      {
-        id: "results",
-        label: "Results",
-        heading: "Exceeded projections with zero disruption",
-        body: [
-          "In the first month after launch:",
-          "✅ Activation held within acceptable thresholds, requiring no corrective pricing action",
-          "✅ Zero business interruptions through a full subscription infrastructure migration",
-          "📈 Revenue per customer increased multiple percentage points (early directional signal; not yet statistically significant)",
-          "📈 Annual plan adoption exceeded projections, with strong voluntary uptake from existing customers, signaling real long-term commitment (early directional signal; not yet statistically significant)",
-        ],
-      },
-      {
-        id: "reflection",
-        label: "Reflection",
-        heading: "What this project taught me",
-        body: [
-          "Monetization isn't always an optimization problem. Sometimes it requires rebuilding the foundation before meaningful progress is possible. This project laid that foundation for GlossGenius's growth roadmap, making the significant engineering investment well worth it.",
-          "Work driven by business goals can also serve the customer if you look for the overlap. While overhauling subscription infrastructure was prioritized for monetization and roadmap needs, customer support data made it clear that annual billing was a real benefit for larger businesses. We leaned into that in our positioning, and customers adopted annual plans without discounts because it matched how they operate.",
-        ],
-        boldPrefixes: [
-          "Monetization isn't always an optimization problem.",
-          "Work driven by business goals can also serve the customer if you look for the overlap.",
-        ],
-      },
-    ],
-  },
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // 3. AI as a PM Operating System
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "ai-operating-system",
-    company: "Personal Practice",
-    thumbnail: "/thumb-gg-payments.png",
-    title: "AI as a PM Operating System",
-    oneLineDesc:
-      "10× faster from idea to shareable artifact using Claude and complementary tools.",
-    keyMetric: {
-      number: "10×",
-      label: "faster from idea to shareable artifact",
-    },
-    sections: [
-      {
-        id: "problem",
-        label: "Problem",
-        heading: "High-quality PM output required assembling a team",
-        body: [
-          "For most of my career, high-quality PM output required a high-functioning full team: design, engineering, data, marketing, and more. Even in the most efficient of lean startups, the meaty work that required my judgment competed constantly with the overhead of getting things done.",
-        ],
-      },
-      {
-        id: "solution",
-        label: "Solution",
-        heading: "A personal AI operating system for the parts that matter",
-        body: [
-          "I started treating Claude as a thought partner and execution accelerator, effectively a senior generalist available at any time. Over time I developed a personal operating system: a set of workflows where AI has fundamentally changed how I work and how much time I spend on the parts of the job that actually matter.",
-          "At GlossGenius, I extended this beyond my own practice, deploying Claude Enterprise with cross-functional connectors and AI-assisted workflows spanning product, engineering, and operations.",
-          "My stack:",
-        ],
-      },
-      {
-        id: "challenges",
-        label: "Key Challenges",
-        heading: "What actually changed — and what didn't",
-        body: [
-          "How I prompt is as important as what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking improves output quality tremendously.",
-          "Deploying Claude Enterprise required more than giving people access. I focused on showing concrete workflows rather than making abstract cases, starting with the highest-friction tasks people already complained about and making the before/after undeniable.",
-          "The hardest thing to delegate to AI is cross-functional judgment. It's great at synthesis, drafting, and analysis. But product decisions, stakeholder reads, and prioritization calls still require a human. I use AI to assist this process rather than replace it.",
-          "Engineering leverage is outpacing PM and design leverage. Small engineering teams now produce dramatically more output with AI. The response isn't to work harder; it's to build a personal operating system that scales your judgment, not just your hours.",
-        ],
-        boldPrefixes: [
-          "How I prompt is as important as what I prompt.",
-          "Deploying Claude Enterprise required more than giving people access.",
-          "The hardest thing to delegate to AI is cross-functional judgment.",
-          "Engineering leverage is outpacing PM and design leverage.",
-        ],
-      },
-      {
-        id: "results",
-        label: "Results",
-        heading: "Eight workflows, fundamentally changed",
-        body: [],
-      },
-      {
-        id: "reflection",
-        label: "Reflection",
-        heading: "What this project taught me",
-        body: [
-          "The lines between product, design, and engineering are blurring. I think that's a good thing. AI doesn't replace the depth of expertise that comes from years of practicing a discipline. What it does is give each function more agency in the others' territory. For example, I built this entire portfolio with Claude Code in a few days. I could not have built anything like it on my own two years ago. This changes how I show up as a PM: I can prototype instead of only spec, launch an experiment on my own, and bring more informed judgment to design and engineering conversations because I'm closer to the work. These shifts help us all get more out of every hour the team has.",
-        ],
-        boldPrefixes: [
-          "The lines between product, design, and engineering are blurring.",
-        ],
-      },
-    ],
-    stack: [
-      {
-        tool: "Claude:",
-        description:
-          "Thought partner, writing, synthesis, strategy, workflow automation. Claude Enterprise at GlossGenius for team-wide deployment.",
-      },
-      {
-        tool: "Claude Cowork:",
-        description: "Knowledge work execution and personal productivity automation.",
-      },
-      {
-        tool: "Claude Design:",
-        description: "Visual ideation, design iteration, and rapid prototyping.",
-      },
-      {
-        tool: "Claude Code:",
-        description: "Building and iterating on personal projects.",
-      },
-      {
-        tool: "Fellow, Granola:",
-        description: "Automated meeting capture and structured notes.",
-      },
-      {
-        tool: "Superwhisper:",
-        description: "Voice dictation, removing the gap between thinking and writing.",
-      },
-    ],
-    beforeAfterTable: [
-      {
-        workflow: "Meeting notes and follow-ups",
-        before: "Manual note-taking, action items scattered",
-        after: "Granola captures and structures automatically",
-      },
-      {
-        workflow: "Data analysis and visualization",
-        before: "Waiting on a data partner or hours in spreadsheets",
-        after: "First-pass analysis in minutes, more time on interpretation",
-      },
-      {
-        workflow: "Quick mockups and visual feedback",
-        before: "Waiting days for design availability",
-        after: "Lo-fi mockups fast, feedback loops compressed",
-      },
-      {
-        workflow: "Strategy and research synthesis",
-        before: "Hours reading, writing from scratch",
-        after: "Rapid synthesis, first draft ready to react to",
-      },
-      {
-        workflow: "Thought partnership",
-        before: "Waiting for a 1:1, ideas half-formed",
-        after: "Always-available sounding board",
-      },
-      {
-        workflow: "Coding and personal tools",
-        before: "No path to building without engineering",
-        after: "Claude Code and Devin make it possible to ship tools as a non-technical PM",
-      },
-    ],
-  },
-
-  // ─────────────────────────────────────────────────────────────────────────
   // 4. Scheduling Tool for Phone Agents
   // ─────────────────────────────────────────────────────────────────────────
   {
@@ -594,6 +359,112 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
+  // 2. Annual Subscription Plans
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "annual-plans",
+    company: "GlossGenius",
+    thumbnail: "/thumb-gg-annual.png",
+    title: "Launching Annual Subscriptions",
+    oneLineDesc:
+      "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
+    keyMetric: {
+      number: "✓",
+      label: "Unlocked AI product roadmap with zero-interruption migration",
+    },
+    fundingStage: "Series C",
+    employeeRange: "260→330 employees",
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "A billing infrastructure that was blocking growth",
+        body: [
+          "GlossGenius provides a booking and business management platform for beauty and wellness entrepreneurs. GlossGenius had one subscription structure: three hard-coded subscription tiers that offered a set feature bundle and charged one price on a monthly cadence. As the company matured, this created compounding problems across the product roadmap, revenue optimization, and customer experience.",
+          "Limiting product roadmap: the infrastructure could only accommodate a single charge type per user. There was no ability to charge for add-ons separately from a subscription tier, meaning future product launches like AI agents to help run your business as an add-on to your base subscription were architecturally blocked before they started.",
+          "Limiting revenue: With only monthly billing, there was no annual commitment signal or cash pull-forward. Pricing for new customers had been static for years, presenting an opportunity to more accurately reflect the current value of a subscription.",
+          "Lackluster customer experience: As GlossGenius scaled upmarket, more subscribers were established businesses that preferred annual over monthly billing for accounting simplicity.",
+        ],
+        boldPrefixes: [
+          "",
+          "Limiting product roadmap:",
+          "Limiting revenue:",
+          "Lackluster customer experience:",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "A full infrastructure migration with a careful launch strategy",
+        body: [
+          "I led the launch of annual subscription plans alongside a price increase for new customers. This required a full subscription service migration, close cross-functional coordination across product, engineering, finance, and marketing, and a carefully managed launch to mitigate activation risk.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "Three decisions that shaped the launch",
+        body: [
+          "The existing infrastructure couldn't support annual billing in any way. After confirming there were no engineering shortcuts, I worked with engineering to scope a full subscription service migration, defining requirements for the short- and medium-term future state: multiple charge types, new plan tiers, price flexibility, and different billing logic across customer types.",
+          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally. We chose to launch to all customers at once rather than a phased rollout. GlossGenius customers are part of tight-knit solopreneur communities, so a phased rollout would have created confusion when customers compared notes. The clean rule: subscribe before X date, your price is locked in; sign up after, new pricing applies.",
+          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line. Working with finance and analytics, we modeled the maximum tolerable activation decrease before the price increase became net-negative. That number became the launch guardrail and the primary post-launch decision point.",
+        ],
+        boldPrefixes: [
+          "The existing infrastructure couldn't support annual billing in any way.",
+          "Launching a price increase and a new billing option simultaneously required careful sequencing internally and externally.",
+          "The activation risk needed to be modeled and monitored precisely to avoid harming the bottom line.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Communicating two changes without creating confusion",
+        body: [
+          "The challenge was communicating two simultaneous changes without creating confusion or triggering price sensitivity among existing subscribers who weren't affected. Key decisions: a clear plan comparison UI making annual vs. monthly value immediately legible, a simplified pricing page, and copy personalized for users who subscribed before launch (no annual discount) vs users who subscribed after launch (annual discount).",
+        ],
+        images: ["/gg-annual-1.png", "/gg-annual-2.png", "/gg-annual-3.png"],
+        altTexts: [
+          "Website pricing page positioning annual subscriptions as a discount for prospective subscribers",
+          "Annual subscription awareness message for monthly subscribers",
+          "View plans modal for logged in subscribers",
+        ],
+        captions: [
+          "Website pricing page for prospective subscribers positions annual subscriptions as a discount.",
+          "Annual subscription awareness message for monthly subscribers who receive a discount on annual subscriptions.",
+          '"View plans" modal for logged in subscribers who receive a discount on annual subscriptions.',
+        ],
+        imageWidths: [1601, 960, 550],
+        imageHeights: [1163, 473, 316],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "Exceeded projections with zero disruption",
+        body: [
+          "In the first month after launch:",
+          "✅ Activation held within acceptable thresholds, requiring no corrective pricing action",
+          "✅ Zero business interruptions through a full subscription infrastructure migration",
+          "📈 Revenue per customer increased multiple percentage points (early directional signal; not yet statistically significant)",
+          "📈 Annual plan adoption exceeded projections, with strong voluntary uptake from existing customers, signaling real long-term commitment (early directional signal; not yet statistically significant)",
+        ],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "Monetization isn't always an optimization problem. Sometimes it requires rebuilding the foundation before meaningful progress is possible. This project laid that foundation for GlossGenius's growth roadmap, making the significant engineering investment well worth it.",
+          "Work driven by business goals can also serve the customer if you look for the overlap. While overhauling subscription infrastructure was prioritized for monetization and roadmap needs, customer support data made it clear that annual billing was a real benefit for larger businesses. We leaned into that in our positioning, and customers adopted annual plans without discounts because it matched how they operate.",
+        ],
+        boldPrefixes: [
+          "Monetization isn't always an optimization problem.",
+          "Work driven by business goals can also serve the customer if you look for the overlap.",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
   // 6. Burrow — Growing a DTC Ecommerce Site to 4x Revenue
   // ─────────────────────────────────────────────────────────────────────────
   {
@@ -692,6 +563,135 @@ export const projects: Project[] = [
         boldPrefixes: [
           "A strong marketing engine brings in demand, but growth depends on converting that traffic into purchases.",
         ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3. AI as a PM Operating System
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "ai-operating-system",
+    company: "Personal Practice",
+    thumbnail: "/thumb-gg-payments.png",
+    title: "AI as a PM Operating System",
+    oneLineDesc:
+      "10× faster from idea to shareable artifact using Claude and complementary tools.",
+    keyMetric: {
+      number: "10×",
+      label: "faster from idea to shareable artifact",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "High-quality PM output required assembling a team",
+        body: [
+          "For most of my career, high-quality PM output required a high-functioning full team: design, engineering, data, marketing, and more. Even in the most efficient of lean startups, the meaty work that required my judgment competed constantly with the overhead of getting things done.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "A personal AI operating system for the parts that matter",
+        body: [
+          "I started treating Claude as a thought partner and execution accelerator, effectively a senior generalist available at any time. Over time I developed a personal operating system: a set of workflows where AI has fundamentally changed how I work and how much time I spend on the parts of the job that actually matter.",
+          "At GlossGenius, I extended this beyond my own practice, deploying Claude Enterprise with cross-functional connectors and AI-assisted workflows spanning product, engineering, and operations.",
+          "My stack:",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "What actually changed — and what didn't",
+        body: [
+          "How I prompt is as important as what I prompt. Treating AI as a collaborator, sharing full context, pushing back on outputs, and asking it to find holes in my thinking improves output quality tremendously.",
+          "Deploying Claude Enterprise required more than giving people access. I focused on showing concrete workflows rather than making abstract cases, starting with the highest-friction tasks people already complained about and making the before/after undeniable.",
+          "The hardest thing to delegate to AI is cross-functional judgment. It's great at synthesis, drafting, and analysis. But product decisions, stakeholder reads, and prioritization calls still require a human. I use AI to assist this process rather than replace it.",
+          "Engineering leverage is outpacing PM and design leverage. Small engineering teams now produce dramatically more output with AI. The response isn't to work harder; it's to build a personal operating system that scales your judgment, not just your hours.",
+        ],
+        boldPrefixes: [
+          "How I prompt is as important as what I prompt.",
+          "Deploying Claude Enterprise required more than giving people access.",
+          "The hardest thing to delegate to AI is cross-functional judgment.",
+          "Engineering leverage is outpacing PM and design leverage.",
+        ],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "Eight workflows, fundamentally changed",
+        body: [],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "The lines between product, design, and engineering are blurring. I think that's a good thing. AI doesn't replace the depth of expertise that comes from years of practicing a discipline. What it does is give each function more agency in the others' territory. For example, I built this entire portfolio with Claude Code in a few days. I could not have built anything like it on my own two years ago. This changes how I show up as a PM: I can prototype instead of only spec, launch an experiment on my own, and bring more informed judgment to design and engineering conversations because I'm closer to the work. These shifts help us all get more out of every hour the team has.",
+        ],
+        boldPrefixes: [
+          "The lines between product, design, and engineering are blurring.",
+        ],
+      },
+    ],
+    stack: [
+      {
+        tool: "Claude:",
+        description:
+          "Thought partner, writing, synthesis, strategy, workflow automation. Claude Enterprise at GlossGenius for team-wide deployment.",
+      },
+      {
+        tool: "Claude Cowork:",
+        description: "Knowledge work execution and personal productivity automation.",
+      },
+      {
+        tool: "Claude Design:",
+        description: "Visual ideation, design iteration, and rapid prototyping.",
+      },
+      {
+        tool: "Claude Code:",
+        description: "Building and iterating on personal projects.",
+      },
+      {
+        tool: "Fellow, Granola:",
+        description: "Automated meeting capture and structured notes.",
+      },
+      {
+        tool: "Superwhisper:",
+        description: "Voice dictation, removing the gap between thinking and writing.",
+      },
+    ],
+    beforeAfterTable: [
+      {
+        workflow: "Meeting notes and follow-ups",
+        before: "Manual note-taking, action items scattered",
+        after: "Granola captures and structures automatically",
+      },
+      {
+        workflow: "Data analysis and visualization",
+        before: "Waiting on a data partner or hours in spreadsheets",
+        after: "First-pass analysis in minutes, more time on interpretation",
+      },
+      {
+        workflow: "Quick mockups and visual feedback",
+        before: "Waiting days for design availability",
+        after: "Lo-fi mockups fast, feedback loops compressed",
+      },
+      {
+        workflow: "Strategy and research synthesis",
+        before: "Hours reading, writing from scratch",
+        after: "Rapid synthesis, first draft ready to react to",
+      },
+      {
+        workflow: "Thought partnership",
+        before: "Waiting for a 1:1, ideas half-formed",
+        after: "Always-available sounding board",
+      },
+      {
+        workflow: "Coding and personal tools",
+        before: "No path to building without engineering",
+        after: "Claude Code and Devin make it possible to ship tools as a non-technical PM",
       },
     ],
   },
