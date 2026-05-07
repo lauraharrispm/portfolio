@@ -279,7 +279,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-gg-payments.png",
     title: "AI as a PM Operating System",
     oneLineDesc:
-      "PM work used to require assembling a team for every high-quality output. I rebuilt how I work with AI and now move 10x faster from idea to shareable artifact. It's more fun too.",
+      "10× faster from idea to shareable artifact using Claude and complementary tools.",
     keyMetric: {
       number: "10×",
       label: "faster from idea to shareable artifact",
@@ -502,7 +502,7 @@ export const projects: Project[] = [
     thumbnail: "/thumb-rula-directory.png",
     title: "Therapist Directory",
     oneLineDesc:
-      "Rula was nearly invisible where millions of people search for mental healthcare: Google. I built an SEO-driven directory that turned organic search into a zero-cost acquisition channel from scratch.",
+      "345% lift in organic patient starts from an SEO-driven therapist directory targeting long-tail searches.",
     keyMetric: {
       number: "345%",
       label: "organic patient starts",
@@ -602,7 +602,7 @@ export const projects: Project[] = [
     thumbnail: "/burrow-3.png",
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
-      "Burrow's furniture catalog expanded quickly from \"the internet's favorite sofa\" to a full house, but the site experience lagged behind. I focused on converting more traffic.",
+      "4x revenue growth through navigation restructuring and promotions optimization.",
     keyMetric: {
       number: "4x",
       label: "revenue growth",

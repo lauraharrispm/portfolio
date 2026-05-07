@@ -12,16 +12,10 @@ export default function About() {
           <div className={styles.copy}>
             <p className={styles.body}>
               I&apos;ve spent 7+ years building growth products at consumer startups across DTC ecommerce,
-              marketplace, subscription, and mental healthcare. I&apos;ve worked at high-growth startups ranging from 30 to 550 employees, spanning funding stages from seed to Series C. I&apos;ve opened acquisition channels that didn&apos;t exist before, run experimentation programs, and built a product team from scratch.
+              marketplaces, and mental healthcare. I&apos;ve worked at stages from seed to Series C and team sizes from 30 to 550. I work full funnel: acquisition, activation, monetization, and retention.
             </p>
             <p className={styles.body}>
-              I do my best work untangling messy problems to figure out what
-              actually matters before jumping to solutions. As PM knowledge becomes
-              increasingly commoditized in an AI-driven world, I lean into what isn&apos;t:
-              a strong sense of what motivates people to act, what good looks like, and the judgment to connect the two.
-            </p>
-            <p className={styles.body}>
-              I love working with people who are smart, dynamic, considerate, and endlessly curious.
+              The work I&apos;m best at is untangling messy growth problems, finding the real constraint, and shipping what moves the metric. I click with founders who treat growth as a learning loop. Curious, scrappy, biased toward action.
             </p>
           </div>
 

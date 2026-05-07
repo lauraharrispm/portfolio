@@ -11,6 +11,9 @@ export default function Hero() {
           <h1 className={styles.headline}>
             Senior Growth PM impact without a full-time hire.
           </h1>
+          <p className={styles.tagline}>
+            4x&apos;d revenue at Burrow. Drove 50%+ patient growth at Rula. 7+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
+          </p>
           <p className={styles.subhead}>
             I work with consumer startups that have found product-market fit and need Senior Growth PM
             ownership to scale it, across healthtech, ecommerce, and marketplace businesses.
