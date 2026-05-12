@@ -193,6 +193,12 @@ export default function FitAssessment() {
             hours a week. Answer a few questions about your business and I&apos;ll tell you whether I think
             we&apos;re a fit and which of my case studies are most relevant to what you&apos;re building.
           </p>
+          <p className={styles.subhead}>
+            Reach me at{" "}
+            <a href="mailto:laura.harris.pm@gmail.com">laura.harris.pm@gmail.com</a>
+            {" "}or connect on{" "}
+            <a href="https://www.linkedin.com/in/laurakayharris/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+          </p>
         </div>
 
         <div className={styles.assessment}>

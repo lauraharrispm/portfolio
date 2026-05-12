@@ -24,6 +24,22 @@
   line-height: 1.65;
 }
 
+.subhead + .subhead {
+  margin-top: 10px;
+}
+
+.subhead a {
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: rgba(46, 40, 32, 0.35);
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+
+.subhead a:hover {
+  color: var(--coral);
+}
+
 .assessment {
   max-width: 640px;
   margin: 0 auto;

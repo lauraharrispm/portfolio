@@ -38,6 +38,17 @@
   color: var(--blush-peach);
 }
 
+.iconLink {
+  display: flex;
+  align-items: center;
+  color: var(--warm-white);
+  transition: color var(--transition);
+}
+
+.iconLink:hover {
+  color: var(--blush-peach);
+}
+
 .bottom {
   margin-top: 20px;
   font-size: 0.75rem;
