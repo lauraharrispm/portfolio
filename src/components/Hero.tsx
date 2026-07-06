@@ -12,7 +12,7 @@ export default function Hero() {
             Senior Growth PM impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
-            4x&apos;d revenue at Burrow. Drove 50%+ patient growth at Rula. 7+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
+            4x&apos;d revenue at Burrow. Drove 50%+ patient growth at Rula. 8+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
           </p>
           <div className={styles.ctas}>
             <a

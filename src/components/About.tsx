@@ -11,7 +11,7 @@ export default function About() {
           {/* Body copy */}
           <div className={styles.copy}>
             <p className={styles.body}>
-              I&apos;ve spent 7+ years building growth products at consumer startups across DTC ecommerce,
+              I&apos;ve spent 8+ years building growth products at consumer startups across DTC ecommerce,
               marketplaces, and mental healthcare. I&apos;ve worked at stages from seed to Series C and team sizes from 30 to 550. I work full funnel: acquisition, activation, monetization, and retention.
             </p>
             <p className={styles.body}>
