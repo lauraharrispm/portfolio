@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="container">
         <div className={styles.content}>
           <h1 className={styles.headline}>
-            Senior Growth PM impact without a full-time hire.
+            Product Lead impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
             4x&apos;d revenue at Burrow. Drove 50%+ patient growth at Rula. 8+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
