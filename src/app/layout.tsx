@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
-  title: "Laura Harris — Fractional Product Manager",
+  title: "Laura Harris — Fractional Product Lead",
   description:
     "Fractional Product Manager for consumer startups — DTC ecommerce, marketplace, and subscription businesses past product-market fit.",
   openGraph: {
-    title: "Laura Harris — Fractional Product Manager",
+    title: "Laura Harris — Fractional Product Lead",
     description:
       "Senior Growth PM ownership for consumer startups ready to scale.",
     url: "https://laurakayharris.com",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Laura Harris — Fractional Product Manager",
+    title: "Laura Harris — Fractional Product Lead",
     description:
       "Senior Growth PM ownership for consumer startups ready to scale.",
   },
