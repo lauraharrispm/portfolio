@@ -6,7 +6,7 @@ import { InlineWidget } from "react-calendly";
 import styles from "./LetsChat.module.css";
 
 const CALENDLY_URL = "https://calendly.com/laura-harris-pm";
-// Matches the InlineWidget's own height below — reserving it up front
+// Matches the InlineWidget's own height below: reserving it up front
 // avoids layout shift whether or not the embed has loaded yet.
 const CALENDLY_HEIGHT = 700;
 

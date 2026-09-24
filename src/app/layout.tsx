@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
-  title: "Laura Harris — Fractional Product Lead",
+  title: "Laura Harris | Fractional Product Lead",
   description:
-    "Fractional Product Manager for consumer startups — DTC ecommerce, marketplace, and subscription businesses past product-market fit.",
+    "Product Lead impact without a full-time hire. Fractional growth product leadership for consumer startups past product-market fit.",
   openGraph: {
-    title: "Laura Harris — Fractional Product Lead",
+    title: "Laura Harris | Fractional Product Lead",
     description:
-      "Senior Growth PM ownership for consumer startups ready to scale.",
+      "Product Lead impact without a full-time hire. Fractional growth product leadership for consumer startups past product-market fit.",
     url: "https://lauraharrispm.com",
     siteName: "Laura Harris",
     type: "website",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Laura Harris — Fractional Product Lead",
+    title: "Laura Harris | Fractional Product Lead",
     description:
-      "Senior Growth PM ownership for consumer startups ready to scale.",
+      "Product Lead impact without a full-time hire. Fractional growth product leadership for consumer startups past product-market fit.",
   },
 };
 
