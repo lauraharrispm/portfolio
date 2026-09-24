@@ -37,8 +37,13 @@ export default function Nav() {
         {/* Desktop links */}
         <ul className={styles.links}>
           <li>
-            <a href="#about" onClick={() => trackNav("about", "nav_desktop")}>
-              About
+            <a href="#services" onClick={() => trackNav("services", "nav_desktop")}>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="#how" onClick={() => trackNav("how_i_work", "nav_desktop")}>
+              How I Work
             </a>
           </li>
           <li>
@@ -48,11 +53,11 @@ export default function Nav() {
           </li>
           <li>
             <a
-              href="#fit"
-              className={styles.fitLink}
-              onClick={() => trackNav("should_we_work_together", "nav_desktop")}
+              href="#book"
+              className={styles.ctaButton}
+              onClick={() => trackNav("lets_chat", "nav_desktop")}
             >
-              Should We Work Together?
+              Let&apos;s chat
             </a>
           </li>
         </ul>
@@ -76,13 +81,24 @@ export default function Nav() {
           <ul>
             <li>
               <a
-                href="#about"
+                href="#services"
                 onClick={() => {
                   close();
-                  trackNav("about", "nav_mobile");
+                  trackNav("services", "nav_mobile");
                 }}
               >
-                About
+                Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="#how"
+                onClick={() => {
+                  close();
+                  trackNav("how_i_work", "nav_mobile");
+                }}
+              >
+                How I Work
               </a>
             </li>
             <li>
@@ -98,14 +114,14 @@ export default function Nav() {
             </li>
             <li>
               <a
-                href="#fit"
-                className={styles.fitLink}
+                href="#book"
+                className={styles.ctaButton}
                 onClick={() => {
                   close();
-                  trackNav("should_we_work_together", "nav_mobile");
+                  trackNav("lets_chat", "nav_mobile");
                 }}
               >
-                Should We Work Together?
+                Let&apos;s chat
               </a>
             </li>
           </ul>

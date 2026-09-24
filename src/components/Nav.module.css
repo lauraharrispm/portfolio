@@ -52,9 +52,20 @@
   color: var(--coral);
 }
 
-.fitLink {
-  color: var(--coral) !important;
+.ctaButton {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--coral);
+  color: #fff !important;
   font-weight: 600 !important;
+  border-radius: 4px;
+  transition: background var(--transition);
+}
+
+.ctaButton:hover {
+  background: var(--coral-dark);
+  color: #fff !important;
 }
 
 /* ── Hamburger ── */
@@ -113,6 +124,12 @@
 
 .drawer li:last-child a {
   border-bottom: none;
+}
+
+.drawer li a.ctaButton {
+  justify-content: center;
+  padding: 14px 20px;
+  margin-top: 8px;
 }
 
 @media (max-width: 768px) {
