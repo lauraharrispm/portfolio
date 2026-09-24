@@ -16,6 +16,18 @@ export default function Hero() {
           </p>
           <div className={styles.ctas}>
             <a
+              href="#book"
+              className={styles.ctaPrimary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "lets_chat",
+                  cta_location: "hero",
+                })
+              }
+            >
+              Let&apos;s chat
+            </a>
+            <a
               href="#work"
               className={styles.ctaSecondary}
               onClick={() =>
@@ -26,18 +38,6 @@ export default function Hero() {
               }
             >
               See my work
-            </a>
-            <a
-              href="#fit"
-              className={styles.ctaPrimary}
-              onClick={() =>
-                trackEvent("cta_click", {
-                  cta_label: "see_if_were_a_fit",
-                  cta_location: "hero",
-                })
-              }
-            >
-              See if we&apos;re a fit
             </a>
           </div>
         </div>
