@@ -1,0 +1,99 @@
+.section {
+  background: var(--blush-peach);
+  padding: var(--section-padding-v) 0;
+}
+
+.heading {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+/* ─── Bio + photo row ──────────────────────────────────────────── */
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 56px;
+  align-items: stretch;
+  margin-bottom: 56px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.body {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--charcoal);
+  max-width: 560px;
+}
+
+.photoWrap {
+  aspect-ratio: 1 / 1;
+  width: 360px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.photoImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ─── Calendly embed ───────────────────────────────────────────── */
+.calendlyWrap {
+  background: var(--warm-white);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.calendlyPlaceholder {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Alternate contact ────────────────────────────────────────── */
+.altContact {
+  font-size: 0.9375rem;
+  color: var(--charcoal-muted);
+}
+
+.altContact a {
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.altContact a:hover {
+  color: var(--coral);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-v-mobile) 0;
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .photoWrap {
+    width: 160px;
+    height: 160px;
+    order: -1;
+    margin: 0 auto;
+  }
+}

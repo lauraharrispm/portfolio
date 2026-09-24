@@ -5,6 +5,7 @@ import WhoThisIsFor from "@/components/WhoThisIsFor";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import Work from "@/components/Work";
+import LetsChat from "@/components/LetsChat";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
         <Services />
         <HowIWork />
         <Work />
-        {/* #book lands here — Phase 5 */}
+        <LetsChat />
       </main>
       <Footer />
     </>
