@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Laura Harris — Fractional Product Lead",
     description:
       "Senior Growth PM ownership for consumer startups ready to scale.",
-    url: "https://laurakayharris.com",
+    url: "https://lauraharrispm.com",
     siteName: "Laura Harris",
     type: "website",
     images: [],
