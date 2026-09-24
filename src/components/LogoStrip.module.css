@@ -1,0 +1,130 @@
+/* Logo strip: static row on desktop, continuous marquee below the breakpoint
+   where four full-size logos no longer fit the row comfortably. Measured: the
+   row's content (4 logos + 3×64px gaps) needs ~708px, plus 2×32px container
+   padding = ~772px to fit without crowding the container's gutter — so the
+   800px breakpoint below is derived from that, not a generic device width. */
+
+.section {
+  background: var(--warm-white);
+  padding-top: var(--section-padding-v);
+  padding-bottom: var(--section-padding-v);
+}
+
+.label {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal-muted);
+  margin-bottom: 28px;
+}
+
+/* ─── Desktop / tablet: static row ────────────────────────────────── */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 64px;
+}
+
+.logo {
+  display: block;
+  flex-shrink: 0;
+  height: var(--logo-h);
+  width: auto;
+  background-color: var(--charcoal-muted);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* ─── Small screens: marquee ──────────────────────────────────────── */
+.marqueeViewport {
+  display: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  /* one full loop (one repeat's worth of logos scrolling past) takes ~45.5s
+     on the reference site — matched here directly */
+  animation: logo-marquee 45.5s linear infinite;
+}
+
+.trackGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 36px;
+  padding-right: 36px;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* shifts exactly one repeat-width to the left (1/6 of the 6-repeat track) */
+    transform: translateX(-16.6667%);
+  }
+}
+
+@media (max-width: 800px) {
+  .row {
+    display: none;
+  }
+
+  .marqueeViewport {
+    display: block;
+  }
+
+  .logo {
+    height: var(--logo-h-mobile);
+  }
+}
+
+/* ─── Reduced motion: always show the static row, wrap to 2x2 if needed ── */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeViewport {
+    display: none !important;
+  }
+
+  .row {
+    display: flex !important;
+  }
+
+  @media (max-width: 800px) {
+    .row {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+      align-items: center;
+      row-gap: 28px;
+      column-gap: 40px;
+    }
+
+    .logo {
+      height: var(--logo-h-mobile);
+    }
+  }
+}

@@ -1,0 +1,71 @@
+import styles from "./LogoStrip.module.css";
+
+interface LogoDef {
+  name: string;
+  src: string;
+  /** intrinsic SVG viewBox dimensions, used to keep aspect ratio */
+  w: number;
+  h: number;
+  /** optical height per breakpoint — tuned per logo so wordmarks and compact marks read as equally heavy */
+  desktopHeight: number;
+  mobileHeight: number;
+}
+
+const LOGOS: LogoDef[] = [
+  { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1227, h: 543, desktopHeight: 64, mobileHeight: 36 },
+  { name: "Rula Health", src: "/logos/rula.svg", w: 1800, h: 504, desktopHeight: 30, mobileHeight: 17 },
+  { name: "Burrow", src: "/logos/burrow.svg", w: 1554, h: 246, desktopHeight: 19, mobileHeight: 11 },
+  { name: "ThirdLove", src: "/logos/thirdlove.svg", w: 921, h: 180, desktopHeight: 28, mobileHeight: 16 },
+];
+
+const MARQUEE_REPEATS = 6;
+
+function Logo({ logo }: { logo: LogoDef }) {
+  return (
+    <span
+      className={styles.logo}
+      style={
+        {
+          aspectRatio: `${logo.w} / ${logo.h}`,
+          maskImage: `url(${logo.src})`,
+          WebkitMaskImage: `url(${logo.src})`,
+          "--logo-h": `${logo.desktopHeight}px`,
+          "--logo-h-mobile": `${logo.mobileHeight}px`,
+        } as React.CSSProperties
+      }
+    />
+  );
+}
+
+export default function LogoStrip() {
+  return (
+    <section
+      className={styles.section}
+      aria-label="Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove"
+    >
+      <div className="container">
+        <p className={styles.label}>Full-time product roles at</p>
+
+        {/* Desktop / tablet: static evenly-spaced row */}
+        <div className={styles.row} aria-hidden="true">
+          {LOGOS.map((logo) => (
+            <Logo key={logo.name} logo={logo} />
+          ))}
+        </div>
+
+        {/* Small screens: continuous marquee */}
+        <div className={styles.marqueeViewport} aria-hidden="true">
+          <div className={styles.track}>
+            {Array.from({ length: MARQUEE_REPEATS }).map((_, repeatIndex) => (
+              <div className={styles.trackGroup} key={repeatIndex}>
+                {LOGOS.map((logo) => (
+                  <Logo key={`${repeatIndex}-${logo.name}`} logo={logo} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

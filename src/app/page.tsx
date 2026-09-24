@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import LogoStrip from "@/components/LogoStrip";
 import About from "@/components/About";
 import Work from "@/components/Work";
 import FitAssessment from "@/components/FitAssessment";
@@ -11,6 +12,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <LogoStrip />
         <About />
         <Work />
         <FitAssessment />
