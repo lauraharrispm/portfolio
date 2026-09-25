@@ -12,7 +12,7 @@ interface LogoDef {
 }
 
 const LOGOS: LogoDef[] = [
-  { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1227, h: 543, desktopHeight: 64, mobileHeight: 36 },
+  { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1213.44, h: 88.19, desktopHeight: 13, mobileHeight: 7 },
   { name: "Rula Health", src: "/logos/rula.svg", w: 1800, h: 504, desktopHeight: 30, mobileHeight: 17 },
   { name: "Burrow", src: "/logos/burrow.svg", w: 1554, h: 246, desktopHeight: 19, mobileHeight: 11 },
   { name: "ThirdLove", src: "/logos/thirdlove.svg", w: 921, h: 180, desktopHeight: 28, mobileHeight: 16 },
