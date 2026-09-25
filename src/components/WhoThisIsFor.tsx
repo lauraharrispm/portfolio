@@ -44,6 +44,11 @@ export default function WhoThisIsFor() {
     <section id="fit" className={styles.section}>
       <div className="container">
         <h2 className={styles.heading}>Who I work with</h2>
+        <p className={styles.lead}>
+          I&apos;m best at untangling messy growth problems, finding the real
+          constraint, and shipping what moves the metric. I click with founders who
+          treat growth as a learning loop.
+        </p>
         <div className={styles.columns}>
           <div className={styles.column}>
             <h3 className={styles.columnHeading}>We&apos;re a fit if you:</h3>

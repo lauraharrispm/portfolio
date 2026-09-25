@@ -12,9 +12,7 @@ export default function Hero() {
             Product Lead impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
-            4x&apos;d revenue at Burrow.
-            <br />
-            Drove 50%+ patient growth at Rula. 8+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
+            I&apos;m Laura. I&apos;ve spent 8+ years building growth products at consumer startups across DTC ecommerce, marketplaces, and healthcare, from seed to Series C. I 4x&apos;d revenue at Burrow and drove 50%+ patient growth at Rula. Now I help founders solve the right problems and ship faster.
           </p>
           <div className={styles.ctas}>
             <a

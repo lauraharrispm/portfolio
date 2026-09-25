@@ -29,10 +29,14 @@
 }
 
 .body {
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  /* Larger than a body paragraph: with the bio removed, this is now a
+     single short line and needs more visual weight to feel intentional
+     next to a 360px photo rather than sparse. */
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--charcoal);
-  max-width: 560px;
+  max-width: 440px;
 }
 
 .photoWrap {

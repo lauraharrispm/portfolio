@@ -33,11 +33,8 @@ export default function HowIWork() {
         <p className={styles.aiLede}>10× faster from idea to shareable artifact.</p>
 
         <p className={styles.body}>
-          A PM&apos;s impact used to scale with the team around them. AI changed that.
-          One senior person can now pull the data, prototype the flow, write the spec,
-          and verify the build. For you, that means team-level impact without adding
-          headcount. For your engineers, it means product keeps pace with how fast they
-          can ship. Here&apos;s how I divide the work:
+          Engineering teams now ship dramatically more with AI, so product has to
+          keep pace. Here&apos;s how I divide the work:
         </p>
 
         <ul className={styles.stack}>

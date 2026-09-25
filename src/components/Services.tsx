@@ -65,6 +65,12 @@ export default function Services() {
         </div>
 
         <h3 className={styles.subheading}>Two ways to work together</h3>
+        <p className={styles.subIntro}>
+          I did fractional work on the side of my day jobs for years, and in 2026 I
+          went all in because the math changed. With AI, one senior PM can now take a
+          project from diagnosis to launch, work that used to take a team.{" "}
+          <strong>Part-time no longer means partial impact.</strong>
+        </p>
 
         <div className={styles.cards}>
           <div className={styles.card}>

@@ -49,20 +49,8 @@ export default function LetsChat() {
           <div className={styles.copy}>
             <h2 className={styles.heading}>Let&apos;s chat</h2>
             <p className={styles.body}>
-              I&apos;m Laura. I&apos;ve spent 8+ years building growth products at
-              consumer startups across DTC ecommerce, marketplaces, and healthcare,
-              from seed to Series C.
-            </p>
-            <p className={styles.body}>
-              I did fractional work on the side of my day jobs for years, and in 2026 I
-              went all in because the math changed. With AI, one senior PM can now take
-              a project from diagnosis to launch, work that used to take a team.{" "}
-              <strong>Part-time no longer means partial impact.</strong>
-            </p>
-            <p className={styles.body}>
-              I&apos;m best at untangling messy growth problems, finding the real
-              constraint, and shipping what moves the metric. I click with founders who
-              treat growth as a learning loop.
+              Tell me what you know and what you don&apos;t know. In 30 minutes,
+              I&apos;ll share how I&apos;d approach it and whether we&apos;re a fit.
             </p>
           </div>
         </div>

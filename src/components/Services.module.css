@@ -80,6 +80,14 @@
   font-weight: 400;
   color: var(--charcoal);
   letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.subIntro {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  max-width: 640px;
   margin-bottom: 32px;
 }
 
