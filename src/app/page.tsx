@@ -4,7 +4,7 @@ import LogoStrip from "@/components/LogoStrip";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
-import Work from "@/components/Work";
+import WorkSummary from "@/components/WorkSummary";
 import LetsChat from "@/components/LetsChat";
 import Footer from "@/components/Footer";
 
@@ -18,7 +18,7 @@ export default function Home() {
         <WhoThisIsFor />
         <Services />
         <HowIWork />
-        <Work />
+        <WorkSummary />
         <LetsChat />
       </main>
       <Footer />

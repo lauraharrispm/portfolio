@@ -36,11 +36,17 @@ export interface StackItem {
 }
 
 export interface Project {
-  /** Used as URL anchor: /#payments-onboarding */
+  /** Used as URL anchor: /#payments-onboarding, and as the reading-view deep link /#work-payments-onboarding */
   id: string;
+  /** Position in the Recent Work stack — lower shows first. New studies just need the next number. */
+  order: number;
+  /** Funnel-stage tag(s) shown on the summary card, e.g. ["Acquisition"] or ["Acquisition", "Monetization"] */
+  tags: string[];
   company: string;
   /** Path to thumbnail image in /public */
   thumbnail: string;
+  /** Summary-card image — the study's most representative design-section image */
+  cardImage?: { src: string; alt: string; width: number; height: number };
   /** Short description shown in hero band and mobile card */
   oneLineDesc: string;
   title: string;
@@ -64,8 +70,16 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "payments-onboarding",
+    order: 1,
+    tags: ["Activation"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-payments.png",
+    cardImage: {
+      src: "/gg-payments-1.png",
+      alt: "Redesigned payments onboarding flow for GlossGenius",
+      width: 1717,
+      height: 1021,
+    },
     title: "Redesigning Payments Onboarding",
     oneLineDesc:
       "A broken onboarding flow was limiting adoption of one of GlossGenius's most valuable features. An iterative experimentation program fixed it.",
@@ -169,6 +183,8 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
+    order: 2,
+    tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
     title: "Scheduling Tool for Phone Agents",
@@ -263,6 +279,8 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
+    order: 3,
+    tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
     title: "Therapist Directory",
@@ -363,6 +381,8 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
+    order: 4,
+    tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
     title: "Launching Annual Subscriptions",
@@ -465,10 +485,12 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 6. Burrow — Growing a DTC Ecommerce Site to 4x Revenue
+  // 5. Burrow — Growing a DTC Ecommerce Site to 4x Revenue
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
+    order: 5,
+    tags: ["Acquisition", "Monetization"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
     title: "Growing an Ecommerce Site to 4x Revenue",

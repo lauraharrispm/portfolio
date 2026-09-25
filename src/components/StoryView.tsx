@@ -22,12 +22,20 @@ interface LightboxState {
 interface Props {
   projectId: string;
   onClose: () => void;
+  onSwitchProject: (id: string) => void;
   onLightbox: (state: LightboxState) => void;
+  lightboxOpen: boolean;
 }
 
 // ── Component ─────────────────────────────────────────────────────
 
-export default function StoryView({ projectId: initialId, onClose, onLightbox }: Props) {
+export default function StoryView({
+  projectId: initialId,
+  onClose,
+  onSwitchProject,
+  onLightbox,
+  lightboxOpen,
+}: Props) {
   const [projectId, setProjectId] = useState(initialId);
   const [sectionIdx, setSectionIdx] = useState(0);
   const [slideClass, setSlideClass] = useState<string>("");
@@ -62,13 +70,16 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
     }
   }, [sectionIdx, projectId]);
 
-  // ── Escape key ──────────────────────────────────────────────────
+  // ── Escape key (skip while the lightbox is open above us: its own
+  //    handler closes it first, then the next Escape reaches us) ─────
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !lightboxOpen) handleClose();
+    };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lightboxOpen]);
 
   // ── Close with slide-down animation ────────────────────────────
   const handleClose = useCallback(() => {
@@ -92,6 +103,9 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
   }
 
   // ── Navigate forward / back ────────────────────────────────────
+  // Past the last section, forward continues into the next study, like
+  // moving to the next person's stories, rather than closing. Only the
+  // very last study, at its last section, closes.
   const navigate = useCallback((dir: "forward" | "back") => {
     if (isTransitioning.current) return;
 
@@ -100,8 +114,16 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
       const currentIsReflection = currentSection?.id === "reflection";
 
       if (currentIsReflection) {
-        // End of any project — return to work section
-        handleClose();
+        if (projIdx < projects.length - 1) {
+          const nextProject = projects[projIdx + 1];
+          animateSlide("left", 250, () => {
+            setProjectId(nextProject.id);
+            setSectionIdx(0);
+          });
+          onSwitchProject(nextProject.id);
+        } else {
+          handleClose();
+        }
       } else if (sectionIdx < project.sections.length - 1) {
         // Next section within project
         animateSlide("left", 250, () => setSectionIdx((i) => i + 1));
@@ -119,10 +141,11 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
           setProjectId(prev.id);
           setSectionIdx(prev.sections.length - 1);
         });
+        onSwitchProject(prev.id);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projIdx, sectionIdx, project.sections, handleClose]);
+  }, [projIdx, sectionIdx, project.sections, handleClose, onSwitchProject]);
 
   // ── Touch handling ─────────────────────────────────────────────
   function onTouchStart(e: React.TouchEvent) {
@@ -275,14 +298,14 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
       tabIndex={-1}
       role="dialog"
       aria-modal="true"
-      aria-label={`${project.title}${section ? ` — ${section.label}` : ""}`}
+      aria-label={`${project.title}${section ? `, ${section.label}` : ""}`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
       {/* ── Fixed header ── */}
       <div className={styles.header}>
-        <button className={styles.backBtn} onClick={handleClose} aria-label="Close story view">
-          ‹ Back
+        <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
+          Close ✕
         </button>
         <span className={styles.headerTitle}>{project.title}</span>
         <span className={styles.headerSpacer} aria-hidden="true" />
@@ -306,6 +329,20 @@ export default function StoryView({ projectId: initialId, onClose, onLightbox }:
       <div ref={contentRef} className={`${styles.content} ${slideClass}`}>
         <span className={styles.sectionLabel}>{section?.label}</span>
         {renderSectionBody()}
+      </div>
+
+      {/* ── Visible back/next — works without swipe gestures ── */}
+      <div className={styles.footerNav}>
+        <button
+          className={styles.footerBtn}
+          onClick={() => navigate("back")}
+          disabled={sectionIdx === 0 && projIdx === 0}
+        >
+          ‹ Back
+        </button>
+        <button className={styles.footerBtn} onClick={() => navigate("forward")}>
+          Next ›
+        </button>
       </div>
     </div>
   );

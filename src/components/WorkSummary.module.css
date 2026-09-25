@@ -1,0 +1,195 @@
+.section {
+  background: var(--warm-white);
+  padding-top: var(--section-padding-v);
+  padding-bottom: var(--section-padding-v);
+}
+
+.heading {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 48px;
+}
+
+/* ─── Vertical stack of cards, generous breathing room between ───── */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.card {
+  background: var(--warm-white);
+  padding: 56px 0;
+}
+
+.cardAlt {
+  background: var(--blush-peach);
+}
+
+.cardInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  /* Substantial but not full-viewport, per spec — sized to content
+     with a floor so short case studies still feel like a real card. */
+  min-height: 480px;
+  max-height: 560px;
+}
+
+/* Text is first in the DOM (so it reads first on mobile, stacked under
+   the image) but sits in the left column on desktop via order. */
+.text {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.imageWrap {
+  order: 2;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.imageScale {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.08);
+  opacity: 0;
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.imageScaleIn {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.company {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--coral);
+  background: rgba(240, 112, 82, 0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.stageLine {
+  font-size: 0.8125rem;
+  color: var(--charcoal-muted);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.oneLiner {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.metricValue {
+  font-family: var(--font-headline);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--coral);
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--charcoal-muted);
+}
+
+.seeMore {
+  align-self: flex-start;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  padding: 12px 0;
+  border-bottom: 1.5px solid var(--charcoal);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.seeMore:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageScale {
+    transition: none;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .cardInner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    max-height: none;
+    gap: 28px;
+  }
+
+  .text {
+    order: 2;
+  }
+
+  .imageWrap {
+    order: 1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .card {
+    padding: 40px 0;
+  }
+}
