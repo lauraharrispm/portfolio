@@ -244,7 +244,7 @@ function DesktopReadingView({
             </button>
           ) : (
             <button className={styles.nextStudy} onClick={onClose}>
-              Back to Recent work
+              Back to Work
             </button>
           )}
         </div>

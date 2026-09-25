@@ -187,6 +187,12 @@ export const projects: Project[] = [
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
+    cardImage: {
+      src: "/rula-scheduling-2.png",
+      alt: "Calendar view with side filter panel for therapist preferences",
+      width: 2664,
+      height: 1228,
+    },
     title: "Scheduling Tool for Phone Agents",
     oneLineDesc:
       "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
@@ -283,6 +289,12 @@ export const projects: Project[] = [
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
+    cardImage: {
+      src: "/rula-directory-3.png",
+      alt: "Desktop therapist directory experience",
+      width: 1350,
+      height: 1261,
+    },
     title: "Therapist Directory",
     oneLineDesc:
       "345% lift in organic patient starts from an SEO-driven therapist directory targeting long-tail searches.",
@@ -385,6 +397,12 @@ export const projects: Project[] = [
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
+    cardImage: {
+      src: "/gg-annual-1.png",
+      alt: "Website pricing page positioning annual subscriptions as a discount",
+      width: 1601,
+      height: 1163,
+    },
     title: "Launching Annual Subscriptions",
     oneLineDesc:
       "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
@@ -493,6 +511,12 @@ export const projects: Project[] = [
     tags: ["Acquisition", "Monetization"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
+    cardImage: {
+      src: "/burrow-1.png",
+      alt: "Navigation and filtering reorganized around how customers shop for home furnishings",
+      width: 1016,
+      height: 859,
+    },
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
       "4x revenue growth through navigation restructuring and promotions optimization.",

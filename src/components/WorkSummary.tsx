@@ -8,10 +8,9 @@ import ReadingView from "./ReadingView";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./WorkSummary.module.css";
 
-// TEMP (Phase 4 checkpoint): only Payments Onboarding has a cardImage chosen
-// and a reviewed card treatment so far. Swap this back to `projects` once
-// the rest are approved and cardImage is set for all five.
-const VISIBLE_PROJECTS = projects.filter((p) => p.cardImage);
+// Sorted by `order` so adding a new study later is a data change, not a
+// layout one: just give it the next number.
+const VISIBLE_PROJECTS = [...projects].sort((a, b) => a.order - b.order);
 
 export default function WorkSummary() {
   const [openId, setOpenId] = useState<string | null>(null);
