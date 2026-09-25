@@ -2,8 +2,9 @@ import styles from "./WhoThisIsFor.module.css";
 
 export default function WhoThisIsFor() {
   return (
-    <section id="fit" className={styles.section} aria-label="Who this is for">
+    <section id="fit" className={styles.section}>
       <div className="container">
+        <h2 className={styles.heading}>Who I work with</h2>
         <div className={styles.columns}>
           <div className={styles.column}>
             <h3 className={styles.columnHeading}>We&apos;re a fit if you:</h3>

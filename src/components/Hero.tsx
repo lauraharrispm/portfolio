@@ -12,21 +12,11 @@ export default function Hero() {
             Product Lead impact without a full-time hire.
           </h1>
           <p className={styles.subhead}>
-            4x&apos;d revenue at Burrow. Drove 50%+ patient growth at Rula. 8+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
+            4x&apos;d revenue at Burrow.
+            <br />
+            Drove 50%+ patient growth at Rula. 8+ years of full-funnel growth at consumer startups in healthtech, ecommerce, and marketplaces.
           </p>
           <div className={styles.ctas}>
-            <a
-              href="#book"
-              className={styles.ctaPrimary}
-              onClick={() =>
-                trackEvent("cta_click", {
-                  cta_label: "lets_chat",
-                  cta_location: "hero",
-                })
-              }
-            >
-              Let&apos;s chat
-            </a>
             <a
               href="#work"
               className={styles.ctaSecondary}
@@ -38,6 +28,18 @@ export default function Hero() {
               }
             >
               See my work
+            </a>
+            <a
+              href="#book"
+              className={styles.ctaPrimary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "lets_chat",
+                  cta_location: "hero",
+                })
+              }
+            >
+              Let&apos;s chat
             </a>
           </div>
         </div>

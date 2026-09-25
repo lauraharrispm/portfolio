@@ -23,6 +23,8 @@ export default function Services() {
             </p>
           </div>
 
+          <span className={styles.funnelArrow} aria-hidden="true">→</span>
+
           <div className={styles.funnelItem}>
             <p className={styles.funnelBody}>
               <strong>Activation.</strong> Getting new users to value fast: onboarding,
@@ -35,6 +37,8 @@ export default function Services() {
             </p>
           </div>
 
+          <span className={styles.funnelArrow} aria-hidden="true">→</span>
+
           <div className={styles.funnelItem}>
             <p className={styles.funnelBody}>
               <strong>Monetization.</strong> Pricing, plans, and upgrade paths that grow
@@ -46,6 +50,8 @@ export default function Services() {
               </a>
             </p>
           </div>
+
+          <span className={styles.funnelArrow} aria-hidden="true">→</span>
 
           <div className={styles.funnelItem}>
             <p className={styles.funnelBody}>

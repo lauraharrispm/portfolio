@@ -20,18 +20,28 @@
   margin-bottom: 48px;
 }
 
-/* ─── Funnel stages ────────────────────────────────────────────── */
+/* ─── Funnel stages: one row in order, arrows show the sequence ──── */
 .funnel {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px 56px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
   margin-bottom: 64px;
 }
 
 .funnelItem {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.funnelArrow {
+  flex-shrink: 0;
+  color: var(--coral);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  margin-top: 2px;
 }
 
 .funnelBody {
@@ -167,12 +177,32 @@
   }
 
   .funnel {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 28px;
     margin-bottom: 48px;
   }
 
+  .funnelArrow {
+    display: none;
+  }
+
   .cards {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Between mobile and the point the row gets tight, drop to 2 columns
+   so item text doesn't get too narrow to read comfortably */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .funnel {
+    flex-wrap: wrap;
+  }
+
+  .funnelItem {
+    flex-basis: calc(50% - 8px);
+  }
+
+  .funnelArrow {
+    display: none;
   }
 }

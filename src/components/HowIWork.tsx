@@ -1,6 +1,5 @@
 "use client";
 
-import Toggle from "./Toggle";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./HowIWork.module.css";
 
@@ -71,35 +70,34 @@ export default function HowIWork() {
           me. Knowing the difference is what you&apos;re paying for.
         </p>
 
-        <Toggle label="See the before and after">
-          <div className={styles.bafTable} role="table" aria-label="Before and after AI-native workflow">
-            <div className={styles.bafHeader} role="row">
-              <span role="columnheader">Before</span>
-              <span role="columnheader">After</span>
-            </div>
-            <div className={styles.bafRow} role="row">
-              <span role="cell">Waiting on a data partner for answers</span>
-              <span role="cell">
-                <span className={styles.bafArrow} aria-hidden="true">→</span>
-                First-pass analysis in minutes, more time on interpretation
-              </span>
-            </div>
-            <div className={styles.bafRow} role="row">
-              <span role="cell">Waiting days for design availability</span>
-              <span role="cell">
-                <span className={styles.bafArrow} aria-hidden="true">→</span>
-                Working prototypes the same day, faster feedback loops
-              </span>
-            </div>
-            <div className={styles.bafRow} role="row">
-              <span role="cell">Specs written from scratch</span>
-              <span role="cell">
-                <span className={styles.bafArrow} aria-hidden="true">→</span>
-                A first draft ready to react to, grounded in the actual code
-              </span>
-            </div>
+        <p className={styles.bafLabel}>Before and after</p>
+        <div className={styles.bafTable} role="table" aria-label="Before and after AI-native workflow">
+          <div className={styles.bafHeader} role="row">
+            <span role="columnheader">Before</span>
+            <span role="columnheader">After</span>
           </div>
-        </Toggle>
+          <div className={styles.bafRow} role="row">
+            <span role="cell">Waiting on a data partner for answers</span>
+            <span role="cell">
+              <span className={styles.bafArrow} aria-hidden="true">→</span>
+              First-pass analysis in minutes, more time on interpretation
+            </span>
+          </div>
+          <div className={styles.bafRow} role="row">
+            <span role="cell">Waiting days for design availability</span>
+            <span role="cell">
+              <span className={styles.bafArrow} aria-hidden="true">→</span>
+              Working prototypes the same day, faster feedback loops
+            </span>
+          </div>
+          <div className={styles.bafRow} role="row">
+            <span role="cell">Specs written from scratch</span>
+            <span role="cell">
+              <span className={styles.bafArrow} aria-hidden="true">→</span>
+              A first draft ready to react to, grounded in the actual code
+            </span>
+          </div>
+        </div>
 
         <p className={styles.closing}>
           I&apos;ve also rolled this out beyond my own work: at GlossGenius, I deployed

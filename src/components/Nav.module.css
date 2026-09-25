@@ -20,6 +20,12 @@
   height: 100%;
 }
 
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
 .wordmark {
   font-family: var(--font-headline);
   font-size: 2.03rem;
@@ -31,6 +37,20 @@
 
 .wordmark:hover {
   color: var(--coral-dark);
+}
+
+/* Desktop-only tagline beside the wordmark */
+.tagline {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--charcoal-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .tagline {
+    display: none;
+  }
 }
 
 .links {

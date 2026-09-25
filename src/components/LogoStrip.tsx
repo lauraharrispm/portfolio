@@ -43,17 +43,17 @@ export default function LogoStrip() {
       className={styles.section}
       aria-label="Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove"
     >
-      <div className="container">
+      <div className={`container ${styles.bar}`}>
         <p className={styles.label}>Full-time product roles at</p>
 
-        {/* Desktop / tablet: static evenly-spaced row */}
+        {/* Desktop / tablet: static evenly-spaced row, inline with the label */}
         <div className={styles.row} aria-hidden="true">
           {LOGOS.map((logo) => (
             <Logo key={logo.name} logo={logo} />
           ))}
         </div>
 
-        {/* Small screens: continuous marquee */}
+        {/* Small screens: continuous marquee, stacked below the label */}
         <div className={styles.marqueeViewport} aria-hidden="true">
           <div className={styles.track}>
             {Array.from({ length: MARQUEE_REPEATS }).map((_, repeatIndex) => (

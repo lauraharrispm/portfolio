@@ -23,16 +23,21 @@ export default function Nav() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        <a
-          href="#hero"
-          className={styles.wordmark}
-          onClick={() => {
-            close();
-            trackNav("wordmark", "nav_desktop");
-          }}
-        >
-          Laura Harris
-        </a>
+        <div className={styles.brand}>
+          <a
+            href="#hero"
+            className={styles.wordmark}
+            onClick={() => {
+              close();
+              trackNav("wordmark", "nav_desktop");
+            }}
+          >
+            Laura Harris
+          </a>
+          <span className={styles.tagline} aria-hidden="true">
+            Fractional Product Lead
+          </span>
+        </div>
 
         {/* Desktop links */}
         <ul className={styles.links}>

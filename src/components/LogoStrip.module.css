@@ -6,8 +6,19 @@
 
 .section {
   background: var(--warm-white);
-  padding-top: var(--section-padding-v);
+  /* Reduced from var(--section-padding-v): this strip sits right under the
+     hero CTAs and reads better closer to them than a full section gap. */
+  padding-top: 32px;
   padding-bottom: var(--section-padding-v);
+  /* Lighter than --charcoal-muted, which the label keeps — no existing
+     token this light, so defined locally here per Laura's request. */
+  --logo-gray: #a89f95;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
 .label {
@@ -17,10 +28,11 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--charcoal-muted);
-  margin-bottom: 28px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* ─── Desktop / tablet: static row ────────────────────────────────── */
+/* ─── Desktop / tablet: static row, inline with the label ─────────── */
 .row {
   display: flex;
   align-items: center;
@@ -34,7 +46,7 @@
   flex-shrink: 0;
   height: var(--logo-h);
   width: auto;
-  background-color: var(--charcoal-muted);
+  background-color: var(--logo-gray);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -90,12 +102,19 @@
 }
 
 @media (max-width: 800px) {
+  .bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
   .row {
     display: none;
   }
 
   .marqueeViewport {
     display: block;
+    width: 100%;
   }
 
   .logo {

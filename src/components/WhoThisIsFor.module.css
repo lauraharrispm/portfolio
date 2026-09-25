@@ -3,6 +3,15 @@
   padding: var(--section-padding-v) 0;
 }
 
+.heading {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+}
+
 .columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
