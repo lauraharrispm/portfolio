@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 4px 0 24px;
+}
+
+.logo {
+  display: block;
+  flex-shrink: 0;
+  height: var(--logo-h);
+  width: auto;
+  background-color: var(--charcoal-muted);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+@media (max-width: 480px) {
+  .row {
+    gap: 24px;
+  }
+}

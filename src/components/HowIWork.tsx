@@ -1,6 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/lib/analytics";
+import ToolLogos from "./ToolLogos";
 import styles from "./HowIWork.module.css";
 
 export default function HowIWork() {
@@ -37,28 +38,7 @@ export default function HowIWork() {
           keep pace. Here&apos;s how I divide the work:
         </p>
 
-        <ul className={styles.stack}>
-          <li>
-            <strong>Claude Code</strong> pulls ground truth from your codebase and
-            production data, with sources I can defend in a meeting.
-          </li>
-          <li>
-            <strong>Claude Design</strong> turns specs into working prototypes.
-          </li>
-          <li>
-            <strong>Claude and Cowork</strong> diagnose problems, write specs, and check
-            every prototype against the spec.
-          </li>
-          <li>
-            <strong>Granola</strong>{" "}
-            captures every meeting, so decisions don&apos;t live only in someone&apos;s
-            memory.
-          </li>
-          <li>
-            <strong>I make the calls.</strong> Priorities, scope, tradeoffs, and
-            anything legal or compliance-related stay with me.
-          </li>
-        </ul>
+        <ToolLogos />
 
         <p className={styles.body}>
           <strong>AI starts the work. A human finishes it.</strong>{" "}

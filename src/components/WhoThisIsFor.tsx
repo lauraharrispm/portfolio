@@ -96,12 +96,6 @@ export default function WhoThisIsFor() {
             </ul>
           </div>
         </div>
-
-        <p className={styles.cta}>
-          <a href="#book" className={styles.ctaLink}>
-            Still not sure? Let&apos;s chat and I&apos;ll give you my hot takes.
-          </a>
-        </p>
       </div>
     </section>
   );

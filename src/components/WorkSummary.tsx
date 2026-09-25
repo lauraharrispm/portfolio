@@ -58,7 +58,7 @@ export default function WorkSummary() {
   return (
     <section id="work" className={styles.section}>
       <div className="container">
-        <h2 className={styles.heading}>Recent work</h2>
+        <h2 className={styles.heading}>Work</h2>
       </div>
 
       <div className={styles.stack}>

@@ -63,23 +63,6 @@
   margin-top: 0.15em;
 }
 
-.cta {
-  margin-top: 48px;
-}
-
-.ctaLink {
-  font-weight: 700;
-  color: var(--charcoal);
-  text-decoration: underline;
-  text-decoration-color: var(--coral);
-  text-underline-offset: 4px;
-  transition: color var(--transition);
-}
-
-.ctaLink:hover {
-  color: var(--coral);
-}
-
 @media (max-width: 768px) {
   .section {
     padding: var(--section-padding-v-mobile) 0;
@@ -88,9 +71,5 @@
   .columns {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  .cta {
-    margin-top: 32px;
   }
 }
