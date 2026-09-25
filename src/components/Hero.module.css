@@ -2,7 +2,9 @@
   position: relative;
   background: var(--warm-white);
   padding-top: calc(var(--nav-height) + var(--section-padding-v));
-  padding-bottom: var(--section-padding-v);
+  /* Matches .subhead's margin-bottom (the padding above the CTAs) so the
+     gap below the CTAs reads the same as the gap above them. */
+  padding-bottom: 40px;
   overflow: hidden;
 }
 
@@ -48,7 +50,7 @@
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--charcoal);
   line-height: 1.65;
-  max-width: 580px;
+  max-width: 615px;
   margin-bottom: 40px;
 }
 
@@ -95,7 +97,6 @@
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--nav-height) + var(--section-padding-v-mobile));
-    padding-bottom: var(--section-padding-v-mobile);
   }
 
   .bgMark {

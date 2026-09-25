@@ -5,7 +5,9 @@ import Image from "next/image";
 import { InlineWidget } from "react-calendly";
 import styles from "./LetsChat.module.css";
 
-const CALENDLY_URL = "https://calendly.com/laura-harris-pm";
+// Direct event-type link (not the profile URL) so the embed opens straight
+// to the calendar instead of the "30 Minute Meeting" landing page.
+const CALENDLY_URL = "https://calendly.com/laura-harris-pm/30min";
 // Matches the InlineWidget's own height below: reserving it up front
 // avoids layout shift whether or not the embed has loaded yet.
 const CALENDLY_HEIGHT = 700;

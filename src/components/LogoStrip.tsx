@@ -17,7 +17,7 @@ const LOGOS: LogoDef[] = [
   { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1213.44, h: 88.19, desktopHeight: 13, mobileHeight: 7, bold: true },
   { name: "Rula Health", src: "/logos/rula.svg", w: 1800, h: 504, desktopHeight: 24, mobileHeight: 14 },
   { name: "Burrow", src: "/logos/burrow.svg", w: 1554, h: 246, desktopHeight: 19, mobileHeight: 11 },
-  { name: "ThirdLove", src: "/logos/thirdlove.svg", w: 921, h: 180, desktopHeight: 28, mobileHeight: 16 },
+  { name: "ThirdLove", src: "/logos/thirdlove.svg", w: 921, h: 180, desktopHeight: 24, mobileHeight: 14 },
 ];
 
 const MARQUEE_REPEATS = 6;

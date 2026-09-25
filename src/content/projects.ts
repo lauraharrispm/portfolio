@@ -188,10 +188,10 @@ export const projects: Project[] = [
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
     cardImage: {
-      src: "/rula-scheduling-2.png",
-      alt: "Calendar view with side filter panel for therapist preferences",
-      width: 2664,
-      height: 1228,
+      src: "/rula-scheduling-1.png",
+      alt: "Intake form capturing state and insurance coverage before showing calendar slots",
+      width: 2840,
+      height: 2564,
     },
     title: "Scheduling Tool for Phone Agents",
     oneLineDesc:
@@ -512,10 +512,10 @@ export const projects: Project[] = [
     company: "Burrow",
     thumbnail: "/burrow-3.png",
     cardImage: {
-      src: "/burrow-1.png",
-      alt: "Navigation and filtering reorganized around how customers shop for home furnishings",
-      width: 1016,
-      height: 859,
+      src: "/burrow-3.png",
+      alt: "Promotions communicated active discounts without requiring user action",
+      width: 842,
+      height: 721,
     },
     title: "Growing an Ecommerce Site to 4x Revenue",
     oneLineDesc:
