@@ -40,22 +40,19 @@
 }
 
 .list li {
-  position: relative;
-  padding-left: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--charcoal);
 }
 
-.list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--coral);
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15em;
 }
 
 .cta {

@@ -1,5 +1,44 @@
 import styles from "./WhoThisIsFor.module.css";
 
+function CheckIcon() {
+  return (
+    <svg
+      className={styles.icon}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="9" stroke="var(--coral)" strokeWidth="1.5" />
+      <path
+        d="M6 10.5L8.5 13L14 7"
+        stroke="var(--coral)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      className={styles.icon}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="9" stroke="var(--charcoal-muted)" strokeWidth="1.5" />
+      <path
+        d="M7 7L13 13M13 7L7 13"
+        stroke="var(--charcoal-muted)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export default function WhoThisIsFor() {
   return (
     <section id="fit" className={styles.section}>
@@ -9,22 +48,46 @@ export default function WhoThisIsFor() {
           <div className={styles.column}>
             <h3 className={styles.columnHeading}>We&apos;re a fit if you:</h3>
             <ul className={styles.list}>
-              <li>Run a consumer business: DTC, marketplace, subscription, or B2B2C</li>
               <li>
-                Have found product-market fit and need to grow faster, because growth
-                has stalled and you&apos;re not sure why
+                <CheckIcon />
+                <span>Run a consumer business: DTC, marketplace, subscription, or B2B2C</span>
               </li>
-              <li>Have engineers but little or no dedicated senior product guidance</li>
-              <li>Want someone who ships, not someone who hands you a deck</li>
+              <li>
+                <CheckIcon />
+                <span>
+                  Have found product-market fit and need to grow faster, because growth
+                  has stalled and you&apos;re not sure why
+                </span>
+              </li>
+              <li>
+                <CheckIcon />
+                <span>Have engineers but little or no dedicated senior product guidance</span>
+              </li>
+              <li>
+                <CheckIcon />
+                <span>Want someone who ships, not someone who hands you a deck</span>
+              </li>
             </ul>
           </div>
           <div className={styles.column}>
             <h3 className={styles.columnHeading}>We&apos;re not a fit (right now) if you:</h3>
             <ul className={styles.list}>
-              <li>Are still searching for product-market fit</li>
-              <li>Sell enterprise software to other businesses</li>
-              <li>Need a full-time PM starting today</li>
-              <li>Need someone to manage a product team day to day</li>
+              <li>
+                <XIcon />
+                <span>Are still searching for product-market fit</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Sell enterprise software to other businesses</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Need a full-time PM starting today</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Need someone to manage a product team day to day</span>
+              </li>
             </ul>
           </div>
         </div>

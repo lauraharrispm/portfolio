@@ -9,10 +9,12 @@ interface LogoDef {
   /** optical height per breakpoint — tuned per logo so wordmarks and compact marks read as equally heavy */
   desktopHeight: number;
   mobileHeight: number;
+  /** faux-bold this mark slightly (see .logoBold) — for source art that's a lighter cut than its neighbors */
+  bold?: boolean;
 }
 
 const LOGOS: LogoDef[] = [
-  { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1213.44, h: 88.19, desktopHeight: 13, mobileHeight: 7 },
+  { name: "GlossGenius", src: "/logos/glossgenius.svg", w: 1213.44, h: 88.19, desktopHeight: 13, mobileHeight: 7, bold: true },
   { name: "Rula Health", src: "/logos/rula.svg", w: 1800, h: 504, desktopHeight: 30, mobileHeight: 17 },
   { name: "Burrow", src: "/logos/burrow.svg", w: 1554, h: 246, desktopHeight: 19, mobileHeight: 11 },
   { name: "ThirdLove", src: "/logos/thirdlove.svg", w: 921, h: 180, desktopHeight: 28, mobileHeight: 16 },
@@ -23,7 +25,7 @@ const MARQUEE_REPEATS = 6;
 function Logo({ logo }: { logo: LogoDef }) {
   return (
     <span
-      className={styles.logo}
+      className={`${styles.logo} ${logo.bold ? styles.logoBold : ""}`}
       style={
         {
           aspectRatio: `${logo.w} / ${logo.h}`,

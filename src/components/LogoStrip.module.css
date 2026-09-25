@@ -55,6 +55,17 @@
   mask-size: contain;
 }
 
+/* Faux-bold: stack four 1px drop-shadows shaped like the masked logo itself
+   to dilate/thicken its strokes a touch, for source art drawn at a visibly
+   lighter weight than its neighbors in the row. */
+.logoBold {
+  filter:
+    drop-shadow(0.5px 0 0 var(--logo-gray))
+    drop-shadow(-0.5px 0 0 var(--logo-gray))
+    drop-shadow(0 0.5px 0 var(--logo-gray))
+    drop-shadow(0 -0.5px 0 var(--logo-gray));
+}
+
 /* ─── Small screens: marquee ──────────────────────────────────────── */
 .marqueeViewport {
   display: none;
