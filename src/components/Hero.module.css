@@ -1,10 +1,13 @@
 .hero {
   position: relative;
   background: var(--warm-white);
-  padding-top: calc(var(--nav-height) + var(--section-padding-v));
+  /* More headroom than the shared section token: as the first thing on
+     the page, the hero reads cramped under the nav without its own
+     larger top space. */
+  padding-top: calc(var(--nav-height) + 72px);
   /* Matches .subhead's margin-bottom (the padding above the CTAs) so the
      gap below the CTAs reads the same as the gap above them. */
-  padding-bottom: 40px;
+  padding-bottom: 32px;
   overflow: hidden;
 }
 
@@ -26,7 +29,7 @@
 
 .content {
   position: relative;
-  max-width: 660px;
+  max-width: 760px;
 }
 
 .headline {
@@ -50,8 +53,8 @@
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--charcoal);
   line-height: 1.65;
-  max-width: 615px;
-  margin-bottom: 40px;
+  max-width: 740px;
+  margin-bottom: 32px;
 }
 
 .ctas {
@@ -96,7 +99,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: calc(var(--nav-height) + var(--section-padding-v-mobile));
+    padding-top: calc(var(--nav-height) + 40px);
   }
 
   .bgMark {

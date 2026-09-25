@@ -1,5 +1,6 @@
 /* ─── Design Tokens ────────────────────────────────────────────── */
 :root {
+  --white: #FFFFFF;
   --warm-white: #FAF9F6;
   --blush-peach: #FAD5C8;
   --coral: #F07052;
@@ -8,11 +9,17 @@
   --charcoal-muted: #6b625a;
 
   --max-width: 1200px;
-  --section-padding-v: 80px;
-  --section-padding-v-mobile: 48px;
+  --section-padding-v: 36px;
+  --section-padding-v-mobile: 22px;
   --card-padding: 24px;
   --grid-gap: 24px;
   --nav-height: 64px;
+
+  /* Card surface: used wherever a container needs to read as its own
+     shape now that every section shares one cream background. */
+  --card-radius: 8px;
+  --card-border: 1px solid rgba(46, 40, 32, 0.1);
+  --card-shadow: 0 2px 10px rgba(46, 40, 32, 0.05);
 
   --font-headline: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;

@@ -1,5 +1,88 @@
-import Toggle from "./Toggle";
+import { Fragment } from "react";
 import styles from "./Services.module.css";
+
+interface FunnelStage {
+  category: string;
+  body: string;
+  href?: string;
+}
+
+const STAGES: FunnelStage[] = [
+  {
+    category: "Acquisition",
+    body: "Turning traffic into signups: landing pages, entry flows, and organic channels.",
+    href: "#work-therapist-directory",
+  },
+  {
+    category: "Activation",
+    body: "Getting new users to value fast: onboarding, intake, and first-run experiences.",
+    href: "#work-payments-onboarding",
+  },
+  {
+    category: "Monetization",
+    body: "Pricing, plans, and upgrade paths that grow revenue without hurting activation.",
+    href: "#work-annual-plans",
+  },
+  {
+    category: "Retention",
+    body: "Lifecycle, churn diagnosis, and the moments that bring people back.",
+  },
+];
+
+function FunnelArrow() {
+  return (
+    <span className={styles.funnelArrow} aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 12H20M20 12L14 6M20 12L14 18"
+          stroke="var(--charcoal)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      className={styles.icon}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="9" stroke="var(--coral)" strokeWidth="1.5" />
+      <path
+        d="M6 10.5L8.5 13L14 7"
+        stroke="var(--coral)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      className={styles.icon}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="9" stroke="var(--charcoal-muted)" strokeWidth="1.5" />
+      <path
+        d="M7 7L13 13M13 7L7 13"
+        stroke="var(--charcoal-muted)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export default function Services() {
   return (
@@ -7,132 +90,75 @@ export default function Services() {
       <div className="container">
         <h2 className={styles.heading}>What I do</h2>
         <p className={styles.intro}>
-          I own growth across the full funnel, from first visit to happy customer.
+          I own growth across the full funnel, from first visit to happy customer. I
+          untangle messy growth problems, find the real constraint, and ship what
+          moves the metric.
         </p>
 
         <div className={styles.funnel}>
-          <div className={styles.funnelItem}>
-            <p className={styles.funnelBody}>
-              <strong>Acquisition.</strong> Turning traffic into signups: landing pages,
-              entry flows, and organic channels.
-            </p>
-            <p className={styles.proof}>
-              <a href="#work-therapist-directory">
-                Tripled organic traffic at Rula with a redesigned therapist directory.
-              </a>
-            </p>
-          </div>
-
-          <span className={styles.funnelArrow} aria-hidden="true">→</span>
-
-          <div className={styles.funnelItem}>
-            <p className={styles.funnelBody}>
-              <strong>Activation.</strong> Getting new users to value fast: onboarding,
-              intake, and first-run experiences.
-            </p>
-            <p className={styles.proof}>
-              <a href="#work-payments-onboarding">
-                Lifted payments onboarding completion 80% at GlossGenius.
-              </a>
-            </p>
-          </div>
-
-          <span className={styles.funnelArrow} aria-hidden="true">→</span>
-
-          <div className={styles.funnelItem}>
-            <p className={styles.funnelBody}>
-              <strong>Monetization.</strong> Pricing, plans, and upgrade paths that grow
-              revenue without hurting activation.
-            </p>
-            <p className={styles.proof}>
-              <a href="#work-annual-plans">
-                Launched annual plans at GlossGenius, with adoption beating projections.
-              </a>
-            </p>
-          </div>
-
-          <span className={styles.funnelArrow} aria-hidden="true">→</span>
-
-          <div className={styles.funnelItem}>
-            <p className={styles.funnelBody}>
-              <strong>Retention.</strong> Lifecycle, churn diagnosis, and the moments
-              that bring people back.
-            </p>
-            <p className={styles.proof}>
-              Drove 11% patient growth at Rula through lifecycle marketing.
-            </p>
-          </div>
+          {STAGES.map((stage, i) => (
+            <Fragment key={stage.category}>
+              <div className={styles.funnelItem}>
+                <h3 className={styles.funnelTitle}>{stage.category}</h3>
+                <p className={styles.funnelBody}>{stage.body}</p>
+                {stage.href && (
+                  <a className={styles.proof} href={stage.href}>
+                    Case study →
+                  </a>
+                )}
+              </div>
+              {i < STAGES.length - 1 && <FunnelArrow />}
+            </Fragment>
+          ))}
         </div>
 
-        <h3 className={styles.subheading}>Two ways to work together</h3>
-        <p className={styles.subIntro}>
-          I did fractional work on the side of my day jobs for years, and in 2026 I
-          went all in because the math changed. With AI, one senior PM can now take a
-          project from diagnosis to launch, work that used to take a team.{" "}
-          <strong>Part-time no longer means partial impact.</strong>
+        <p className={styles.fitIntro}>
+          Who do I do this for? Here&apos;s a quick guide to see if your company
+          could be a good fit.
         </p>
 
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <h4 className={styles.cardTitle}>Fractional</h4>
-            <p className={styles.cardCadence}>1 to 3 days a week, ongoing</p>
-            <p className={styles.cardBody}>
-              Senior product leadership embedded in your team. I own your biggest
-              growth problems and keep engineering building from a queue that stays
-              ahead of them.
-            </p>
-            <p className={styles.cardBestFor}>
-              Best for: teams with engineers ready to build and no one owning growth.
-            </p>
-
-            <Toggle label="See what your first 90 days look like">
-              <div className={styles.milestones}>
-                <div className={styles.milestone}>
-                  <h5 className={styles.milestoneHeading}>By Day 30</h5>
-                  <ul className={styles.milestoneList}>
-                    <li>
-                      A clear read on where your funnel is losing people, from your
-                      data, not opinions
-                    </li>
-                    <li>
-                      A staged plan ranked by confidence and engineering effort, with a
-                      success metric and a guardrail for every bet
-                    </li>
-                    <li>Your first project ready to build, with the next two queued behind it</li>
-                  </ul>
-                </div>
-                <div className={styles.milestone}>
-                  <h5 className={styles.milestoneHeading}>By Day 60</h5>
-                  <ul className={styles.milestoneList}>
-                    <li>Engineering building from a queue that stays ahead of them</li>
-                    <li>High-confidence changes live or in QA, with analytics in place before launch</li>
-                    <li>Every decision written down somewhere you own</li>
-                  </ul>
-                </div>
-                <div className={styles.milestone}>
-                  <h5 className={styles.milestoneHeading}>By Day 90</h5>
-                  <ul className={styles.milestoneList}>
-                    <li>Your most important bet shipped</li>
-                    <li>A post-launch plan with named owners and a written definition of success</li>
-                    <li>A clear call on what&apos;s next: keep going, expand scope, or hand off to your full-time hire</li>
-                  </ul>
-                </div>
-              </div>
-            </Toggle>
+        <div className={styles.columns}>
+          <div className={styles.column}>
+            <h4 className={styles.columnHeading}>We&apos;re a fit if you:</h4>
+            <ul className={styles.list}>
+              <li>
+                <CheckIcon />
+                <span>Run a consumer-facing business</span>
+              </li>
+              <li>
+                <CheckIcon />
+                <span>Have found product-market fit and need to grow faster</span>
+              </li>
+              <li>
+                <CheckIcon />
+                <span>Have engineers but little or no dedicated product guidance</span>
+              </li>
+              <li>
+                <CheckIcon />
+                <span>Want someone to actually ship their recommendations</span>
+              </li>
+            </ul>
           </div>
-
-          <div className={styles.card}>
-            <h4 className={styles.cardTitle}>Growth Sprint</h4>
-            <p className={styles.cardCadence}>Fixed scope, 2 to 4 weeks</p>
-            <p className={styles.cardBody}>
-              A deep dive into one growth problem, grounded in your real data. You get
-              a staged plan ranked by confidence and effort, specific enough that your
-              team could start building it tomorrow.
-            </p>
-            <p className={styles.cardBestFor}>
-              Best for: founders who know something is stuck and want a clear diagnosis
-              before committing.
-            </p>
+          <div className={styles.column}>
+            <h4 className={styles.columnHeading}>We&apos;re not a fit (right now) if you:</h4>
+            <ul className={styles.list}>
+              <li>
+                <XIcon />
+                <span>Are still searching for product-market fit</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Sell enterprise software to other businesses</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Need a full-time product manager ASAP</span>
+              </li>
+              <li>
+                <XIcon />
+                <span>Need someone to manage a product team day to day</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

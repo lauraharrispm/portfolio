@@ -38,6 +38,26 @@ export default function LetsChat() {
     <section id="book" className={styles.section}>
       <div className="container">
         <div className={styles.inner}>
+          <div className={styles.copy}>
+            <h2 className={styles.heading}>Let&apos;s chat</h2>
+            <p className={styles.body}>
+              Tell me what you know and what you don&apos;t know. In 30 minutes,
+              I&apos;ll share how I&apos;d approach it and whether we&apos;re a fit.
+            </p>
+            <p className={styles.altContact}>
+              Rather write? Reach me at{" "}
+              <a href="mailto:laura.harris.pm@gmail.com">laura.harris.pm@gmail.com</a> or on{" "}
+              <a
+                href="https://www.linkedin.com/in/laurakayharris/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              .
+            </p>
+          </div>
+
           <div className={styles.photoWrap}>
             <Image
               src="/headshot.jpg"
@@ -46,14 +66,6 @@ export default function LetsChat() {
               className={styles.photoImg}
               sizes="(max-width: 768px) 160px, 360px"
             />
-          </div>
-
-          <div className={styles.copy}>
-            <h2 className={styles.heading}>Let&apos;s chat</h2>
-            <p className={styles.body}>
-              Tell me what you know and what you don&apos;t know. In 30 minutes,
-              I&apos;ll share how I&apos;d approach it and whether we&apos;re a fit.
-            </p>
           </div>
         </div>
 
@@ -76,19 +88,6 @@ export default function LetsChat() {
             <div className={styles.calendlyPlaceholder} aria-hidden="true" />
           )}
         </div>
-
-        <p className={styles.altContact}>
-          Rather write? Reach me at{" "}
-          <a href="mailto:laura.harris.pm@gmail.com">laura.harris.pm@gmail.com</a> or on{" "}
-          <a
-            href="https://www.linkedin.com/in/laurakayharris/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          .
-        </p>
       </div>
     </section>
   );

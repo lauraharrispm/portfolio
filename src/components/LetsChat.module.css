@@ -1,5 +1,5 @@
 .section {
-  background: var(--blush-peach);
+  background: var(--warm-white);
   padding: var(--section-padding-v) 0;
 }
 
@@ -9,7 +9,7 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ─── Bio + photo row ──────────────────────────────────────────── */
@@ -18,21 +18,17 @@
   grid-template-columns: 1fr auto;
   gap: 56px;
   align-items: stretch;
-  margin-bottom: 56px;
+  margin-bottom: 36px;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  justify-content: center;
 }
 
 .body {
-  /* Larger than a body paragraph: with the bio removed, this is now a
-     single short line and needs more visual weight to feel intentional
-     next to a 360px photo rather than sparse. */
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.6;
   color: var(--charcoal);
@@ -40,8 +36,12 @@
 }
 
 .photoWrap {
+  /* Matches the copy column's natural height (top of heading to bottom of
+     its last line): height comes from the grid row (sized by .copy, the
+     taller column), width follows from the 1:1 aspect ratio. */
+  width: auto;
+  height: 100%;
   aspect-ratio: 1 / 1;
-  width: 360px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -55,8 +55,10 @@
 
 /* ─── Calendly embed ───────────────────────────────────────────── */
 .calendlyWrap {
-  background: var(--warm-white);
-  border-radius: 4px;
+  background: var(--white);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-radius);
   overflow: hidden;
   margin-bottom: 32px;
 }

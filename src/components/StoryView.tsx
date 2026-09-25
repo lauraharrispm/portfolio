@@ -320,6 +320,13 @@ export default function StoryView({
         </div>
       )}
 
+      {/* ── Result: same badge treatment as the summary card and the
+         desktop reading view header ── */}
+      <div className={styles.metricBadge}>
+        <span className={styles.metricNumber}>{project.keyMetric.number}</span>
+        <span className={styles.metricLabel}>{project.keyMetric.label}</span>
+      </div>
+
       {/* ── Progress pips ── */}
       <div className={styles.pips} aria-hidden="true">
         {renderPips()}

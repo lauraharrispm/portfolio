@@ -22,23 +22,25 @@ const TOOL_LOGOS: LogoDef[] = [
 ];
 
 export default function ToolLogos() {
-  const names = TOOL_LOGOS.map((l) => l.name).join(", ");
   return (
-    <div className={styles.row} role="img" aria-label={`Tools: ${names}`}>
+    <ul className={styles.row}>
       {TOOL_LOGOS.map((logo) => (
-        <span
-          key={logo.name}
-          className={styles.logo}
-          style={
-            {
-              aspectRatio: `${logo.w} / ${logo.h}`,
-              maskImage: `url(${logo.src})`,
-              WebkitMaskImage: `url(${logo.src})`,
-              "--logo-h": `${logo.height}px`,
-            } as React.CSSProperties
-          }
-        />
+        <li key={logo.name} className={styles.item} tabIndex={0}>
+          <span
+            className={styles.logo}
+            aria-hidden="true"
+            style={
+              {
+                aspectRatio: `${logo.w} / ${logo.h}`,
+                maskImage: `url(${logo.src})`,
+                WebkitMaskImage: `url(${logo.src})`,
+                "--logo-h": `${logo.height}px`,
+              } as React.CSSProperties
+            }
+          />
+          <span className={styles.tooltip}>{logo.name}</span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -85,7 +85,7 @@ export const projects: Project[] = [
       "A broken onboarding flow was limiting adoption of one of GlossGenius's most valuable features. An iterative experimentation program fixed it.",
     keyMetric: {
       number: "80%",
-      label: "onboarding completion lift",
+      label: "lift in payments onboarding completion",
     },
     fundingStage: "Series C",
     employeeRange: "260→330 employees",
@@ -179,7 +179,7 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 4. Scheduling Tool for Phone Agents
+  // 4. Appointment Scheduling for Phone Agents
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
@@ -193,7 +193,7 @@ export const projects: Project[] = [
       width: 2840,
       height: 2564,
     },
-    title: "Scheduling Tool for Phone Agents",
+    title: "Appointment Scheduling for Phone Agents",
     oneLineDesc:
       "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
     keyMetric: {
@@ -300,7 +300,7 @@ export const projects: Project[] = [
       "345% lift in organic patient starts from an SEO-driven therapist directory targeting long-tail searches.",
     keyMetric: {
       number: "345%",
-      label: "organic patient starts",
+      label: "lift in organic patient starts",
     },
     fundingStage: "Series B→C",
     employeeRange: "180→550 employees",
@@ -407,8 +407,8 @@ export const projects: Project[] = [
     oneLineDesc:
       "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
     keyMetric: {
-      number: "✓",
-      label: "Unlocked AI product roadmap with zero-interruption migration",
+      number: "0",
+      label: "business interruptions during a full billing migration",
     },
     fundingStage: "Series C",
     employeeRange: "260→330 employees",

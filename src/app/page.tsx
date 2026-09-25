@@ -1,7 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import LogoStrip from "@/components/LogoStrip";
-import WhoThisIsFor from "@/components/WhoThisIsFor";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WorkSummary from "@/components/WorkSummary";
@@ -15,7 +14,6 @@ export default function Home() {
       <main>
         <Hero />
         <LogoStrip />
-        <WhoThisIsFor />
         <Services />
         <HowIWork />
         <WorkSummary />

@@ -1,5 +1,5 @@
 .section {
-  background: var(--blush-peach);
+  background: var(--warm-white);
   padding: var(--section-padding-v) 0;
 }
 
@@ -9,133 +9,201 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
-.intro {
-  font-size: 1.0625rem;
-  color: var(--charcoal);
-  max-width: 620px;
-  line-height: 1.65;
-  margin-bottom: 40px;
-}
-
-/* ─── Numbered principles ─────────────────────────────────────── */
-.principles {
-  list-style: none;
-  counter-reset: principle;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 680px;
-  margin-bottom: 64px;
-}
-
-.principles li {
-  counter-increment: principle;
-  position: relative;
-  padding-left: 40px;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--charcoal);
-}
-
-.principles li::before {
-  content: counter(principle);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--coral);
-  color: #fff;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ─── AI-native section ────────────────────────────────────────── */
+/* ─── Two ways to work together ───────────────────────────────── */
 .subheading {
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 2.5vw, 1.875rem);
   font-weight: 400;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 12px;
-}
-
-.aiLede {
-  font-size: 1.1875rem;
-  font-weight: 600;
-  color: var(--coral);
   margin-bottom: 20px;
 }
 
-.body {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--charcoal);
-  max-width: 680px;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap);
   margin-bottom: 24px;
 }
 
-/* ─── Before/after table ───────────────────────────────────────── */
-.bafLabel {
+.card {
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+
+.cardCadence {
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 16px;
+}
+
+.cardBody {
+  font-size: 0.9375rem;
+  line-height: 1.6;
   color: var(--charcoal);
-  margin-top: 8px;
   margin-bottom: 12px;
 }
 
-.bafTable {
-  display: flex;
-  flex-direction: column;
-  max-width: 680px;
+.cardBestFor {
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--charcoal-muted);
+  line-height: 1.5;
 }
 
-.bafHeader {
+/* ─── 90-day paragraph ─────────────────────────────────────────── */
+.ninetyDays {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+/* ─── AI-native section ────────────────────────────────────────── */
+
+/* Statement + fun fact, side by side on desktop */
+.aiTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.aiStatement {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
+}
+
+/* ─── Four claims: no card boxes, a thin rule separates each ─────── */
+.claimsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid var(--charcoal);
-  font-size: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 48px;
+  margin-bottom: 48px;
+}
+
+.claim {
+  border-top: 1px solid rgba(46, 40, 32, 0.14);
+  padding-top: 16px;
+}
+
+.claimTitle {
+  font-size: 1.0625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+
+.claimBody {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--charcoal-muted);
+}
+
+/* ─── Process strip: quiet inline summary, not a list to read ────── */
+.processStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  margin-top: 16px;
+}
+
+.processStripItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--charcoal-muted);
 }
 
-.bafRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(46, 40, 32, 0.12);
+.processStripArrow {
+  color: var(--coral);
+  font-weight: 400;
+}
+
+/* ─── Fun fact callout ─────────────────────────────────────────── */
+.calloutTop,
+.calloutBottom {
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 20px;
+}
+
+.calloutTop {
+  flex-shrink: 0;
+  width: 280px;
+}
+
+.calloutBottom {
+  display: none;
+  margin-top: 32px;
+}
+
+.calloutLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 8px;
+}
+
+.calloutBody {
   font-size: 0.9375rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--charcoal);
 }
 
-.bafArrow {
-  color: var(--coral);
-  margin-right: 8px;
+/* ─── Tools row ────────────────────────────────────────────────── */
+.toolsBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 36px;
 }
 
-/* ─── Closing ──────────────────────────────────────────────────── */
-.closing {
-  font-size: 0.9375rem;
-  line-height: 1.65;
+.toolsLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--charcoal-muted);
-  max-width: 680px;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .cta {
@@ -147,6 +215,7 @@
   font-size: 0.9375rem;
   font-weight: 600;
   border-radius: 4px;
+  margin-top: 36px;
   transition: background var(--transition);
 }
 
@@ -154,14 +223,43 @@
   background: var(--coral-dark);
 }
 
+@media (max-width: 1024px) {
+  .aiTop {
+    flex-direction: column;
+  }
+
+  .calloutTop {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: var(--section-padding-v-mobile) 0;
   }
 
-  .bafHeader,
-  .bafRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+  .cards {
+    grid-template-columns: 1fr;
+    margin-bottom: 48px;
+  }
+
+  .claimsGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .calloutTop {
+    display: none;
+  }
+
+  .calloutBottom {
+    display: block;
+  }
+
+  .toolsBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 }

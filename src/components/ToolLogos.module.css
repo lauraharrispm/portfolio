@@ -3,7 +3,23 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 32px;
-  margin: 4px 0 24px;
+  list-style: none;
+  /* Lighter than --charcoal-muted, for the hover/focus state below: a
+     neutral highlight rather than a coral one, since coral already reads
+     as the site's "interactive/CTA" color and this is just a hover cue. */
+  --tool-hover-gray: #a89f95;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.item:focus-visible {
+  outline: 1.5px solid var(--coral);
+  outline-offset: 4px;
 }
 
 .logo {
@@ -18,6 +34,40 @@
   mask-position: center;
   -webkit-mask-size: contain;
   mask-size: contain;
+  transition: background-color var(--transition);
+}
+
+.item:hover .logo,
+.item:focus-visible .logo {
+  background-color: var(--tool-hover-gray);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--warm-white);
+  background: var(--charcoal);
+  padding: 5px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.item:hover .tooltip,
+.item:focus-visible .tooltip {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .tooltip {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {

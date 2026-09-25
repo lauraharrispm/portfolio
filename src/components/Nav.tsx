@@ -43,7 +43,7 @@ export default function Nav() {
         <ul className={styles.links}>
           <li>
             <a href="#services" onClick={() => trackNav("services", "nav_desktop")}>
-              Services
+              What I Do
             </a>
           </li>
           <li>
@@ -53,7 +53,7 @@ export default function Nav() {
           </li>
           <li>
             <a href="#work" onClick={() => trackNav("work", "nav_desktop")}>
-              Work
+              Recent Work
             </a>
           </li>
           <li>
@@ -92,7 +92,7 @@ export default function Nav() {
                   trackNav("services", "nav_mobile");
                 }}
               >
-                Services
+                What I Do
               </a>
             </li>
             <li>
@@ -114,7 +114,7 @@ export default function Nav() {
                   trackNav("work", "nav_mobile");
                 }}
               >
-                Work
+                Recent Work
               </a>
             </li>
             <li>

@@ -15,17 +15,17 @@
 .intro {
   font-size: 1.0625rem;
   color: var(--charcoal);
-  max-width: 560px;
+  max-width: 660px;
   line-height: 1.65;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
-/* ─── Funnel stages: one row in order, arrows show the sequence ──── */
+/* ─── Funnel stages: wide rounded-rectangle shapes, arrows overlap
+   into the box on either side of them ─────────────────────────── */
 .funnel {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 64px;
+  align-items: stretch;
+  gap: 12px;
 }
 
 .funnelItem {
@@ -34,149 +34,125 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
 }
 
 .funnelArrow {
   flex-shrink: 0;
-  color: var(--coral);
-  font-size: 1.125rem;
-  line-height: 1.65;
-  margin-top: 2px;
+  align-self: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 -22px;
+  border-radius: 50%;
+  background: var(--blush-peach);
+  box-shadow: 0 2px 8px rgba(46, 40, 32, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
-.funnelBody {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--charcoal);
+.funnelArrow svg {
+  width: 20px;
+  height: 20px;
 }
 
-.funnelBody strong {
-  color: var(--charcoal);
-}
-
-.proof {
-  font-style: italic;
-  font-size: 0.9375rem;
-  color: var(--charcoal-muted);
-  line-height: 1.5;
-}
-
-.proof a {
-  color: var(--charcoal-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--coral);
-  text-underline-offset: 3px;
-  transition: color var(--transition);
-}
-
-.proof a:hover {
-  color: var(--coral);
-}
-
-/* ─── Two ways to work together ───────────────────────────────── */
-.subheading {
+.funnelTitle {
   font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-size: 1.375rem;
   font-weight: 400;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
 }
 
-.subIntro {
-  font-size: 1rem;
+.funnelBody {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--charcoal-muted);
+}
+
+.proof {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--charcoal-muted);
+}
+
+a.proof {
+  text-decoration: underline;
+  text-decoration-color: var(--charcoal-muted);
+  text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+a.proof:hover {
+  color: var(--coral);
+  text-decoration-color: var(--coral);
+}
+
+/* ─── Who I work with: moved below the funnel, same section ──────── */
+.fitIntro {
+  font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--charcoal);
   max-width: 640px;
-  margin-bottom: 32px;
+  margin-top: 56px;
+  margin-bottom: 28px;
 }
 
-.cards {
+.columns {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--grid-gap);
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
 }
 
-.card {
-  background: var(--blush-peach);
-  border-radius: 4px;
+.column {
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
   padding: var(--card-padding);
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
-.cardTitle {
+.columnHeading {
   font-family: var(--font-headline);
-  font-size: 1.5rem;
+  font-size: clamp(1.375rem, 2vw, 1.625rem);
   font-weight: 400;
   color: var(--charcoal);
-  margin-bottom: 4px;
+  letter-spacing: -0.01em;
 }
 
-.cardCadence {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 16px;
-}
-
-.cardBody {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--charcoal);
-  margin-bottom: 12px;
-}
-
-.cardBestFor {
-  font-style: italic;
-  font-size: 0.875rem;
-  color: var(--charcoal-muted);
-  line-height: 1.5;
-}
-
-/* ─── Day 30/60/90 toggle content ─────────────────────────────── */
-.milestones {
+.list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-top: 20px;
-}
-
-.milestoneHeading {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--charcoal);
-  margin-bottom: 8px;
-}
-
-.milestoneList {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   list-style: none;
 }
 
-.milestoneList li {
-  position: relative;
-  padding-left: 18px;
-  font-size: 0.875rem;
-  line-height: 1.55;
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--charcoal);
 }
 
-.milestoneList li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--coral);
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15em;
 }
 
 @media (max-width: 768px) {
@@ -186,16 +162,17 @@
 
   .funnel {
     flex-direction: column;
-    gap: 28px;
-    margin-bottom: 48px;
+    gap: 20px;
   }
 
   .funnelArrow {
-    display: none;
+    margin: -14px 0;
+    transform: rotate(90deg);
   }
 
-  .cards {
+  .columns {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
@@ -207,7 +184,7 @@
   }
 
   .funnelItem {
-    flex-basis: calc(50% - 8px);
+    flex-basis: calc(50% - 6px);
   }
 
   .funnelArrow {

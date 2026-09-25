@@ -3,7 +3,9 @@
   inset: 0;
   /* Below Lightbox's z-index (200/201) so it always opens above this */
   z-index: 190;
-  background: rgba(46, 40, 32, 0.55);
+  /* Light wash instead of a dark scrim: the panel reads as a white card
+     growing from the summary card, not a modal punched into a dark page. */
+  background: rgba(250, 249, 246, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,13 +18,21 @@
   max-width: 920px;
   height: 100%;
   max-height: 860px;
-  background: var(--warm-white);
-  border-radius: 8px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(46, 40, 32, 0.14);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   outline: none;
   animation: panel-in 0.25s ease;
+}
+
+/* When the panel is animating in from a clicked card's own rect (see
+   ReadingView.tsx), its position/size come from inline styles instead,
+   so the fade+translate keyframe below would fight that. */
+.panelExpanding {
+  animation: none;
 }
 
 @keyframes fade-in {
@@ -149,36 +159,37 @@
   max-width: 520px;
 }
 
-.metricCircle {
+/* Same treatment as the summary card's image badge (see
+   WorkSummary.module.css), just not overlapping anything here. */
+.metricBadge {
   flex-shrink: 0;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: var(--blush-peach);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 6px;
-  padding: 16px;
+  align-items: baseline;
+  gap: 10px;
+  max-width: 260px;
+  background: var(--charcoal);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 24px rgba(46, 40, 32, 0.25);
 }
 
 .metricNumber {
+  flex-shrink: 0;
   font-family: var(--font-headline);
-  font-size: 1.875rem;
-  font-weight: 300;
+  font-size: 2.25rem;
+  font-weight: 400;
   color: var(--coral);
   line-height: 1;
 }
 
 .metricLabel {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--charcoal-muted);
-  line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--warm-white);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ─── Section body ─────────────────────────────────────────────── */
@@ -367,9 +378,8 @@
     gap: 20px;
   }
 
-  .metricCircle {
-    width: 110px;
-    height: 110px;
+  .metricBadge {
+    max-width: none;
   }
 
   .designImages {

@@ -19,6 +19,7 @@ interface Props {
   projectId: string;
   onClose: () => void;
   onSwitchProject: (id: string) => void;
+  originRect?: DOMRect | null;
 }
 
 function useIsMobile(breakpoint = 768) {
@@ -36,7 +37,7 @@ function useIsMobile(breakpoint = 768) {
 // One component, two presentations: desktop gets a continuous-scroll
 // overlay; mobile gets the upgraded section-by-section story view. Both
 // share deep-link/hash syncing and the lightbox, owned here.
-export default function ReadingView({ projectId, onClose, onSwitchProject }: Props) {
+export default function ReadingView({ projectId, onClose, onSwitchProject, originRect }: Props) {
   const isMobile = useIsMobile();
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
 
@@ -61,6 +62,7 @@ export default function ReadingView({ projectId, onClose, onSwitchProject }: Pro
           onSwitchProject={onSwitchProject}
           lightboxOpen={!!lightbox}
           setLightbox={setLightbox}
+          originRect={originRect}
         />
       )}
 
@@ -85,7 +87,11 @@ interface DesktopProps {
   onSwitchProject: (id: string) => void;
   lightboxOpen: boolean;
   setLightbox: (s: LightboxState | null) => void;
+  originRect?: DOMRect | null;
 }
+
+const EXPAND_MS = 450;
+const EXPAND_EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 function DesktopReadingView({
   projectId,
@@ -93,6 +99,7 @@ function DesktopReadingView({
   onSwitchProject,
   lightboxOpen,
   setLightbox,
+  originRect,
 }: DesktopProps) {
   const idx = projects.findIndex((p) => p.id === projectId);
   const project = projects[idx] ?? projects[0];
@@ -100,6 +107,75 @@ function DesktopReadingView({
 
   const panelRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // ── "Card expands into the modal" open animation ───────────────────
+  // Only when we have the clicked card's rect (a fresh open from a
+  // summary card, not in-panel prev/next nav, and not reduced motion):
+  // render the panel pinned to that exact rect first, then transition it
+  // to the centered target rect on the next frame. Once the transition
+  // finishes, the inline rect styles are dropped so the panel goes back
+  // to being normally laid out (and stays correct across resizes).
+  const reduceMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [expandPhase, setExpandPhase] = useState<"start" | "end" | "done">(
+    originRect && !reduceMotion ? "start" : "done"
+  );
+
+  useEffect(() => {
+    if (!originRect || reduceMotion) return;
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setExpandPhase("end"));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (expandPhase !== "end") return;
+    const t = setTimeout(() => setExpandPhase("done"), EXPAND_MS);
+    return () => clearTimeout(t);
+  }, [expandPhase]);
+
+  const [panelStyle, setPanelStyle] = useState<React.CSSProperties | undefined>(() => {
+    if (!originRect || reduceMotion) return undefined;
+    return {
+      position: "fixed",
+      top: originRect.top,
+      left: originRect.left,
+      width: originRect.width,
+      height: originRect.height,
+      margin: 0,
+      borderRadius: 20,
+    };
+  });
+
+  useEffect(() => {
+    if (expandPhase === "done") {
+      setPanelStyle(undefined);
+      return;
+    }
+    if (expandPhase === "end" && originRect) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const width = Math.min(920, vw - 80);
+      const height = Math.min(860, vh - 80);
+      setPanelStyle({
+        position: "fixed",
+        top: (vh - height) / 2,
+        left: (vw - width) / 2,
+        width,
+        height,
+        margin: 0,
+        borderRadius: 16,
+        transition: `top ${EXPAND_MS}ms ${EXPAND_EASE}, left ${EXPAND_MS}ms ${EXPAND_EASE}, width ${EXPAND_MS}ms ${EXPAND_EASE}, height ${EXPAND_MS}ms ${EXPAND_EASE}, border-radius ${EXPAND_MS}ms ${EXPAND_EASE}`,
+      });
+    }
+  }, [expandPhase, originRect]);
 
   // Scroll to top whenever the study changes
   useEffect(() => {
@@ -179,7 +255,8 @@ function DesktopReadingView({
     >
       <div
         ref={panelRef}
-        className={styles.panel}
+        className={`${styles.panel} ${panelStyle ? styles.panelExpanding : ""}`}
+        style={panelStyle}
         role="dialog"
         aria-modal="true"
         aria-labelledby="reading-view-title"
@@ -223,7 +300,7 @@ function DesktopReadingView({
                 <p className={styles.oneLiner}>{project.oneLineDesc}</p>
               )}
             </div>
-            <div className={styles.metricCircle}>
+            <div className={styles.metricBadge}>
               <span className={styles.metricNumber}>{project.keyMetric.number}</span>
               <span className={styles.metricLabel}>{project.keyMetric.label}</span>
             </div>
@@ -238,13 +315,9 @@ function DesktopReadingView({
             />
           ))}
 
-          {next ? (
+          {next && (
             <button className={styles.nextStudy} onClick={() => goTo(next.id)}>
               Next: {next.title} →
-            </button>
-          ) : (
-            <button className={styles.nextStudy} onClick={onClose}>
-              Back to Work
             </button>
           )}
         </div>
