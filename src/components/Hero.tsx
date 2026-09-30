@@ -19,8 +19,7 @@ export default function Hero() {
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at
               consumer startups across marketplaces, healthcare, and DTC ecommerce, from
               seed to Series C. Now I help founders solve the right problems and ship
-              faster. I&apos;m based in Manhattan and happy to work from your office
-              alongside your team or join remotely.
+              faster.
             </p>
             <div className={styles.ctas}>
               <a

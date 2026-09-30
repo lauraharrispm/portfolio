@@ -133,17 +133,6 @@ function useRevealedText(fullText: string, play: boolean, onDone: () => void): s
   return play ? revealed : fullText;
 }
 
-// ── Starter chips ────────────────────────────────────────────────────
-// Requested verbatim for this section. Chip 1 matches STARTER_QUESTIONS[1]
-// exactly; chips 2 and 3 have no close match in that shared list (which
-// also feeds the typed placeholder above), so they're kept local here
-// instead of being added to it.
-const SECTION_STARTERS: string[] = [
-  "Fractional or project-based: which fits us?",
-  "Do you design and build things yourself?",
-  "How fast can you get up to speed?",
-];
-
 // ── Types ────────────────────────────────────────────────────────────
 interface DisplayMessage {
   id: string;
@@ -301,12 +290,7 @@ export default function AskChat() {
       <div className="container">
         {phase === "empty" ? (
           <div className={styles.emptyState}>
-            <div className={styles.emptyHeader}>
-              <div className={styles.headshotWrap}>
-                <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="56px" />
-              </div>
-              <h2 className={styles.heading}>Ask my AI anything</h2>
-            </div>
+            <h2 className={styles.heading}>Ask my AI anything</h2>
             <form onSubmit={handleSubmit} className={styles.emptyForm}>
               <label htmlFor={inputId} className={styles.srOnly}>
                 Ask a question about Laura&apos;s work
@@ -326,18 +310,6 @@ export default function AskChat() {
                 →
               </button>
             </form>
-            <div className={styles.starterChips}>
-              {SECTION_STARTERS.map((question) => (
-                <button
-                  key={question}
-                  type="button"
-                  className={styles.chip}
-                  onClick={() => send(question)}
-                >
-                  {question}
-                </button>
-              ))}
-            </div>
             <p className={styles.disclaimer}>
               An AI trained on my work. For anything else,{" "}
               <a href="#book">let&apos;s chat</a>.
@@ -346,10 +318,7 @@ export default function AskChat() {
         ) : (
           <div className={`${styles.conversation} ${styles.conversationEnter}`}>
             <div className={styles.convoHeader}>
-              <div className={styles.headshotWrapSmall}>
-                <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="32px" />
-              </div>
-              <h2 className={styles.convoHeading}>Ask my AI anything</h2>
+              <h2 className={styles.heading}>Ask my AI anything</h2>
               <button type="button" className={styles.startOver} onClick={startOver}>
                 Clear
               </button>
@@ -423,24 +392,29 @@ function MessageBubble({
 
   return (
     <div className={styles.rowAssistant}>
-      <p
-        className={`${styles.answer} ${message.variant === "error" || message.variant === "limited" ? styles.answerMuted : ""}`}
-        dangerouslySetInnerHTML={{ __html: renderLightMarkdown(shown) }}
-      />
-      {chipsReady && message.chips && message.chips.length > 0 && (
-        <div className={styles.chips}>
-          {message.chips.map((chip, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`${styles.chip} ${chip.kind === "book_call" ? styles.chipCta : ""}`}
-              onClick={() => onChip(chip)}
-            >
-              {chip.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className={styles.headshotWrapSmall}>
+        <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="32px" />
+      </div>
+      <div className={styles.assistantContent}>
+        <p
+          className={`${styles.answer} ${message.variant === "error" || message.variant === "limited" ? styles.answerMuted : ""}`}
+          dangerouslySetInnerHTML={{ __html: renderLightMarkdown(shown) }}
+        />
+        {chipsReady && message.chips && message.chips.length > 0 && (
+          <div className={styles.chips}>
+            {message.chips.map((chip, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`${styles.chip} ${chip.kind === "book_call" ? styles.chipCta : ""}`}
+                onClick={() => onChip(chip)}
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

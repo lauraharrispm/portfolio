@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import styles from "./LetsChat.module.css";
 
 // Cal.com's own event-type link (username/event-slug, not the full URL):
@@ -14,7 +13,7 @@ const CAL_NAMESPACE = "30min";
 // Reserved up front so there's no layout shift before the widget loads.
 // Unlike the old Calendly embed, there's no postMessage height-sync to
 // wait on: Cal.com's inline embed resizes its own iframe internally.
-const BOOKING_MIN_HEIGHT = 700;
+const BOOKING_MIN_HEIGHT = 560;
 
 /** Minimal shape of the `window.Cal` global Cal.com's embed script
  * installs; not exported by any package since this isn't installed as a
@@ -126,7 +125,7 @@ export default function LetsChat() {
       config: { layout: "month_view" },
     });
     Cal.ns[CAL_NAMESPACE]("ui", {
-      hideEventTypeDetails: false,
+      hideEventTypeDetails: true,
       layout: "month_view",
     });
   }, [nearViewport]);
@@ -136,18 +135,7 @@ export default function LetsChat() {
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.copy}>
-            <div className={styles.headingRow}>
-              <div className={styles.photoWrap}>
-                <Image
-                  src="/headshot.jpg"
-                  alt="Laura Harris"
-                  fill
-                  className={styles.photoImg}
-                  sizes="88px"
-                />
-              </div>
-              <h2 className={styles.heading}>Let&apos;s chat</h2>
-            </div>
+            <h2 className={styles.heading}>Let&apos;s chat</h2>
 
             <p className={styles.body}>
               Tell me where the product is today, what&apos;s getting in the
@@ -174,6 +162,11 @@ export default function LetsChat() {
                 </li>
               </ul>
             </div>
+
+            <p className={styles.location}>
+              I&apos;m based in Manhattan and happy to work from your office alongside
+              your team, or join remotely.
+            </p>
 
             <p className={styles.altContact}>
               Rather write? Reach me at{" "}

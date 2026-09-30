@@ -35,9 +35,9 @@ This is the content approved for the site, organized for the chat. Never guess a
 ## What she does (full-funnel growth)
 
 - Acquisition: help the right people discover the product and arrive with intent. Proof: tripled organic traffic at Rula with a redesigned therapist directory.
-- Activation: help new customers reach value quickly and understand what to do next. Proof: lifted payments onboarding completion 80% at GlossGenius.
+- Activation: help new customers reach value quickly and understand what's next. Proof: lifted payments onboarding completion 80% at GlossGenius.
 - Monetization: make pricing, plans, and upgrades support sustainable growth. Proof: launched annual plans at GlossGenius, with adoption beating projections.
-- Retention: give customers reasons to return, stay, and deepen their relationship. Proof: drove 11% patient growth at Rula through lifecycle marketing.
+- Retention: give customers reasons to return, stay, and recommend you. Proof: drove 11% patient growth at Rula through lifecycle marketing.
 
 ## Two ways to work together
 

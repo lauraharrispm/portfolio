@@ -17,7 +17,7 @@ const STAGES: FunnelStage[] = [
   },
   {
     category: "Activation",
-    body: "Help new customers reach value quickly and understand what to do next.",
+    body: "Help new customers reach value quickly and understand what's next.",
     href: "#work-payments-onboarding",
   },
   {
@@ -27,7 +27,7 @@ const STAGES: FunnelStage[] = [
   },
   {
     category: "Retention",
-    body: "Give customers reasons to return, stay, and deepen their relationship.",
+    body: "Give customers reasons to return, stay, and recommend you.",
     // Billing rebuild for AI add-ons and annual subscriptions: the same target as
     // Monetization. That's fine, both formats can point at the same study.
     href: "#work-annual-plans",

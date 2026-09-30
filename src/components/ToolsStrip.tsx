@@ -15,20 +15,22 @@ interface Tool {
 // one low-emphasis row instead of grouped categories, since this strip
 // sits quietly under the "leave the team stronger" point in How I Work
 // rather than reading as its own section.
+// Icon heights are 1.5x the original row (20 -> 30, etc.), per request to
+// make the whole strip 50% larger.
 const TOOLS: Tool[] = [
-  { name: "Claude", src: "/logos/tools/claude.png", w: 288, h: 288, height: 20 },
-  { name: "Claude Code", src: "/logos/tools/claude%20code.png", w: 225, h: 135, height: 16 },
-  { name: "Codex", src: "/logos/tools/codex.png", w: 526, h: 526, height: 20 },
+  { name: "Claude", src: "/logos/tools/claude.png", w: 288, h: 288, height: 30 },
+  { name: "Claude Code", src: "/logos/tools/claude%20code.png", w: 225, h: 135, height: 24 },
+  { name: "Codex", src: "/logos/tools/codex.png", w: 526, h: 526, height: 30 },
   // Cropped to just the "M" swoosh (muse.png has "Muse" baked into the
   // art below it); the name still reads on hover via the tooltip.
-  { name: "Muse", src: "/logos/tools/muse-mark.png", w: 506, h: 341, height: 17 },
-  { name: "Granola", src: "/logos/tools/granola.png", w: 409, h: 426, height: 20 },
-  { name: "Wispr", src: "/logos/tools/wispr.png", w: 899, h: 892, height: 19 },
-  { name: "Chrome", src: "/logos/tools/chrome.svg", w: 512, h: 512, height: 20 },
-  { name: "Linear", src: "/logos/tools/linear.webp", w: 512, h: 512, height: 20 },
-  { name: "Flora", src: "/logos/tools/flora.png", w: 534, h: 534, height: 20 },
-  { name: "Mobbin", src: "/logos/tools/mobbin.png", w: 409, h: 426, height: 20 },
-  { name: "Dribbble", src: "/logos/tools/dribbble.png", w: 2500, h: 2500, height: 20 },
+  { name: "Muse", src: "/logos/tools/muse-mark.png", w: 506, h: 341, height: 26 },
+  { name: "Granola", src: "/logos/tools/granola.png", w: 409, h: 426, height: 30 },
+  { name: "Wispr", src: "/logos/tools/wispr.png", w: 899, h: 892, height: 29 },
+  { name: "Chrome", src: "/logos/tools/chrome.svg", w: 512, h: 512, height: 30 },
+  { name: "Linear", src: "/logos/tools/linear.webp", w: 512, h: 512, height: 30 },
+  { name: "Flora", src: "/logos/tools/flora.png", w: 534, h: 534, height: 30 },
+  { name: "Mobbin", src: "/logos/tools/mobbin.png", w: 409, h: 426, height: 30 },
+  { name: "Dribbble", src: "/logos/tools/dribbble.png", w: 2500, h: 2500, height: 30 },
 ];
 
 export default function ToolsStrip() {

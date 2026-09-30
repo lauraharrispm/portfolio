@@ -24,22 +24,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 20px;
-}
-
-.emptyHeader {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.headshotWrap {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+  gap: 28px;
 }
 
 .headshotWrapSmall {
@@ -49,6 +34,7 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .headshotImg {
@@ -56,13 +42,13 @@
   object-position: center top;
 }
 
-/* A step smaller than the main section headings (clamp(2rem, 3.5vw,
-   2.75rem) on Services/HowIWork/LetsChat), since this is a compact band
-   under the hero, not a full section. */
+/* Same treatment as the other section headings (Services/HowIWork/
+   LetsChat): stays this size in both the empty and conversation states,
+   never shrinks when the conversation expands. */
 .heading {
   font-family: var(--font-headline);
-  font-size: clamp(1.625rem, 2.8vw, 2.25rem);
-  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
 }
@@ -138,15 +124,6 @@
   cursor: default;
 }
 
-/* Starter question chips, directly under the input in the empty state.
-   Same pill look as the assistant's own follow-up chips (see .chip
-   below), reused rather than duplicated. */
-.starterChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
 /* ─── Conversation state ───────────────────────────────────────────── */
 /* Left-aligned with the rest of the page content, same as .emptyState.
    The section grows into this on first send/chip-click; animated in via
@@ -185,12 +162,8 @@
   margin-bottom: 20px;
 }
 
-.convoHeading {
+.convoHeader .heading {
   flex: 1;
-  font-family: var(--font-headline);
-  font-size: 1.375rem;
-  font-weight: 400;
-  color: var(--charcoal);
 }
 
 .startOver {
@@ -237,9 +210,16 @@
 
 .rowAssistant {
   display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.assistantContent {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  min-width: 0;
 }
 
 .answer {
