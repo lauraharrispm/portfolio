@@ -1,0 +1,398 @@
+.section {
+  background: var(--warm-white);
+  padding: var(--section-padding-v) 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────── */
+/* Left-aligned with the rest of the page content; the input row itself
+   is capped at ~720px (see .emptyForm), but this wrapper isn't, so the
+   disclaimer/chips below don't get an arbitrary extra right margin. */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
+}
+
+.emptyHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headshotWrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.headshotWrapSmall {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.headshotImg {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* A step smaller than the main section headings (clamp(2rem, 3.5vw,
+   2.75rem) on Services/HowIWork/LetsChat), since this is a compact band
+   under the hero, not a full section. */
+.heading {
+  font-family: var(--font-headline);
+  font-size: clamp(1.625rem, 2.8vw, 2.25rem);
+  font-weight: 400;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.emptyForm {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: 100px;
+  box-shadow: var(--card-shadow);
+  padding: 8px 8px 8px 24px;
+}
+
+.emptyInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.0625rem;
+  color: var(--charcoal);
+  font-family: var(--font-body);
+}
+
+.emptyInput::placeholder {
+  color: var(--charcoal-muted);
+}
+
+.emptyInput:focus-visible,
+.convoInput:focus-visible {
+  outline: none;
+}
+
+.emptyForm:focus-within,
+.convoForm:focus-within {
+  border-color: var(--coral);
+}
+
+.emptySubmit,
+.convoSubmit {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: #fff;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.emptySubmit:hover,
+.convoSubmit:hover:not(:disabled) {
+  background: var(--coral-dark);
+}
+
+.emptySubmit:focus-visible,
+.convoSubmit:focus-visible,
+.chip:focus-visible,
+.startOver:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.convoSubmit:disabled {
+  background: var(--charcoal-muted);
+  cursor: default;
+}
+
+/* Starter question chips, directly under the input in the empty state.
+   Same pill look as the assistant's own follow-up chips (see .chip
+   below), reused rather than duplicated. */
+.starterChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ─── Conversation state ───────────────────────────────────────────── */
+/* Left-aligned with the rest of the page content, same as .emptyState.
+   The section grows into this on first send/chip-click; animated in via
+   .conversationEnter below, skipped under reduced motion. */
+.conversation {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversationEnter {
+  animation: conversation-expand 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes conversation-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conversationEnter {
+    animation: none;
+  }
+}
+
+.convoHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.convoHeading {
+  flex: 1;
+  font-family: var(--font-headline);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--charcoal);
+}
+
+.startOver {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal-muted);
+  padding: 6px 12px;
+  border: 1px solid rgba(46, 40, 32, 0.2);
+  border-radius: 100px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.startOver:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 4px 4px 12px;
+  margin-bottom: 16px;
+}
+
+.rowUser {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Coral-tint, not blush: blush is reserved for case-study results
+   elsewhere on the site, never chat UI. */
+.bubbleUser {
+  max-width: 80%;
+  background: var(--coral-tint);
+  color: var(--charcoal);
+  border-radius: 16px 16px 4px 16px;
+  padding: 12px 18px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.rowAssistant {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.answer {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  max-width: 100%;
+}
+
+.answer strong {
+  color: var(--charcoal);
+}
+
+.answerMuted {
+  color: var(--charcoal-muted);
+  font-style: italic;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  transition: border-color var(--transition);
+}
+
+.chip:hover {
+  border-color: var(--coral);
+}
+
+.chipCta {
+  background: var(--coral);
+  color: #fff;
+  border-color: var(--coral);
+}
+
+.chipCta:hover {
+  background: var(--coral-dark);
+  color: #fff;
+  border-color: var(--coral-dark);
+}
+
+.typingIndicator {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.typingIndicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--charcoal-muted);
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typingIndicator span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typingIndicator span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typingIndicator span {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+.convoForm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: var(--card-border);
+  border-radius: 100px;
+  box-shadow: var(--card-shadow);
+  padding: 6px 6px 6px 20px;
+}
+
+.convoInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9375rem;
+  color: var(--charcoal);
+  font-family: var(--font-body);
+}
+
+.convoInput:disabled {
+  color: var(--charcoal-muted);
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--charcoal-muted);
+  text-align: left;
+  margin-top: 12px;
+}
+
+.disclaimer a {
+  color: var(--charcoal-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+
+.disclaimer a:hover {
+  color: var(--coral);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-v-mobile) 0;
+  }
+
+  .messages {
+    max-height: 60vh;
+  }
+
+  .bubbleUser {
+    max-width: 90%;
+  }
+
+  /* Minimum 44px tap targets on touch. */
+  .chip,
+  .startOver {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
