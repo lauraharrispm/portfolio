@@ -3,45 +3,30 @@
   padding: var(--section-padding-v) 0;
 }
 
-.heading {
-  font-family: var(--font-headline);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 300;
-  color: var(--charcoal);
-  letter-spacing: -0.01em;
-  margin-bottom: 16px;
-}
-
-/* ─── Bio + photo row ──────────────────────────────────────────── */
+/* ─── Two columns: content left, booking widget right ──────────────── */
 .inner {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 420px 1fr;
   gap: 56px;
-  align-items: stretch;
+  align-items: start;
   margin-bottom: 36px;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
-.body {
-  font-size: 1.0625rem;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--charcoal);
-  max-width: 440px;
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .photoWrap {
-  /* Matches the copy column's natural height (top of heading to bottom of
-     its last line): height comes from the grid row (sized by .copy, the
-     taller column), width follows from the 1:1 aspect ratio. */
-  width: auto;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -53,24 +38,84 @@
   object-position: center top;
 }
 
-/* ─── Calendly embed ───────────────────────────────────────────── */
-.calendlyWrap {
+.heading {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.body {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--charcoal);
+  max-width: 440px;
+  margin-bottom: 28px;
+}
+
+/* ─── Fit list: no divider, spacing only ──────────────────────────── */
+.fitBlock {
+  margin-bottom: 28px;
+}
+
+.fitHeading {
+  font-family: var(--font-headline);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.fitList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.fitList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--charcoal);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15em;
+}
+
+/* ─── Booking embed (Cal.com) ───────────────────────────────────── */
+.bookingWrap {
   background: var(--white);
   border: var(--card-border);
   box-shadow: var(--card-shadow);
   border-radius: var(--card-radius);
   overflow: hidden;
-  margin-bottom: 32px;
 }
 
-.calendlyPlaceholder {
+/* Cal.com's embed script renders its iframe into this div and resizes
+   it to fit content on its own; this just needs to fill the wrap. */
+.bookingEmbed {
+  width: 100%;
+  height: 100%;
+}
+
+.bookingPlaceholder {
   width: 100%;
   height: 100%;
 }
 
 /* ─── Alternate contact ────────────────────────────────────────── */
 .altContact {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--charcoal-muted);
 }
 
@@ -93,13 +138,11 @@
 
   .inner {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
   }
 
   .photoWrap {
-    width: 160px;
-    height: 160px;
-    order: -1;
-    margin: 0 auto;
+    width: 72px;
+    height: 72px;
   }
 }

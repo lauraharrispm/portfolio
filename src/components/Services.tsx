@@ -1,166 +1,111 @@
-import { Fragment } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import styles from "./Services.module.css";
 
 interface FunnelStage {
   category: string;
   body: string;
-  href?: string;
+  href: string;
 }
 
 const STAGES: FunnelStage[] = [
   {
     category: "Acquisition",
-    body: "Turning traffic into signups: landing pages, entry flows, and organic channels.",
+    body: "Help the right people discover the product and arrive with intent.",
     href: "#work-therapist-directory",
   },
   {
     category: "Activation",
-    body: "Getting new users to value fast: onboarding, intake, and first-run experiences.",
+    body: "Help new customers reach value quickly and understand what to do next.",
     href: "#work-payments-onboarding",
   },
   {
     category: "Monetization",
-    body: "Pricing, plans, and upgrade paths that grow revenue without hurting activation.",
+    body: "Make pricing, plans, and upgrades support sustainable growth.",
     href: "#work-annual-plans",
   },
   {
     category: "Retention",
-    body: "Lifecycle, churn diagnosis, and the moments that bring people back.",
+    body: "Give customers reasons to return, stay, and deepen their relationship.",
+    // Billing rebuild for AI add-ons and annual subscriptions: the same target as
+    // Monetization. That's fine, both formats can point at the same study.
+    href: "#work-annual-plans",
   },
 ];
 
-function FunnelArrow() {
-  return (
-    <span className={styles.funnelArrow} aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path
-          d="M4 12H20M20 12L14 6M20 12L14 18"
-          stroke="var(--charcoal)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
-  );
-}
+const STAGE_BAR_COLORS = ["var(--stage-bar-1)", "var(--stage-bar-2)", "var(--stage-bar-3)", "var(--coral)"];
 
-function CheckIcon() {
-  return (
-    <svg
-      className={styles.icon}
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="10" cy="10" r="9" stroke="var(--coral)" strokeWidth="1.5" />
-      <path
-        d="M6 10.5L8.5 13L14 7"
-        stroke="var(--coral)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+// Fade/rise-in once a block comes into view: same IntersectionObserver +
+// toggled-class pattern used elsewhere (see HowIWork), skipped entirely
+// under reduced motion via the CSS media query.
+function useInViewOnce<T extends HTMLElement>() {
+  const [inView, setInView] = useState(false);
+  const ref = useRef<T>(null);
 
-function XIcon() {
-  return (
-    <svg
-      className={styles.icon}
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="10" cy="10" r="9" stroke="var(--charcoal-muted)" strokeWidth="1.5" />
-      <path
-        d="M7 7L13 13M13 7L7 13"
-        stroke="var(--charcoal-muted)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, inView] as const;
 }
 
 export default function Services() {
+  const [stagesRef, stagesInView] = useInViewOnce<HTMLOListElement>();
+
   return (
     <section id="services" className={styles.section}>
       <div className="container">
         <h2 className={styles.heading}>What I do</h2>
         <p className={styles.intro}>
-          I own growth across the full funnel, from first visit to happy customer. I
-          untangle messy growth problems, find the real constraint, and ship what
-          moves the metric.
+          I lead growth across the full funnel, from first visit to repeat customer.
+          <br className={styles.introBreak} />
+          {" "}I untangle messy growth problems and ship what moves the metric.
         </p>
 
-        <div className={styles.funnel}>
+        <ol
+          ref={stagesRef}
+          aria-label="Growth funnel stages, in order"
+          className={`${styles.stages} ${stagesInView ? styles.stagesIn : ""}`}
+        >
           {STAGES.map((stage, i) => (
-            <Fragment key={stage.category}>
-              <div className={styles.funnelItem}>
-                <h3 className={styles.funnelTitle}>{stage.category}</h3>
-                <p className={styles.funnelBody}>{stage.body}</p>
-                {stage.href && (
-                  <a className={styles.proof} href={stage.href}>
-                    Case study →
-                  </a>
-                )}
+            <li className={styles.stage} key={stage.category}>
+              <span
+                className={styles.marker}
+                aria-hidden="true"
+                style={
+                  {
+                    "--marker-color": STAGE_BAR_COLORS[i],
+                    "--marker-delay": `${i * 120}ms`,
+                  } as React.CSSProperties
+                }
+              />
+              <div className={styles.stageContent}>
+                <span className={styles.stageNumber}>{String(i + 1).padStart(2, "0")}</span>
+                <h3 className={styles.stageName}>{stage.category}</h3>
+                <p className={styles.stageBody}>{stage.body}</p>
+                <a className={styles.stageLink} href={stage.href}>
+                  Case study{" "}
+                  <span className={styles.stageLinkArrow} aria-hidden="true">
+                    →
+                  </span>
+                </a>
               </div>
-              {i < STAGES.length - 1 && <FunnelArrow />}
-            </Fragment>
+            </li>
           ))}
-        </div>
-
-        <p className={styles.fitIntro}>
-          Who do I do this for? Here&apos;s a quick guide to see if your company
-          could be a good fit.
-        </p>
-
-        <div className={styles.columns}>
-          <div className={styles.column}>
-            <h4 className={styles.columnHeading}>We&apos;re a fit if you:</h4>
-            <ul className={styles.list}>
-              <li>
-                <CheckIcon />
-                <span>Run a consumer-facing business</span>
-              </li>
-              <li>
-                <CheckIcon />
-                <span>Have found product-market fit and need to grow faster</span>
-              </li>
-              <li>
-                <CheckIcon />
-                <span>Have engineers but little or no dedicated product guidance</span>
-              </li>
-              <li>
-                <CheckIcon />
-                <span>Want someone to actually ship their recommendations</span>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.column}>
-            <h4 className={styles.columnHeading}>We&apos;re not a fit (right now) if you:</h4>
-            <ul className={styles.list}>
-              <li>
-                <XIcon />
-                <span>Are still searching for product-market fit</span>
-              </li>
-              <li>
-                <XIcon />
-                <span>Sell enterprise software to other businesses</span>
-              </li>
-              <li>
-                <XIcon />
-                <span>Need a full-time product manager ASAP</span>
-              </li>
-              <li>
-                <XIcon />
-                <span>Need someone to manage a product team day to day</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        </ol>
       </div>
     </section>
   );

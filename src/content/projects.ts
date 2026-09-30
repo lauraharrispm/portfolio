@@ -8,7 +8,7 @@ export interface ProjectSection {
   /** Array of body paragraphs */
   body: string[];
   /**
-   * Optional — parallel array to body[]. If boldPrefixes[i] is non-empty and
+   * Optional: parallel array to body[]. If boldPrefixes[i] is non-empty and
    * body[i] starts with that string, the prefix renders as <strong>.
    */
   boldPrefixes?: string[];
@@ -22,6 +22,10 @@ export interface ProjectSection {
   imageWidths?: number[];
   /** Parallel to images[]: intrinsic pixel height of each image */
   imageHeights?: number[];
+  /** Results section only: parallel array to body[], one branded icon per
+   * line. null for a plain grouping line (no bullet icon), e.g. "In the
+   * first month after launch:" */
+  resultIcons?: ("check" | "trend" | null)[];
 }
 
 export interface BeforeAfterRow {
@@ -38,14 +42,14 @@ export interface StackItem {
 export interface Project {
   /** Used as URL anchor: /#payments-onboarding, and as the reading-view deep link /#work-payments-onboarding */
   id: string;
-  /** Position in the Recent Work stack — lower shows first. New studies just need the next number. */
+  /** Position in the Recent Work stack: lower shows first. New studies just need the next number. */
   order: number;
   /** Funnel-stage tag(s) shown on the summary card, e.g. ["Acquisition"] or ["Acquisition", "Monetization"] */
   tags: string[];
   company: string;
   /** Path to thumbnail image in /public */
   thumbnail: string;
-  /** Summary-card image — the study's most representative design-section image */
+  /** Summary-card image: the study's most representative design-section image */
   cardImage?: { src: string; alt: string; width: number; height: number };
   /** Short description shown in hero band and mobile card */
   oneLineDesc: string;
@@ -66,11 +70,11 @@ export interface Project {
 
 export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
-  // 1. Payments Onboarding
+  // 2. Payments Onboarding
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "payments-onboarding",
-    order: 1,
+    order: 2,
     tags: ["Activation"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-payments.png",
@@ -80,7 +84,7 @@ export const projects: Project[] = [
       width: 1717,
       height: 1021,
     },
-    title: "Redesigning Payments Onboarding",
+    title: "Payments onboarding redesign",
     oneLineDesc:
       "A broken onboarding flow was limiting adoption of one of GlossGenius's most valuable features. An iterative experimentation program fixed it.",
     keyMetric: {
@@ -147,7 +151,7 @@ export const projects: Project[] = [
         ],
         images: ["/gg-payments-1.png"],
         altTexts: [
-          "Payments onboarding flow redesign — value statement, progress bar, and native Stripe verification",
+          "Payments onboarding flow redesign: value statement, progress bar, and native Stripe verification",
         ],
         imageWidths: [1717],
         imageHeights: [1021],
@@ -157,10 +161,11 @@ export const projects: Project[] = [
         label: "Results",
         heading: "Measurable impact across the funnel",
         body: [
-          "📈 80% increase in payments processing onboarding completion rate",
-          "📈 Seven-figure GPV impact as more businesses began processing payments",
-          "📈 3% lift in subscription activations, validating that payments setup increased the perceived value of a GlossGenius subscription",
+          "80% increase in payments processing onboarding completion rate",
+          "Seven-figure GPV impact as more businesses began processing payments",
+          "3% lift in subscription activations, validating that payments setup increased the perceived value of a GlossGenius subscription",
         ],
+        resultIcons: ["trend", "trend", "trend"],
       },
       {
         id: "reflection",
@@ -179,11 +184,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 4. Appointment Scheduling for Phone Agents
+  // 3. Scheduling Tool for Phone Agents
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
-    order: 2,
+    order: 3,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
@@ -193,12 +198,12 @@ export const projects: Project[] = [
       width: 2840,
       height: 2564,
     },
-    title: "Appointment Scheduling for Phone Agents",
+    title: "Scheduling tool for phone agents",
     oneLineDesc:
-      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge and it became the most impactful feature launch in Rula's history.",
+      "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge, and it became the most impactful feature launch in Rula's history.",
     keyMetric: {
       number: "21%",
-      label: "patient growth",
+      label: "patient growth from this launch",
     },
     fundingStage: "Series B→C",
     employeeRange: "180→550 employees",
@@ -225,7 +230,7 @@ export const projects: Project[] = [
         heading: "Building for speed and scale from day one",
         body: [
           "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed. Phone agents need to book quickly while a patient is on the line. The existing therapist directory list took too long for the phone agent because it prioritized showing details about potential therapists rather than scheduling availability. Building the calendar UI they wanted required an entirely new backend service to surface therapist availability at the speed and volume the tool required.",
-          "We made deliberate scope tradeoffs with scale in mind. We could have launched faster for a single payer, but that would have limited how quickly the scheduling tool could expand across all payers we partnered with. Given strong MVP traction and clear relevance across existing and prospective partners, I included the additional scope needed to scale from the start. That investment paid off, enabling fast adoption across partners and making it the biggest launch in Rula history.",
+          "We made deliberate scope tradeoffs with scale in mind. We could have launched faster for a single payer, but that would have limited how quickly the scheduling tool could expand across all payers we partnered with. Given strong MVP traction and clear relevance across existing and prospective partners, I included the additional scope needed to scale from the start. That investment paid off, enabling fast adoption across partners and making it the most impactful feature launch in Rula's history.",
         ],
         boldPrefixes: [
           "The only way Rula allowed booking an appointment was the opposite of what the user (phone agent) needed.",
@@ -247,7 +252,7 @@ export const projects: Project[] = [
         altTexts: [
           "Intake form capturing state and insurance coverage before showing calendar slots",
           "Calendar view with side filter panel for therapist preferences",
-          "The existing therapist list — built for patient browsing, not agent scheduling",
+          "The existing therapist list, built for patient browsing, not agent scheduling",
         ],
         captions: [
           "The intake form captures state and insurance coverage upfront so every slot shown in the subsequent calendar is confirmed bookable for the member on the call.",
@@ -260,11 +265,13 @@ export const projects: Project[] = [
       {
         id: "results",
         label: "Results",
-        heading: "The largest feature launch in Rula's history",
+        heading: "The most impactful feature launch in Rula's history",
         body: [
-          "📈 21% patient growth (largest feature launch ever at Rula)",
-          "📈 66% conversion increase vs. the previous phone agent flow",
+          "21% patient growth (largest feature launch ever at Rula)",
+          "21% patient growth from this launch, part of Rula's 50%+ overall patient growth during my time there",
+          "66% conversion increase vs. the previous phone agent flow",
         ],
+        resultIcons: ["trend", "trend", "trend"],
       },
       {
         id: "reflection",
@@ -281,11 +288,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 5. Therapist Directory
+  // 4. Therapist Directory
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
-    order: 3,
+    order: 4,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
@@ -295,9 +302,9 @@ export const projects: Project[] = [
       width: 1350,
       height: 1261,
     },
-    title: "Therapist Directory",
+    title: "Therapist directory",
     oneLineDesc:
-      "345% lift in organic patient starts from an SEO-driven therapist directory targeting long-tail searches.",
+      "Rula was nearly invisible in organic search. Winning thousands of long-tail searches built a free acquisition channel from scratch.",
     keyMetric: {
       number: "345%",
       label: "lift in organic patient starts",
@@ -324,7 +331,7 @@ export const projects: Project[] = [
       {
         id: "challenges",
         label: "Key Challenges",
-        heading: "Breadth, speed, and a 30-second load time",
+        heading: "Breadth, speed, and a 20-second load time",
         body: [
           "The strategy was breadth, not depth. Winning the long tail meant creating hundreds of thousands of directory pages, each with customized page-level signals: titles, meta descriptions, and content to build relevance across Google's index at scale. This demanded sophisticated SEO strategy, content creation, and technical approach.",
           "Because organic search is a long-game, we needed to get in the game ASAP to create impact. Rather than building net-new infrastructure, I framed the directory as a new front door to what we already had: the recommendation algorithm, therapist filters, profile pages, and sign-up flow. Launch fast, then let the index build over time.",
@@ -349,7 +356,7 @@ export const projects: Project[] = [
           "/rula-directory-3.png",
         ],
         altTexts: [
-          "Therapist directory search flow — from Google result to filtered therapist list",
+          "Therapist directory search flow: from Google result to filtered therapist list",
           "Directory results page with location and insurance modal",
           "Desktop therapist directory experience",
         ],
@@ -366,11 +373,12 @@ export const projects: Project[] = [
         label: "Results",
         heading: "A zero-cost acquisition channel built from scratch",
         body: [
-          "📈 0 to 1.7M impressions in search results",
-          "📈 290% increase in organic traffic",
-          "📈 345% increase in organic patient starts",
-          "📈 41% improvement in domain ranking",
+          "0 to 1.7M impressions in search results",
+          "290% increase in organic traffic",
+          "345% increase in organic patient starts",
+          "41% improvement in domain ranking",
         ],
+        resultIcons: ["trend", "trend", "trend", "trend"],
       },
       {
         id: "reflection",
@@ -378,34 +386,34 @@ export const projects: Project[] = [
         heading: "What this project taught me",
         body: [
           "The most important decision on this project was strategic, not tactical. We could have spent months trying to rank for \"therapist near me\" and gotten nowhere. The insight that changed everything: we didn't need to win the most competitive searches to win the channel. The long tail was wide open, the content needs were well-defined, and we already had most of the infrastructure we needed to build the right content. Sometimes the best growth move is finding the game you can actually win.",
-          "Infrastructure investments can pay off cross-functionally – if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to compound the value beyond the original scope. As a result, this work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
+          "Infrastructure investments can pay off cross-functionally, if someone connects the dots. The load-time fix was built for the directory, but I looked across teams for ways to compound the value beyond the original scope. As a result, this work also improved the existing sign-up flow, boosting booking conversion for the majority of traffic by multiple percentage points.",
         ],
         boldPrefixes: [
           "The most important decision on this project was strategic, not tactical.",
-          "Infrastructure investments can pay off cross-functionally – if someone connects the dots.",
+          "Infrastructure investments can pay off cross-functionally, if someone connects the dots.",
         ],
       },
     ],
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 2. Annual Subscription Plans
+  // 1. Billing Rebuild for AI Add-Ons and Annual Subscriptions
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
-    order: 4,
+    order: 1,
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
     cardImage: {
       src: "/gg-annual-1.png",
-      alt: "Website pricing page positioning annual subscriptions as a discount",
+      alt: "Website pricing page for new subscribers positions annual plans as a discount against the new monthly price",
       width: 1601,
       height: 1163,
     },
-    title: "Launching Annual Subscriptions",
+    title: "Billing rebuild for AI add-ons and annual subscriptions",
     oneLineDesc:
-      "GlossGenius's subscription infrastructure could only support one billing structure, limiting revenue growth and future product strategy. I led a full migration to a flexible subscription service with zero business interruptions.",
+      "GlossGenius's billing system could only support one billing structure, which blocked annual plans and the company's AI add-on strategy. I led a full migration to a flexible subscription service.",
     keyMetric: {
       number: "0",
       label: "business interruptions during a full billing migration",
@@ -462,14 +470,14 @@ export const projects: Project[] = [
         ],
         images: ["/gg-annual-1.png", "/gg-annual-2.png", "/gg-annual-3.png"],
         altTexts: [
-          "Website pricing page positioning annual subscriptions as a discount for prospective subscribers",
-          "Annual subscription awareness message for monthly subscribers",
-          "View plans modal for logged in subscribers",
+          "Website pricing page for new subscribers positions annual plans as a discount against the new monthly price",
+          "Annual plan awareness message for existing monthly subscribers, who could switch to annual at their locked-in rate",
+          "View plans modal for logged-in subscribers, who could switch to annual at their locked-in rate",
         ],
         captions: [
-          "Website pricing page for prospective subscribers positions annual subscriptions as a discount.",
-          "Annual subscription awareness message for monthly subscribers who receive a discount on annual subscriptions.",
-          '"View plans" modal for logged in subscribers who receive a discount on annual subscriptions.',
+          "Website pricing page for new subscribers positions annual plans as a discount against the new monthly price.",
+          "Annual plan awareness message for existing monthly subscribers, who could switch to annual at their locked-in rate.",
+          "View plans modal for logged-in subscribers, who could switch to annual at their locked-in rate.",
         ],
         imageWidths: [1601, 960, 550],
         imageHeights: [1163, 473, 316],
@@ -477,14 +485,16 @@ export const projects: Project[] = [
       {
         id: "results",
         label: "Results",
-        heading: "Exceeded projections with zero disruption",
+        heading: "Zero disruption, with early signals above projections",
         body: [
+          "Unblocked AI add-ons, the company's core growth strategy, which launched after I left",
           "In the first month after launch:",
-          "✅ Activation held within acceptable thresholds, requiring no corrective pricing action",
-          "✅ Zero business interruptions through a full subscription infrastructure migration",
-          "📈 Revenue per customer increased multiple percentage points (early directional signal; not yet statistically significant)",
-          "📈 Annual plan adoption exceeded projections, with strong voluntary uptake from existing customers, signaling real long-term commitment (early directional signal; not yet statistically significant)",
+          "Activation held within acceptable thresholds, requiring no corrective pricing action",
+          "Zero business interruptions through a full subscription infrastructure migration",
+          "Revenue per customer increased multiple percentage points (early directional signal; not yet statistically significant)",
+          "Annual plan adoption exceeded projections, with strong voluntary uptake from existing customers, signaling real long-term commitment (early directional signal; not yet statistically significant)",
         ],
+        resultIcons: ["check", null, "check", "check", "trend", "trend"],
       },
       {
         id: "reflection",
@@ -492,7 +502,7 @@ export const projects: Project[] = [
         heading: "What this project taught me",
         body: [
           "Monetization isn't always an optimization problem. Sometimes it requires rebuilding the foundation before meaningful progress is possible. This project laid that foundation for GlossGenius's growth roadmap, making the significant engineering investment well worth it.",
-          "Work driven by business goals can also serve the customer if you look for the overlap. While overhauling subscription infrastructure was prioritized for monetization and roadmap needs, customer support data made it clear that annual billing was a real benefit for larger businesses. We leaned into that in our positioning, and customers adopted annual plans without discounts because it matched how they operate.",
+          "Work driven by business goals can also serve the customer if you look for the overlap. While overhauling subscription infrastructure was prioritized for monetization and roadmap needs, customer support data made it clear that annual billing was a real benefit for larger businesses. We leaned into that in our positioning, and existing customers, who got no discount, still switched to annual plans because it matched how they operate.",
         ],
         boldPrefixes: [
           "Monetization isn't always an optimization problem.",
@@ -503,7 +513,7 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 5. Burrow — Growing a DTC Ecommerce Site to 4x Revenue
+  // 5. Burrow: Ecommerce Website Redesign
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
@@ -517,9 +527,9 @@ export const projects: Project[] = [
       width: 842,
       height: 721,
     },
-    title: "Growing an Ecommerce Site to 4x Revenue",
+    title: "Ecommerce website redesign",
     oneLineDesc:
-      "4x revenue growth through navigation restructuring and promotions optimization.",
+      "The site hadn't kept pace with a growing catalog. Fixing navigation, shipping messaging, and promotions compounded across the funnel.",
     keyMetric: {
       number: "4x",
       label: "revenue growth",
@@ -594,10 +604,12 @@ export const projects: Project[] = [
         label: "Results",
         heading: "Compounding gains across the funnel",
         body: [
-          "📈 4x revenue growth during this period",
-          "📈 +41% increase in add-to-cart rate and +9% increase in average order value following improvements to the promotions experience",
-          "📈 Highest revenue day in company history within one week of launching in-stock messaging",
+          "Revenue grew 4x over my nearly three years at Burrow. No single project drove it. It came from compounding work across the funnel, including the projects below.",
+          "4x revenue growth during this period",
+          "+41% increase in add-to-cart rate and +9% increase in average order value following improvements to the promotions experience",
+          "Highest revenue day in company history within one week of launching in-stock messaging",
         ],
+        resultIcons: ["trend", "trend", "trend", "check"],
       },
       {
         id: "reflection",

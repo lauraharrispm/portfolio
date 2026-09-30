@@ -58,6 +58,8 @@
      with a floor so short case studies still feel like a real card. */
   min-height: 420px;
   max-height: 520px;
+  /* Whole card opens the study now, not just the "See more" button. */
+  cursor: pointer;
 }
 
 /* Text is first in the DOM (so it reads first on mobile, stacked under
@@ -74,8 +76,6 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
-  /* No overflow/radius here: the metric badge is a sibling of .imageClip
-     and needs to break out past this box's left edge. */
 }
 
 .imageClip {
@@ -110,34 +110,27 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .company {
   font-size: 0.75rem;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--charcoal);
 }
 
-.metaDot {
-  color: var(--charcoal-muted);
-}
-
-.stageLine {
-  font-size: 0.8125rem;
-  color: var(--charcoal-muted);
-}
-
 .tag {
   font-size: 0.6875rem;
   font-weight: 600;
+  line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--coral);
   background: rgba(240, 112, 82, 0.1);
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 100px;
   margin-left: 4px;
 }
@@ -159,59 +152,66 @@
   max-width: 480px;
 }
 
-/* Screen-reader-only duplicate of the metric, right after the title in
-   the DOM (see WorkSummary.tsx) so it's announced in a sensible reading
-   order; the visible badge lives on the image and is aria-hidden. */
-.metricSr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ─── Key metric badge: overlaps the image's bottom-left corner ──────── */
-.metricBadge {
-  position: absolute;
-  left: -28px;
-  bottom: 28px;
-  z-index: 2;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  max-width: 300px;
-  background: var(--charcoal);
-  border-radius: 14px;
-  padding: 14px 18px;
-  box-shadow: 0 14px 32px rgba(46, 40, 32, 0.4);
-  transform: translateY(8px) scale(0.96);
+/* ─── Result line: a small "Key result" eyebrow label over the stat,
+   instead of a filled blush pill or a coral rule, either of which read
+   as a separate colored object competing with the photography rather
+   than a stat inline with the rest of the card's text. Sits flat, no
+   background/radius/border. Fades/rises in with the card's text (no
+   extra delay, unlike the old image-linked badge). ─────────────────── */
+.resultBlock {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 24px;
+  transform: translateY(16px);
   opacity: 0;
-  transition: transform 0.5s ease 0.35s, opacity 0.5s ease 0.35s;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
 }
 
-.metricBadgeIn {
-  transform: translateY(0) scale(1);
+.resultBlockIn {
+  transform: translateY(0);
   opacity: 1;
 }
 
-.metricValue {
-  flex-shrink: 0;
-  font-family: var(--font-headline);
-  font-size: 3rem;
-  font-weight: 400;
+/* Brand coral per your note, not the darkened AA-safe shade used for
+   small text elsewhere on the site: --coral measures ~2.8:1 on white/
+   cream, short of the 4.5:1 normal-text minimum at this size. */
+.resultTag {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--coral);
-  line-height: 1;
+  margin-bottom: 6px;
 }
 
-.metricLabel {
-  font-size: 0.8125rem;
+.resultRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* Sans, not the brand serif: no brand-guide doc exists in this repo
+   (checked), and the only two typefaces are Cormorant Garamond (serif
+   display, used for headlines and the italic subheads) and Inter (sans
+   body). A bold sans reads as a confident, data-forward stat, and keeps
+   the serif reserved for editorial voice rather than numerals. */
+.resultNumber {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--charcoal);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.resultLabel {
+  font-size: 0.875rem;
   line-height: 1.35;
-  color: var(--warm-white);
-  /* At most two lines: past that, truncate rather than grow the badge */
+  color: var(--charcoal-muted);
+  /* At most two lines: past that, truncate rather than grow the block */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -224,13 +224,11 @@
   font-weight: 600;
   color: var(--charcoal);
   padding: 12px 0;
-  border-bottom: 1.5px solid var(--charcoal);
-  transition: color var(--transition), border-color var(--transition);
+  transition: color var(--transition);
 }
 
 .seeMore:hover {
   color: var(--coral);
-  border-color: var(--coral);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -246,7 +244,7 @@
     opacity: 1;
   }
 
-  .metricBadge {
+  .resultBlock {
     transition: none;
     transform: none;
     opacity: 1;
@@ -274,18 +272,8 @@
     padding: 28px;
   }
 
-  /* Image is above the text here, so the badge sits inside its corner
-     instead of breaking out past the (now full-bleed) card edge. */
-  .metricBadge {
-    left: 12px;
-    bottom: 12px;
-    max-width: calc(100% - 24px);
-    width: fit-content;
-    padding: 12px 16px;
-  }
-
-  .metricValue {
-    font-size: 2.25rem;
+  .resultNumber {
+    font-size: 1.75rem;
   }
 }
 

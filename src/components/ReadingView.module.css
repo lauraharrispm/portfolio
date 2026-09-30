@@ -112,9 +112,14 @@
 }
 
 /* ─── Full study header before Problem ─────────────────────────── */
+/* Top-aligned, not centered: centering let the "Key result" block's
+   vertical position drift depending on how tall each project's meta
+   line/description happened to be, so it sat in a different spot from
+   one case study to the next. Top alignment keeps it in the same place
+   next to the company line every time. */
 .studyHeader {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
   padding: 32px 0;
   border-bottom: 1px solid rgba(46, 40, 32, 0.1);
@@ -126,21 +131,31 @@
   min-width: 0;
 }
 
+.metaLine {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .company {
-  display: block;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--charcoal);
-  margin-bottom: 4px;
+}
+
+/* Same spacing (8px flex gap + this margin) around every dot in the
+   line, so company/stage/employee-range all read as evenly separated. */
+.metaDot {
+  color: var(--charcoal-muted);
+  margin: 0 4px;
 }
 
 .stageLine {
-  display: block;
   font-size: 0.8125rem;
   color: var(--charcoal-muted);
-  margin-bottom: 12px;
 }
 
 .title {
@@ -159,33 +174,45 @@
   max-width: 520px;
 }
 
-/* Same treatment as the summary card's image badge (see
-   WorkSummary.module.css), just not overlapping anything here. */
-.metricBadge {
+/* Same "Key result" tag treatment as the summary card (see
+   WorkSummary.module.css), no filled background. */
+.resultBlock {
   flex-shrink: 0;
+  max-width: 260px;
+}
+
+.resultTag {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 6px;
+}
+
+.resultRow {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  max-width: 260px;
-  background: var(--charcoal);
-  border-radius: 14px;
-  padding: 14px 18px;
-  box-shadow: 0 10px 24px rgba(46, 40, 32, 0.25);
 }
 
-.metricNumber {
+/* Sans, not the brand serif: matches WorkSummary's card treatment (see
+   its .resultNumber comment for the full reasoning). */
+.resultNumber {
   flex-shrink: 0;
-  font-family: var(--font-headline);
-  font-size: 2.25rem;
-  font-weight: 400;
-  color: var(--coral);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--charcoal);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.metricLabel {
+.resultLabel {
   font-size: 0.75rem;
   line-height: 1.35;
-  color: var(--warm-white);
+  color: var(--charcoal);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -212,6 +239,16 @@
   margin-bottom: 14px;
 }
 
+.sectionHeading {
+  font-family: var(--font-headline);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--charcoal);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
 .bodyParagraphs {
   display: flex;
   flex-direction: column;
@@ -232,9 +269,19 @@
 }
 
 .resultsItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--charcoal);
+}
+
+.resultIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 0.3em;
 }
 
 .bafList {
@@ -370,16 +417,6 @@
 
   .content {
     padding: 0 24px 32px;
-  }
-
-  .studyHeader {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .metricBadge {
-    max-width: none;
   }
 
   .designImages {

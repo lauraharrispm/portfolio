@@ -1,13 +1,29 @@
+/* Deliberately not its own section: no heading, no card, no shadow, no
+   background or container of its own, since it now sits inline under
+   the "leave the team stronger" point, inside HowIWork's own container
+   and background (see .toolsStripSlot in HowIWork.module.css). */
+.inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.label {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal-muted);
+}
+
 .row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 20px;
   list-style: none;
-  /* Lighter than --charcoal-muted, for the hover/focus state below: a
-     neutral highlight rather than a coral one, since coral already reads
-     as the site's "interactive/CTA" color and this is just a hover cue. */
-  --tool-hover-gray: #a89f95;
 }
 
 .item {
@@ -22,24 +38,25 @@
   outline-offset: 4px;
 }
 
-.logo {
+/* Muted and small: subordinate to the booking invitation right below it. */
+.icon {
   display: block;
   flex-shrink: 0;
-  height: var(--logo-h);
+  height: var(--icon-h);
   width: auto;
-  background-color: var(--charcoal-muted);
+  background-color: rgba(46, 40, 32, 0.32);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+  -webkit-mask-position: left center;
+  mask-position: left center;
   -webkit-mask-size: contain;
   mask-size: contain;
   transition: background-color var(--transition);
 }
 
-.item:hover .logo,
-.item:focus-visible .logo {
-  background-color: var(--tool-hover-gray);
+.item:hover .icon,
+.item:focus-visible .icon {
+  background-color: var(--charcoal);
 }
 
 .tooltip {
@@ -70,8 +87,12 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .inner {
+    gap: 12px;
+  }
+
   .row {
-    gap: 24px;
+    gap: 16px;
   }
 }

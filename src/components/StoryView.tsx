@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { projects } from "@/content/projects";
 import type { Project } from "@/content/projects";
+import ResultIcon from "./ResultIcon";
 import styles from "./StoryView.module.css";
 
 // ── Types ─────────────────────────────────────────────────────────
@@ -188,16 +189,22 @@ export default function StoryView({
         <>
           {section.body.length > 0 && (
             <ul className={styles.resultsList}>
-              {section.body.map((r, i) => (
-                <li key={i} className={styles.resultsItem}>{r}</li>
-              ))}
+              {section.body.map((r, i) => {
+                const icon = section.resultIcons?.[i];
+                return (
+                  <li key={i} className={styles.resultsItem}>
+                    {icon && <ResultIcon kind={icon} className={styles.resultIcon} />}
+                    <span>{r}</span>
+                  </li>
+                );
+              })}
             </ul>
           )}
           {project.beforeAfterTable && (
             <div className={styles.bafList}>
               <div className={styles.bafHeader}>
-                <span>BEFORE ☹️</span>
-                <span>AFTER 🤩</span>
+                <span>BEFORE</span>
+                <span>AFTER</span>
               </div>
               {project.beforeAfterTable.map((row, i) => (
                 <div key={i} className={styles.bafRow}>
@@ -314,17 +321,26 @@ export default function StoryView({
       {/* ── Company stage / size metadata ── */}
       {(project.fundingStage || project.employeeRange) && (
         <div className={styles.metaStrip}>
-          {[project.company, project.fundingStage, project.employeeRange]
-            .filter(Boolean)
-            .join(" · ")}
+          {project.company}
+          {(project.fundingStage || project.employeeRange) && (
+            <span className={styles.metaStripDot}> · </span>
+          )}
+          {project.fundingStage}
+          {project.fundingStage && project.employeeRange && (
+            <span className={styles.metaStripDot}> · </span>
+          )}
+          {project.employeeRange}
         </div>
       )}
 
-      {/* ── Result: same badge treatment as the summary card and the
-         desktop reading view header ── */}
-      <div className={styles.metricBadge}>
-        <span className={styles.metricNumber}>{project.keyMetric.number}</span>
-        <span className={styles.metricLabel}>{project.keyMetric.label}</span>
+      {/* ── Result: same "Key result" tag treatment as the summary card
+         and the desktop reading view header ── */}
+      <div className={styles.resultBlock}>
+        <span className={styles.resultTag}>Key result</span>
+        <div className={styles.resultRow}>
+          <span className={styles.resultNumber}>{project.keyMetric.number}</span>
+          <span className={styles.resultLabel}>{project.keyMetric.label}</span>
+        </div>
       </div>
 
       {/* ── Progress pips ── */}

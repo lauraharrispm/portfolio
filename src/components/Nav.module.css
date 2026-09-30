@@ -23,7 +23,7 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-shrink: 0;
 }
 
 .wordmark {
@@ -32,6 +32,7 @@
   font-weight: 400;
   letter-spacing: 0.01em;
   color: var(--coral);
+  white-space: nowrap;
   transition: color var(--transition);
 }
 
@@ -39,16 +40,37 @@
   color: var(--coral-dark);
 }
 
-/* Desktop-only tagline beside the wordmark */
-.tagline {
-  font-size: 0.8125rem;
-  font-weight: 300;
-  color: var(--charcoal-muted);
-  white-space: nowrap;
-  margin-left: 8px;
+/* Decorative separator between the name and the tagline: vertically
+   centered on the name via .brand's align-items:center. */
+.divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 22px;
+  margin: 0 18px;
+  background: rgba(46, 40, 32, 0.25);
 }
 
-@media (max-width: 768px) {
+/* Desktop-only tagline beside the wordmark. Charcoal on cream measures
+   ~13.85:1, well clear of 4.5:1. Small top padding nudges it to line up
+   optically with the name's x-height rather than its full box, since the
+   name's serif ascenders/descenders sit well above and below center. */
+.tagline {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  white-space: nowrap;
+  padding-top: 3px;
+}
+
+/* Matches the mobile-menu breakpoint below (.links/.hamburger): the
+   all-caps tagline plus its divider need more room than the old plain
+   tagline did, so the collapse point moved from 768px to 999px to keep
+   full desktop spacing everywhere the tagline is visible, with no
+   crowding or wrapping in between. */
+@media (max-width: 999px) {
+  .divider,
   .tagline {
     display: none;
   }
@@ -65,6 +87,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--charcoal);
+  white-space: nowrap;
   letter-spacing: 0.02em;
   transition: color var(--transition);
 }
@@ -153,7 +176,7 @@
   margin-top: 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 999px) {
   .nav {
     box-shadow: 0 2px 8px rgba(46, 40, 32, 0.1);
   }

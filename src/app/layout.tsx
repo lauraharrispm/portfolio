@@ -9,6 +9,9 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["300", "400", "600"],
+  // Italic added for HowIWork's part statements: same brand serif, not a
+  // second typeface, just a lighter/smaller supporting-line treatment.
+  style: ["normal", "italic"],
 });
 
 const inter = Inter({

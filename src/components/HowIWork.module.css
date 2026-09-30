@@ -12,210 +12,300 @@
   margin-bottom: 32px;
 }
 
-/* ─── Two ways to work together ───────────────────────────────── */
-.subheading {
+/* ─── Part statement (shared by both parts) ───────────────────────── */
+/* No separate brand-guide doc exists in this repo (checked); the site's
+   only two typefaces are Cormorant Garamond (--font-headline, serif
+   display) and Inter (--font-body, sans). The sans treatment read as an
+   unrelated second font sitting right under a serif h2, so this stays
+   in the brand serif but as an italic, lighter-weight, clearly smaller
+   supporting line instead of a second headline: no new font added, same
+   family as "How I work" above it. */
+.partStatement {
   font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-style: italic;
+  font-size: clamp(1.625rem, 2.8vw, 2.0625rem);
+  font-weight: 400;
+  color: var(--charcoal-muted);
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+  margin-bottom: 28px;
+}
+
+/* ─── Engagement comparison table (Part 1) ────────────────────────── */
+/* Fades/rises in once, same pattern as elsewhere on the site; skipped
+   under reduced motion. */
+.tableReveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tableRevealIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tableWrap {
+  overflow: hidden;
+  border: 1px solid rgba(46, 40, 32, 0.14);
+  border-radius: 16px;
+  max-width: 920px;
+  /* Same floating-card shadow as the hero results panel and the work
+     summary cards, so the table reads as its own object too. */
+  box-shadow: 0 16px 40px rgba(46, 40, 32, 0.14);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Fills the bordered .tableWrap, which is itself capped at 920px and
+   left-justified (no auto margin) so it starts at the same edge as the
+   section heading above it. The label column still shrinks to its
+   content and the two format columns still split the rest 50/50 (see
+   .colFormat), just within a smaller table. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--warm-white);
+}
+
+/* Row-label column shrinks to fit its text; the other two share the rest
+   equally. width:1% + nowrap on the label cells is the standard trick for
+   forcing an auto-layout table to size a column to its content. */
+.colLabel {
+  width: 1%;
+}
+
+.colFormat {
+  width: 49.5%;
+}
+
+/* The tint spans the whole header row, including this empty corner cell. */
+.headerRow {
+  background: var(--warm-tint);
+}
+
+.cornerCell {
+  border: none;
+  padding: 0;
+}
+
+/* Left as a real table-cell (no display override) so vertical-align
+   actually applies: a <th> with display:flex stops being a table-cell
+   for alignment purposes, which is what let "Fractional" and
+   "Project-Based" drift onto different baselines. The name+pill flex
+   layout lives on .formatHeaderInner instead. */
+.formatHeader {
+  text-align: left;
+  vertical-align: middle;
+  padding: 20px 24px;
+  border-left: 1px solid rgba(46, 40, 32, 0.14);
+}
+
+.formatHeaderInner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.formatName {
+  font-family: var(--font-headline);
+  font-size: 1.75rem;
   font-weight: 400;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--grid-gap);
+.pill {
+  display: inline-block;
+  background: var(--blush-peach);
+  color: var(--charcoal);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.row {
+  border-top: 1px solid rgba(46, 40, 32, 0.14);
+}
+
+/* Sentence case, not a section label: 13px, charcoal, weight 600, no
+   letter-spacing/uppercase/coral, so it doesn't compete with the coral
+   part labels above. Left padding matches the body-cell padding so the
+   label sits inside the container's border. */
+.rowLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-align: left;
+  white-space: nowrap;
+  padding: 12px 24px 12px 24px;
+}
+
+.cell {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--charcoal);
+  padding: 12px 24px;
+  border-left: 1px solid rgba(46, 40, 32, 0.14);
+}
+
+/* ─── Mobile/tablet engagement toggle (replaces the table) ────────── */
+.mobileToggle {
+  display: none;
+}
+
+.tabList {
+  display: flex;
+  gap: 4px;
+  background: #efe8e1;
+  border-radius: 999px;
+  padding: 4px;
   margin-bottom: 24px;
 }
 
-.card {
+.tab {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--charcoal-muted);
+  background: transparent;
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.tabActive {
   background: var(--white);
-  border: var(--card-border);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
-  padding: var(--card-padding);
+  color: var(--charcoal);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(46, 40, 32, 0.15);
+}
+
+/* Matches the desktop table's container treatment: bordered, rounded,
+   tinted header, where it fits naturally in the mobile toggle panel. */
+.tabPanel {
+  border: 1px solid rgba(46, 40, 32, 0.14);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mobileFormatHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--warm-tint);
+  padding: 16px 20px;
+}
+
+.mobileFormatName {
+  font-family: var(--font-headline);
+  font-size: 1.625rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.mobileRows {
   display: flex;
   flex-direction: column;
+  background: var(--warm-white);
+  padding: 0 20px;
 }
 
-.cardTitle {
-  font-family: var(--font-headline);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--charcoal);
-  margin-bottom: 4px;
-}
-
-.cardCadence {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 16px;
-}
-
-.cardBody {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--charcoal);
-  margin-bottom: 12px;
-}
-
-.cardBestFor {
-  font-style: italic;
-  font-size: 0.875rem;
-  color: var(--charcoal-muted);
-  line-height: 1.5;
-}
-
-/* ─── 90-day paragraph ─────────────────────────────────────────── */
-.ninetyDays {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--charcoal);
-  max-width: 720px;
-  margin-bottom: 48px;
-}
-
-/* ─── AI-native section ────────────────────────────────────────── */
-
-/* Statement + fun fact, side by side on desktop */
-.aiTop {
+.mobileRow {
   display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  margin-bottom: 48px;
-}
-
-.aiStatement {
-  flex: 1;
-  min-width: 0;
-  font-family: var(--font-headline);
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--charcoal);
-}
-
-/* ─── Four claims: no card boxes, a thin rule separates each ─────── */
-.claimsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 48px;
-  margin-bottom: 48px;
-}
-
-.claim {
+  gap: 16px;
+  padding: 14px 0;
   border-top: 1px solid rgba(46, 40, 32, 0.14);
-  padding-top: 16px;
 }
 
-.claimTitle {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--charcoal);
-  margin-bottom: 8px;
-}
-
-.claimBody {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--charcoal-muted);
-}
-
-/* ─── Process strip: quiet inline summary, not a list to read ────── */
-.processStrip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  list-style: none;
-  margin-top: 16px;
-}
-
-.processStripItem {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--charcoal-muted);
-}
-
-.processStripArrow {
-  color: var(--coral);
-  font-weight: 400;
-}
-
-/* ─── Fun fact callout ─────────────────────────────────────────── */
-.calloutTop,
-.calloutBottom {
-  background: var(--white);
-  border: var(--card-border);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
-  padding: 20px;
-}
-
-.calloutTop {
+.mobileRowLabel {
   flex-shrink: 0;
-  width: 280px;
-}
-
-.calloutBottom {
-  display: none;
-  margin-top: 32px;
-}
-
-.calloutLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 8px;
-}
-
-.calloutBody {
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  width: 104px;
+  font-size: 0.84375rem;
+  font-weight: 600;
   color: var(--charcoal);
 }
 
-/* ─── Tools row ────────────────────────────────────────────────── */
-.toolsBar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 32px;
-  margin-top: 36px;
+.mobileRowValue {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--charcoal);
 }
 
-.toolsLabel {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--charcoal-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
+/* ─── Part 2: AI-native approach ──────────────────────────────────── */
+.part2 {
+  margin-top: 72px;
+}
+
+/* Statement stays on one line at 1024px+ (see the min-width query below);
+   wraps normally under that. */
+.part2 .partStatement {
+  margin-bottom: 18px;
+}
+
+@media (min-width: 1024px) {
+  .part2 .partStatement {
+    white-space: nowrap;
+  }
+}
+
+/* Fades/rises in once, same pattern as the engagement table above;
+   skipped under reduced motion. */
+.aiReveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aiRevealIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aiPoints {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: 680px;
+}
+
+/* Sits directly under the "leave the team stronger" point (the last
+   item in .aiPoints), same max-width so the tool row doesn't run wider
+   than the points above it. */
+.toolsStripSlot {
+  max-width: 680px;
+  margin-top: 28px;
 }
 
 .cta {
+  align-self: start;
   display: inline-flex;
   align-items: center;
+  margin-top: 32px;
   padding: 14px 28px;
   background: var(--coral);
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
   border-radius: 4px;
-  margin-top: 36px;
   transition: background var(--transition);
 }
 
@@ -223,14 +313,68 @@
   background: var(--coral-dark);
 }
 
-@media (max-width: 1024px) {
-  .aiTop {
-    flex-direction: column;
+/* ─── AI-native points (no panel behind them; sit on cream) ──────────── */
+.aiItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.aiIconCircle {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--coral-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aiIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.aiItemText {
+  min-width: 0;
+}
+
+.aiItemTitle {
+  font-family: var(--font-headline);
+  font-size: 1.4375rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.aiItemDesc {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--charcoal-muted);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tableReveal,
+  .aiReveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
 
-  .calloutTop {
-    width: 100%;
-    max-width: 360px;
+  .tab {
+    transition: none;
+  }
+}
+
+/* ─── Tablet: stack the two columns. Below 1024px only: the one-line
+   statement and one-line description requirements only need to hold
+   through exactly 1024px. ─────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .aiItemDesc {
+    white-space: normal;
   }
 }
 
@@ -239,27 +383,37 @@
     padding: var(--section-padding-v-mobile) 0;
   }
 
-  .cards {
-    grid-template-columns: 1fr;
-    margin-bottom: 48px;
+  .part2 {
+    margin-top: 48px;
   }
 
-  .claimsGrid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .aiIconCircle {
+    width: 36px;
+    height: 36px;
   }
 
-  .calloutTop {
+  .aiIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .aiItemTitle {
+    font-size: 1.1875rem;
+  }
+
+  .aiItemDesc {
+    font-size: 0.875rem;
+  }
+}
+
+/* ─── Below this width the desktop table gets cramped: swap it for the
+   toggle instead of trying to keep the table readable. ───────────── */
+@media (max-width: 640px) {
+  .tableWrap {
     display: none;
   }
 
-  .calloutBottom {
+  .mobileToggle {
     display: block;
-  }
-
-  .toolsBar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
   }
 }

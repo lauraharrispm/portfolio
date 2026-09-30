@@ -34,6 +34,7 @@ export default function Nav() {
           >
             Laura Harris
           </a>
+          <span className={styles.divider} aria-hidden="true" />
           <span className={styles.tagline} aria-hidden="true">
             Fractional Product Lead
           </span>
@@ -43,17 +44,17 @@ export default function Nav() {
         <ul className={styles.links}>
           <li>
             <a href="#services" onClick={() => trackNav("services", "nav_desktop")}>
-              What I Do
+              What I do
             </a>
           </li>
           <li>
             <a href="#how" onClick={() => trackNav("how_i_work", "nav_desktop")}>
-              How I Work
+              How I work
             </a>
           </li>
           <li>
             <a href="#work" onClick={() => trackNav("work", "nav_desktop")}>
-              Recent Work
+              Recent work
             </a>
           </li>
           <li>
@@ -92,7 +93,7 @@ export default function Nav() {
                   trackNav("services", "nav_mobile");
                 }}
               >
-                What I Do
+                What I do
               </a>
             </li>
             <li>
@@ -103,7 +104,7 @@ export default function Nav() {
                   trackNav("how_i_work", "nav_mobile");
                 }}
               >
-                How I Work
+                How I work
               </a>
             </li>
             <li>
@@ -114,7 +115,7 @@ export default function Nav() {
                   trackNav("work", "nav_mobile");
                 }}
               >
-                Recent Work
+                Recent work
               </a>
             </li>
             <li>

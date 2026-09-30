@@ -1,0 +1,140 @@
+.panel {
+  background: var(--blush-peach);
+  border-radius: 18px;
+  box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
+  padding: 32px 36px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.panelIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headingRow {
+  margin-bottom: 18px;
+}
+
+/* All-caps eyebrow treatment (matches the site's other small uppercase
+   labels, e.g. HowIWork's table row labels): charcoal on blush measures
+   well over 4.5:1. */
+.heading {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.list {
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  /* Logo slot stays fixed width; this extra gap (vs. the original 10px)
+     shifts the results column right ~20% of the slot width, without
+     widening the panel itself. */
+  gap: 34px;
+  padding: 16px 0;
+}
+
+.row:not(:first-child) {
+  border-top: 1px solid rgba(46, 40, 32, 0.14);
+}
+
+.logoSlot {
+  flex-shrink: 0;
+  width: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo {
+  display: block;
+  height: var(--logo-h);
+  width: auto;
+  max-width: 100%;
+  color: var(--charcoal-muted);
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* Faux-bold: same technique as the old logo strip, stacking drop-shadows
+   shaped like the masked logo itself to dilate its strokes a touch, for
+   source art drawn at a visibly lighter weight than its neighbors. */
+.logoBold {
+  filter:
+    drop-shadow(0.5px 0 0 currentColor)
+    drop-shadow(-0.5px 0 0 currentColor)
+    drop-shadow(0 0.5px 0 currentColor)
+    drop-shadow(0 -0.5px 0 currentColor);
+}
+
+.result {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* The panel itself is blush now, so blush text would disappear into it;
+   coral is reserved for CTAs/links elsewhere on the page, so it's not
+   free to reuse here either. Charcoal keeps the same weight of statement
+   and clears contrast with room to spare. */
+.number {
+  flex-shrink: 0;
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 1.625rem;
+  color: var(--charcoal);
+  line-height: 1;
+}
+
+.label {
+  font-size: 0.8125rem;
+  color: var(--charcoal-muted);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 0.6875rem;
+  }
+
+  .number {
+    font-size: 1.575rem;
+  }
+
+  .label {
+    font-size: 0.8125rem;
+  }
+
+  .logoSlot {
+    width: 128px;
+  }
+
+  .logo {
+    height: calc(var(--logo-h) * 0.9);
+  }
+}

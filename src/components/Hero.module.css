@@ -5,10 +5,12 @@
      the page, the hero reads cramped under the nav without its own
      larger top space. */
   padding-top: calc(var(--nav-height) + 72px);
-  /* Matches .subhead's margin-bottom (the padding above the CTAs) so the
-     gap below the CTAs reads the same as the gap above them. */
-  padding-bottom: 32px;
-  overflow: hidden;
+  /* Room for the results panel's shadow (offset 24px + blur 56px = 80px)
+     to fully fade out before this section's box ends, so the next
+     section's opaque background doesn't cut it off abruptly. */
+  padding-bottom: 80px;
+  /* No overflow:hidden: paired with the padding above, this lets that
+     shadow render and fade in full instead of getting hard-clipped. */
 }
 
 /* Oversized typographic background element */
@@ -27,9 +29,28 @@
   white-space: nowrap;
 }
 
-.content {
+/* ─── Two-column layout: text left, results panel right ──────────── */
+.layout {
   position: relative;
-  max-width: 760px;
+  display: flex;
+  align-items: center;
+  /* .content caps out at max-width: 640px below its flex: 1 share, which
+     used to leave leftover space stranded after .panelCol instead of
+     between the columns, so the results panel sat short of the
+     container's true right edge instead of flush with it. */
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  max-width: 640px;
+}
+
+.panelCol {
+  flex-shrink: 0;
+  width: 400px;
 }
 
 .headline {
@@ -95,6 +116,25 @@
 .ctaSecondary:hover {
   border-color: var(--coral);
   color: var(--coral);
+}
+
+/* ─── Tablet: panel gets cramped beside the text, so stack it below
+   the CTAs instead of squeezing the two columns ────────────────── */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .content {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .panelCol {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {

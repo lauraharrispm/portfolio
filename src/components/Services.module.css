@@ -15,144 +15,183 @@
 .intro {
   font-size: 1.0625rem;
   color: var(--charcoal);
-  max-width: 660px;
+  max-width: 640px;
   line-height: 1.65;
-  margin-bottom: 32px;
+  /* Space above the funnel stages' coral bars; was 56px, cut ~30%. */
+  margin-bottom: 39px;
 }
 
-/* ─── Funnel stages: wide rounded-rectangle shapes, arrows overlap
-   into the box on either side of them ─────────────────────────── */
-.funnel {
-  display: flex;
-  align-items: stretch;
+/* Forces the second sentence onto its own line at desktop widths only;
+   below 768px the paragraph already wraps to several lines on its own,
+   so a forced break there would just look like an odd extra gap. */
+.introBreak {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .introBreak {
+    display: block;
+  }
+}
+
+/* ─── Funnel stages ─────────────────────────────────────────────── */
+.stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  list-style: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.funnelItem {
-  flex: 1;
-  min-width: 0;
+.stagesIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stage {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: var(--white);
-  border: var(--card-border);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
-  padding: var(--card-padding);
+  gap: 14px;
+  min-width: 0;
 }
 
-.funnelArrow {
+.marker {
   flex-shrink: 0;
-  align-self: center;
-  width: 56px;
-  height: 56px;
-  margin: 0 -22px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--blush-peach);
-  box-shadow: 0 2px 8px rgba(46, 40, 32, 0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--marker-color, var(--coral));
+  opacity: 0;
+  transition: opacity 0.4s ease var(--marker-delay, 0ms);
   position: relative;
   z-index: 1;
 }
 
-.funnelArrow svg {
-  width: 20px;
-  height: 20px;
+.stagesIn .marker {
+  opacity: 1;
 }
 
-.funnelTitle {
-  font-family: var(--font-headline);
-  font-size: 1.375rem;
-  font-weight: 400;
-  color: var(--charcoal);
-  letter-spacing: -0.01em;
+/* One connected line reading across all four stages: a segment bridges
+   each stage's marker to the next one's, spanning the rest of this
+   stage's own (fluid) column width plus the grid's column-gap, minus
+   the marker's own width, so it reaches exactly to the next marker
+   regardless of viewport width. None is drawn after the last stage, so
+   the line ends right at the Retention marker instead of running past
+   it or needing an arrowhead. */
+.stage:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  /* 100% of this stage's own width, + the 12px column-gap, - the 10px
+     marker width already accounted for by left: 10px. */
+  width: calc(100% - 10px + 12px);
+  height: 1px;
+  background: rgba(46, 40, 32, 0.18);
 }
 
-.funnelBody {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--charcoal-muted);
+.stageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 28px;
 }
 
-.proof {
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: 10px;
-  font-size: 0.9375rem;
+/* Dark coral: neither --coral nor --coral-dark clears 4.5:1 on white
+   (same shade used for HowIWork's row labels/part labels). */
+.stageNumber {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--charcoal-muted);
+  letter-spacing: 0.14em;
+  color: #c04a2e;
 }
 
-a.proof {
-  text-decoration: underline;
-  text-decoration-color: var(--charcoal-muted);
-  text-underline-offset: 3px;
-  transition: color var(--transition), text-decoration-color var(--transition);
-}
-
-a.proof:hover {
-  color: var(--coral);
-  text-decoration-color: var(--coral);
-}
-
-/* ─── Who I work with: moved below the funnel, same section ──────── */
-.fitIntro {
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--charcoal);
-  max-width: 640px;
-  margin-top: 56px;
-  margin-bottom: 28px;
-}
-
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.column {
-  background: var(--white);
-  border: var(--card-border);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
-  padding: var(--card-padding);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.columnHeading {
+.stageName {
   font-family: var(--font-headline);
-  font-size: clamp(1.375rem, 2vw, 1.625rem);
-  font-weight: 400;
+  font-size: 1.875rem;
+  font-weight: 500;
   color: var(--charcoal);
   letter-spacing: -0.01em;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none;
-}
-
-.list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 1rem;
+.stageBody {
+  font-size: 0.9375rem;
   line-height: 1.6;
-  color: var(--charcoal);
+  color: var(--charcoal-muted);
 }
 
-.icon {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  margin-top: 0.15em;
+.stageLink {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  transition: color var(--transition);
+}
+
+.stageLinkArrow {
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+.stageLink:hover,
+.stageLink:focus-visible {
+  color: #c04a2e;
+}
+
+.stageLink:hover .stageLinkArrow,
+.stageLink:focus-visible .stageLinkArrow {
+  transform: translateX(3px);
+}
+
+.stageLink:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stages {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .marker {
+    transition: none;
+    opacity: 1;
+  }
+
+  .stageLinkArrow {
+    transition: none;
+  }
+
+  .stageLink:hover .stageLinkArrow,
+  .stageLink:focus-visible .stageLinkArrow {
+    transform: none;
+  }
+}
+
+/* ─── Tablet: stages become a 2x2 grid, still left to right then top
+   to bottom. The connecting line only bridges each row's own pair
+   (1→2, 3→4): with no line drawn across the wrap, the sequence still
+   reads correctly without a connector doubling back down the page. ── */
+@media (max-width: 1023px) {
+  .stages {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+
+  .stage:not(:last-child)::after {
+    width: calc(100% - 10px + 24px);
+  }
+
+  .stage:nth-child(even)::after {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -160,34 +199,47 @@ a.proof:hover {
     padding: var(--section-padding-v-mobile) 0;
   }
 
-  .funnel {
-    flex-direction: column;
-    gap: 20px;
+  .intro {
+    margin-bottom: 28px;
   }
 
-  .funnelArrow {
-    margin: -14px 0;
-    transform: rotate(90deg);
-  }
-
-  .columns {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .stageName {
+    font-size: 1.625rem;
   }
 }
 
-/* Between mobile and the point the row gets tight, drop to 2 columns
-   so item text doesn't get too narrow to read comfortably */
-@media (min-width: 769px) and (max-width: 1100px) {
-  .funnel {
-    flex-wrap: wrap;
+/* ─── Mobile: each stage becomes a row, marker beside the content, with
+   the connecting line running vertically down between rows instead of
+   horizontally between columns. ───────────────────────────────────── */
+@media (max-width: 767px) {
+  .stages {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .funnelItem {
-    flex-basis: calc(50% - 6px);
+  .stage {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
   }
 
-  .funnelArrow {
-    display: none;
+  .stage:nth-child(even)::after {
+    display: block;
+  }
+
+  .stage:not(:last-child)::after {
+    top: 10px;
+    left: 4.5px;
+    width: 1px;
+    height: calc(100% - 10px + 8px);
+  }
+
+  .stageContent {
+    gap: 6px;
+    padding-right: 0;
+  }
+
+  .stageBody {
+    font-size: 0.875rem;
   }
 }

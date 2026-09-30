@@ -6,6 +6,7 @@ import { projects } from "@/content/projects";
 import type { Project, ProjectSection } from "@/content/projects";
 import StoryView from "./StoryView";
 import Lightbox from "./Lightbox";
+import ResultIcon from "./ResultIcon";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./ReadingView.module.css";
 
@@ -242,10 +243,6 @@ function DesktopReadingView({
     }
   };
 
-  const stageLine = [project.fundingStage, project.employeeRange]
-    .filter(Boolean)
-    .join(" · ");
-
   return (
     <div
       className={styles.overlay}
@@ -291,8 +288,21 @@ function DesktopReadingView({
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
             <div className={styles.studyHeaderText}>
-              <span className={styles.company}>{project.company}</span>
-              {stageLine && <span className={styles.stageLine}>{stageLine}</span>}
+              <div className={styles.metaLine}>
+                <span className={styles.company}>{project.company}</span>
+                {(project.fundingStage || project.employeeRange) && (
+                  <span className={styles.metaDot} aria-hidden="true">·</span>
+                )}
+                {project.fundingStage && (
+                  <span className={styles.stageLine}>{project.fundingStage}</span>
+                )}
+                {project.fundingStage && project.employeeRange && (
+                  <span className={styles.metaDot} aria-hidden="true">·</span>
+                )}
+                {project.employeeRange && (
+                  <span className={styles.stageLine}>{project.employeeRange}</span>
+                )}
+              </div>
               <h1 id="reading-view-title" className={styles.title}>
                 {project.title}
               </h1>
@@ -300,9 +310,12 @@ function DesktopReadingView({
                 <p className={styles.oneLiner}>{project.oneLineDesc}</p>
               )}
             </div>
-            <div className={styles.metricBadge}>
-              <span className={styles.metricNumber}>{project.keyMetric.number}</span>
-              <span className={styles.metricLabel}>{project.keyMetric.label}</span>
+            <div className={styles.resultBlock}>
+              <span className={styles.resultTag}>Key result</span>
+              <div className={styles.resultRow}>
+                <span className={styles.resultNumber}>{project.keyMetric.number}</span>
+                <span className={styles.resultLabel}>{project.keyMetric.label}</span>
+              </div>
             </div>
           </div>
 
@@ -343,11 +356,15 @@ function SectionBlock({ section, project, onLightbox }: SectionBlockProps) {
         <>
           {section.body.length > 0 && (
             <ul className={styles.resultsList}>
-              {section.body.map((r, i) => (
-                <li key={i} className={styles.resultsItem}>
-                  {r}
-                </li>
-              ))}
+              {section.body.map((r, i) => {
+                const icon = section.resultIcons?.[i];
+                return (
+                  <li key={i} className={styles.resultsItem}>
+                    {icon && <ResultIcon kind={icon} className={styles.resultIcon} />}
+                    <span>{r}</span>
+                  </li>
+                );
+              })}
             </ul>
           )}
           {project.beforeAfterTable && (

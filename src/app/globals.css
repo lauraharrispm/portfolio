@@ -5,8 +5,18 @@
   --blush-peach: #FAD5C8;
   --coral: #F07052;
   --coral-dark: #d85c3f;
+  /* Light coral tint for icon-circle fills (see HowIWork's AI-native panel) */
+  --coral-tint: #FBE7DF;
+  /* Warm neutral tint for the engagement table's header row (see HowIWork) */
+  --warm-tint: #F3EDE6;
   --charcoal: #2E2820;
   --charcoal-muted: #6b625a;
+
+  /* Step ramp for the funnel stages' segmented order bar (see Services):
+     light to full coral across four stages, the fourth being --coral itself. */
+  --stage-bar-1: #F9D3C5;
+  --stage-bar-2: #F6B39D;
+  --stage-bar-3: #F39277;
 
   --max-width: 1200px;
   --section-padding-v: 36px;

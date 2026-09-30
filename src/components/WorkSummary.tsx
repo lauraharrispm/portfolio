@@ -116,7 +116,7 @@ export default function WorkSummary() {
   return (
     <section id="work" className={styles.section}>
       <div className="container">
-        <h2 className={styles.heading}>Recent Work</h2>
+        <h2 className={styles.heading}>Recent work</h2>
       </div>
 
       <div className={styles.stack}>
@@ -231,12 +231,17 @@ function Card({ project, onOpen }: CardProps) {
     return () => observer.disconnect();
   }, []);
 
-  const stageLine = [project.fundingStage, project.employeeRange]
-    .filter(Boolean)
-    .join(" · ");
+  // Whole card opens the study; the "See more" button keeps its own
+  // visible affordance and is still the keyboard-operable control, but no
+  // longer needs its own handler since a native click on it bubbles up to
+  // this one.
+  const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
+    const cardEl = (e.currentTarget as HTMLElement).closest(`.${styles.card}`) as HTMLElement | null;
+    onOpen(cardEl?.getBoundingClientRect() ?? null);
+  };
 
   return (
-    <article ref={ref} className={styles.cardInner}>
+    <article ref={ref} className={styles.cardInner} onClick={handleCardClick}>
       {project.cardImage && (
         <div className={styles.imageWrap}>
           <div className={styles.imageClip}>
@@ -251,25 +256,12 @@ function Card({ project, onOpen }: CardProps) {
               />
             </div>
           </div>
-          <div
-            className={`${styles.metricBadge} ${inView ? styles.metricBadgeIn : ""}`}
-            aria-hidden="true"
-          >
-            <span className={styles.metricValue}>{project.keyMetric.number}</span>
-            <span className={styles.metricLabel}>{project.keyMetric.label}</span>
-          </div>
         </div>
       )}
 
       <div className={styles.text}>
         <div className={styles.meta}>
           <span className={styles.company}>{project.company}</span>
-          {stageLine && (
-            <>
-              <span className={styles.metaDot} aria-hidden="true">·</span>
-              <span className={styles.stageLine}>{stageLine}</span>
-            </>
-          )}
           {project.tags.map((tag) => (
             <span className={styles.tag} key={tag}>
               {tag}
@@ -277,24 +269,17 @@ function Card({ project, onOpen }: CardProps) {
           ))}
         </div>
         <h3 className={styles.title}>{project.title}</h3>
-        {/* Visually presented as the badge on the image (above); kept here
-           too, right after the title, so screen readers hear the result in
-           reading order instead of wherever the image happens to sit. */}
-        <p className={styles.metricSr}>
-          {project.keyMetric.number} {project.keyMetric.label}
-        </p>
         <p className={styles.oneLiner}>{project.oneLineDesc}</p>
-        <button
-          className={styles.seeMore}
-          onClick={(e) => {
-            const cardEl = (e.currentTarget as HTMLElement).closest(
-              `.${styles.card}`
-            ) as HTMLElement | null;
-            onOpen(cardEl?.getBoundingClientRect() ?? null);
-          }}
+        <div
+          className={`${styles.resultBlock} ${inView ? styles.resultBlockIn : ""}`}
         >
-          See more →
-        </button>
+          <span className={styles.resultTag}>Key result</span>
+          <div className={styles.resultRow}>
+            <span className={styles.resultNumber}>{project.keyMetric.number}</span>
+            <span className={styles.resultLabel}>{project.keyMetric.label}</span>
+          </div>
+        </div>
+        <button className={styles.seeMore}>See more →</button>
       </div>
     </article>
   );
