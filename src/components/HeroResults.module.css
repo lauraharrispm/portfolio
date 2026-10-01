@@ -171,20 +171,26 @@
    reshuffled one. */
 @media (max-width: 768px) {
   .panel {
-    margin-top: 46px;
+    margin-top: 58px;
     padding: 20px;
   }
 
   .heading {
-    font-size: 1.1875rem;
+    font-size: 1.3125rem;
   }
 
   .photoWrap {
-    top: -28px;
+    top: -40px;
     right: 20px;
-    width: 92px;
-    height: 92px;
-    border-radius: 16px;
+    width: 112px;
+    height: 112px;
+    border-radius: 18px;
+  }
+
+  /* Shifts the logo/result column in from the left edge, to balance
+     against the bigger photo now anchoring the right side. */
+  .list {
+    padding-left: 20px;
   }
 
   .row {

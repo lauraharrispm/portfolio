@@ -24,7 +24,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <span className={styles.name}>Laura Harris</span>
-        <a href="mailto:laura.harris.pm@gmail.com" className={styles.iconLink} aria-label="Email">
+        <a href="mailto:laura@lauraharrispm.com" className={styles.iconLink} aria-label="Email">
           <MailIcon />
         </a>
         <a

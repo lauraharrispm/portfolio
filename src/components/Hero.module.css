@@ -168,8 +168,17 @@
     opacity: 0.5;
   }
 
+  /* Tighter than the 40px shared by every row at the 900px breakpoint:
+     that reads as too much air specifically between the subcopy and the
+     results panel right under it. margin-top on .ctas below adds the
+     removed amount back, so the panel-to-CTAs gap is unchanged. */
+  .layout {
+    row-gap: 24px;
+  }
+
   .ctas {
     flex-direction: column;
+    margin-top: 16px;
   }
 
   .ctaPrimary,

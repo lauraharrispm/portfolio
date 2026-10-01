@@ -42,7 +42,7 @@
 .headerTopRow {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 20px 14px;
   min-height: 52px;
   gap: 12px;
 }
@@ -64,13 +64,17 @@
 
 .backBtn:hover { color: var(--charcoal); }
 
+/* line-height 1.25, not tighter: this serif's descenders/ascenders need
+   more than the font-size itself to avoid getting visually clipped by
+   the line-clamp box's own computed height (seen on "agents"/"phone"
+   style descenders reading as cut off against the meta strip below). */
 .headerTitle {
   flex: 1;
   text-align: center;
   font-family: var(--font-headline);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.25;
   color: var(--charcoal);
   display: -webkit-box;
   -webkit-box-orient: vertical;

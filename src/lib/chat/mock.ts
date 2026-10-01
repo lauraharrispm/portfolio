@@ -194,7 +194,7 @@ const CASES: MockCase[] = [
     test: /are you (a )?real person|pass.*message|tell laura/i,
     payload: {
       answer:
-        "I'm an AI assistant built for Laura's site, not Laura herself, so I can't pass along a message. The fastest way to reach her directly is a 30 minute call, or email at laura.harris.pm@gmail.com.",
+        "I'm an AI assistant built for Laura's site, not Laura herself, so I can't pass along a message. The fastest way to reach her directly is a 30 minute call, or email at laura@lauraharrispm.com.",
       followups: [
         { question: "How do I get in touch?", topic: "contact" },
         { question: "Can I book a call?", topic: "contact" },
@@ -330,7 +330,7 @@ const DEFAULT_PAYLOAD: RespondPayload = {
  */
 const UNKNOWN_PAYLOAD: RespondPayload = {
   answer:
-    "I don't know, but Laura does. The fastest way to ask her is to book a 30-minute call, or email her at laura.harris.pm@gmail.com.",
+    "I don't know, but Laura does. The fastest way to ask her is to book a 30-minute call, or email her at laura@lauraharrispm.com.",
   followups: [
     { question: "What does a project-based engagement include?", topic: "project_based" },
     { question: "How does Laura work with engineers?", topic: "process" },

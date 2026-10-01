@@ -165,7 +165,7 @@ export default function LetsChat() {
 
             <p className={styles.altContact}>
               Rather write? Reach me at{" "}
-              <a href="mailto:laura.harris.pm@gmail.com">laura.harris.pm@gmail.com</a> or on{" "}
+              <a href="mailto:laura@lauraharrispm.com">laura@lauraharrispm.com</a> or on{" "}
               <a
                 href="https://www.linkedin.com/in/laurakayharris/"
                 target="_blank"

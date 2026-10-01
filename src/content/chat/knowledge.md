@@ -162,7 +162,7 @@ These are the current case study titles, in current site order (top to bottom in
 - Pricing isn't published; it depends on scope, and Laura shares it on a call.
 - Current availability: appended below this knowledge base at request time, from `CHAT_AVAILABILITY` in `src/content/chat/config.ts` (the one place to update it).
 - The 30-minute intro call: on the call, the founder shares what they know and what they don't, and in 30 minutes Laura shares how she'd approach it and whether they're a fit. It's booked through the site's "Let's chat" section.
-- Email: laura.harris.pm@gmail.com. LinkedIn: https://www.linkedin.com/in/laurakayharris/
+- Email: laura@lauraharrispm.com. LinkedIn: https://www.linkedin.com/in/laurakayharris/
 - Based in Manhattan (Eastern Time); happy to work from a client's office alongside their team, or join remotely; occasional travel, no more than one week at a time.
 
 ## Never say
