@@ -48,7 +48,7 @@
    what separates it cleanly from the blush panel behind it. */
 .photoWrap {
   position: absolute;
-  top: -68px;
+  top: -43px;
   right: 36px;
   width: 128px;
   height: 128px;
@@ -165,35 +165,26 @@
   }
 }
 
+/* Scaled-down mirror of the desktop layout, not a different design:
+   photo stays top-right, heading stays unindented, same as desktop
+   just smaller, so mobile reads as the same panel instead of a
+   reshuffled one. */
 @media (max-width: 768px) {
   .panel {
-    margin-top: 62px;
+    margin-top: 46px;
     padding: 20px;
   }
 
-  /* Photo moved to the top-left on mobile (was top-right): the title
-     shifts right to clear it instead of sitting underneath it. */
   .heading {
-    font-size: 1.3125rem;
-    padding-left: 124px;
+    font-size: 1.1875rem;
   }
 
   .photoWrap {
-    top: -58px;
-    left: 20px;
-    right: auto;
-    width: 108px;
-    height: 108px;
+    top: -28px;
+    right: 20px;
+    width: 92px;
+    height: 92px;
     border-radius: 16px;
-  }
-
-  /* A visual step-in from the photo above, not a clearance fix (the
-     photo's bottom edge already clears the list vertically). 30%+ was
-     tried and made the logo/result columns too cramped to read on a
-     375px screen, so this settles for a smaller shift that still reads
-     as offset from the photo without truncating the result labels. */
-  .list {
-    padding-left: 44px;
   }
 
   .row {

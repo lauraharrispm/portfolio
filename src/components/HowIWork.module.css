@@ -174,11 +174,17 @@
    the format name and pill, same as the desktop header cells, instead
    of a plain toggle above a separate header-again inside the panel
    (the old .mobileFormatHeader) repeating the name/pill a second time. */
+/* No border-bottom here: the first .mobileRow's own border-top already
+   draws that line right below, so a bottom border here on top of that
+   stacked two 1px lines into one visibly heavier divider than the
+   plain 1px lines between the rows below it. Dropping this one makes
+   every divider in the table a single, consistent line. */
 .tabList {
   display: flex;
   gap: 1px;
   background: rgba(46, 40, 32, 0.14);
   border: 1px solid rgba(46, 40, 32, 0.14);
+  border-bottom: none;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
 }
@@ -236,13 +242,15 @@
 
 /* Padding moved here from .mobileRows, so each row's own border-top
    spans the full card width instead of stopping at the container's
-   inset padding. Same weight as the table's border elsewhere (0.14),
-   so the toggle row and the body rows read as one consistent table. */
+   inset padding. 2px, not 1px: matches the weight the top divider used
+   to have by accident (from .tabList's border-bottom stacking with this
+   one), now applied deliberately and consistently to every divider,
+   including the one right below the toggle row. */
 .mobileRow {
   display: flex;
   gap: 16px;
   padding: 14px 20px;
-  border-top: 1px solid rgba(46, 40, 32, 0.14);
+  border-top: 2px solid rgba(46, 40, 32, 0.14);
 }
 
 .mobileRowLabel {

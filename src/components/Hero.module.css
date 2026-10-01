@@ -55,8 +55,14 @@
   align-self: center;
 }
 
+/* align-self:start, not the grid default (stretch): the "ctas" row is
+   shorter than the "panel" area spanning both rows beside it, and
+   without this the row itself stretches to fill that leftover height,
+   which then stretches the flex children (the buttons) to match,
+   making them much taller than their own padding calls for. */
 .ctas {
   grid-area: ctas;
+  align-self: start;
 }
 
 .headline {
@@ -146,8 +152,15 @@
 }
 
 @media (max-width: 768px) {
+  /* The 80px base padding-bottom exists for the results panel's shadow
+     to fade out before the next section (see the base .hero rule) — but
+     on mobile the CTAs are the last element below the panel now, not
+     the panel itself, so that extra room isn't needed here. Matching
+     the shared mobile section padding instead keeps the gap after the
+     CTAs the same as the gap above every other section heading. */
   .hero {
     padding-top: calc(var(--nav-height) + 40px);
+    padding-bottom: var(--section-padding-v-mobile);
   }
 
   .bgMark {

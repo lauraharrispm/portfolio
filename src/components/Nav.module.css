@@ -143,9 +143,13 @@
 }
 
 /* ── Mobile drawer ── */
+/* Card-style shadow at the bottom edge, same token as the site's other
+   floating/card elements (AskChat's input, LetsChat's form), so the
+   popout reads as one consistent object with the rest of the page. */
 .drawer {
   background: var(--warm-white);
   padding: 20px 0 28px;
+  box-shadow: var(--card-shadow);
 }
 
 .drawer ul {
@@ -154,6 +158,10 @@
   flex-direction: column;
   gap: 0;
   padding: 0 20px;
+}
+
+.drawer li {
+  text-align: right;
 }
 
 .drawer li a {
@@ -165,6 +173,11 @@
   color: var(--charcoal);
 }
 
+/* justify-content:flex-end, not center: the CTA button is inline-flex
+   (shrink-to-fit), so .drawer li's own text-align:right is what
+   actually positions the button at the right edge like the plain nav
+   links above it; this only keeps its own label centered within its
+   own padding. */
 .drawer li a.ctaButton {
   justify-content: center;
   padding: 14px 20px;
