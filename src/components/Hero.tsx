@@ -15,17 +15,6 @@ export default function Hero() {
               <br />
               without a full-time&nbsp;hire.
             </h1>
-            <div className={styles.photoWrap}>
-              <video
-                src="/headshot.mp4"
-                className={styles.photoImg}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label="Laura Harris"
-              />
-            </div>
             <p className={styles.subhead}>
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at
               consumer startups across marketplaces, healthcare, and DTC ecommerce, from

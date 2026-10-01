@@ -191,7 +191,7 @@
   text-align: center;
   gap: 8px;
   min-height: 44px;
-  padding: 16px 20px;
+  padding: 16px 12px;
   background: var(--warm-white);
   transition: background-color var(--transition);
 }
@@ -203,7 +203,7 @@
 
 .tabName {
   font-family: var(--font-headline);
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--charcoal-muted);
   letter-spacing: -0.01em;
@@ -260,10 +260,10 @@
 }
 
 /* ─── Part 2: AI-native approach ──────────────────────────────────── */
-/* Same gap as the section's own top/bottom padding, instead of its own
-   larger, unrelated value: one consistent spacing rhythm throughout. */
+/* Matches .toolsStripSlot's own margin-top below: same gap above both
+   "Part-time no longer..." and "Tools in my stack". */
 .part2 {
-  margin-top: var(--section-padding-v);
+  margin-top: 56px;
 }
 
 /* Statement stays on one line at 1024px+ (see the min-width query below);
@@ -304,7 +304,7 @@
    equal-width columns. */
 .toolsStripSlot {
   max-width: 680px;
-  margin-top: 40px;
+  margin-top: 56px;
 }
 
 .cta {
@@ -395,8 +395,14 @@
     padding: var(--section-padding-v-mobile) 0;
   }
 
+  /* Same gap above "Part-time no longer..." and "Tools in my stack" on
+     mobile too (see .toolsStripSlot's own mobile override below). */
   .part2 {
-    margin-top: var(--section-padding-v-mobile);
+    margin-top: 32px;
+  }
+
+  .toolsStripSlot {
+    margin-top: 32px;
   }
 
   /* Full-width, matching the hero's own CTAs at this breakpoint. */

@@ -5,7 +5,7 @@
    otherwise. */
 .panel {
   position: relative;
-  margin-top: 60px;
+  margin-top: 72px;
   background: var(--blush-peach);
   border-radius: 18px;
   box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
@@ -42,17 +42,17 @@
 
 /* Pinned to the top-right of the panel's own content edge (right:36px
    matches .panel's horizontal padding), lifted so a little more than
-   half of it sits above the panel's top edge. The cream ring plus a
-   very faint outer outline (box-shadow, not border, so it doesn't add
-   to the element's own layout size) is what separates it cleanly from
-   the blush panel behind it. */
+   half of it sits above the panel's top edge. Rounded square, not a
+   circle. The cream ring plus a very faint outer outline (box-shadow,
+   not border, so it doesn't add to the element's own layout size) is
+   what separates it cleanly from the blush panel behind it. */
 .photoWrap {
   position: absolute;
-  top: -58px;
+  top: -68px;
   right: 36px;
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
+  width: 128px;
+  height: 128px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5px rgba(46, 40, 32, 0.12);
 }
@@ -167,7 +167,7 @@
 
 @media (max-width: 768px) {
   .panel {
-    margin-top: 52px;
+    margin-top: 62px;
     padding: 20px;
   }
 
@@ -176,10 +176,11 @@
   }
 
   .photoWrap {
-    top: -50px;
+    top: -58px;
     right: 20px;
-    width: 92px;
-    height: 92px;
+    width: 108px;
+    height: 108px;
+    border-radius: 16px;
   }
 
   .row {

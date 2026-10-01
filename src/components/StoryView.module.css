@@ -36,11 +36,15 @@
   padding-bottom: 10px;
 }
 
+/* No fixed height here anymore: the title's bigger font (see
+   .headerTitle) needs more room than the old 52px fixed row, so this
+   grows with it instead, which pushes the header's own border-bottom
+   (and everything below it) down to match. */
 .headerTopRow {
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  height: 52px;
+  padding: 10px 20px;
+  min-height: 52px;
   gap: 12px;
 }
 
@@ -65,7 +69,7 @@
   flex: 1;
   text-align: center;
   font-family: var(--font-headline);
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 400;
   color: var(--charcoal);
   white-space: nowrap;

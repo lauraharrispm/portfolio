@@ -334,10 +334,13 @@
    text-align:center then centers the text within that same width,
    directly under the input instead of drifting toward the page's own
    center. */
+/* Left-aligned on desktop (the box itself is already flush with the
+   input above it, see the comment on .emptyState); centered on mobile
+   only, see the max-width:768px override below. */
 .disclaimer {
   font-size: 0.75rem;
   color: var(--charcoal-muted);
-  text-align: center;
+  text-align: left;
   width: 100%;
   max-width: 720px;
   margin-top: 12px;
@@ -366,6 +369,10 @@
 
   .bubbleUser {
     max-width: 90%;
+  }
+
+  .disclaimer {
+    text-align: center;
   }
 
   /* Minimum 44px tap targets on touch. */

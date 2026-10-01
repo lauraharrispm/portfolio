@@ -31,7 +31,7 @@ const TOOLS: Tool[] = [
 export default function ToolsStrip() {
   return (
     <div className={styles.inner}>
-      <h3 className={styles.subhead}>Tools in my stack</h3>
+      <h3 className={styles.subhead}>Tools in my stack:</h3>
       <ul className={styles.row}>
         {TOOLS.map((tool) => (
           <li

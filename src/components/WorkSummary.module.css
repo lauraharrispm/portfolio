@@ -306,6 +306,14 @@
     padding-bottom: 20px;
   }
 
+  /* Full width, matching the card's own content width (the .text
+     column it sits in), instead of shrink-wrapped to the label text. */
+  .seeMore {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+  }
+
   /* Number on its own line, label below it, instead of inline: at card
      width on a phone, a long label inline with the number was wrapping
      messily (its second line not aligned under its first). */
