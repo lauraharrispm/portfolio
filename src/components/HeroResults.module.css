@@ -1,4 +1,11 @@
+/* position:relative so .photoWrap (absolute) positions against this
+   panel's own box, not some further-out ancestor. The added margin-top
+   is clearance for the photo lifted above this panel's top edge (see
+   .photoWrap): the panel's own position/size stay exactly as they were
+   otherwise. */
 .panel {
+  position: relative;
+  margin-top: 60px;
   background: var(--blush-peach);
   border-radius: 18px;
   box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
@@ -14,20 +21,47 @@
   transform: translateY(0);
 }
 
-.headingRow {
-  margin-bottom: 18px;
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
-/* All-caps eyebrow treatment (matches the site's other small uppercase
-   labels, e.g. HowIWork's table row labels): charcoal on blush measures
-   well over 4.5:1. */
+/* Serif display, same family as the hero headline: sentence case,
+   breaking onto two lines after the comma (see the <br/> in the JSX).
+   Left-aligned with the logo column below it (the panel's own left
+   padding already does that, no extra alignment needed here). */
 .heading {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 1.4375rem;
+  line-height: 1.15;
   color: var(--charcoal);
+}
+
+/* Pinned to the top-right of the panel's own content edge (right:36px
+   matches .panel's horizontal padding), lifted so a little more than
+   half of it sits above the panel's top edge. The cream ring plus a
+   very faint outer outline (box-shadow, not border, so it doesn't add
+   to the element's own layout size) is what separates it cleanly from
+   the blush panel behind it. */
+.photoWrap {
+  position: absolute;
+  top: -58px;
+  right: 36px;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5px rgba(46, 40, 32, 0.12);
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .list {
@@ -133,11 +167,19 @@
 
 @media (max-width: 768px) {
   .panel {
+    margin-top: 52px;
     padding: 20px;
   }
 
   .heading {
-    font-size: 0.6875rem;
+    font-size: 1.3125rem;
+  }
+
+  .photoWrap {
+    top: -50px;
+    right: 20px;
+    width: 92px;
+    height: 92px;
   }
 
   .row {

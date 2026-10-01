@@ -38,7 +38,7 @@ export default function Footer() {
         </a>
       </div>
       <div className={`container ${styles.bottom}`}>
-        <span>© 2026 Laura Harris</span>
+        <span>© 2026 Laura Harris Consulting</span>
       </div>
     </footer>
   );
