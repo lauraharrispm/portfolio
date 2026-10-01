@@ -171,60 +171,61 @@
   display: none;
 }
 
+/* The tabs themselves are the table's header row now: each one shows
+   the format name and pill, same as the desktop header cells, instead
+   of a plain toggle above a separate header-again inside the panel
+   (the old .mobileFormatHeader) repeating the name/pill a second time. */
 .tabList {
   display: flex;
-  gap: 4px;
-  background: #efe8e1;
-  border-radius: 999px;
-  padding: 4px;
-  margin-bottom: 24px;
+  gap: 1px;
+  background: rgba(46, 40, 32, 0.14);
+  border: 1px solid rgba(46, 40, 32, 0.14);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
 }
 
 .tab {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   min-height: 44px;
-  border-radius: 999px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--charcoal-muted);
-  background: transparent;
-  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+  padding: 16px 20px;
+  background: var(--warm-white);
+  transition: background-color var(--transition);
 }
 
 .tab:focus-visible {
   outline: 2px solid var(--coral);
-  outline-offset: 2px;
+  outline-offset: -2px;
+}
+
+.tabName {
+  font-family: var(--font-headline);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--charcoal-muted);
+  letter-spacing: -0.01em;
+  transition: color var(--transition);
 }
 
 .tabActive {
-  background: var(--white);
+  background: var(--warm-tint);
+}
+
+.tabActive .tabName {
   color: var(--charcoal);
-  font-weight: 600;
-  box-shadow: 0 1px 4px rgba(46, 40, 32, 0.15);
 }
 
 /* Matches the desktop table's container treatment: bordered, rounded,
-   tinted header, where it fits naturally in the mobile toggle panel. */
+   flowing directly from .tabList above with no gap, so the two read as
+   one header-plus-body table instead of a separate toggle control. */
 .tabPanel {
   border: 1px solid rgba(46, 40, 32, 0.14);
-  border-radius: 16px;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
   overflow: hidden;
-}
-
-.mobileFormatHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--warm-tint);
-  padding: 16px 20px;
-}
-
-.mobileFormatName {
-  font-family: var(--font-headline);
-  font-size: 1.625rem;
-  font-weight: 400;
-  color: var(--charcoal);
-  letter-spacing: -0.01em;
 }
 
 .mobileRows {
@@ -391,6 +392,12 @@
 
   .part2 {
     margin-top: 48px;
+  }
+
+  /* Full-width, matching the hero's own CTAs at this breakpoint. */
+  .cta {
+    width: 100%;
+    justify-content: center;
   }
 
   .aiIconCircle {

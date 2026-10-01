@@ -295,17 +295,14 @@
   }
 }
 
-/* ─── Below this breakpoint, drop the sticky stack: cards are already
-   full-height/narrow here, with less room for a peek effect, so they
-   just flow normally with a fade/scale-in as each arrives. ──────── */
+/* Same sticky-stack peek effect at every width now, including mobile
+   (see the scroll-linked scale/dim recede in WorkSummary.tsx, no longer
+   gated to desktop either). A smaller peek and bottom padding than
+   desktop's, since mobile cards run taller relative to viewport height
+   and don't need as much of the previous card showing to read the
+   stacking. */
 @media (max-width: 768px) {
   .stackItem {
-    position: static;
-    padding-bottom: 0;
-    margin-bottom: 28px;
-  }
-
-  .stackItem:last-child {
-    margin-bottom: 0;
+    padding-bottom: 20px;
   }
 }

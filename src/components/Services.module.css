@@ -248,11 +248,17 @@
     height: calc(100% - 10px + 8px);
   }
 
-  /* No trailing fade on the vertical mobile layout: there's no "edge"
-     for a horizontal gradient to run to, and a vertical list reads fine
-     ending flush at its last item. */
+  /* Same idea as the desktop trailing fade, rotated: past Retention, the
+     line runs on a bit further down and fades out, instead of just
+     stopping flush at the last marker. */
   .stage:last-child::after {
-    display: none;
+    display: block;
+    top: 10px;
+    left: 4.5px;
+    right: auto;
+    width: 1px;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(46, 40, 32, 0.18), rgba(46, 40, 32, 0));
   }
 
   .stageContent {

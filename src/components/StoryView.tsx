@@ -312,7 +312,7 @@ export default function StoryView({
       {/* ── Fixed header ── */}
       <div className={styles.header}>
         <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
-          Close ✕
+          ✕
         </button>
         <span className={styles.headerTitle}>{project.title}</span>
         <span className={styles.headerSpacer} aria-hidden="true" />
@@ -332,16 +332,6 @@ export default function StoryView({
           {project.employeeRange}
         </div>
       )}
-
-      {/* ── Result: same "Key result" tag treatment as the summary card
-         and the desktop reading view header ── */}
-      <div className={styles.resultBlock}>
-        <span className={styles.resultTag}>Key result</span>
-        <div className={styles.resultRow}>
-          <span className={styles.resultNumber}>{project.keyMetric.number}</span>
-          <span className={styles.resultLabel}>{project.keyMetric.label}</span>
-        </div>
-      </div>
 
       {/* ── Progress pips ── */}
       <div className={styles.pips} aria-hidden="true">

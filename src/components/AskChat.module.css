@@ -18,19 +18,26 @@
 /* ─── Empty state ──────────────────────────────────────────────────── */
 /* Left-aligned with the rest of the page content; the input row itself
    is capped at ~720px (see .emptyForm), but this wrapper isn't, so the
-   disclaimer/chips below don't get an arbitrary extra right margin. */
+   disclaimer/chips below don't get an arbitrary extra right margin.
+   No flex gap here: that applied the same 28px between every child,
+   including the form and the disclaimer below it, so the empty state
+   opened with much more space above the disclaimer than the
+   conversation state has once you're actually chatting (that one relies
+   on .disclaimer's own 12px margin-top, with no extra gap from
+   .conversation). Margins on .emptyHeader/.emptyForm below now match
+   that same rhythm instead of the uniform flex gap. */
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 28px;
 }
 
 .emptyHeader {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 28px;
 }
 
 .headshotWrap {

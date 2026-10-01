@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroResults from "./HeroResults";
@@ -10,10 +11,20 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
+            <div className={styles.photoWrap}>
+              <Image
+                src="/headshot.jpg"
+                alt="Laura Harris"
+                fill
+                priority
+                className={styles.photoImg}
+                sizes="120px"
+              />
+            </div>
             <h1 className={styles.headline}>
               Product Lead impact
               <br />
-              without a full-time hire.
+              without a full-time&nbsp;hire.
             </h1>
             <p className={styles.subhead}>
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at

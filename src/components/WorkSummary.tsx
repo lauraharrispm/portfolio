@@ -48,18 +48,16 @@ export default function WorkSummary() {
   // current one, ease the current one's scale/opacity down slightly for
   // depth. Scroll-linked, so it's a rAF-throttled passive listener rather
   // than IntersectionObserver; it never touches scroll position itself,
-  // only reads it. Skipped under reduced motion and below the breakpoint
-  // where cards stop stacking (see .stackItem's mobile override). ──
+  // only reads it. Skipped only under reduced motion; the stack (and
+  // this recede effect) now runs at every width, including mobile. ──
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const stackQuery = window.matchMedia("(min-width: 769px)");
     if (reduceMotion) return;
 
     let raf = 0;
 
     const update = () => {
       raf = 0;
-      if (!stackQuery.matches) return;
       const els = cardRefs.current;
       for (let i = 0; i < els.length - 1; i++) {
         const cur = els[i];

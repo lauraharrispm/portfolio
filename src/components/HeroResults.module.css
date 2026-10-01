@@ -37,10 +37,7 @@
 .row {
   display: flex;
   align-items: center;
-  /* Logo slot stays fixed width; this extra gap (vs. the original 10px)
-     shifts the results column right ~20% of the slot width, without
-     widening the panel itself. */
-  gap: 34px;
+  gap: 20px;
   padding: 16px 0;
 }
 
@@ -82,7 +79,12 @@
     drop-shadow(0 -0.5px 0 currentColor);
 }
 
+/* flex:1 (not content-sized) so this is exactly the remaining row width
+   instead of being free to run wider than the panel and spill past its
+   rounded edge. The label stays nowrap (no second line), with ellipsis
+   as a last resort if a future label is ever too long for the row. */
 .result {
+  flex: 1;
   display: flex;
   align-items: baseline;
   gap: 6px;
@@ -111,10 +113,14 @@
 }
 
 .label {
+  flex: 1;
+  min-width: 0;
   font-size: 0.8125rem;
   color: var(--charcoal-muted);
   line-height: 1.3;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,8 +132,16 @@
 }
 
 @media (max-width: 768px) {
+  .panel {
+    padding: 20px;
+  }
+
   .heading {
     font-size: 0.6875rem;
+  }
+
+  .row {
+    gap: 10px;
   }
 
   .number {
@@ -138,8 +152,13 @@
     font-size: 0.8125rem;
   }
 
+  /* 136px, not narrower: GlossGenius's wordmark has its own fixed
+     136px max-width set inline (see HeroResults.tsx's maxWidth prop),
+     which wins over anything this stylesheet says, so a narrower slot
+     here just let that logo overflow/clip instead of actually shrinking
+     it. */
   .logoSlot {
-    width: 128px;
+    width: 136px;
   }
 
   .logo {

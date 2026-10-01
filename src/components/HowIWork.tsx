@@ -201,7 +201,8 @@ function EngagementToggle() {
               onClick={() => select(format.key)}
               onKeyDown={onKeyDown}
             >
-              {format.name}
+              <span className={styles.tabName}>{format.name}</span>
+              <span className={styles.pill}>{format.pill}</span>
             </button>
           );
         })}
@@ -213,10 +214,6 @@ function EngagementToggle() {
         aria-labelledby={`tab-${activeFormat.key}`}
         className={styles.tabPanel}
       >
-        <div className={styles.mobileFormatHeader}>
-          <span className={styles.mobileFormatName}>{activeFormat.name}</span>
-          <span className={styles.pill}>{activeFormat.pill}</span>
-        </div>
         <div className={styles.mobileRows}>
           {COMPARISON_ROWS.map((row) => (
             <div className={styles.mobileRow} key={row.label}>
@@ -243,7 +240,7 @@ export default function HowIWork() {
 
         {/* ── Part 1: Engagement formats ──────────────────────────── */}
         <h3 className={styles.partStatement}>
-          Support based on what you need right now.
+          Support based on what you need right&nbsp;now.
         </h3>
 
         <div
@@ -301,7 +298,7 @@ export default function HowIWork() {
         {/* ── Part 2: AI-native approach ──────────────────────────── */}
         <div className={styles.part2}>
           <h3 className={styles.partStatement}>
-            Part-time no longer means partial impact.
+            Part-time no longer means partial&nbsp;impact.
           </h3>
 
           <div
