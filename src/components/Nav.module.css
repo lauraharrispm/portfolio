@@ -158,6 +158,7 @@
 
 .drawer li a {
   display: block;
+  text-align: right;
   padding: 14px 0;
   font-size: 1.1rem;
   font-weight: 500;

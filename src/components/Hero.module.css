@@ -29,28 +29,34 @@
   white-space: nowrap;
 }
 
-/* ─── Two-column layout: text left, results panel right ──────────── */
+/* ─── Grid, not flex: the CTAs need to sit in the same left column as
+   the text on desktop (second row, under the subhead) while the results
+   panel sits beside both, spanning the full height. A flex row can't
+   place a third sibling into an existing column like that; a flex
+   column (mobile) can't easily reorder across differently-grouped
+   siblings either. Named grid areas handle both without restructuring
+   the DOM per breakpoint. ──────────────────────────────────────────── */
 .layout {
   position: relative;
-  display: flex;
-  align-items: center;
-  /* .content caps out at max-width: 640px below its flex: 1 share, which
-     used to leave leftover space stranded after .panelCol instead of
-     between the columns, so the results panel sat short of the
-     container's true right edge instead of flush with it. */
-  justify-content: space-between;
-  gap: 64px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  grid-template-areas: "content panel" "ctas panel";
+  column-gap: 64px;
 }
 
 .content {
-  flex: 1;
+  grid-area: content;
   min-width: 0;
   max-width: 640px;
 }
 
 .panelCol {
-  flex-shrink: 0;
-  width: 400px;
+  grid-area: panel;
+  align-self: center;
+}
+
+.ctas {
+  grid-area: ctas;
 }
 
 .headline {
@@ -118,13 +124,14 @@
   color: var(--coral);
 }
 
-/* ─── Tablet: panel gets cramped beside the text, so stack it below
-   the CTAs instead of squeezing the two columns ────────────────── */
+/* ─── Tablet and below: panel gets cramped beside the text, so stack
+   everything into one column instead of squeezing two. Content, then
+   the results panel, then the CTAs last, per request. ──────────────── */
 @media (max-width: 900px) {
   .layout {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content" "panel" "ctas";
+    row-gap: 40px;
   }
 
   .content {
@@ -133,6 +140,7 @@
   }
 
   .panelCol {
+    align-self: auto;
     width: 100%;
   }
 }

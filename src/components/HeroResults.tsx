@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "./HeroResults.module.css";
 
 interface ResultDef {
@@ -102,21 +103,20 @@ export default function HeroResults() {
 
   return (
     <div className={`${styles.panel} ${entered ? styles.panelIn : ""}`}>
-      <div className={styles.headingRow}>
+      <div className={styles.headerRow}>
         <h3 className={styles.heading}>
           Product outcomes,
           <br />
           led with my teams
         </h3>
         <div className={styles.photoWrap}>
-          <video
-            src="/headshot.mp4"
+          <Image
+            src="/headshot.jpg"
+            alt="Laura Harris"
+            width={128}
+            height={128}
+            priority
             className={styles.photoImg}
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Laura Harris"
           />
         </div>
       </div>

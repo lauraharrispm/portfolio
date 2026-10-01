@@ -21,36 +21,37 @@ export default function Hero() {
               seed to Series C. Now I help founders solve the right problems, unblock engineering,
               and ship faster. NYC-based.
             </p>
-            <div className={styles.ctas}>
-              <a
-                href="#work"
-                className={styles.ctaSecondary}
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_label: "see_my_work",
-                    cta_location: "hero",
-                  })
-                }
-              >
-                See my work
-              </a>
-              <a
-                href="#book"
-                className={styles.ctaPrimary}
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_label: "lets_chat",
-                    cta_location: "hero",
-                  })
-                }
-              >
-                Let&apos;s chat
-              </a>
-            </div>
           </div>
 
           <div className={styles.panelCol}>
             <HeroResults />
+          </div>
+
+          <div className={styles.ctas}>
+            <a
+              href="#work"
+              className={styles.ctaSecondary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "see_my_work",
+                  cta_location: "hero",
+                })
+              }
+            >
+              See my work
+            </a>
+            <a
+              href="#book"
+              className={styles.ctaPrimary}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_label: "lets_chat",
+                  cta_location: "hero",
+                })
+              }
+            >
+              Let&apos;s chat
+            </a>
           </div>
         </div>
       </div>

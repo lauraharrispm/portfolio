@@ -171,16 +171,29 @@
     padding: 20px;
   }
 
+  /* Photo moved to the top-left on mobile (was top-right): the title
+     shifts right to clear it instead of sitting underneath it. */
   .heading {
     font-size: 1.3125rem;
+    padding-left: 124px;
   }
 
   .photoWrap {
     top: -58px;
-    right: 20px;
+    left: 20px;
+    right: auto;
     width: 108px;
     height: 108px;
     border-radius: 16px;
+  }
+
+  /* A visual step-in from the photo above, not a clearance fix (the
+     photo's bottom edge already clears the list vertically). 30%+ was
+     tried and made the logo/result columns too cramped to read on a
+     375px screen, so this settles for a smaller shift that still reads
+     as offset from the photo without truncating the result labels. */
+  .list {
+    padding-left: 44px;
   }
 
   .row {

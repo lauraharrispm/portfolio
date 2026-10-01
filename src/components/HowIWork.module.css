@@ -236,13 +236,13 @@
 
 /* Padding moved here from .mobileRows, so each row's own border-top
    spans the full card width instead of stopping at the container's
-   inset padding. Lighter than the table's own border elsewhere (0.14 ->
-   0.08): these are internal row dividers, not the card's outer edge. */
+   inset padding. Same weight as the table's border elsewhere (0.14),
+   so the toggle row and the body rows read as one consistent table. */
 .mobileRow {
   display: flex;
   gap: 16px;
   padding: 14px 20px;
-  border-top: 1px solid rgba(46, 40, 32, 0.08);
+  border-top: 1px solid rgba(46, 40, 32, 0.14);
 }
 
 .mobileRowLabel {
