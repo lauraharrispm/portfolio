@@ -3,13 +3,18 @@
    is clearance for the photo lifted above this panel's top edge (see
    .photoWrap): the panel's own position/size stay exactly as they were
    otherwise. */
+/* Bottom padding trimmed to 8px (was 32, matching the top/sides): on
+   desktop this is what brings the panel's own bottom edge level with
+   the hero CTAs beside it (see .row:last-child below for the other
+   half of that trim), without touching anything above it in the
+   panel. */
 .panel {
   position: relative;
   margin-top: 72px;
   background: var(--blush-peach);
   border-radius: 18px;
   box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
-  padding: 32px 36px;
+  padding: 32px 36px 0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
@@ -73,6 +78,15 @@
   align-items: center;
   gap: 20px;
   padding: 16px 0;
+}
+
+/* The other half of the bottom trim described on .panel above: removes
+   the last row's own bottom padding and trims its top padding too,
+   since .panel's reduced padding alone isn't enough on its own to
+   bring the box level with the CTAs beside it. */
+.row:last-child {
+  padding-top: 5px;
+  padding-bottom: 0;
 }
 
 .row:not(:first-child) {

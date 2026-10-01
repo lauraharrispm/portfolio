@@ -110,12 +110,18 @@ export default function HeroResults() {
           led with my teams
         </h3>
         <div className={styles.photoWrap}>
+          {/* Intrinsic size well above the ~128px/112px the CSS actually
+             displays this at (.photoWrap/.photoImg scale it to fit): next/image
+             otherwise generates a srcset capped near the requested size, which
+             reads as pixelated under zoom even though the source file itself
+             is high-res. */}
           <Image
             src="/headshot.jpg"
             alt="Laura Harris"
-            width={128}
-            height={128}
-            priority
+            width={512}
+            height={512}
+            quality={90}
+            preload
             className={styles.photoImg}
           />
         </div>

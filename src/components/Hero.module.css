@@ -50,9 +50,16 @@
   max-width: 640px;
 }
 
+/* align-self:start, not center: with the panel's own height now
+   shorter than the content+gap+CTAs column beside it (see
+   HeroResults.module.css's trimmed bottom padding), centering would
+   split that extra space evenly above and below the panel, nudging
+   its top down along with its bottom. Anchoring to start keeps the
+   top exactly where it was and lets the bottom trim be the only
+   thing that moves, so it lines up with the CTAs below. */
 .panelCol {
   grid-area: panel;
-  align-self: center;
+  align-self: start;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is
@@ -169,16 +176,22 @@
   }
 
   /* Tighter than the 40px shared by every row at the 900px breakpoint:
-     that reads as too much air specifically between the subcopy and the
-     results panel right under it. margin-top on .ctas below adds the
-     removed amount back, so the panel-to-CTAs gap is unchanged. */
+     that read as too much air specifically between the subcopy and the
+     results panel right under it. Paired with .subhead's own smaller
+     margin-bottom below, this is a real cut, not a cosmetic one.
+     margin-top on .ctas restores the removed amount, so the
+     panel-to-CTAs gap stays what it was. */
   .layout {
-    row-gap: 24px;
+    row-gap: 8px;
+  }
+
+  .subhead {
+    margin-bottom: 16px;
   }
 
   .ctas {
     flex-direction: column;
-    margin-top: 16px;
+    margin-top: 32px;
   }
 
   .ctaPrimary,
