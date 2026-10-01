@@ -17,7 +17,7 @@ const STAGES: FunnelStage[] = [
   },
   {
     category: "Activation",
-    body: "Help new customers reach value quickly and understand what's next.",
+    body: "Help new customers reach value quickly and commit.",
     href: "#work-payments-onboarding",
   },
   {

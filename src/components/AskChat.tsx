@@ -290,7 +290,12 @@ export default function AskChat() {
       <div className="container">
         {phase === "empty" ? (
           <div className={styles.emptyState}>
-            <h2 className={styles.heading}>Ask my AI anything</h2>
+            <div className={styles.emptyHeader}>
+              <div className={styles.headshotWrap}>
+                <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="56px" />
+              </div>
+              <h2 className={styles.heading}>Ask my AI anything</h2>
+            </div>
             <form onSubmit={handleSubmit} className={styles.emptyForm}>
               <label htmlFor={inputId} className={styles.srOnly}>
                 Ask a question about Laura&apos;s work

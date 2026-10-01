@@ -78,9 +78,7 @@
    each stage's marker to the next one's, spanning the rest of this
    stage's own (fluid) column width plus the grid's column-gap, minus
    the marker's own width, so it reaches exactly to the next marker
-   regardless of viewport width. None is drawn after the last stage, so
-   the line ends right at the Retention marker instead of running past
-   it or needing an arrowhead. */
+   regardless of viewport width. */
 .stage:not(:last-child)::after {
   content: "";
   position: absolute;
@@ -91,6 +89,22 @@
   width: calc(100% - 10px + 12px);
   height: 1px;
   background: rgba(46, 40, 32, 0.18);
+}
+
+/* Past Retention, the line runs to the edge of its own column (which is
+   the row's right edge, since this is the last column) instead of just
+   stopping at the dot: a flush dead stop read as an error, like the line
+   forgot to finish. Fading it out instead reads as "the funnel keeps
+   going" (fitting, since retention's own payoff is referrals back into
+   acquisition) rather than a hard, arbitrary cutoff. */
+.stage:last-child::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(46, 40, 32, 0.18), rgba(46, 40, 32, 0));
 }
 
 .stageContent {
@@ -232,6 +246,13 @@
     left: 4.5px;
     width: 1px;
     height: calc(100% - 10px + 8px);
+  }
+
+  /* No trailing fade on the vertical mobile layout: there's no "edge"
+     for a horizontal gradient to run to, and a vertical list reads fine
+     ending flush at its last item. */
+  .stage:last-child::after {
+    display: none;
   }
 
   .stageContent {

@@ -27,6 +27,21 @@
   gap: 28px;
 }
 
+.emptyHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headshotWrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 .headshotWrapSmall {
   position: relative;
   width: 32px;
@@ -339,7 +354,10 @@
 .disclaimer {
   font-size: 0.75rem;
   color: var(--charcoal-muted);
-  text-align: left;
+  text-align: center;
+  align-self: center;
+  width: 100%;
+  max-width: 720px;
   margin-top: 12px;
 }
 

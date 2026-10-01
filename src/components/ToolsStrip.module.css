@@ -1,17 +1,45 @@
-/* Deliberately not its own section: no heading, no card, no shadow, no
-   background or container of its own, since it now sits inline under
-   the "leave the team stronger" point, inside HowIWork's own container
-   and background (see .toolsStripSlot in HowIWork.module.css). */
+/* Deliberately not its own section: no card, no shadow, no background or
+   container of its own, since it still sits inline under the "leave the
+   team stronger" point, inside HowIWork's own container and background
+   (see .toolsStripSlot in HowIWork.module.css). */
 .inner {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.label {
-  flex-shrink: 0;
-  font-size: 0.8125rem;
+/* Same treatment as HowIWork's own part statements (e.g. "Part-time no
+   longer means partial impact."): an italic, lighter-weight serif line,
+   smaller than the section heading but still in the brand display font,
+   not a second small-caps label competing with the group labels below. */
+.subhead {
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: clamp(1.625rem, 2.8vw, 2.0625rem);
+  font-weight: 400;
+  color: var(--charcoal-muted);
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+/* Three categories in one row on desktop; each takes an equal share so
+   the icon rows underneath stay aligned regardless of how many tools are
+   in a given group. */
+.groups {
+  display: flex;
+  gap: 32px;
+}
+
+.group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.groupLabel {
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -21,8 +49,8 @@
 .row {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
+  flex-wrap: nowrap;
+  gap: 18px;
   list-style: none;
 }
 
@@ -88,10 +116,16 @@
 
 @media (max-width: 768px) {
   .inner {
-    gap: 12px;
+    gap: 16px;
+  }
+
+  .groups {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .row {
+    flex-wrap: wrap;
     gap: 16px;
   }
 }
