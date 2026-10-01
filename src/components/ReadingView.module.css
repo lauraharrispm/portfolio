@@ -112,23 +112,10 @@
 }
 
 /* ─── Full study header before Problem ─────────────────────────── */
-/* Top-aligned, not centered: centering let the "Key result" block's
-   vertical position drift depending on how tall each project's meta
-   line/description happened to be, so it sat in a different spot from
-   one case study to the next. Top alignment keeps it in the same place
-   next to the company line every time. */
 .studyHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
   padding: 32px 0;
   border-bottom: 1px solid rgba(46, 40, 32, 0.1);
   margin-bottom: 8px;
-}
-
-.studyHeaderText {
-  flex: 1;
-  min-width: 0;
 }
 
 .metaLine {
@@ -174,18 +161,18 @@
   max-width: 520px;
 }
 
-/* Same "Key result" tag treatment as the summary card (see
-   WorkSummary.module.css), no filled background. A fixed width here
-   (not the summary card's own fit-content, which works fine stacked in
-   a column but not side by side with a variable-width sibling): without
-   it, a short label ("4x revenue growth") shrink-wraps narrow and its
-   left edge drifts toward the far right of the row, while a long label
-   stretches wide and wraps to two lines, so this block landed in a
-   different spot and shape on every project. A constant width keeps its
-   position and wrap behavior identical across all of them. */
+/* Exactly the summary card's own "Key result" treatment (see
+   WorkSummary.module.css's .resultBlock/.resultTag/.resultRow/
+   .resultNumber/.resultLabel): same markup, same values, just without
+   the card's scroll-triggered fade-in, since this panel opens directly
+   rather than being scrolled into view. Stacked under the one-liner now
+   instead of sitting beside it, so it no longer needs a fixed width to
+   stay in a consistent spot: the previous drift came from being a
+   variable-width flex sibling in a row, which this isn't anymore. */
 .resultBlock {
-  flex-shrink: 0;
-  width: 220px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 16px;
 }
 
 .resultTag {
@@ -217,9 +204,9 @@
 }
 
 .resultLabel {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.35;
-  color: var(--charcoal);
+  color: var(--charcoal-muted);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

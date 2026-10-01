@@ -293,11 +293,11 @@
 }
 
 /* Sits directly under the "leave the team stronger" point (the last
-   item in .aiPoints). Wider than .aiPoints' own 680px: the three tool
-   categories need the extra room to each stay on one row at this width
-   (Building's four icons wrap to a second row below 680px). */
+   item in .aiPoints), same max-width now that every tool category has
+   three icons and the groups are content-sized rather than stretched to
+   equal-width columns. */
 .toolsStripSlot {
-  max-width: 860px;
+  max-width: 680px;
   margin-top: 40px;
 }
 

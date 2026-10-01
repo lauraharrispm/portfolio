@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import styles from "./LetsChat.module.css";
 
 // Cal.com's own event-type link (username/event-slug, not the full URL):
@@ -136,18 +135,7 @@ export default function LetsChat() {
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.copy}>
-            <div className={styles.headingRow}>
-              <div className={styles.photoWrap}>
-                <Image
-                  src="/headshot.jpg"
-                  alt="Laura Harris"
-                  fill
-                  className={styles.photoImg}
-                  sizes="88px"
-                />
-              </div>
-              <h2 className={styles.heading}>Let&apos;s chat</h2>
-            </div>
+            <h2 className={styles.heading}>Let&apos;s chat</h2>
 
             <p className={styles.body}>
               Tell me where the product is today, what&apos;s getting in the

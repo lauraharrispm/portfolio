@@ -55,7 +55,7 @@
    optically with the name's x-height rather than its full box, since the
    name's serif ascenders/descenders sit well above and below center. */
 .tagline {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;

@@ -22,16 +22,21 @@
   line-height: 1.4;
 }
 
-/* Three categories in one row on desktop; each takes an equal share so
-   the icon rows underneath stay aligned regardless of how many tools are
-   in a given group. */
+/* Three categories in one row on desktop. Each group shrinks to its own
+   content (not flex:1 equal-width columns): with three icons in every
+   group now, equal-width columns left a lot of empty space after each
+   group's icons before the next group's label started, making the
+   categories read as far apart. Content-sized groups plus a .groups gap
+   equal to the icon gap within a row (18px) instead keeps the spacing
+   between the last icon of one category and the first of the next the
+   same as the spacing between any two icons in the same category. */
 .groups {
   display: flex;
-  gap: 16px;
+  gap: 18px;
 }
 
 .group {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 14px;

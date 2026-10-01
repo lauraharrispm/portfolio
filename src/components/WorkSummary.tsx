@@ -279,7 +279,7 @@ function Card({ project, onOpen }: CardProps) {
             <span className={styles.resultLabel}>{project.keyMetric.label}</span>
           </div>
         </div>
-        <button className={styles.seeMore}>See more →</button>
+        <button className={styles.seeMore}>See more</button>
       </div>
     </article>
   );

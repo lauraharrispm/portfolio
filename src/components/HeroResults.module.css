@@ -97,11 +97,14 @@
    (see WorkSummary.module.css's .resultNumber) now that this panel and
    those cards are meant to read as the same "stat" pattern across the
    site. */
+/* ~30% smaller than this used to be, landing close to the Rula logo's
+   own optical height (18px) so the number reads as part of the row
+   instead of dominating it. */
 .number {
   flex-shrink: 0;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 1.625rem;
+  font-size: 1.125rem;
   color: var(--charcoal);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -128,7 +131,7 @@
   }
 
   .number {
-    font-size: 1.575rem;
+    font-size: 1.0625rem;
   }
 
   .label {

@@ -287,29 +287,27 @@ function DesktopReadingView({
         <div ref={contentRef} className={styles.content}>
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
-            <div className={styles.studyHeaderText}>
-              <div className={styles.metaLine}>
-                <span className={styles.company}>{project.company}</span>
-                {(project.fundingStage || project.employeeRange) && (
-                  <span className={styles.metaDot} aria-hidden="true">·</span>
-                )}
-                {project.fundingStage && (
-                  <span className={styles.stageLine}>{project.fundingStage}</span>
-                )}
-                {project.fundingStage && project.employeeRange && (
-                  <span className={styles.metaDot} aria-hidden="true">·</span>
-                )}
-                {project.employeeRange && (
-                  <span className={styles.stageLine}>{project.employeeRange}</span>
-                )}
-              </div>
-              <h1 id="reading-view-title" className={styles.title}>
-                {project.title}
-              </h1>
-              {project.oneLineDesc && (
-                <p className={styles.oneLiner}>{project.oneLineDesc}</p>
+            <div className={styles.metaLine}>
+              <span className={styles.company}>{project.company}</span>
+              {(project.fundingStage || project.employeeRange) && (
+                <span className={styles.metaDot} aria-hidden="true">·</span>
+              )}
+              {project.fundingStage && (
+                <span className={styles.stageLine}>{project.fundingStage}</span>
+              )}
+              {project.fundingStage && project.employeeRange && (
+                <span className={styles.metaDot} aria-hidden="true">·</span>
+              )}
+              {project.employeeRange && (
+                <span className={styles.stageLine}>{project.employeeRange}</span>
               )}
             </div>
+            <h1 id="reading-view-title" className={styles.title}>
+              {project.title}
+            </h1>
+            {project.oneLineDesc && (
+              <p className={styles.oneLiner}>{project.oneLineDesc}</p>
+            )}
             <div className={styles.resultBlock}>
               <span className={styles.resultTag}>Key result</span>
               <div className={styles.resultRow}>
