@@ -18,8 +18,8 @@ export default function Hero() {
             <p className={styles.subhead}>
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at
               consumer startups across marketplaces, healthcare, and DTC ecommerce, from
-              seed to Series C. Now I help founders solve the right problems and ship
-              faster.
+              seed to Series C. Now I help founders solve the right problems, unblock engineering,
+              and ship faster.
             </p>
             <div className={styles.ctas}>
               <a
