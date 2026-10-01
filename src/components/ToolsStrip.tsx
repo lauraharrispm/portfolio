@@ -23,7 +23,6 @@ const TOOL_GROUPS: ToolGroup[] = [
     label: "Building",
     tools: [
       { name: "Claude", src: "/logos/tools/claude.png", w: 288, h: 288, height: 30 },
-      { name: "Claude Code", src: "/logos/tools/claude%20code.png", w: 225, h: 135, height: 24 },
       { name: "Codex", src: "/logos/tools/codex.png", w: 526, h: 526, height: 30 },
       // Cropped to just the "M" swoosh (muse.png has "Muse" baked into the
       // art below it); the name still reads on hover via the tooltip.
@@ -35,7 +34,6 @@ const TOOL_GROUPS: ToolGroup[] = [
     tools: [
       { name: "Granola", src: "/logos/tools/granola.png", w: 409, h: 426, height: 30 },
       { name: "Wispr", src: "/logos/tools/wispr.png", w: 899, h: 892, height: 29 },
-      { name: "Chrome", src: "/logos/tools/chrome.svg", w: 512, h: 512, height: 30 },
       { name: "Linear", src: "/logos/tools/linear.webp", w: 512, h: 512, height: 30 },
     ],
   },

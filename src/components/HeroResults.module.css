@@ -92,14 +92,19 @@
 /* The panel itself is blush now, so blush text would disappear into it;
    coral is reserved for CTAs/links elsewhere on the page, so it's not
    free to reuse here either. Charcoal keeps the same weight of statement
-   and clears contrast with room to spare. */
+   and clears contrast with room to spare.
+   Sans, not serif: matches the project summary cards' own stat treatment
+   (see WorkSummary.module.css's .resultNumber) now that this panel and
+   those cards are meant to read as the same "stat" pattern across the
+   site. */
 .number {
   flex-shrink: 0;
-  font-family: var(--font-headline);
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 1.625rem;
   color: var(--charcoal);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .label {

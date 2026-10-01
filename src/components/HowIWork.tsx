@@ -14,20 +14,8 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   {
     label: "Best for",
-    fractional: (
-      <>
-        Several growth opportunities with no owner
-        <br />
-        Engineers ready to build
-      </>
-    ),
-    projectBased: (
-      <>
-        One prioritized growth opportunity
-        <br />
-        Fixed scope and cost
-      </>
-    ),
+    fractional: "Several growth opportunities with no owner and engineers ready to build",
+    projectBased: "One prioritized growth opportunity with fixed scope and cost",
   },
   {
     label: "What you get",

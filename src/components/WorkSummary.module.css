@@ -141,6 +141,7 @@
   font-weight: 400;
   color: var(--charcoal);
   letter-spacing: -0.01em;
+  line-height: 1.15;
   margin-bottom: 14px;
 }
 
@@ -218,17 +219,34 @@
   overflow: hidden;
 }
 
+/* A real bordered button, not a bare text link: someone looking at the
+   old plain-text "See more" didn't realize it was clickable. Same
+   outlined-button treatment as the site's other secondary CTAs (see
+   .ctaSecondary in Hero.module.css), sized down to fit a compact card
+   footer rather than the hero's full button size. */
 .seeMore {
   align-self: flex-start;
-  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  padding: 10px 20px;
+  border: 1.5px solid var(--charcoal);
+  border-radius: 4px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--charcoal);
-  padding: 12px 0;
-  transition: color var(--transition);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
 
-.seeMore:hover {
+.seeMore:hover,
+.seeMore:focus-visible {
+  border-color: var(--coral);
   color: var(--coral);
+}
+
+.seeMore:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
