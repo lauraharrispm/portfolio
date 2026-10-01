@@ -42,16 +42,6 @@
   flex-shrink: 0;
 }
 
-.headshotWrapSmall {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
 .headshotImg {
   object-fit: cover;
   object-position: center top;
@@ -225,16 +215,9 @@
 
 .rowAssistant {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.assistantContent {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-  min-width: 0;
 }
 
 .answer {
@@ -351,11 +334,17 @@
   color: var(--charcoal-muted);
 }
 
+/* No align-self:center here: that centers this (narrower, capped) box
+   within the full-width flex container, not within the 720px input box
+   above it, since the input stays pinned flex-start/left. Leaving this
+   at the default flex-start keeps its box flush left with the input, so
+   text-align:center then centers the text within that same width,
+   directly under the input instead of drifting toward the page's own
+   center. */
 .disclaimer {
   font-size: 0.75rem;
   color: var(--charcoal-muted);
   text-align: center;
-  align-self: center;
   width: 100%;
   max-width: 720px;
   margin-top: 12px;

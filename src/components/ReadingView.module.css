@@ -175,10 +175,17 @@
 }
 
 /* Same "Key result" tag treatment as the summary card (see
-   WorkSummary.module.css), no filled background. */
+   WorkSummary.module.css), no filled background. A fixed width here
+   (not the summary card's own fit-content, which works fine stacked in
+   a column but not side by side with a variable-width sibling): without
+   it, a short label ("4x revenue growth") shrink-wraps narrow and its
+   left edge drifts toward the far right of the row, while a long label
+   stretches wide and wraps to two lines, so this block landed in a
+   different spot and shape on every project. A constant width keeps its
+   position and wrap behavior identical across all of them. */
 .resultBlock {
   flex-shrink: 0;
-  max-width: 260px;
+  width: 220px;
 }
 
 .resultTag {

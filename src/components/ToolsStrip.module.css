@@ -27,7 +27,7 @@
    in a given group. */
 .groups {
   display: flex;
-  gap: 32px;
+  gap: 16px;
 }
 
 .group {

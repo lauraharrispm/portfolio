@@ -397,29 +397,24 @@ function MessageBubble({
 
   return (
     <div className={styles.rowAssistant}>
-      <div className={styles.headshotWrapSmall}>
-        <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="32px" />
-      </div>
-      <div className={styles.assistantContent}>
-        <p
-          className={`${styles.answer} ${message.variant === "error" || message.variant === "limited" ? styles.answerMuted : ""}`}
-          dangerouslySetInnerHTML={{ __html: renderLightMarkdown(shown) }}
-        />
-        {chipsReady && message.chips && message.chips.length > 0 && (
-          <div className={styles.chips}>
-            {message.chips.map((chip, i) => (
-              <button
-                key={i}
-                type="button"
-                className={`${styles.chip} ${chip.kind === "book_call" ? styles.chipCta : ""}`}
-                onClick={() => onChip(chip)}
-              >
-                {chip.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+      <p
+        className={`${styles.answer} ${message.variant === "error" || message.variant === "limited" ? styles.answerMuted : ""}`}
+        dangerouslySetInnerHTML={{ __html: renderLightMarkdown(shown) }}
+      />
+      {chipsReady && message.chips && message.chips.length > 0 && (
+        <div className={styles.chips}>
+          {message.chips.map((chip, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`${styles.chip} ${chip.kind === "book_call" ? styles.chipCta : ""}`}
+              onClick={() => onChip(chip)}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

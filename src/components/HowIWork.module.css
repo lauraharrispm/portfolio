@@ -1,6 +1,11 @@
+/* Bottom padding specifically reduced for this section: it ends with the
+   "Let's chat" button, which already carries its own vertical padding
+   and margin-top, so the standard section padding stacked on top of
+   that made the gap to the next section noticeably bigger than any
+   other section-to-section transition on the page. */
 .section {
   background: var(--warm-white);
-  padding: var(--section-padding-v) 0;
+  padding: var(--section-padding-v) 0 16px;
 }
 
 .heading {
@@ -293,14 +298,14 @@
    (Building's four icons wrap to a second row below 680px). */
 .toolsStripSlot {
   max-width: 860px;
-  margin-top: 28px;
+  margin-top: 40px;
 }
 
 .cta {
   align-self: start;
   display: inline-flex;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 40px;
   padding: 14px 28px;
   background: var(--coral);
   color: #fff;
