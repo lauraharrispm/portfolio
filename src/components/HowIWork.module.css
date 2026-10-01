@@ -1,20 +1,19 @@
-/* Bottom padding specifically reduced for this section: it ends with the
-   "Let's chat" button, which already carries its own vertical padding
-   and margin-top, so the standard section padding stacked on top of
-   that made the gap to the next section noticeably bigger than any
-   other section-to-section transition on the page. */
+/* Same top/bottom padding as every other section (Services, WorkSummary,
+   etc.): no special-cased bottom value here anymore. */
 .section {
   background: var(--warm-white);
-  padding: var(--section-padding-v) 0 16px;
+  padding: var(--section-padding-v) 0;
 }
 
+/* Same heading-to-content gap as Services' "What I do" (16px), instead
+   of this section's own larger, inconsistent value. */
 .heading {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 /* ─── Part statement (shared by both parts) ───────────────────────── */
@@ -188,7 +187,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 8px;
   min-height: 44px;
   padding: 16px 20px;
@@ -232,14 +232,17 @@
   display: flex;
   flex-direction: column;
   background: var(--warm-white);
-  padding: 0 20px;
 }
 
+/* Padding moved here from .mobileRows, so each row's own border-top
+   spans the full card width instead of stopping at the container's
+   inset padding. Lighter than the table's own border elsewhere (0.14 ->
+   0.08): these are internal row dividers, not the card's outer edge. */
 .mobileRow {
   display: flex;
   gap: 16px;
-  padding: 14px 0;
-  border-top: 1px solid rgba(46, 40, 32, 0.14);
+  padding: 14px 20px;
+  border-top: 1px solid rgba(46, 40, 32, 0.08);
 }
 
 .mobileRowLabel {
@@ -257,8 +260,10 @@
 }
 
 /* ─── Part 2: AI-native approach ──────────────────────────────────── */
+/* Same gap as the section's own top/bottom padding, instead of its own
+   larger, unrelated value: one consistent spacing rhythm throughout. */
 .part2 {
-  margin-top: 72px;
+  margin-top: var(--section-padding-v);
 }
 
 /* Statement stays on one line at 1024px+ (see the min-width query below);
@@ -306,7 +311,7 @@
   align-self: start;
   display: inline-flex;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 48px;
   padding: 14px 28px;
   background: var(--coral);
   color: #fff;
@@ -391,7 +396,7 @@
   }
 
   .part2 {
-    margin-top: 48px;
+    margin-top: var(--section-padding-v-mobile);
   }
 
   /* Full-width, matching the hero's own CTAs at this breakpoint. */

@@ -10,8 +10,7 @@
 
 /* Same treatment as HowIWork's own part statements (e.g. "Part-time no
    longer means partial impact."): an italic, lighter-weight serif line,
-   smaller than the section heading but still in the brand display font,
-   not a second small-caps label competing with the group labels below. */
+   smaller than the section heading but still in the brand display font. */
 .subhead {
   font-family: var(--font-headline);
   font-style: italic;
@@ -22,40 +21,12 @@
   line-height: 1.4;
 }
 
-/* Three categories in one row on desktop. Each group shrinks to its own
-   content (not flex:1 equal-width columns): with three icons in every
-   group now, equal-width columns left a lot of empty space after each
-   group's icons before the next group's label started, making the
-   categories read as far apart. Content-sized groups plus a .groups gap
-   equal to the icon gap within a row (18px) instead keeps the spacing
-   between the last icon of one category and the first of the next the
-   same as the spacing between any two icons in the same category. */
-.groups {
-  display: flex;
-  gap: 18px;
-}
-
-.group {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-width: 0;
-}
-
-.groupLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--charcoal-muted);
-}
-
+/* No more category grouping/labels: one row of all 9 icons. */
 .row {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 18px;
+  gap: 28px;
   list-style: none;
 }
 
@@ -122,22 +93,15 @@
     gap: 16px;
   }
 
-  /* Stays a row, same as desktop, just tighter: all 9 icons (three
-     labeled clusters of three) fit on one line at phone widths once the
-     icons and gaps shrink a bit. */
-  .groups {
-    gap: 10px;
-  }
-
-  .groupLabel {
-    font-size: 0.625rem;
-  }
-
+  /* Spread across the full width instead of packed to one side: with no
+     category labels anchoring each cluster anymore, space-between reads
+     better than a tight fixed gap at phone widths. */
   .row {
-    gap: 10px;
+    gap: 0;
+    justify-content: space-between;
   }
 
   .icon {
-    height: calc(var(--icon-h) * 0.75);
+    height: calc(var(--icon-h) * 0.72);
   }
 }

@@ -105,13 +105,6 @@
 }
 
 /* ─── Location ─────────────────────────────────────────────────── */
-.location {
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--charcoal);
-  margin-bottom: 12px;
-}
-
 /* ─── Alternate contact ────────────────────────────────────────── */
 .altContact {
   font-size: 0.9375rem;

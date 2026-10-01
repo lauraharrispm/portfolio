@@ -53,13 +53,22 @@
   width: 400px;
 }
 
+/* Floated beside the subhead paragraph (the paragraph is the very next
+   element after this in the DOM), with shape-outside so the text wraps
+   around the circle instead of just running past a rectangular box.
+   Reverts to a plain block between the headline and the paragraph on
+   mobile (see the max-width:768px override): a float this size has much
+   less room to work with at phone widths, and fighting for a clean wrap
+   in a ~320px-wide column wasn't worth it next to just stacking it. */
 .photoWrap {
+  float: right;
+  shape-outside: circle(50%);
   width: 120px;
   height: 120px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  margin-bottom: 24px;
+  margin: 4px 0 12px 20px;
 }
 
 .photoImg {
@@ -162,9 +171,11 @@
   }
 
   .photoWrap {
+    float: none;
+    shape-outside: none;
     width: 96px;
     height: 96px;
-    margin-bottom: 20px;
+    margin: 0 0 20px;
   }
 
   .ctas {

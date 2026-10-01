@@ -27,14 +27,20 @@
   to   { transform: translateY(100%); }
 }
 
-/* ── Header ── */
+/* ── Header: close/title row, then company/stage/size, both inside this
+   one block, with the border-bottom at its end instead of on the top
+   row alone. Below this line, only the progress pips remain. ── */
 .header {
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(46, 40, 32, 0.08);
+  padding-bottom: 10px;
+}
+
+.headerTopRow {
   display: flex;
   align-items: center;
   padding: 0 20px;
   height: 52px;
-  flex-shrink: 0;
-  border-bottom: 1px solid rgba(46, 40, 32, 0.08);
   gap: 12px;
 }
 
@@ -108,7 +114,7 @@
 .metaStrip {
   flex-shrink: 0;
   text-align: center;
-  padding: 10px 20px 0;
+  padding: 0 20px;
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.1em;

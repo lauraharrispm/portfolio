@@ -305,4 +305,13 @@
   .stackItem {
     padding-bottom: 20px;
   }
+
+  /* Number on its own line, label below it, instead of inline: at card
+     width on a phone, a long label inline with the number was wrapping
+     messily (its second line not aligned under its first). */
+  .resultRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
 }

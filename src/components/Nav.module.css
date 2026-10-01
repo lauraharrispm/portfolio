@@ -145,7 +145,6 @@
 /* ── Mobile drawer ── */
 .drawer {
   background: var(--warm-white);
-  border-top: 1px solid rgba(46, 40, 32, 0.08);
   padding: 20px 0 28px;
 }
 
@@ -163,11 +162,6 @@
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--charcoal);
-  border-bottom: 1px solid rgba(46, 40, 32, 0.06);
-}
-
-.drawer li:last-child a {
-  border-bottom: none;
 }
 
 .drawer li a.ctaButton {

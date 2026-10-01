@@ -11,6 +11,11 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
+            <h1 className={styles.headline}>
+              Product Lead impact
+              <br />
+              without a full-time&nbsp;hire.
+            </h1>
             <div className={styles.photoWrap}>
               <Image
                 src="/headshot.jpg"
@@ -21,16 +26,11 @@ export default function Hero() {
                 sizes="120px"
               />
             </div>
-            <h1 className={styles.headline}>
-              Product Lead impact
-              <br />
-              without a full-time&nbsp;hire.
-            </h1>
             <p className={styles.subhead}>
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at
               consumer startups across marketplaces, healthcare, and DTC ecommerce, from
               seed to Series C. Now I help founders solve the right problems, unblock engineering,
-              and ship faster.
+              and ship faster. NYC-based.
             </p>
             <div className={styles.ctas}>
               <a

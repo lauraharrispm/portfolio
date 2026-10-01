@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
-import Image from "next/image";
 import { STARTER_QUESTIONS } from "@/content/chat/config";
 import type { Chip, ChatApiResponse, ChatMessage } from "@/lib/chat/types";
 import styles from "./AskChat.module.css";
@@ -290,12 +289,7 @@ export default function AskChat() {
       <div className="container">
         {phase === "empty" ? (
           <div className={styles.emptyState}>
-            <div className={styles.emptyHeader}>
-              <div className={styles.headshotWrap}>
-                <Image src="/headshot.jpg" alt="" fill className={styles.headshotImg} sizes="56px" />
-              </div>
-              <h2 className={styles.heading}>Ask my AI anything</h2>
-            </div>
+            <h2 className={styles.heading}>Ask my AI anything</h2>
             <form onSubmit={handleSubmit} className={styles.emptyForm}>
               <label htmlFor={inputId} className={styles.srOnly}>
                 Ask a question about Laura&apos;s work

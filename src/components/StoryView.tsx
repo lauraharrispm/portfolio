@@ -309,29 +309,31 @@ export default function StoryView({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── Fixed header ── */}
+      {/* ── Fixed header: close/title row, then company/stage/size right
+         under the title, both inside the same header block ── */}
       <div className={styles.header}>
-        <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
-          ✕
-        </button>
-        <span className={styles.headerTitle}>{project.title}</span>
-        <span className={styles.headerSpacer} aria-hidden="true" />
-      </div>
-
-      {/* ── Company stage / size metadata ── */}
-      {(project.fundingStage || project.employeeRange) && (
-        <div className={styles.metaStrip}>
-          {project.company}
-          {(project.fundingStage || project.employeeRange) && (
-            <span className={styles.metaStripDot}> · </span>
-          )}
-          {project.fundingStage}
-          {project.fundingStage && project.employeeRange && (
-            <span className={styles.metaStripDot}> · </span>
-          )}
-          {project.employeeRange}
+        <div className={styles.headerTopRow}>
+          <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
+            ✕
+          </button>
+          <span className={styles.headerTitle}>{project.title}</span>
+          <span className={styles.headerSpacer} aria-hidden="true" />
         </div>
-      )}
+
+        {(project.fundingStage || project.employeeRange) && (
+          <div className={styles.metaStrip}>
+            {project.company}
+            {(project.fundingStage || project.employeeRange) && (
+              <span className={styles.metaStripDot}> · </span>
+            )}
+            {project.fundingStage}
+            {project.fundingStage && project.employeeRange && (
+              <span className={styles.metaStripDot}> · </span>
+            )}
+            {project.employeeRange}
+          </div>
+        )}
+      </div>
 
       {/* ── Progress pips ── */}
       <div className={styles.pips} aria-hidden="true">

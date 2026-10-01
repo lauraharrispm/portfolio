@@ -163,11 +163,6 @@ export default function LetsChat() {
               </ul>
             </div>
 
-            <p className={styles.location}>
-              I&apos;m based in Manhattan and happy to work from your office alongside
-              your team, or join remotely.
-            </p>
-
             <p className={styles.altContact}>
               Rather write? Reach me at{" "}
               <a href="mailto:laura.harris.pm@gmail.com">laura.harris.pm@gmail.com</a> or on{" "}

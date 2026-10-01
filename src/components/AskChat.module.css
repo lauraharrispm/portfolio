@@ -33,25 +33,11 @@
   text-align: left;
 }
 
-.emptyHeader {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+/* Scoped to the empty state specifically: .heading is shared with
+   .convoHeader, which already gets its own margin-bottom and would
+   double up if this applied there too. */
+.emptyState > .heading {
   margin-bottom: 28px;
-}
-
-.headshotWrap {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.headshotImg {
-  object-fit: cover;
-  object-position: center top;
 }
 
 /* Same treatment as the other section headings (Services/HowIWork/
