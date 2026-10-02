@@ -64,17 +64,284 @@ export interface Project {
   beforeAfterTable?: BeforeAfterRow[];
   /** AI project only: tool stack list, rendered in Design section */
   stack?: StackItem[];
+  /** Optional engagement-type marker shown as a small tag next to the funnel
+   * tag(s) on the summary card, e.g. "Fractional". Distinguishes studies
+   * from fractional engagements from the full-time-role studies, which
+   * don't set this. */
+  engagement?: string;
+  /** Optional one-line link to a related study, shown at the end of the
+   * Reflection section. Opens the target study in place (reading view on
+   * desktop, story view on mobile) rather than closing and reopening. */
+  crossLink?: { toId: string; label: string };
 }
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
 export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
-  // 2. Payments Onboarding
+  // 1. Patient Intake Redesign
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "patient-intake",
+    order: 1,
+    tags: ["Activation"],
+    engagement: "Fractional",
+    company: "Healthcare startup",
+    thumbnail: "/thumb-intake.png",
+    cardImage: {
+      src: "/case-studies/intake-card.png",
+      alt: "Redesigned intake form starting with a care-type choice",
+      width: 1600,
+      height: 1000,
+    },
+    title: "Patient intake redesign",
+    oneLineDesc:
+      "A one-size-fits-all intake form was keeping qualified families from getting care. A staged redesign rebuilt it from diagnosis to launch.",
+    keyMetric: {
+      number: "~1.5 weeks",
+      label: "of product time, diagnosis to launch",
+    },
+    fundingStage: "Series A",
+    employeeRange: "14 employees",
+    crossLink: {
+      toId: "patient-portal",
+      label: "Designed together with the patient portal. See the patient portal redesign →",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "Qualified families were dropping off on step one",
+        body: [
+          "The company connects families with specialized care. Intake was a small, high-touch flow: nearly every family arrived through a referral, already qualified and already looking for help. Yet about a third of them dropped off on the very first step of the intake form. For families who were already qualified, that was far too high, and in theory we could win almost all of them back by making those first steps feel doable. The intake experience was broken in two compounding ways:",
+          "The form treated every family the same. Every family got the same insurance-heavy questions in the same order, whether they were ready to start care or hadn't been diagnosed yet. The question that determined what kind of care a family needed sat near the very end.",
+          "Engineering was waiting on product. With no dedicated product person, the team kept finishing work and then waiting for the next definition.",
+        ],
+        boldPrefixes: [
+          "",
+          "The form treated every family the same.",
+          "Engineering was waiting on product.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "A staged plan, shipped as one release",
+        body: [
+          "I audited the funnel with production data, then wrote a plan staged by confidence and engineering effort. The CEO prioritized it and resourced every stage at once, so the full redesign shipped as one release. Two principles guided every decision:",
+          "Fix what's certain first, and defer what needs new infrastructure. High-confidence changes led: simpler insurance steps, non-essential fields moved after submission, and broader entry-page copy. Higher-lift engineering projects like instant eligibility checks and automated insurance verification were saved for later.",
+          "Ask the right question at the right moment. Fields not used for matching came out, and the care-type question moved to the front, so every family was routed correctly from the start.",
+        ],
+        boldPrefixes: [
+          "",
+          "Fix what's certain first, and defer what needs new infrastructure.",
+          "Ask the right question at the right moment.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "Reading the data, routing, and testing at low volume",
+        body: [
+          "The biggest drop-off in the data wasn't the biggest opportunity. The funnel analytics were new and hadn't been stress-tested, and they pointed to a large drop-off before families ever opened the intake link. The underlying data showed it was smaller than it looked, and mostly caused by things product couldn't fix, like unsupported insurance. Defining the real problems before brainstorming solutions kept us from building the wrong things.",
+          "One question was two problems. Families who bounced early never reached the care-type question, and coordinators were learning mid-call that a family needed a diagnosis, not ongoing care. Moving the question earlier fixed conversion and routing at the same time.",
+          "Volume was too low to test small changes. At current traffic, a test could only detect a lift of 15 to 20% and would take over a month. Referral traffic was already too close to its ceiling to test at all. So we shipped high-confidence changes to everyone with analytics live, and saved testing for the bigger bets.",
+        ],
+        boldPrefixes: [
+          "The biggest drop-off in the data wasn't the biggest opportunity.",
+          "One question was two problems.",
+          "Volume was too low to test small changes.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Understand the need before asking for proof",
+        body: [
+          "The old form asked families to prove their eligibility before it understood what they needed. The redesign flipped that order: learn what kind of care the family is looking for, then ask only the questions that matter for it.",
+          "We added a clear care-type choice up front, streamlined the insurance steps, and cut every field not needed to match a family with care. The result was an intake experience that met families where they were.",
+        ],
+        images: [
+          "/case-studies/intake-1.png",
+          "/case-studies/intake-2.png",
+          "/case-studies/intake-3.png",
+        ],
+        altTexts: [
+          "Care-type selection at the start of intake.",
+          "Streamlined insurance step.",
+          "Intake form on mobile.",
+        ],
+        captions: [
+          "Families choose the kind of care they need first, so every question after it is relevant to them.",
+          "Secondary insurance folded into one step, with non-essential details collected after submission.",
+          "Most families start on their phones, so every step was designed mobile first.",
+        ],
+        imageWidths: [1600, 1600, 900],
+        imageHeights: [1000, 1000, 1600],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "A full redesign, launched in one release",
+        body: [
+          "Full redesign launched across the backend and public intake, with every change merged in five days",
+          "Engineering never waited on product for a definition",
+          "Post-launch plan handed to named owners, with a guardrail metric tracking families reaching a first appointment",
+        ],
+        resultIcons: ["check", "check", "check"],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "Stay ahead of engineering and you raise both speed and impact. A great spec is table stakes. What changed this team's velocity was a queue of prioritized, well-scoped projects that were ready to build before engineering finished the last one. Nobody waited on product, and every sprint went to the work most likely to move the numbers.",
+        ],
+        boldPrefixes: [
+          "Stay ahead of engineering and you raise both speed and impact.",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 2. Patient Portal Redesign
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "patient-portal",
+    order: 2,
+    tags: ["Activation"],
+    engagement: "Fractional",
+    company: "Healthcare startup",
+    thumbnail: "/thumb-portal.png",
+    cardImage: {
+      src: "/case-studies/portal-card.png",
+      alt: "Patient portal step tracker with a next-action header",
+      width: 1600,
+      height: 1000,
+    },
+    title: "Patient portal redesign",
+    oneLineDesc:
+      "After submitting intake, some families were misrouted, silently dropped, or promised coverage we couldn't deliver. A redesigned portal gave every family an honest next step.",
+    keyMetric: {
+      number: "3",
+      label: "launch blockers fixed in about a week of product time",
+    },
+    fundingStage: "Series A",
+    employeeRange: "14 employees",
+    crossLink: {
+      toId: "patient-intake",
+      label: "Designed together with the intake form. See the patient intake redesign →",
+    },
+    sections: [
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "A portal that left families stuck or misled",
+        body: [
+          "The company connects families with specialized care for their children. Finding that care isn't like booking a doctor's appointment, where one patient matches one provider and books a time. Before a first appointment, a family might need an evaluation, insurance verification, documentation, signed forms, and a clinician with capacity nearby, in an order that varies by family. The portal was supposed to guide parents through all of it. Instead, it failed them in three ways, in order of harm:",
+          "Families who needed an evaluation were routed toward treatment. Their form answer overwrote a key flag in the data, sending them to a generic intake call instead of the team that coordinates evaluations.",
+          "Families without a match disappeared. When matching failed on insurance, location, or clinician capacity, families landed in a portal with no match, no explanation, and no way to book.",
+          "Coverage copy promised what the product couldn't deliver. Out-of-network families were told they'd get a match either way. They wouldn't.",
+        ],
+        boldPrefixes: [
+          "",
+          "Families who needed an evaluation were routed toward treatment.",
+          "Families without a match disappeared.",
+          "Coverage copy promised what the product couldn't deliver.",
+        ],
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        heading: "A state matrix for every path to care",
+        body: [
+          "The portal had too few analytics events for the kind of funnel analysis I did on intake, so I leaned on qualitative feedback and product judgment instead. The existing flow was a jumble of competing actions, and the fixes followed established best practices clearly enough that waiting for more data would only have slowed us down. I wrote a PRD and a state matrix covering every combination of care type, coverage, and capacity, then redesigned the portal around them. The matrix became engineering's acceptance criteria. Two principles guided every decision:",
+          "Separate what a family asked for from what they have. One field had been carrying two facts. Splitting care type (what the family asked for, changeable only by staff) from documentation status (what each child has) fixed the misrouting and kept the funnel measurable.",
+          "Every state tells the truth. Every screen names the parent's next action, or what the company is doing when there isn't one. No silent drops, no placeholder clinicians, no locked buttons without a reason, and nothing that promises care a family's plan can't cover.",
+        ],
+        boldPrefixes: [
+          "",
+          "Separate what a family asked for from what they have.",
+          "Every state tells the truth.",
+        ],
+      },
+      {
+        id: "challenges",
+        label: "Key Challenges",
+        heading: "No single path to care",
+        body: [
+          "There was no single path to care. One family needs an evaluation first. Another is ready for treatment but waiting on a clinician. A third has a plan that accepts a doctor's referral instead of a diagnosis, or requires in-person care that telehealth can't deliver. I mapped every if-then path a parent could take on behalf of their child, then designed the intake form and portal together, so each family sees one clear, digestible sequence even though no two sequences are the same. Plan rules became data rather than design, so adding a new plan never requires a redesign.",
+          "Booking was waiting on a check it didn't need. The first consultation is free, so I unlocked booking as soon as a family submitted their member ID, instead of waiting for the eligibility check. That took a full day off time to first session. It also meant designing for a new case: coverage problems surfacing after a consultation is booked. The appointment stays, because the clinician is the right person to help.",
+          "Completion rate could be misleading, so we set a guardrail. A portal where every step gets checked off can still leave families short of care. I set the guardrail as families reaching a first appointment. I'd rather see step completion dip and care starts rise than the reverse.",
+        ],
+        boldPrefixes: [
+          "There was no single path to care.",
+          "Booking was waiting on a check it didn't need.",
+          "Completion rate could be misleading, so we set a guardrail.",
+        ],
+      },
+      {
+        id: "design",
+        label: "Design",
+        heading: "Always name the next step, and who owns it",
+        body: [
+          "The portal became a step tracker, built as phases containing steps, so treatment can be added later without renumbering anything. The header always names the parent's next action. When there isn't one, it says what the company is doing: \"We're verifying coverage. Nothing needed from you right now.\" A parent should never feel stalled on something that isn't theirs.",
+          "Requirements split into two honest tiers: what's needed before you can book, and what's needed before we can bill. Only the first tier locks anything, so a finished tracker always means nothing is blocking you.",
+        ],
+        images: [
+          "/case-studies/portal-1.png",
+          "/case-studies/portal-2.png",
+          "/case-studies/portal-3.png",
+        ],
+        altTexts: [
+          "Step tracker with a next-action header.",
+          "No-match state with a bookable call.",
+          "Two-tier requirements within a step.",
+        ],
+        captions: [
+          "The header always names what happens next, and who's responsible for it.",
+          "When there's no clinician nearby yet, families see why, get a call they can book now, and are notified when that changes.",
+          "Billing-only details are collected while the family is engaged, without blocking their progress.",
+        ],
+        imageWidths: [1600, 1600, 1600],
+        imageHeights: [1000, 1000, 1000],
+      },
+      {
+        id: "results",
+        label: "Results",
+        heading: "Every family gets an honest next step",
+        body: [
+          "Families needing an evaluation routed to evaluation support, not straight to treatment",
+          "Unmatched families shown an honest next step and a call they can book, instead of a silent dead end",
+          "Coverage copy rewritten to promise only what the product can deliver",
+          "Launched alongside the redesigned intake form in a single release, with a state matrix as engineering's acceptance criteria",
+          "Post-launch plan handed to named owners, with a guardrail metric tracking families reaching a first appointment",
+        ],
+        resultIcons: ["check", "check", "check", "check", "check"],
+      },
+      {
+        id: "reflection",
+        label: "Reflection",
+        heading: "What this project taught me",
+        body: [
+          "Many UX problems are data model problems. Misrouted families, silent drops, and false promises looked like screen issues. Most came from one field doing two jobs. Fixing the model made honest screens possible, and more polish on the old model couldn't have.",
+          "Moving fast is a tradeoff, so name it when you make it. Shipping intake and the portal together was the right call, but it meant no clean baseline to measure against. Next time I'd write down what the acceleration costs at the moment of the decision, so the team chooses the tradeoff instead of discovering it later.",
+        ],
+        boldPrefixes: [
+          "Many UX problems are data model problems.",
+          "Moving fast is a tradeoff, so name it when you make it.",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 4. Payments Onboarding
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "payments-onboarding",
-    order: 2,
+    order: 4,
     tags: ["Activation"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-payments.png",
@@ -184,11 +451,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 3. Scheduling Tool for Phone Agents
+  // 5. Scheduling Tool for Phone Agents
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
-    order: 3,
+    order: 5,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
@@ -288,11 +555,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 4. Therapist Directory
+  // 6. Therapist Directory
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
-    order: 4,
+    order: 6,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
@@ -397,11 +664,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 1. Billing Rebuild for AI Add-Ons and Annual Subscriptions
+  // 3. Billing Rebuild for AI Add-Ons and Annual Subscriptions
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
-    order: 1,
+    order: 3,
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
@@ -513,11 +780,11 @@ export const projects: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 5. Burrow: Ecommerce Website Redesign
+  // 7. Burrow: Ecommerce Website Redesign
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
-    order: 5,
+    order: 7,
     tags: ["Acquisition", "Monetization"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",

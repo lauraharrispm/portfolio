@@ -323,6 +323,7 @@ function DesktopReadingView({
               section={section}
               project={project}
               onLightbox={setLightbox}
+              onSwitchProject={goTo}
             />
           ))}
 
@@ -343,9 +344,10 @@ interface SectionBlockProps {
   section: ProjectSection;
   project: Project;
   onLightbox: (s: LightboxState) => void;
+  onSwitchProject: (id: string) => void;
 }
 
-function SectionBlock({ section, project, onLightbox }: SectionBlockProps) {
+function SectionBlock({ section, project, onLightbox, onSwitchProject }: SectionBlockProps) {
   return (
     <div className={styles.section} data-section={section.id}>
       <span className={styles.sectionLabel}>{section.label}</span>
@@ -449,6 +451,15 @@ function SectionBlock({ section, project, onLightbox }: SectionBlockProps) {
             </li>
           ))}
         </ul>
+      )}
+
+      {section.id === "reflection" && project.crossLink && (
+        <button
+          className={styles.crossLink}
+          onClick={() => onSwitchProject(project.crossLink!.toId)}
+        >
+          {project.crossLink.label}
+        </button>
       )}
     </div>
   );

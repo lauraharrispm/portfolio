@@ -55,9 +55,7 @@ export const TOPICS: Topic[] = [
 
 /**
  * Case study topics that map to a real, published case study slug (and so
- * can open the reading view / earn the "Read the story" chip). The two
- * patient topics are in TOPICS per spec (for when those studies ship) but
- * have no entry here yet, so they never trigger the case-study chip.
+ * can open the reading view / earn the "Read the story" chip).
  */
 export const CASE_STUDY_SLUGS: Partial<Record<Topic, string>> = {
   case_payments_onboarding: "payments-onboarding",
@@ -65,6 +63,8 @@ export const CASE_STUDY_SLUGS: Partial<Record<Topic, string>> = {
   case_therapist_directory: "therapist-directory",
   case_annual_plans: "annual-plans",
   case_burrow_growth: "burrow-growth",
+  case_patient_intake: "patient-intake",
+  case_patient_portal: "patient-portal",
 };
 
 /** Case study titles, for the "Read the [title] story" chip label. Kept
@@ -76,6 +76,8 @@ export const CASE_STUDY_TITLES: Record<string, string> = {
   "therapist-directory": "Therapist directory",
   "annual-plans": "Billing rebuild for AI add-ons and annual subscriptions",
   "burrow-growth": "Ecommerce website redesign",
+  "patient-intake": "Patient intake redesign",
+  "patient-portal": "Patient portal redesign",
 };
 
 // ─── Starter examples (rotating placeholder) ──────────────────────────

@@ -243,6 +243,20 @@
   color: var(--charcoal);
 }
 
+/* A one-line link to a related study (see .para in ReadingView.module.css
+   for the desktop equivalent): only rendered when a study sets its own
+   project.crossLink. */
+.crossLink {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 3px;
+}
+
 /* ── Results list ── */
 .resultsList {
   list-style: none;

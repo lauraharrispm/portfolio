@@ -148,6 +148,18 @@ export default function StoryView({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projIdx, sectionIdx, project.sections, handleClose, onSwitchProject]);
 
+  // ── Explicit cross-link tap (reflection section only) ───────────
+  const goToCrossLink = useCallback(() => {
+    if (isTransitioning.current || !project.crossLink) return;
+    const toId = project.crossLink.toId;
+    animateSlide("left", 250, () => {
+      setProjectId(toId);
+      setSectionIdx(0);
+    });
+    onSwitchProject(toId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [project.crossLink, onSwitchProject]);
+
   // ── Touch handling ─────────────────────────────────────────────
   function onTouchStart(e: React.TouchEvent) {
     const t = e.touches[0];
@@ -282,6 +294,12 @@ export default function StoryView({
               </li>
             ))}
           </ul>
+        )}
+
+        {section.id === "reflection" && project.crossLink && (
+          <button className={styles.crossLink} onClick={goToCrossLink}>
+            {project.crossLink.label}
+          </button>
         )}
       </div>
     );

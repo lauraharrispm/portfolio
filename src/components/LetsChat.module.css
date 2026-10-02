@@ -84,13 +84,30 @@
    Not worth that trade for a threshold this far out of reach, so this
    stays stacked (calendar, then slots), just tighter than before now
    that hideEventTypeDetails removes Cal's own header band above it. */
+/* min-height via the --booking-min-height custom property (set inline
+   from BOOKING_MIN_HEIGHT in the component), not a plain inline style:
+   a plain inline min-height can't be overridden by the desktop media
+   query below, which needs a smaller floor to match the zoomed-down
+   widget. Otherwise the card stays reserved at the pre-zoom height
+   and leaves dead white space below the now-shorter calendar. */
 .bookingWrap {
   max-width: 700px;
+  min-height: var(--booking-min-height);
   background: var(--white);
   border: var(--card-border);
   box-shadow: var(--card-shadow);
   border-radius: var(--card-radius);
   overflow: hidden;
+}
+
+/* Matches .bookingEmbed's zoom:0.8 below: the reserved space before
+   the widget loads should predict its actual (zoomed) height, not the
+   full-size one, or the card stays too tall and leaves dead space
+   under the calendar once it renders. */
+@media (min-width: 769px) {
+  .bookingWrap {
+    min-height: calc(var(--booking-min-height) * 0.8);
+  }
 }
 
 /* Cal.com's embed script renders its iframe into this div and resizes
@@ -100,7 +117,7 @@
   height: 100%;
 }
 
-/* Desktop only (mobile's own sizing is already right — see the
+/* Desktop only (mobile's own sizing is already right, see the
    @media (max-width: 768px) block below, left untouched). Cal's embed
    has no size/scale config of its own (checked their docs: only
    radius, spacing, and layout-view options, none of which touch cell

@@ -25,3 +25,35 @@ renders on top of the image anymore. Keep it tight:
 
 Good: `{ number: "80%", label: "lift in payments onboarding completion" }`
 Too long: a label that runs past two lines at the block's ~300px max width.
+
+## The `engagement` field
+
+Optional. Set it to a short label like `"Fractional"` to mark a study as
+fractional work rather than a full-time role. It renders as a small tag
+next to the funnel tag(s) on the summary card, styled identically (same
+`.tag` class). Studies from full-time roles don't set this field at all.
+
+## The `crossLink` field
+
+Optional. Links to one related study from the end of this one's
+Reflection section:
+
+```ts
+crossLink: { toId: "other-study-id", label: "One-line link text →" }
+```
+
+Renders as a single underlined line, below the Reflection body, in both
+the desktop reading view and the mobile story view. Clicking it switches
+directly to the other study (same mechanism as the existing prev/next
+nav), rather than closing and reopening.
+
+## Image placeholders
+
+When real images aren't ready yet, generate a placeholder PNG at the
+exact path you'll eventually replace (so swapping in the real file later
+is a drop-in, no code changes). A placeholder should be a `--warm-tint`
+background box at the image's real aspect ratio, with "Image" centered in
+bold and the alt text below it in small `--charcoal-muted` type. This is
+what every image on the page should look like until real files land.
+Keep the `alt`/`caption` data filled in with the real final copy either
+way, since that doesn't change when the file is swapped.

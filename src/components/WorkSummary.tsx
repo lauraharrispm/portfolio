@@ -265,6 +265,9 @@ function Card({ project, onOpen }: CardProps) {
               {tag}
             </span>
           ))}
+          {project.engagement && (
+            <span className={styles.tag}>{project.engagement}</span>
+          )}
         </div>
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.oneLiner}>{project.oneLineDesc}</p>

@@ -255,6 +255,26 @@
   color: var(--charcoal);
 }
 
+/* A one-line link to a related study, shown only when a study sets its
+   own project.crossLink (currently the two patient-care studies, which
+   link to each other). Styled as inline text, not a button, so it
+   doesn't compete with .nextStudy's own larger "Next:" link below it. */
+.crossLink {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.crossLink:hover {
+  color: var(--coral);
+}
+
 .resultsList {
   list-style: none;
   display: flex;

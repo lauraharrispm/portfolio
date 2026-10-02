@@ -180,7 +180,11 @@ export default function LetsChat() {
           <div
             ref={sectionRef}
             className={styles.bookingWrap}
-            style={{ minHeight: BOOKING_MIN_HEIGHT }}
+            style={
+              {
+                "--booking-min-height": `${BOOKING_MIN_HEIGHT}px`,
+              } as React.CSSProperties
+            }
           >
             {nearViewport ? (
               <div ref={calTargetRef} className={styles.bookingEmbed} />
