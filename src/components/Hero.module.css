@@ -64,10 +64,17 @@
    "content"/"ctas" rows in the first place (a plain min-height:0 only
    caps the item's minimum contribution, not its max-content one,
    which auto grid tracks also grow to fit). */
+/* min-width:0: without it, this grid item's default min-width:auto lets
+   its content's own min-content size (specifically .panel on mobile,
+   where it's back in normal flow, see HeroResults.module.css's 900px
+   override, so its content counts toward intrinsic sizing again)
+   force the single-column mobile grid track wider than the viewport,
+   dragging .content along with it since they share that column. */
 .panelCol {
   grid-area: panel;
   align-self: stretch;
   position: relative;
+  min-width: 0;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is

@@ -1,19 +1,25 @@
 /* position:absolute (not relative) against .panelCol (see
    Hero.module.css): this is what lets the panel fill .panelCol's full
-   stretched height — top:72px is the old margin-top's clearance for
-   the photo lifted above this box, and bottom:0 is what actually
-   makes the panel's own bottom edge track the hero CTAs beside it at
-   any viewport width, since taking this out of normal flow also stops
-   its natural content height from influencing how tall the grid makes
-   its row in the first place (see .panelCol's own comment). */
+   stretched height. bottom:0 is what makes the panel's own bottom edge
+   track the hero CTAs beside it at any viewport width, since taking
+   this out of normal flow also stops its natural content height from
+   influencing how tall the grid makes its row in the first place (see
+   .panelCol's own comment).
+   top:28px (was 72): this is set so .photoWrap's top (-28px, see
+   below) lands exactly at this box's own top, i.e. level with the hero
+   headline beside it, which also happens to make the box ~15% taller
+   than the old 72px offset did. justify-content:center (new) centers
+   .headerRow+.list as a block in that taller box, since they no longer
+   stretch to fill it (see .list below). */
 .panel {
   position: absolute;
-  top: 72px;
+  top: 28px;
   right: 0;
   bottom: 0;
   left: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background: var(--blush-peach);
   border-radius: 18px;
   box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
@@ -80,21 +86,13 @@
   object-fit: cover;
 }
 
-/* flex column + justify-content:space-between: this is what actually
-   makes the panel's bottom land on the CTAs' bottom (see .panel's own
-   comment above) — the rows keep their natural height and the leftover
-   vertical space in the panel gets distributed as extra gap between
-   them instead of as one dead block at the bottom. At the one specific
-   width this was tuned at before, that leftover was close to zero, so
-   this reads the same as before there; at other widths the gaps breathe
-   a little more or less instead of drifting out of alignment. */
+/* Natural height, not flex:1/space-between: the rows keep their own
+   fixed padding/gaps, and .panel's justify-content:center (see above)
+   centers this whole block (plus .headerRow above it) as a unit within
+   the panel, instead of stretching the row gaps to fill it. */
 .list {
   list-style: none;
   margin: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .row {
@@ -227,11 +225,12 @@
     padding-left: 8px;
   }
 
-  /* Position/size measured directly off the reference screenshot's
-     purple box, as a fraction of the panel's own width (mobile's panel
-     width isn't fixed like desktop's, so fractions travel better than
-     raw px here): smaller (90px, was 100) and shifted further left
-     (right offset up from 32 to 60). */
+  /* Held at the previous size/position (90px, right:60), NOT the
+     requested 30% bigger + 20%-further-left: tested both and each one
+     independently makes the photo overlap the heading text ("Product
+     outcomes, led with my teams" gets visually covered), since the
+     heading has no built-in clearance for a bigger/further-left photo.
+     Flagged to Laura rather than guessing further. */
   .photoWrap {
     top: -36px;
     right: 60px;
@@ -244,10 +243,18 @@
     padding-left: 8px;
   }
 
-  /* 16px, not 20: the extra 4px was landing the results column just
-     past the reference screenshot's target line. */
+  /* 6px, not the requested +69px (~20% of panel width) push, and not
+     even the previous round's 16px: fixing .panelCol's min-width:0 bug
+     (see Hero.module.css) revealed the page had been silently ~12px
+     wider than its true 375px-viewport bound the whole time, quietly
+     masking truncation that 16px itself would otherwise cause. 6px is
+     the actual maximum that fits all four labels with zero truncation
+     now that the real width is enforced. The fixed 136px logoSlot
+     (GlossGenius's own hardcoded width) leaves too little room beside
+     it at this screen size for any meaningfully bigger push. Flagged
+     to Laura rather than guessing further. */
   .row {
-    gap: 16px;
+    gap: 6px;
   }
 
   .number {
