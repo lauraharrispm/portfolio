@@ -219,50 +219,52 @@
   }
 
   /* Indented to match .list's own padding-left below, so the heading
-     text starts at the exact same x as the logos underneath it. */
+     text starts at the exact same x as the logos underneath it.
+     Font-size trimmed from 1.3125rem: tested, and that size leaves
+     almost no headroom for the photo to grow/shift at all before
+     covering the text (confirmed: even a 4px bigger photo overlapped
+     it). This smaller size is what actually buys the room used below,
+     while staying on 2 lines. */
   .heading {
-    font-size: 1.3125rem;
+    font-size: 1.1875rem;
     padding-left: 8px;
   }
 
-  /* Held at the previous size/position (90px, right:60), NOT the
-     requested 30% bigger + 20%-further-left: tested both and each one
-     independently makes the photo overlap the heading text ("Product
-     outcomes, led with my teams" gets visually covered), since the
-     heading has no built-in clearance for a bigger/further-left photo.
-     Flagged to Laura rather than guessing further. */
+  /* 98px (was 90) and right:70px (was 60), not the requested 117px/
+     right:129px: tested the full request at several heading sizes
+     (down to 0.875rem, too small to be a real option) and it still
+     overlaps the heading text, since the photo's left edge would land
+     at x=109 but the heading needs down to x~150 even at its smallest
+     reasonable size. This is the max size+left-shift combo that clears
+     the (now smaller) heading with zero overlap. */
   .photoWrap {
     top: -36px;
-    right: 60px;
-    width: 90px;
-    height: 90px;
-    border-radius: 14px;
+    right: 70px;
+    width: 98px;
+    height: 98px;
+    border-radius: 15px;
   }
 
   .list {
     padding-left: 8px;
   }
 
-  /* 6px, not the requested +69px (~20% of panel width) push, and not
-     even the previous round's 16px: fixing .panelCol's min-width:0 bug
-     (see Hero.module.css) revealed the page had been silently ~12px
-     wider than its true 375px-viewport bound the whole time, quietly
-     masking truncation that 16px itself would otherwise cause. 6px is
-     the actual maximum that fits all four labels with zero truncation
-     now that the real width is enforced. The fixed 136px logoSlot
-     (GlossGenius's own hardcoded width) leaves too little room beside
-     it at this screen size for any meaningfully bigger push. Flagged
-     to Laura rather than guessing further. */
+  /* 20px (was 6), not the requested +69px (~20% of panel width): with
+     .number/.label trimmed down a size (see below), this is the
+     highest gap that still fits every label on one line with zero
+     truncation. The fixed 136px logoSlot (GlossGenius's own hardcoded
+     width) leaves too little room beside it at this screen size for
+     the full request even at these smaller sizes. */
   .row {
-    gap: 6px;
+    gap: 20px;
   }
 
   .number {
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
   }
 
   .label {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
   }
 
   /* 136px, not narrower: GlossGenius's wordmark has its own fixed
