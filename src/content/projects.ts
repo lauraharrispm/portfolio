@@ -160,24 +160,22 @@ export const projects: Project[] = [
         body: [
           "The old form asked families to prove their eligibility before it understood what they needed. The redesign flipped that order: learn what kind of care the family is looking for, then ask only the questions that matter for it.",
           "We added a clear care-type choice up front, streamlined the insurance steps, and cut every field not needed to match a family with care. The result was an intake experience that met families where they were.",
+          "The images below are abstracted recreations that illustrate the design, not screenshots of the live product, to keep the client anonymous.",
         ],
         images: [
           "/case-studies/intake-1.png",
           "/case-studies/intake-2.png",
-          "/case-studies/intake-3.png",
         ],
         altTexts: [
           "Care-type selection at the start of intake.",
           "Streamlined insurance step.",
-          "Intake form on mobile.",
         ],
         captions: [
           "Families choose the kind of care they need first, so every question after it is relevant to them.",
           "Secondary insurance folded into one step, with non-essential details collected after submission.",
-          "Most families start on their phones, so every step was designed mobile first.",
         ],
-        imageWidths: [1600, 1600, 900],
-        imageHeights: [1000, 1000, 1600],
+        imageWidths: [1600, 1600],
+        imageHeights: [1000, 1000],
       },
       {
         id: "results",
@@ -288,24 +286,22 @@ export const projects: Project[] = [
         body: [
           "The portal became a step tracker, built as phases containing steps, so treatment can be added later without renumbering anything. The header always names the parent's next action. When there isn't one, it says what the company is doing: \"We're verifying coverage. Nothing needed from you right now.\" A parent should never feel stalled on something that isn't theirs.",
           "Requirements split into two honest tiers: what's needed before you can book, and what's needed before we can bill. Only the first tier locks anything, so a finished tracker always means nothing is blocking you.",
+          "The images below are abstracted recreations that illustrate the design, not screenshots of the live product, to keep the client anonymous.",
         ],
         images: [
           "/case-studies/portal-1.png",
           "/case-studies/portal-2.png",
-          "/case-studies/portal-3.png",
         ],
         altTexts: [
           "Step tracker with a next-action header.",
           "No-match state with a bookable call.",
-          "Two-tier requirements within a step.",
         ],
         captions: [
           "The header always names what happens next, and who's responsible for it.",
           "When there's no clinician nearby yet, families see why, get a call they can book now, and are notified when that changes.",
-          "Billing-only details are collected while the family is engaged, without blocking their progress.",
         ],
-        imageWidths: [1600, 1600, 1600],
-        imageHeights: [1000, 1000, 1000],
+        imageWidths: [1600, 1600],
+        imageHeights: [1000, 1000],
       },
       {
         id: "results",

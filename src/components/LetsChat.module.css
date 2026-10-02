@@ -90,9 +90,19 @@
    query below, which needs a smaller floor to match the zoomed-down
    widget. Otherwise the card stays reserved at the pre-zoom height
    and leaves dead white space below the now-shorter calendar. */
+/* flex column + justify-content:center, not a guessed fixed padding:
+   Cal's embed resizes its own height as the visitor interacts (picking
+   a day adds a time-slot column, etc.), so a fixed top offset could
+   only ever match one of those states. Centering the embed vertically
+   means whatever gap is left between the reserved min-height and the
+   embed's actual height splits evenly above and below it, at any
+   height, instead of landing entirely below as dead space. */
 .bookingWrap {
   max-width: 700px;
   min-height: var(--booking-min-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: var(--white);
   border: var(--card-border);
   box-shadow: var(--card-shadow);
@@ -111,10 +121,14 @@
 }
 
 /* Cal.com's embed script renders its iframe into this div and resizes
-   it to fit content on its own; this just needs to fill the wrap. */
+   it to fit content on its own; this just needs to fill the wrap
+   horizontally. No height:100% here: that would always stretch this to
+   the wrap's full reserved height, leaving nothing for .bookingWrap's
+   justify-content:center to center against. Sized to its own content
+   instead, so the leftover reserved space (if any) splits evenly above
+   and below it. */
 .bookingEmbed {
   width: 100%;
-  height: 100%;
 }
 
 /* Desktop only (mobile's own sizing is already right, see the

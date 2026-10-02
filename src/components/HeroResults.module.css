@@ -58,13 +58,17 @@
    circle. The cream ring plus a very faint outer outline (box-shadow,
    not border, so it doesn't add to the element's own layout size) is
    what separates it cleanly from the blush panel behind it. */
+/* Position/size measured directly off the reference screenshot's purple
+   box (pixel-mapped against the panel's own measured edges, not
+   guessed): top -28px (was -43, less of it hangs above the panel now),
+   right 30px, 136px square (was 128). */
 .photoWrap {
   position: absolute;
-  top: -43px;
-  right: 36px;
-  width: 128px;
-  height: 128px;
-  border-radius: 20px;
+  top: -28px;
+  right: 30px;
+  width: 136px;
+  height: 136px;
+  border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5px rgba(46, 40, 32, 0.12);
 }
@@ -223,26 +227,27 @@
     padding-left: 8px;
   }
 
-  /* Smaller and shifted further left (right offset up from 20 to 32)
-     than the previous round. */
+  /* Position/size measured directly off the reference screenshot's
+     purple box, as a fraction of the panel's own width (mobile's panel
+     width isn't fixed like desktop's, so fractions travel better than
+     raw px here): smaller (90px, was 100) and shifted further left
+     (right offset up from 32 to 60). */
   .photoWrap {
     top: -36px;
-    right: 32px;
-    width: 100px;
-    height: 100px;
-    border-radius: 16px;
+    right: 60px;
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
   }
 
   .list {
     padding-left: 8px;
   }
 
-  /* Widened from 10px: with .list's own indent cut down (see above),
-     this is what keeps the results column (the number+label block)
-     landing in the same place as before instead of drifting left with
-     the logos. */
+  /* 16px, not 20: the extra 4px was landing the results column just
+     past the reference screenshot's target line. */
   .row {
-    gap: 20px;
+    gap: 16px;
   }
 
   .number {
