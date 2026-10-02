@@ -4,7 +4,13 @@ import { useState, useEffect } from "react";
 import styles from "./Nav.module.css";
 import { trackEvent } from "@/lib/analytics";
 
-export default function Nav() {
+interface NavProps {
+  /** Mirrors the server-side CHAT_ENABLED flag (see page.tsx): the "Ask my
+   * AI" link only makes sense when the #ask section actually renders. */
+  chatEnabled: boolean;
+}
+
+export default function Nav({ chatEnabled }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -42,6 +48,13 @@ export default function Nav() {
 
         {/* Desktop links */}
         <ul className={styles.links}>
+          {chatEnabled && (
+            <li>
+              <a href="#ask" onClick={() => trackNav("ask_my_ai", "nav_desktop")}>
+                Ask my AI
+              </a>
+            </li>
+          )}
           <li>
             <a href="#services" onClick={() => trackNav("services", "nav_desktop")}>
               What I do
@@ -85,6 +98,19 @@ export default function Nav() {
       {menuOpen && (
         <div className={styles.drawer}>
           <ul>
+            {chatEnabled && (
+              <li>
+                <a
+                  href="#ask"
+                  onClick={() => {
+                    close();
+                    trackNav("ask_my_ai", "nav_mobile");
+                  }}
+                >
+                  Ask my AI
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href="#services"

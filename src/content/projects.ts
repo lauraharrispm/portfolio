@@ -91,8 +91,8 @@ export const projects: Project[] = [
     cardImage: {
       src: "/case-studies/intake-card.png",
       alt: "Redesigned intake form starting with a care-type choice",
-      width: 1600,
-      height: 1000,
+      width: 1262,
+      height: 873,
     },
     title: "Patient intake redesign",
     oneLineDesc:
@@ -174,8 +174,8 @@ export const projects: Project[] = [
           "Families choose the kind of care they need first, so every question after it is relevant to them.",
           "Secondary insurance folded into one step, with non-essential details collected after submission.",
         ],
-        imageWidths: [1600, 1600],
-        imageHeights: [1000, 1000],
+        imageWidths: [720, 1262],
+        imageHeights: [1480, 873],
       },
       {
         id: "results",
@@ -215,8 +215,8 @@ export const projects: Project[] = [
     cardImage: {
       src: "/case-studies/portal-card.png",
       alt: "Patient portal step tracker with a next-action header",
-      width: 1600,
-      height: 1000,
+      width: 883,
+      height: 842,
     },
     title: "Patient portal redesign",
     oneLineDesc:
@@ -300,8 +300,8 @@ export const projects: Project[] = [
           "The header always names what happens next, and who's responsible for it.",
           "When there's no clinician nearby yet, families see why, get a call they can book now, and are notified when that changes.",
         ],
-        imageWidths: [1600, 1600],
-        imageHeights: [1000, 1000],
+        imageWidths: [720, 720],
+        imageHeights: [1480, 1480],
       },
       {
         id: "results",

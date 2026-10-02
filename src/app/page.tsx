@@ -16,7 +16,7 @@ const chatEnabled = process.env.CHAT_ENABLED === "true";
 export default function Home() {
   return (
     <>
-      <Nav />
+      <Nav chatEnabled={chatEnabled} />
       <main>
         <Hero />
         {chatEnabled && <AskChat />}
