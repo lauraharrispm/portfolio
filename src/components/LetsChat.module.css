@@ -100,6 +100,24 @@
   height: 100%;
 }
 
+/* Desktop only (mobile's own sizing is already right — see the
+   @media (max-width: 768px) block below, left untouched). Cal's embed
+   has no size/scale config of its own (checked their docs: only
+   radius, spacing, and layout-view options, none of which touch cell
+   or font size), so this is the only real lever to make the widget
+   read smaller on desktop. zoom, not transform:scale(): transform
+   leaves the pre-scaled layout box behind (dead space below/around
+   the now-smaller visual unless you hand-calculate a matching
+   wrapper height), while zoom shrinks the actual layout box too, so
+   .bookingWrap's card naturally sizes to the smaller content with no
+   leftover gap, even as Cal's own script keeps resizing the iframe
+   for different views (month grid vs. a day's time slots). */
+@media (min-width: 769px) {
+  .bookingEmbed {
+    zoom: 0.8;
+  }
+}
+
 .bookingPlaceholder {
   width: 100%;
   height: 100%;
