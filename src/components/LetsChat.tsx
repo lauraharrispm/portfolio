@@ -138,7 +138,7 @@ export default function LetsChat() {
             <h2 className={styles.heading}>Let&apos;s chat</h2>
 
             <p className={styles.body}>
-              Tell me where the product is today, what&apos;s getting in the
+              Tell me where your product is today, what&apos;s getting in the
               way, and what you want to change. In 30 minutes, we&apos;ll talk
               through how I&apos;d approach it, whether a fractional or
               project-based engagement fits, and whether we should work

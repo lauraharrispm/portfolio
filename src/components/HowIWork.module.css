@@ -178,12 +178,14 @@
    draws that line right below, so a bottom border here on top of that
    stacked two 1px lines into one visibly heavier divider than the
    plain 1px lines between the rows below it. Dropping this one makes
-   every divider in the table a single, consistent line. */
+   every divider in the table a single, consistent line. 2px, not 1px,
+   on the remaining sides: matches the row dividers' own weight so the
+   table's outer edge doesn't read lighter than its internal lines. */
 .tabList {
   display: flex;
   gap: 1px;
   background: rgba(46, 40, 32, 0.14);
-  border: 1px solid rgba(46, 40, 32, 0.14);
+  border: 2px solid rgba(46, 40, 32, 0.14);
   border-bottom: none;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
@@ -226,9 +228,12 @@
 
 /* Matches the desktop table's container treatment: bordered, rounded,
    flowing directly from .tabList above with no gap, so the two read as
-   one header-plus-body table instead of a separate toggle control. */
+   one header-plus-body table instead of a separate toggle control.
+   2px, not 1px: matches the row dividers' weight (see .mobileRow)
+   and .tabList's own border above, so the left/right/bottom outer
+   edge of the table doesn't read lighter than everything inside it. */
 .tabPanel {
-  border: 1px solid rgba(46, 40, 32, 0.14);
+  border: 2px solid rgba(46, 40, 32, 0.14);
   border-top: none;
   border-radius: 0 0 16px 16px;
   overflow: hidden;
@@ -319,7 +324,7 @@
   align-self: start;
   display: inline-flex;
   align-items: center;
-  margin-top: 48px;
+  margin-top: 64px;
   padding: 14px 28px;
   background: var(--coral);
   color: #fff;
@@ -447,5 +452,13 @@
 
   .mobileToggle {
     display: block;
+  }
+
+  /* Smaller than .tabName (the format title) here specifically, so the
+     pill reads as a secondary tag under the title instead of competing
+     with it for attention. */
+  .pill {
+    font-size: 0.625rem;
+    padding: 2px 8px;
   }
 }

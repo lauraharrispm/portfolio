@@ -50,16 +50,24 @@
   max-width: 640px;
 }
 
-/* align-self:start, not center: with the panel's own height now
-   shorter than the content+gap+CTAs column beside it (see
-   HeroResults.module.css's trimmed bottom padding), centering would
-   split that extra space evenly above and below the panel, nudging
-   its top down along with its bottom. Anchoring to start keeps the
-   top exactly where it was and lets the bottom trim be the only
-   thing that moves, so it lines up with the CTAs below. */
+/* align-self:stretch: the panel column now fills its full grid area
+   (spanning the content + CTAs rows), and the panel itself grows to
+   100% of that height with a flex column inside (see
+   HeroResults.module.css's .panel/.list) so its own bottom edge
+   always lands level with the CTAs beside it, regardless of how much
+   vertical room the content column takes up at a given width. */
+/* align-self:stretch fills this column to the grid area's full height
+   (content + CTAs rows). position:relative turns this into the
+   containing block for .panel's absolute positioning below — taking
+   .panel out of normal flow is what actually stops its own natural
+   content height from feeding back into how tall the grid makes the
+   "content"/"ctas" rows in the first place (a plain min-height:0 only
+   caps the item's minimum contribution, not its max-content one,
+   which auto grid tracks also grow to fit). */
 .panelCol {
   grid-area: panel;
-  align-self: start;
+  align-self: stretch;
+  position: relative;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is
@@ -175,23 +183,23 @@
     opacity: 0.5;
   }
 
-  /* Tighter than the 40px shared by every row at the 900px breakpoint:
-     that read as too much air specifically between the subcopy and the
+  /* Cut ~30% further than the previous round (24px total down to
+     ~17px): still reads as too much air between the subcopy and the
      results panel right under it. Paired with .subhead's own smaller
      margin-bottom below, this is a real cut, not a cosmetic one.
      margin-top on .ctas restores the removed amount, so the
      panel-to-CTAs gap stays what it was. */
   .layout {
-    row-gap: 8px;
+    row-gap: 6px;
   }
 
   .subhead {
-    margin-bottom: 16px;
+    margin-bottom: 11px;
   }
 
   .ctas {
     flex-direction: column;
-    margin-top: 32px;
+    margin-top: 37px;
   }
 
   .ctaPrimary,

@@ -1,20 +1,23 @@
-/* position:relative so .photoWrap (absolute) positions against this
-   panel's own box, not some further-out ancestor. The added margin-top
-   is clearance for the photo lifted above this panel's top edge (see
-   .photoWrap): the panel's own position/size stay exactly as they were
-   otherwise. */
-/* Bottom padding trimmed to 8px (was 32, matching the top/sides): on
-   desktop this is what brings the panel's own bottom edge level with
-   the hero CTAs beside it (see .row:last-child below for the other
-   half of that trim), without touching anything above it in the
-   panel. */
+/* position:absolute (not relative) against .panelCol (see
+   Hero.module.css): this is what lets the panel fill .panelCol's full
+   stretched height — top:72px is the old margin-top's clearance for
+   the photo lifted above this box, and bottom:0 is what actually
+   makes the panel's own bottom edge track the hero CTAs beside it at
+   any viewport width, since taking this out of normal flow also stops
+   its natural content height from influencing how tall the grid makes
+   its row in the first place (see .panelCol's own comment). */
 .panel {
-  position: relative;
-  margin-top: 72px;
+  position: absolute;
+  top: 72px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
   background: var(--blush-peach);
   border-radius: 18px;
   box-shadow: 0 24px 56px rgba(46, 40, 32, 0.14);
-  padding: 32px 36px 0;
+  padding: 32px 36px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
@@ -26,8 +29,12 @@
   transform: translateY(0);
 }
 
+/* flex-shrink:0 so this keeps its natural height when .panel's flex
+   column has less room than its content wants (narrower viewports,
+   more text wrap) — only .list (flex:1 below) should ever compress. */
 .headerRow {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 10px;
@@ -69,8 +76,21 @@
   object-fit: cover;
 }
 
+/* flex column + justify-content:space-between: this is what actually
+   makes the panel's bottom land on the CTAs' bottom (see .panel's own
+   comment above) — the rows keep their natural height and the leftover
+   vertical space in the panel gets distributed as extra gap between
+   them instead of as one dead block at the bottom. At the one specific
+   width this was tuned at before, that leftover was close to zero, so
+   this reads the same as before there; at other widths the gaps breathe
+   a little more or less instead of drifting out of alignment. */
 .list {
   list-style: none;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .row {
@@ -78,15 +98,6 @@
   align-items: center;
   gap: 20px;
   padding: 16px 0;
-}
-
-/* The other half of the bottom trim described on .panel above: removes
-   the last row's own bottom padding and trims its top padding too,
-   since .panel's reduced padding alone isn't enough on its own to
-   bring the box level with the CTAs beside it. */
-.row:last-child {
-  padding-top: 5px;
-  padding-bottom: 0;
 }
 
 .row:not(:first-child) {
@@ -179,6 +190,22 @@
   }
 }
 
+/* Below this width Hero.module.css stacks the grid into one column, so
+   there's no taller sibling row for .panel to match — back to normal
+   flow (the same 72px top clearance, just via margin instead of an
+   absolute offset) so .panelCol sizes to the panel's own content
+   again instead of collapsing to zero height. */
+@media (max-width: 900px) {
+  .panel {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    margin-top: 72px;
+  }
+}
+
 /* Scaled-down mirror of the desktop layout, not a different design:
    photo stays top-right, heading stays unindented, same as desktop
    just smaller, so mobile reads as the same panel instead of a
@@ -189,26 +216,33 @@
     padding: 20px;
   }
 
+  /* Indented to match .list's own padding-left below, so the heading
+     text starts at the exact same x as the logos underneath it. */
   .heading {
     font-size: 1.3125rem;
+    padding-left: 8px;
   }
 
+  /* Smaller and shifted further left (right offset up from 20 to 32)
+     than the previous round. */
   .photoWrap {
-    top: -40px;
-    right: 20px;
-    width: 112px;
-    height: 112px;
-    border-radius: 18px;
+    top: -36px;
+    right: 32px;
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
   }
 
-  /* Shifts the logo/result column in from the left edge, to balance
-     against the bigger photo now anchoring the right side. */
   .list {
-    padding-left: 20px;
+    padding-left: 8px;
   }
 
+  /* Widened from 10px: with .list's own indent cut down (see above),
+     this is what keeps the results column (the number+label block)
+     landing in the same place as before instead of drifting left with
+     the logos. */
   .row {
-    gap: 10px;
+    gap: 20px;
   }
 
   .number {
