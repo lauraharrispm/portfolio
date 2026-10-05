@@ -1,0 +1,66 @@
+/* Centered, not left-aligned: with no panel/card around this anymore,
+   there's no left edge for the photo and location rows to share, so
+   centering them as a single small column reads more intentional than
+   an arbitrary left alignment would. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Rounded square, same ring treatment the old results panel's photo
+   used: a cream ring plus a very faint outer outline (box-shadow, not
+   border, so it doesn't add to the element's own layout size). */
+.photoWrap {
+  width: 168px;
+  height: 168px;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5px rgba(46, 40, 32, 0.12);
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.locationList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  color: var(--charcoal-muted);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .photoWrap {
+    width: 132px;
+    height: 132px;
+    border-radius: 20px;
+  }
+
+  .locationRow {
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}

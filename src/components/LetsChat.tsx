@@ -133,10 +133,13 @@ export default function LetsChat() {
   return (
     <section id="book" className={styles.section}>
       <div className="container">
+        {/* Heading lives outside .inner's grid row on its own, so .copy's
+           first child (the body paragraph) and .bookingWrap are what the
+           grid's align-items:start actually lines up, landing the
+           widget's top on the body copy's top instead of the heading's. */}
+        <h2 className={styles.heading}>Let&apos;s chat</h2>
         <div className={styles.inner}>
           <div className={styles.copy}>
-            <h2 className={styles.heading}>Let&apos;s chat</h2>
-
             <p className={styles.body}>
               Tell me where your product is today, what&apos;s getting in the
               way, and what you want to change. In 30 minutes, we&apos;ll talk

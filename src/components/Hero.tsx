@@ -2,7 +2,7 @@
 
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
-import HeroResults from "./HeroResults";
+import HeroProfile from "./HeroProfile";
 
 export default function Hero() {
   return (
@@ -19,12 +19,12 @@ export default function Hero() {
               I&apos;m Laura. I&apos;ve spent 8+ years building and scaling products at
               consumer startups across marketplaces, healthcare, and DTC ecommerce, from
               seed to Series C. Now I help founders solve the right problems, unblock engineering,
-              and ship faster. NYC-based.
+              and ship faster.
             </p>
           </div>
 
           <div className={styles.panelCol}>
-            <HeroResults />
+            <HeroProfile />
           </div>
 
           <div className={styles.ctas}>

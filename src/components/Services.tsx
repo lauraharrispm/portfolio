@@ -95,13 +95,21 @@ export default function Services() {
               <div className={styles.stageContent}>
                 <span className={styles.stageNumber}>{String(i + 1).padStart(2, "0")}</span>
                 <h3 className={styles.stageName}>{stage.category}</h3>
-                <p className={styles.stageBody}>{stage.body}</p>
-                <a className={styles.stageLink} href={stage.href}>
-                  Case study{" "}
-                  <span className={styles.stageLinkArrow} aria-hidden="true">
-                    →
-                  </span>
-                </a>
+                {/* .stageLink nested inside the paragraph, not a sibling
+                   after it: on mobile (its default inline display) that
+                   lets it flow right at the end of the body text instead
+                   of forcing its own line; desktop overrides it back to
+                   display:block (see the min-width:769px rule) to keep
+                   the previous on-its-own-line look there. */}
+                <p className={styles.stageBody}>
+                  {stage.body}{" "}
+                  <a className={styles.stageLink} href={stage.href}>
+                    Case study{" "}
+                    <span className={styles.stageLinkArrow} aria-hidden="true">
+                      →
+                    </span>
+                  </a>
+                </p>
               </div>
             </li>
           ))}

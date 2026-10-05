@@ -5,12 +5,7 @@
      the page, the hero reads cramped under the nav without its own
      larger top space. */
   padding-top: calc(var(--nav-height) + 72px);
-  /* Room for the results panel's shadow (offset 24px + blur 56px = 80px)
-     to fully fade out before this section's box ends, so the next
-     section's opaque background doesn't cut it off abruptly. */
-  padding-bottom: 80px;
-  /* No overflow:hidden: paired with the padding above, this lets that
-     shadow render and fade in full instead of getting hard-clipped. */
+  padding-bottom: var(--section-padding-v);
 }
 
 /* Oversized typographic background element */
@@ -30,8 +25,8 @@
 }
 
 /* ─── Grid, not flex: the CTAs need to sit in the same left column as
-   the text on desktop (second row, under the subhead) while the results
-   panel sits beside both, spanning the full height. A flex row can't
+   the text on desktop (second row, under the subhead) while the profile
+   column sits beside both, spanning the full height. A flex row can't
    place a third sibling into an existing column like that; a flex
    column (mobile) can't easily reorder across differently-grouped
    siblings either. Named grid areas handle both without restructuring
@@ -39,7 +34,7 @@
 .layout {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 280px;
   grid-template-areas: "content panel" "ctas panel";
   column-gap: 64px;
 }
@@ -50,31 +45,13 @@
   max-width: 640px;
 }
 
-/* align-self:stretch: the panel column now fills its full grid area
-   (spanning the content + CTAs rows), and the panel itself grows to
-   100% of that height with a flex column inside (see
-   HeroResults.module.css's .panel/.list) so its own bottom edge
-   always lands level with the CTAs beside it, regardless of how much
-   vertical room the content column takes up at a given width. */
-/* align-self:stretch fills this column to the grid area's full height
-   (content + CTAs rows). position:relative turns this into the
-   containing block for .panel's absolute positioning below — taking
-   .panel out of normal flow is what actually stops its own natural
-   content height from feeding back into how tall the grid makes the
-   "content"/"ctas" rows in the first place (a plain min-height:0 only
-   caps the item's minimum contribution, not its max-content one,
-   which auto grid tracks also grow to fit). */
-/* min-width:0: without it, this grid item's default min-width:auto lets
-   its content's own min-content size (specifically .panel on mobile,
-   where it's back in normal flow, see HeroResults.module.css's 900px
-   override, so its content counts toward intrinsic sizing again)
-   force the single-column mobile grid track wider than the viewport,
-   dragging .content along with it since they share that column. */
+/* align-self:center: HeroProfile (photo + two location lines) is much
+   shorter than the content+CTAs column beside it, and unlike the old
+   results panel, nothing here needs to match the CTAs' bottom edge, so
+   simple centering is all this needs. */
 .panelCol {
   grid-area: panel;
-  align-self: stretch;
-  position: relative;
-  min-width: 0;
+  align-self: center;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is
@@ -154,7 +131,7 @@
 
 /* ─── Tablet and below: panel gets cramped beside the text, so stack
    everything into one column instead of squeezing two. Content, then
-   the results panel, then the CTAs last, per request. ──────────────── */
+   the profile photo, then the CTAs last. ──────────────────────────── */
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
@@ -168,18 +145,12 @@
   }
 
   .panelCol {
-    align-self: auto;
+    align-self: center;
     width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  /* The 80px base padding-bottom exists for the results panel's shadow
-     to fade out before the next section (see the base .hero rule) — but
-     on mobile the CTAs are the last element below the panel now, not
-     the panel itself, so that extra room isn't needed here. Matching
-     the shared mobile section padding instead keeps the gap after the
-     CTAs the same as the gap above every other section heading. */
   .hero {
     padding-top: calc(var(--nav-height) + 40px);
     padding-bottom: var(--section-padding-v-mobile);
@@ -190,23 +161,12 @@
     opacity: 0.5;
   }
 
-  /* Cut ~30% further than the previous round (24px total down to
-     ~17px): still reads as too much air between the subcopy and the
-     results panel right under it. Paired with .subhead's own smaller
-     margin-bottom below, this is a real cut, not a cosmetic one.
-     margin-top on .ctas restores the removed amount, so the
-     panel-to-CTAs gap stays what it was. */
   .layout {
-    row-gap: 6px;
-  }
-
-  .subhead {
-    margin-bottom: 11px;
+    row-gap: 32px;
   }
 
   .ctas {
     flex-direction: column;
-    margin-top: 37px;
   }
 
   .ctaPrimary,

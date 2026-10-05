@@ -32,6 +32,13 @@
   .introBreak {
     display: block;
   }
+
+  /* Back to its own line on desktop (the link is nested inside
+     .stageBody now, see Services.tsx): mobile keeps the default inline
+     flow so it reads as the end of the sentence instead. */
+  .stageLink {
+    display: block;
+  }
 }
 
 /* ─── Funnel stages ─────────────────────────────────────────────── */
