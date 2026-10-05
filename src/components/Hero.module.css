@@ -31,16 +31,13 @@
    column (mobile) can't easily reorder across differently-grouped
    siblings either. Named grid areas handle both without restructuring
    the DOM per breakpoint. ──────────────────────────────────────────── */
-/* Photo only shares a row with content now (row 1): outcomes and ctas
-   span the full width below both columns, not just the content side,
-   since outcomes needs the extra room for its wider stat+logo boxes
-   (see ProductOutcomes.module.css) and there's no "panel" column left
-   beside it for the photo to occupy there anyway. */
+/* Photo shares a row with content (row 1); ctas span the full width
+   below both columns. */
 .layout {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 280px;
-  grid-template-areas: "content panel" "outcomes outcomes" "ctas ctas";
+  grid-template-areas: "content panel" "ctas ctas";
   column-gap: 64px;
 }
 
@@ -58,13 +55,6 @@
 .panelCol {
   grid-area: panel;
   align-self: center;
-}
-
-.outcomesSlot {
-  grid-area: outcomes;
-  min-width: 0;
-  margin-top: 32px;
-  margin-bottom: 32px;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is
@@ -100,6 +90,46 @@
   line-height: 1.65;
   max-width: 740px;
   margin-bottom: 32px;
+}
+
+.outcomesList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.outcomeItem {
+  position: relative;
+  padding-left: 20px;
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+
+.outcomeItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.outcomeLink {
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+
+.outcomeLink:hover {
+  color: var(--coral);
 }
 
 .ctas {
@@ -148,7 +178,7 @@
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
-    grid-template-areas: "content" "panel" "outcomes" "ctas";
+    grid-template-areas: "content" "panel" "ctas";
     row-gap: 40px;
   }
 
@@ -160,11 +190,6 @@
   .panelCol {
     align-self: center;
     width: 100%;
-  }
-
-  .outcomesSlot {
-    margin-top: 0;
-    margin-bottom: 0;
   }
 }
 

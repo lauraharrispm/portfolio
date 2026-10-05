@@ -3,7 +3,24 @@
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
-import ProductOutcomes from "./ProductOutcomes";
+
+const OUTCOMES = [
+  {
+    stat: "80% onboarding lift",
+    company: "GlossGenius",
+    href: "https://glossgenius.com",
+  },
+  {
+    stat: "50%+ patient growth",
+    company: "Rula",
+    href: "https://rula.com",
+  },
+  {
+    stat: "4x revenue growth",
+    company: "Burrow",
+    href: "https://burrow.com",
+  },
+];
 
 export default function Hero() {
   return (
@@ -11,20 +28,31 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            <h1 className={styles.headline}>Build products people want, faster.</h1>
+            <h1 className={styles.headline}>Build the right product. Ship it faster.</h1>
             <p className={styles.subhead}>
               I&apos;m Laura. I help consumer startup founders find the right product
               bets, align engineering, and ship faster. I bring 8+ years of experience
               across marketplaces, healthcare, and ecommerce, spanning seed to Series C.
             </p>
+            <ul className={styles.outcomesList}>
+              {OUTCOMES.map((outcome) => (
+                <li key={outcome.company} className={styles.outcomeItem}>
+                  {outcome.stat} at{" "}
+                  <a
+                    href={outcome.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.outcomeLink}
+                  >
+                    {outcome.company}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className={styles.panelCol}>
             <HeroProfile />
-          </div>
-
-          <div className={styles.outcomesSlot}>
-            <ProductOutcomes />
           </div>
 
           <div className={styles.ctas}>
