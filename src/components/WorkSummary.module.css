@@ -122,16 +122,23 @@
   color: var(--charcoal);
 }
 
-/* Plain-text qualifier next to the company name, not a second pill:
-   explicitly resets .company's uppercase/bold/letter-spacing so it
-   reads as a quiet aside instead of a second loud label competing with
-   the real funnel-stage tag. */
+/* A pill like .tag below, but a light cream/tan fill (same var(--warm-tint)
+   used for the Hero outcome boxes and the How I Work table's header row)
+   with charcoal text instead of coral, so it reads as a distinct,
+   quieter label rather than competing with the real funnel-stage tag. */
 .engagement {
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: normal;
-  text-transform: none;
-  color: var(--charcoal-muted);
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  background: var(--warm-tint);
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-left: 8px;
 }
 
 .tag {

@@ -256,7 +256,13 @@
     align-self: start;
   }
 
+  /* align-self:start, not the grid default (stretch): without this, the
+     list stretches to match panelCol's full height (photo + LinkedIn),
+     and each box's inherited flex:1 then grows to fill that leftover
+     space, leaving empty padding at the bottom of any box whose own
+     text is shorter than the tallest one. */
   .outcomesList {
+    align-self: start;
     min-width: 0;
     flex-direction: column;
     gap: 8px;
@@ -265,6 +271,7 @@
   }
 
   .outcomeItem {
+    flex: none;
     padding: 10px 12px;
     font-size: 0.8125rem;
     line-height: 1.35;

@@ -29,7 +29,7 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            <h1 className={styles.headline}>Build the right product. Ship it faster.</h1>
+            <h1 className={styles.headline}>Build the right product. Ship it&nbsp;faster.</h1>
             <p className={styles.subhead}>
               I&apos;m Laura, a fractional product lead. I help consumer startup
               founders find the right product bets, align engineering, and ship

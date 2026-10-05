@@ -9,22 +9,6 @@
   gap: 20px;
 }
 
-/* order:2 keeps this below the photo (order:1) on desktop; the 768px
-   breakpoint below flips it to order:0, ahead of the photo, instead of
-   hiding it. */
-.availabilityPill {
-  order: 2;
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  background: var(--blush-peach);
-  color: var(--charcoal);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  border-radius: 999px;
-  text-align: center;
-}
-
 /* Rounded square, no ring/border anymore (dropped per request). A
    drop shadow instead, matching the weight the rest of the site's
    floating card elements use (panels/strips sit around 0.12-0.16
@@ -32,7 +16,6 @@
    lifted off the page without the hard outline. Desktop size is 20%
    bigger than the previous 259px. */
 .photoWrap {
-  order: 1;
   width: 311px;
   height: 311px;
   border-radius: 42px;
@@ -51,7 +34,6 @@
    link in LetsChat (see .altContact a there): coral underline, charcoal
    text that turns coral on hover. */
 .linkedinLink {
-  order: 3;
   color: var(--charcoal-muted);
   text-decoration: underline;
   text-decoration-color: var(--coral);
@@ -66,22 +48,8 @@
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
-   those boxes enough width to stay readable. The pill moves ABOVE the
-   photo here (order:0) instead of below it, and shrinks + wraps since
-   this narrow a column can't fit it on one line. */
+   those boxes enough width to stay readable. */
 @media (max-width: 768px) {
-  .wrap {
-    gap: 10px;
-  }
-
-  .availabilityPill {
-    order: 0;
-    padding: 6px 10px;
-    font-size: 0.6875rem;
-    line-height: 1.3;
-    text-align: center;
-  }
-
   .photoWrap {
     width: 163px;
     height: 163px;
