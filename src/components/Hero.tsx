@@ -3,6 +3,7 @@
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
+import ResultIcon from "./ResultIcon";
 
 const OUTCOMES = [
   {
@@ -37,15 +38,18 @@ export default function Hero() {
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
-                  {outcome.stat} at{" "}
-                  <a
-                    href={outcome.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.outcomeLink}
-                  >
-                    {outcome.company}
-                  </a>
+                  <ResultIcon kind="trend" className={styles.outcomeIcon} />
+                  <span>
+                    {outcome.stat} at{" "}
+                    <a
+                      href={outcome.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.outcomeLink}
+                    >
+                      {outcome.company}
+                    </a>
+                  </span>
                 </li>
               ))}
             </ul>

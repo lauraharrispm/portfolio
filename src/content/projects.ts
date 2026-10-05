@@ -113,9 +113,9 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "Qualified families were dropping off on step one",
         body: [
-          "The company connects families with specialized care. Intake was a small, high-touch flow: nearly every family arrived through a referral, already qualified and already looking for help. Yet about a third of them dropped off on the very first step of the intake form. For families who were already qualified, that was far too high, and in theory we could win almost all of them back by making those first steps feel doable. The intake experience was broken in two compounding ways:",
+          "The company connects families with specialized care for their children. Finding that care starts with an intake form, which determines what kind of care a family needs and whether the company can serve them. Intake was a small, high-touch flow: nearly every family arrived through a referral, already qualified and already looking for help. Yet about a third of them dropped off on the very first step of the intake form. For families who were already qualified, that drop-off was far too high, and in theory we could win almost all of them back by making those first steps feel doable. The intake experience was broken in two compounding ways:",
           "The form treated every family the same. Every family got the same insurance-heavy questions in the same order, whether they were ready to start care or hadn't been diagnosed yet. The question that determined what kind of care a family needed sat near the very end.",
-          "Engineering was waiting on product. With no dedicated product person, the team kept finishing work and then waiting for the next definition.",
+          "Engineering was waiting on product. With no dedicated product support, the team was building with minimal guidance from time-strapped founders, creating misalignment with business goals, gaps in customer (patient) experience, and inefficient use of engineering hours.",
         ],
         boldPrefixes: [
           "",
@@ -129,13 +129,13 @@ export const projects: Project[] = [
         heading: "A staged plan, shipped as one release",
         body: [
           "I audited the funnel with production data, then wrote a plan staged by confidence and engineering effort. The CEO prioritized it and resourced every stage at once, so the full redesign shipped as one release. Two principles guided every decision:",
-          "Fix what's certain first, and defer what needs new infrastructure. High-confidence changes led: simpler insurance steps, non-essential fields moved after submission, and broader entry-page copy. Higher-lift engineering projects like instant eligibility checks and automated insurance verification were saved for later.",
-          "Ask the right question at the right moment. Fields not used for matching came out, and the care-type question moved to the front, so every family was routed correctly from the start.",
+          "Fix what's certain first, and aim to defer costly infrastructure projects. High-confidence changes led: simpler insurance steps, non-essential fields moved after submission, and broader entry-page copy. Higher-lift engineering projects like instant eligibility checks and automated insurance verification were saved for later.",
+          "Minimize the input needed from the user to realize value. Submitting the form usually results in a provider match, so we trimmed it down to only the questions needed to run the matching algorithm and moved the care-type question to the front, routing every family correctly from the start. The fields we removed were still important, so we moved them to the patient portal instead, speeding up time to value in the intake-to-match flow.",
         ],
         boldPrefixes: [
           "",
-          "Fix what's certain first, and defer what needs new infrastructure.",
-          "Ask the right question at the right moment.",
+          "Fix what's certain first, and aim to defer costly infrastructure projects.",
+          "Minimize the input needed from the user to realize value.",
         ],
       },
       {
@@ -143,14 +143,14 @@ export const projects: Project[] = [
         label: "Key Challenges",
         heading: "Reading the data, routing, and testing at low volume",
         body: [
-          "The biggest drop-off in the data wasn't the biggest opportunity. The funnel analytics were new and hadn't been stress-tested, and they pointed to a large drop-off before families ever opened the intake link. The underlying data showed it was smaller than it looked, and mostly caused by things product couldn't fix, like unsupported insurance. Defining the real problems before brainstorming solutions kept us from building the wrong things.",
-          "One question was two problems. Families who bounced early never reached the care-type question, and coordinators were learning mid-call that a family needed a diagnosis, not ongoing care. Moving the question earlier fixed conversion and routing at the same time.",
-          "Volume was too low to test small changes. At current traffic, a test could only detect a lift of 15 to 20% and would take over a month. Referral traffic was already too close to its ceiling to test at all. So we shipped high-confidence changes to everyone with analytics live, and saved testing for the bigger bets.",
+          "The biggest drop-off in the data wasn't the biggest opportunity. Our funnel analytics were new and hadn't been stress-tested, and they first pointed to a massive drop-off before families even opened the intake link. On closer look, that drop-off was much smaller than it appeared, and what remained was mostly outside product's control, like unsupported insurance. Diagnosing the real problem before proposing solutions kept us from building fixes nobody needed.",
+          "One question was two problems. The care-type question, whether a family needed an evaluation or ongoing treatment, was the most important fork early in the funnel: it decided what happened next for a prospective family. But the form didn't ask it clearly until the very end, so families who bounced before then never answered it, and coordinators often didn't learn the real answer until mid-call, confusing both the family and internal care staff, who then had to walk the family back through a round of questions to restart the process correctly. Moving the question to the front fixed conversion and routing at the same time.",
+          "We couldn't use a launch experiment to measure results. At current traffic and engagement with the key metric, an experiment would have taken months to reach statistical significance, and running one would have meant building the infrastructure to serve two versions of the intake form at once, a notable engineering investment on its own. So we shipped the high-confidence new experience to 100% of traffic, backed by a launch measurement plan with pre- and post-launch success and failure guardrails, and supported by internal comms to help manage the patient experience through the change.",
         ],
         boldPrefixes: [
           "The biggest drop-off in the data wasn't the biggest opportunity.",
           "One question was two problems.",
-          "Volume was too low to test small changes.",
+          "We couldn't use a launch experiment to measure results.",
         ],
       },
       {
@@ -160,7 +160,7 @@ export const projects: Project[] = [
         body: [
           "The old form asked families to prove their eligibility before it understood what they needed. The redesign flipped that order: learn what kind of care the family is looking for, then ask only the questions that matter for it.",
           "We added a clear care-type choice up front, streamlined the insurance steps, and cut every field not needed to match a family with care. The result was an intake experience that met families where they were.",
-          "The images below are abstracted recreations that illustrate the design, not screenshots of the live product, to keep the client anonymous.",
+          "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
           "/case-studies/intake-1.png",
@@ -223,7 +223,7 @@ export const projects: Project[] = [
       "After submitting intake, some families were misrouted, silently dropped, or promised coverage we couldn't deliver. A redesigned portal, built in about a week of product time, gave every family an honest next step.",
     keyMetric: {
       number: "1 day",
-      label: "faster to first session",
+      label: "faster to patient first session",
     },
     fundingStage: "Series A",
     employeeRange: "14 employees",
@@ -286,7 +286,7 @@ export const projects: Project[] = [
         body: [
           "The portal became a step tracker, built as phases containing steps, so treatment can be added later without renumbering anything. The header always names the parent's next action. When there isn't one, it says what the company is doing: \"We're verifying coverage. Nothing needed from you right now.\" A parent should never feel stalled on something that isn't theirs.",
           "Requirements split into two honest tiers: what's needed before you can book, and what's needed before we can bill. Only the first tier locks anything, so a finished tracker always means nothing is blocking you.",
-          "The images below are abstracted recreations that illustrate the design, not screenshots of the live product, to keep the client anonymous.",
+          "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
           "/case-studies/portal-1.png",
@@ -308,7 +308,7 @@ export const projects: Project[] = [
         label: "Results",
         heading: "Every family gets an honest next step",
         body: [
-          "A full day faster to first session, by unlocking booking as soon as families submitted their member ID",
+          "A full day faster to patient first session, by unlocking booking as soon as families submitted their member ID",
           "Families needing an evaluation routed to evaluation support, not straight to treatment",
           "Unmatched families shown an honest next step and a call they can book, instead of a silent dead end",
           "Coverage copy rewritten to promise only what the product can deliver",
@@ -322,11 +322,11 @@ export const projects: Project[] = [
         label: "Reflection",
         heading: "What this project taught me",
         body: [
-          "Many UX problems are data model problems. Misrouted families, silent drops, and false promises looked like screen issues. Most came from one field doing two jobs. Fixing the model made honest screens possible, and more polish on the old model couldn't have.",
-          "Moving fast is a tradeoff, so name it when you make it. Shipping intake and the portal together was the right call, but it meant no clean baseline to measure against. Next time I'd write down what the acceleration costs at the moment of the decision, so the team chooses the tradeoff instead of discovering it later.",
+          "Many of the portal's UX problems were really data model problems in disguise. Misrouted families, silent drops, and false promises looked like screen bugs, but most traced back to one field carrying two different facts: what a family was asking for, and what documentation they actually had. Once that field was split in two, the screens could finally tell families the truth, which no amount of polish on the old model could have done.",
+          "Moving fast is a tradeoff, so name it when you make it. Shipping the new intake form and portal together was a call everyone agreed on to reach impact faster, but not everyone understood upfront that it would muddy the baselines needed for clean pre-post analysis. Next time I'd write down what the acceleration costs at the moment of the decision, to limit surprises later.",
         ],
         boldPrefixes: [
-          "Many UX problems are data model problems.",
+          "Many of the portal's UX problems were really data model problems in disguise.",
           "Moving fast is a tradeoff, so name it when you make it.",
         ],
       },

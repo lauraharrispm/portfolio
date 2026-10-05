@@ -54,10 +54,14 @@
   height: 18px;
 }
 
+/* Same underline/hover treatment as the "Reach me at ... or on LinkedIn"
+   link in LetsChat (see .altContact a there): coral underline, charcoal
+   text that turns coral on hover. */
 .linkedinLink {
-  display: flex;
-  align-items: center;
   color: var(--charcoal-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-underline-offset: 3px;
   transition: color var(--transition);
 }
 

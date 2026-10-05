@@ -98,25 +98,26 @@
   flex-direction: column;
   gap: 10px;
   margin-bottom: 32px;
+  padding-left: 10px;
 }
 
 .outcomeItem {
-  position: relative;
-  padding-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 1rem;
   color: var(--charcoal);
   line-height: 1.5;
 }
 
-.outcomeItem::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--coral);
+/* Same coral trend-line icon used in case studies' Results sections (see
+   ResultIcon.tsx), for a consistent "result" visual language between the
+   hero and the case study content it's previewing. */
+.outcomeIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 0.35em;
 }
 
 .outcomeLink {

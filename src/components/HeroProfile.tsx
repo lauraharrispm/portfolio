@@ -21,25 +21,6 @@ function PinIcon() {
   );
 }
 
-function LinkedinIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={styles.icon}
-    >
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  );
-}
-
 // Just the photo plus two location facts now: the results/logos that used
 // to live in this panel moved to their own ProductOutcomes section. No
 // mount-time reveal here either, that animation existed to soften the old
@@ -72,10 +53,9 @@ export default function HeroProfile() {
             href="https://www.linkedin.com/in/laurakayharris/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
             className={styles.linkedinLink}
           >
-            <LinkedinIcon />
+            LinkedIn
           </a>
         </li>
       </ul>
