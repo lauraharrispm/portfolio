@@ -244,14 +244,36 @@
      constant pixel width no matter the viewport, while everything else
      on the page kept scaling). 1fr lets it shrink and grow continuously
      with the viewport like the rest of the page does, wrapping its text
-     to two lines as needed rather than overflowing. */
+     to two lines as needed rather than overflowing.
+
+     row-gap:0 here, not a shared value: a grid item establishes its own
+     formatting context, so a child's margin-bottom (like .subhead's)
+     stays fully contained inside its grid item's own box instead of
+     collapsing through it, and row-gap would otherwise ADD on top of
+     that margin rather than replace it (that doubling, 32px margin +
+     32px row-gap, was what made the gap above the photo too large).
+     With two different rows needing two different gaps (content->photo
+     row vs. photo row->CTA) a single shared row-gap can't give each its
+     own value anyway, so each transition is controlled by an explicit
+     margin instead: .subhead's margin-bottom for the first, .ctas's
+     margin-top for the second (not a margin on whichever of panelCol/
+     outcomesList happens to be taller, since that could change which
+     column drives the row's height). */
   .layout {
     grid-template-columns: 163px 1fr;
     grid-template-areas: "content content" "panel outcomes" "ctas ctas";
     column-gap: 14px;
-    row-gap: 32px;
+    row-gap: 0;
   }
 
+  /* Matches .headline's own margin-bottom (24px), so every gap within
+     the hero's text/photo block reads as the same rhythm. */
+  .subhead {
+    margin-bottom: 24px;
+  }
+
+  /* align-self:start, not the grid default (stretch): photo/LinkedIn
+     shouldn't stretch to match the outcomes column's height. */
   .panelCol {
     align-self: start;
   }
@@ -282,8 +304,12 @@
     height: 13px;
   }
 
+  /* margin-top, not row-gap (see .layout's comment above): 32px
+     regardless of whether the photo/LinkedIn column or the outcomes
+     column ends up taller in row2. */
   .ctas {
     flex-direction: column;
+    margin-top: 32px;
   }
 
   .ctaPrimary,

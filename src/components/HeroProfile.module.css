@@ -50,6 +50,13 @@
    breakpoint, which sizes that column to match), so it needs to leave
    those boxes enough width to stay readable. */
 @media (max-width: 768px) {
+  /* Tighter than the base 20px: pulls LinkedIn's bottom edge up to line
+     up with the bottom of the third outcome box beside it (tuned to
+     that alignment, not an arbitrary mobile value). */
+  .wrap {
+    gap: 10px;
+  }
+
   .photoWrap {
     width: 163px;
     height: 163px;
