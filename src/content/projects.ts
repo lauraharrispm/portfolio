@@ -144,12 +144,12 @@ export const projects: Project[] = [
         heading: "Reading the data, routing, and testing at low volume",
         body: [
           "The biggest drop-off in the data wasn't the biggest opportunity. Our funnel analytics were new and hadn't been stress-tested, and they first pointed to a massive drop-off before families even opened the intake link. On closer look, that drop-off was much smaller than it appeared, and what remained was mostly outside product's control, like unsupported insurance. Diagnosing the real problem before proposing solutions kept us from building fixes nobody needed.",
-          "One question was two problems. The care-type question, whether a family needed an evaluation or ongoing treatment, was the most important fork early in the funnel: it decided what happened next for a prospective family. But the form didn't ask it clearly until the very end, so families who bounced before then never answered it, and coordinators often didn't learn the real answer until mid-call, confusing both the family and internal care staff, who then had to walk the family back through a round of questions to restart the process correctly. Moving the question to the front fixed conversion and routing at the same time.",
+          "The most important question was asked too late in the form to be helpful. The care-type question, whether a family needed an evaluation or ongoing treatment, was the funnel's defining fork early on: it decided what happened next for a prospective family. But the form didn't ask it clearly until the very end, so families who bounced before then never answered it, and coordinators often didn't learn the real answer until mid-call, confusing both the family and internal care staff, who then had to walk the family back through a round of questions to restart the process correctly. Moving the question to the front fixed conversion and routing at the same time.",
           "We couldn't use a launch experiment to measure results. At current traffic and engagement with the key metric, an experiment would have taken months to reach statistical significance, and running one would have meant building the infrastructure to serve two versions of the intake form at once, a notable engineering investment on its own. So we shipped the high-confidence new experience to 100% of traffic, backed by a launch measurement plan with pre- and post-launch success and failure guardrails, and supported by internal comms to help manage the patient experience through the change.",
         ],
         boldPrefixes: [
           "The biggest drop-off in the data wasn't the biggest opportunity.",
-          "One question was two problems.",
+          "The most important question was asked too late in the form to be helpful.",
           "We couldn't use a launch experiment to measure results.",
         ],
       },
@@ -254,13 +254,13 @@ export const projects: Project[] = [
         label: "Solution",
         heading: "A state matrix for every path to care",
         body: [
-          "The portal had too few analytics events for the kind of funnel analysis I did on intake, so I leaned on qualitative feedback and product judgment instead. The existing flow was a jumble of competing actions, and the fixes followed established best practices clearly enough that waiting for more data would only have slowed us down. I wrote a PRD and a state matrix covering every combination of care type, coverage, and capacity, then redesigned the portal around them. The matrix became engineering's acceptance criteria. Two principles guided every decision:",
-          "Separate what a family asked for from what they have. One field had been carrying two facts. Splitting care type (what the family asked for, changeable only by staff) from documentation status (what each child has) fixed the misrouting and kept the funnel measurable.",
+          "The portal had too few analytics events for the kind of funnel analysis I did on intake, so I leaned on qualitative feedback, product judgment, and best practices. I wrote a PRD and a state matrix covering every combination of care type, coverage, and capacity, then redesigned the portal around them. The matrix became engineering's acceptance criteria. Two principles guided every decision:",
+          "Clarify jobs to be done versus tactical steps. Splitting care type (what the family asked for, changeable only by staff) from documentation status (what each child has) fixed the misrouting and kept the funnel measurable.",
           "Every state tells the truth. Every screen names the parent's next action, or what the company is doing when there isn't one. No silent drops, no placeholder clinicians, no locked buttons without a reason, and nothing that promises care a family's plan can't cover.",
         ],
         boldPrefixes: [
           "",
-          "Separate what a family asked for from what they have.",
+          "Clarify jobs to be done versus tactical steps.",
           "Every state tells the truth.",
         ],
       },

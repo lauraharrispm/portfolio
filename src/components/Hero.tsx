@@ -34,6 +34,7 @@ export default function Hero() {
               I&apos;m Laura. I help consumer startup founders find the right product
               bets, align engineering, and ship faster. I bring 8+ years of experience
               across marketplaces, healthcare, and ecommerce, spanning seed to Series C.
+              NYC-based.
             </p>
           </div>
 

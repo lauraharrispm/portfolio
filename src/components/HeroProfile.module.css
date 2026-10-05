@@ -9,17 +9,30 @@
   gap: 20px;
 }
 
+/* Desktop only (hidden at the 768px breakpoint below, where the photo
+   pairs with the outcomes boxes instead and there's no room for this). */
+.availabilityPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--blush-peach);
+  color: var(--charcoal);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-align: center;
+}
+
 /* Rounded square, no ring/border anymore (dropped per request). A
    drop shadow instead, matching the weight the rest of the site's
    floating card elements use (panels/strips sit around 0.12-0.16
    alpha at a similarly proportioned blur), so the photo still reads as
-   lifted off the page without the hard outline. Desktop size is 10%
-   bigger than the previous 235px (itself 40% bigger than the original
-   168px). */
+   lifted off the page without the hard outline. Desktop size is 20%
+   bigger than the previous 259px. */
 .photoWrap {
-  width: 259px;
-  height: 259px;
-  border-radius: 35px;
+  width: 311px;
+  height: 311px;
+  border-radius: 42px;
   overflow: hidden;
   box-shadow: 0 16px 32px rgba(46, 40, 32, 0.16);
 }
@@ -76,10 +89,14 @@
    to a stacked column too, since NYC + LinkedIn side by side no longer
    fits this narrow a column. */
 @media (max-width: 768px) {
+  .availabilityPill {
+    display: none;
+  }
+
   .photoWrap {
-    width: 136px;
-    height: 136px;
-    border-radius: 18px;
+    width: 163px;
+    height: 163px;
+    border-radius: 22px;
   }
 
   .locationList {

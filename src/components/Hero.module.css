@@ -36,13 +36,22 @@
 /* "panel" repeats across rows 1 and 2, which merges it into one area
    spanning both: the photo sits beside content AND the outcomes row
    below it, so outcomes shares content's column width exactly (see
-   .outcomesList's own max-width) instead of needing its own measurement. */
+   .outcomesList's own max-width) instead of needing its own measurement.
+   The content column is capped at exactly 640px (not 1fr) so its track
+   width always matches its rendered width; the panel column is 1fr
+   (floored at 320px so the photo never gets clipped), with NO column
+   gap, so panel's own track IS the full space between content's real
+   right edge and the container's right edge. HeroProfile's own
+   align-items:center then centers the photo within that whole span
+   (not just a sliver of it after a separate gap), which is what keeps
+   it genuinely centered between the copy and the page edge rather than
+   off by half of whatever gap would otherwise sit between them. */
 .layout {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: minmax(0, 640px) minmax(320px, 1fr);
   grid-template-areas: "content panel" "outcomes panel" "ctas ctas";
-  column-gap: 64px;
+  column-gap: 0;
 }
 
 .content {
@@ -107,9 +116,9 @@
   margin-bottom: 32px;
 }
 
-/* Darker tan fill (not the quieter --warm-tint used elsewhere) so these
-   read as a distinct result callout, not just background text. Each box
-   is an equal flex share of the row; text wraps to two lines as needed
+/* Darker tan fill (not --blush-peach, which reads pink), so these read
+   as a distinct result callout, not just background text. Each box is
+   an equal flex share of the row; text wraps to two lines as needed
    rather than truncating or forcing the row wider than .content. */
 .outcomeItem {
   flex: 1;
@@ -117,7 +126,7 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  background: var(--blush-peach);
+  background: var(--tan-dark);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 0.9375rem;
@@ -224,14 +233,15 @@
     opacity: 0.5;
   }
 
-  /* Photo and outcomes share a row here instead of stacking: two columns
-     (fixed photo width, flexible outcomes width) instead of the single
-     column above. The photo also shrinks further in HeroProfile's own
-     768px breakpoint, specifically to leave the boxes enough room. */
+  /* Photo and outcomes share a row here instead of stacking: two fixed
+     columns instead of the single column above. 163px matches the
+     photo's own 768px size in HeroProfile.module.css; 140px keeps the
+     outcomes boxes deliberately narrow (wrapping to two lines is fine,
+     saving vertical space matters more than a wide single-line box). */
   .layout {
-    grid-template-columns: 136px 1fr;
+    grid-template-columns: 163px 140px;
     grid-template-areas: "content content" "panel outcomes" "ctas ctas";
-    column-gap: 16px;
+    column-gap: 14px;
     row-gap: 32px;
   }
 

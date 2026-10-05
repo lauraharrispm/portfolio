@@ -28,6 +28,9 @@ function PinIcon() {
 export default function HeroProfile() {
   return (
     <div className={styles.wrap}>
+      <span className={styles.availabilityPill}>
+        Available for fractional and project-based work
+      </span>
       <div className={styles.photoWrap}>
         {/* Intrinsic size well above the ~160px/130px this actually displays
            at (see .photoWrap/.photoImg): next/image otherwise generates a
