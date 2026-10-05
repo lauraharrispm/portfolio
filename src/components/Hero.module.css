@@ -33,11 +33,15 @@
    the DOM per breakpoint. ──────────────────────────────────────────── */
 /* Photo shares a row with content (row 1); ctas span the full width
    below both columns. */
+/* "panel" repeats across rows 1 and 2, which merges it into one area
+   spanning both: the photo sits beside content AND the outcomes row
+   below it, so outcomes shares content's column width exactly (see
+   .outcomesList's own max-width) instead of needing its own measurement. */
 .layout {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 280px;
-  grid-template-areas: "content panel" "ctas ctas";
+  grid-template-areas: "content panel" "outcomes panel" "ctas ctas";
   column-gap: 64px;
 }
 
@@ -48,10 +52,9 @@
 }
 
 /* align-self:center: HeroProfile (photo + two location lines) is
-   shorter than .content beside it, and unlike the old results panel,
-   nothing here needs to match the CTAs' bottom edge, so simple
-   centering within row 1 (the only row this spans now) is all this
-   needs. */
+   shorter than content+outcomes together beside it, so centering within
+   the spanned area is what keeps it looking balanced rather than
+   pinned to the top. */
 .panelCol {
   grid-area: panel;
   align-self: center;
@@ -92,22 +95,34 @@
   margin-bottom: 32px;
 }
 
+/* Row, not column: three boxes side by side, sized to add up to exactly
+   .content's own width (same max-width, same grid column) rather than a
+   separate measurement that could drift out of sync with it. */
 .outcomesList {
+  grid-area: outcomes;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  max-width: 640px;
   margin-bottom: 32px;
-  padding-left: 10px;
 }
 
+/* Darker tan fill (not the quieter --warm-tint used elsewhere) so these
+   read as a distinct result callout, not just background text. Each box
+   is an equal flex share of the row; text wraps to two lines as needed
+   rather than truncating or forcing the row wider than .content. */
 .outcomeItem {
+  flex: 1;
+  min-width: 0;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 1rem;
+  gap: 8px;
+  background: var(--blush-peach);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.9375rem;
   color: var(--charcoal);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 /* Same coral trend-line icon used in case studies' Results sections (see
@@ -115,9 +130,9 @@
    hero and the case study content it's previewing. */
 .outcomeIcon {
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin-top: 0.35em;
+  width: 15px;
+  height: 15px;
+  margin-top: 0.25em;
 }
 
 .outcomeLink {
@@ -179,7 +194,7 @@
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
-    grid-template-areas: "content" "panel" "ctas";
+    grid-template-areas: "content" "panel" "outcomes" "ctas";
     row-gap: 40px;
   }
 
@@ -191,6 +206,10 @@
   .panelCol {
     align-self: center;
     width: 100%;
+  }
+
+  .outcomesList {
+    max-width: 640px;
   }
 }
 
@@ -205,15 +224,37 @@
     opacity: 0.5;
   }
 
+  /* Photo and outcomes share a row here instead of stacking: two columns
+     (fixed photo width, flexible outcomes width) instead of the single
+     column above. The photo also shrinks further in HeroProfile's own
+     768px breakpoint, specifically to leave the boxes enough room. */
   .layout {
+    grid-template-columns: 136px 1fr;
+    grid-template-areas: "content content" "panel outcomes" "ctas ctas";
+    column-gap: 16px;
     row-gap: 32px;
   }
 
-  /* Pulls just this one gap (content -> photo) in tighter than the
-     shared 32px row-gap above, without touching the panel -> outcomes
-     or outcomes -> CTAs gaps, which stay at the full 32px. */
   .panelCol {
-    margin-top: -16px;
+    align-self: start;
+  }
+
+  .outcomesList {
+    flex-direction: column;
+    gap: 8px;
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .outcomeItem {
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .outcomeIcon {
+    width: 13px;
+    height: 13px;
   }
 
   .ctas {

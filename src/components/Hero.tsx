@@ -35,29 +35,30 @@ export default function Hero() {
               bets, align engineering, and ship faster. I bring 8+ years of experience
               across marketplaces, healthcare, and ecommerce, spanning seed to Series C.
             </p>
-            <ul className={styles.outcomesList}>
-              {OUTCOMES.map((outcome) => (
-                <li key={outcome.company} className={styles.outcomeItem}>
-                  <ResultIcon kind="trend" className={styles.outcomeIcon} />
-                  <span>
-                    {outcome.stat} at{" "}
-                    <a
-                      href={outcome.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.outcomeLink}
-                    >
-                      {outcome.company}
-                    </a>
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className={styles.panelCol}>
             <HeroProfile />
           </div>
+
+          <ul className={styles.outcomesList}>
+            {OUTCOMES.map((outcome) => (
+              <li key={outcome.company} className={styles.outcomeItem}>
+                <ResultIcon kind="trend" className={styles.outcomeIcon} />
+                <span>
+                  {outcome.stat} at{" "}
+                  <a
+                    href={outcome.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.outcomeLink}
+                  >
+                    {outcome.company}
+                  </a>
+                </span>
+              </li>
+            ))}
+          </ul>
 
           <div className={styles.ctas}>
             <a
