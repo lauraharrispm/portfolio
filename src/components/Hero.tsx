@@ -3,6 +3,7 @@
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
+import ProductOutcomes from "./ProductOutcomes";
 
 export default function Hero() {
   return (
@@ -25,6 +26,10 @@ export default function Hero() {
 
           <div className={styles.panelCol}>
             <HeroProfile />
+          </div>
+
+          <div className={styles.outcomesSlot}>
+            <ProductOutcomes />
           </div>
 
           <div className={styles.ctas}>

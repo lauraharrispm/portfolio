@@ -65,7 +65,7 @@ export default function HeroProfile() {
       <ul className={styles.locationList}>
         <li className={styles.locationRow}>
           <PinIcon />
-          <span>NYC-based</span>
+          <span>NYC</span>
         </li>
         <li className={styles.locationRow}>
           <WifiIcon />

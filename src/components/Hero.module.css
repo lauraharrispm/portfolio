@@ -35,7 +35,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 280px;
-  grid-template-areas: "content panel" "ctas panel";
+  grid-template-areas: "content panel" "outcomes panel" "ctas panel";
   column-gap: 64px;
 }
 
@@ -46,12 +46,24 @@
 }
 
 /* align-self:center: HeroProfile (photo + two location lines) is much
-   shorter than the content+CTAs column beside it, and unlike the old
-   results panel, nothing here needs to match the CTAs' bottom edge, so
-   simple centering is all this needs. */
+   shorter than the content+outcomes+CTAs column beside it, and unlike
+   the old results panel, nothing here needs to match the CTAs' bottom
+   edge, so simple centering is all this needs. Spans all three rows
+   via grid-template-areas above. */
 .panelCol {
   grid-area: panel;
   align-self: center;
+}
+
+/* Sits in its own row between the subhead and the CTAs, confined to
+   the content column's width (not the full container): narrower reads
+   as a subcategory of the hero rather than a separate full-width
+   section, and keeps the named grid areas valid (panel needs the same
+   name in every row it spans). */
+.outcomesSlot {
+  grid-area: outcomes;
+  min-width: 0;
+  margin-bottom: 32px;
 }
 
 /* align-self:start, not the grid default (stretch): the "ctas" row is
@@ -135,7 +147,7 @@
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
-    grid-template-areas: "content" "panel" "ctas";
+    grid-template-areas: "content" "panel" "outcomes" "ctas";
     row-gap: 40px;
   }
 
@@ -147,6 +159,10 @@
   .panelCol {
     align-self: center;
     width: 100%;
+  }
+
+  .outcomesSlot {
+    margin-bottom: 0;
   }
 }
 

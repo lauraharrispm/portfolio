@@ -1,6 +1,5 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import ProductOutcomes from "@/components/ProductOutcomes";
 import AskChat from "@/components/AskChat";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
@@ -20,7 +19,6 @@ export default function Home() {
       <Nav chatEnabled={chatEnabled} />
       <main>
         <Hero />
-        <ProductOutcomes />
         {chatEnabled && <AskChat />}
         <Services />
         <HowIWork />

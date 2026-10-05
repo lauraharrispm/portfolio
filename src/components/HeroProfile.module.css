@@ -9,15 +9,18 @@
   gap: 20px;
 }
 
-/* Rounded square, same ring treatment the old results panel's photo
-   used: a cream ring plus a very faint outer outline (box-shadow, not
-   border, so it doesn't add to the element's own layout size). */
+/* Rounded square, no ring/border anymore (dropped per request). A
+   drop shadow instead, matching the weight the rest of the site's
+   floating card elements use (panels/strips sit around 0.12-0.16
+   alpha at a similarly proportioned blur), so the photo still reads as
+   lifted off the page without the hard outline. 40% bigger than the
+   previous size (168px -> 235px). */
 .photoWrap {
-  width: 168px;
-  height: 168px;
-  border-radius: 26px;
+  width: 235px;
+  height: 235px;
+  border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5px rgba(46, 40, 32, 0.12);
+  box-shadow: 0 16px 32px rgba(46, 40, 32, 0.16);
 }
 
 .photoImg {
@@ -27,11 +30,20 @@
   object-fit: cover;
 }
 
+/* Row, not column: NYC and Remote-friendly sit side by side under the
+   photo now, separated by a dot like the other company/stage/size
+   meta lines elsewhere on the site. */
 .locationList {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
+}
+
+.locationList li:not(:last-child)::after {
+  content: "·";
+  margin-left: 10px;
+  color: var(--charcoal-muted);
 }
 
 .locationRow {
@@ -50,9 +62,9 @@
 
 @media (max-width: 768px) {
   .photoWrap {
-    width: 132px;
-    height: 132px;
-    border-radius: 20px;
+    width: 185px;
+    height: 185px;
+    border-radius: 26px;
   }
 
   .locationRow {

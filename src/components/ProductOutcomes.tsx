@@ -28,7 +28,6 @@ const RESULTS: ResultDef[] = [
     w: 1213.44,
     h: 88.19,
     height: 24,
-    maxWidth: 120,
     bold: true,
     number: "80%",
     label: "onboarding lift",
@@ -99,27 +98,21 @@ export default function ProductOutcomes() {
   }, []);
 
   return (
-    <section className={styles.section}>
-      <div className="container">
-        <div className={`${styles.strip} ${entered ? styles.stripIn : ""}`}>
-          <h2 className={styles.heading}>
-            Product outcomes,
-            <br />
-            led with my teams
-          </h2>
-          <div className={styles.boxes}>
-            {RESULTS.map((result) => (
-              <div key={result.name} className={styles.box}>
-                <span className={styles.number}>{result.number}</span>
-                <span className={styles.label}>{result.label}</span>
-                <span className={styles.logoSlot}>
-                  <Logo result={result} />
-                </span>
-              </div>
-            ))}
-          </div>
+    <div className={styles.section}>
+      <div className={`${styles.strip} ${entered ? styles.stripIn : ""}`}>
+        <h2 className={styles.heading}>Product outcomes, led with my teams</h2>
+        <div className={styles.boxes}>
+          {RESULTS.map((result) => (
+            <div key={result.name} className={styles.box}>
+              <span className={styles.number}>{result.number}</span>
+              <span className={styles.label}>{result.label}</span>
+              <span className={styles.logoSlot}>
+                <Logo result={result} />
+              </span>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
