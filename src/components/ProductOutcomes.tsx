@@ -50,15 +50,6 @@ const RESULTS: ResultDef[] = [
     number: "4x",
     label: "revenue growth",
   },
-  {
-    name: "ThirdLove",
-    src: "/logos/thirdlove.svg",
-    w: 921,
-    h: 180,
-    height: 15,
-    number: "34%",
-    label: "revenue growth",
-  },
 ];
 
 // Sized by height first (its own aspect ratio sets the width), same as the

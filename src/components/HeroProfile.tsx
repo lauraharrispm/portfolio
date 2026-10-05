@@ -21,7 +21,7 @@ function PinIcon() {
   );
 }
 
-function WifiIcon() {
+function LinkedinIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -33,9 +33,9 @@ function WifiIcon() {
       aria-hidden="true"
       className={styles.icon}
     >
-      <path d="M5 12.5a10 10 0 0 1 14 0" />
-      <path d="M8.5 16a5 5 0 0 1 7 0" />
-      <path d="M12 19.5h.01" />
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   );
 }
@@ -68,8 +68,15 @@ export default function HeroProfile() {
           <span>NYC</span>
         </li>
         <li className={styles.locationRow}>
-          <WifiIcon />
-          <span>Remote-friendly</span>
+          <a
+            href="https://www.linkedin.com/in/laurakayharris/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className={styles.linkedinLink}
+          >
+            <LinkedinIcon />
+          </a>
         </li>
       </ul>
     </div>

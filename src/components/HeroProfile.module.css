@@ -13,12 +13,13 @@
    drop shadow instead, matching the weight the rest of the site's
    floating card elements use (panels/strips sit around 0.12-0.16
    alpha at a similarly proportioned blur), so the photo still reads as
-   lifted off the page without the hard outline. 40% bigger than the
-   previous size (168px -> 235px). */
+   lifted off the page without the hard outline. Desktop size is 10%
+   bigger than the previous 235px (itself 40% bigger than the original
+   168px). */
 .photoWrap {
-  width: 235px;
-  height: 235px;
-  border-radius: 32px;
+  width: 259px;
+  height: 259px;
+  border-radius: 35px;
   overflow: hidden;
   box-shadow: 0 16px 32px rgba(46, 40, 32, 0.16);
 }
@@ -51,6 +52,17 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
+}
+
+.linkedinLink {
+  display: flex;
+  align-items: center;
+  color: var(--charcoal-muted);
+  transition: color var(--transition);
+}
+
+.linkedinLink:hover {
+  color: var(--coral);
 }
 
 @media (max-width: 768px) {
