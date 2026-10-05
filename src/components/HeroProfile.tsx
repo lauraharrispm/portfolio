@@ -3,34 +3,14 @@
 import Image from "next/image";
 import styles from "./HeroProfile.module.css";
 
-function PinIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={styles.icon}
-    >
-      <path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z" />
-      <circle cx="12" cy="9" r="2.5" />
-    </svg>
-  );
-}
-
-// Just the photo plus two location facts now: the results/logos that used
-// to live in this panel moved to their own ProductOutcomes section. No
-// mount-time reveal here either, that animation existed to soften the old
-// panel's size; this is small enough not to need it.
+// Just the photo, availability pill, and a LinkedIn link now. Order is
+// photo -> pill -> LinkedIn on desktop, but pill -> photo -> LinkedIn on
+// mobile (see each element's own `order` in HeroProfile.module.css): same
+// three elements, reordered per breakpoint via flex `order` rather than
+// duplicated markup.
 export default function HeroProfile() {
   return (
     <div className={styles.wrap}>
-      <span className={styles.availabilityPill}>
-        Available for fractional and project-based work
-      </span>
       <div className={styles.photoWrap}>
         {/* Intrinsic size well above the ~160px/130px this actually displays
            at (see .photoWrap/.photoImg): next/image otherwise generates a
@@ -46,22 +26,17 @@ export default function HeroProfile() {
           className={styles.photoImg}
         />
       </div>
-      <ul className={styles.locationList}>
-        <li className={styles.locationRow}>
-          <PinIcon />
-          <span>NYC</span>
-        </li>
-        <li className={styles.locationRow}>
-          <a
-            href="https://www.linkedin.com/in/laurakayharris/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.linkedinLink}
-          >
-            LinkedIn
-          </a>
-        </li>
-      </ul>
+      <span className={styles.availabilityPill}>
+        Available for fractional and project-based work
+      </span>
+      <a
+        href="https://www.linkedin.com/in/laurakayharris/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.linkedinLink}
+      >
+        LinkedIn
+      </a>
     </div>
   );
 }

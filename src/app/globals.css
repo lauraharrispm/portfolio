@@ -7,12 +7,9 @@
   --coral-dark: #d85c3f;
   /* Light coral tint for icon-circle fills (see HowIWork's AI-native panel) */
   --coral-tint: #FBE7DF;
-  /* Warm neutral tint for the engagement table's header row (see HowIWork) */
+  /* Warm neutral tint for the engagement table's header row (see HowIWork),
+     also reused for Hero's outcome boxes to match that same fill. */
   --warm-tint: #F3EDE6;
-  /* Darker tan, not pink/peach like --blush-peach: for fills that need
-     more weight than --warm-tint without reading as coral-adjacent
-     (see Hero's outcome boxes). */
-  --tan-dark: #E8DCC9;
   --charcoal: #2E2820;
   --charcoal-muted: #6b625a;
 

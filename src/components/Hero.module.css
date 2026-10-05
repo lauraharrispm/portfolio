@@ -116,17 +116,19 @@
   margin-bottom: 32px;
 }
 
-/* Darker tan fill (not --blush-peach, which reads pink), so these read
-   as a distinct result callout, not just background text. Each box is
-   an equal flex share of the row; text wraps to two lines as needed
-   rather than truncating or forcing the row wider than .content. */
+/* Same fill as the "How I work" comparison table's header row (see
+   HowIWork.module.css's .headerRow, var(--warm-tint)), for a consistent
+   "tan callout" color across the site rather than a separate one-off
+   shade. Each box is an equal flex share of the row; text wraps to two
+   lines as needed rather than truncating or forcing the row wider than
+   .content. */
 .outcomeItem {
   flex: 1;
   min-width: 0;
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  background: var(--tan-dark);
+  background: var(--warm-tint);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 0.9375rem;
@@ -233,13 +235,18 @@
     opacity: 0.5;
   }
 
-  /* Photo and outcomes share a row here instead of stacking: two fixed
-     columns instead of the single column above. 163px matches the
-     photo's own 768px size in HeroProfile.module.css; 140px keeps the
-     outcomes boxes deliberately narrow (wrapping to two lines is fine,
-     saving vertical space matters more than a wide single-line box). */
+  /* Photo and outcomes share a row here instead of stacking: two columns
+     instead of the single column above. The photo column is a fixed
+     163px (matching HeroProfile's own 768px photo size, which doesn't
+     need to scale), but the outcomes column is 1fr, NOT a fixed px
+     value: a fixed second column was what broke fluid scaling between
+     768px and very narrow phones (the photo+outcomes row just sat at a
+     constant pixel width no matter the viewport, while everything else
+     on the page kept scaling). 1fr lets it shrink and grow continuously
+     with the viewport like the rest of the page does, wrapping its text
+     to two lines as needed rather than overflowing. */
   .layout {
-    grid-template-columns: 163px 140px;
+    grid-template-columns: 163px 1fr;
     grid-template-areas: "content content" "panel outcomes" "ctas ctas";
     column-gap: 14px;
     row-gap: 32px;
@@ -250,6 +257,7 @@
   }
 
   .outcomesList {
+    min-width: 0;
     flex-direction: column;
     gap: 8px;
     max-width: none;

@@ -9,9 +9,11 @@
   gap: 20px;
 }
 
-/* Desktop only (hidden at the 768px breakpoint below, where the photo
-   pairs with the outcomes boxes instead and there's no room for this). */
+/* order:2 keeps this below the photo (order:1) on desktop; the 768px
+   breakpoint below flips it to order:0, ahead of the photo, instead of
+   hiding it. */
 .availabilityPill {
+  order: 2;
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
@@ -30,6 +32,7 @@
    lifted off the page without the hard outline. Desktop size is 20%
    bigger than the previous 259px. */
 .photoWrap {
+  order: 1;
   width: 311px;
   height: 311px;
   border-radius: 42px;
@@ -44,33 +47,11 @@
   object-fit: cover;
 }
 
-/* Row, not column: NYC and Remote-friendly sit side by side under the
-   photo now. */
-.locationList {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.locationRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9375rem;
-  color: var(--charcoal-muted);
-}
-
-.icon {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-}
-
 /* Same underline/hover treatment as the "Reach me at ... or on LinkedIn"
    link in LetsChat (see .altContact a there): coral underline, charcoal
    text that turns coral on hover. */
 .linkedinLink {
+  order: 3;
   color: var(--charcoal-muted);
   text-decoration: underline;
   text-decoration-color: var(--coral);
@@ -85,32 +66,25 @@
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
-   those boxes enough width to stay readable. The location row switches
-   to a stacked column too, since NYC + LinkedIn side by side no longer
-   fits this narrow a column. */
+   those boxes enough width to stay readable. The pill moves ABOVE the
+   photo here (order:0) instead of below it, and shrinks + wraps since
+   this narrow a column can't fit it on one line. */
 @media (max-width: 768px) {
+  .wrap {
+    gap: 10px;
+  }
+
   .availabilityPill {
-    display: none;
+    order: 0;
+    padding: 6px 10px;
+    font-size: 0.6875rem;
+    line-height: 1.3;
+    text-align: center;
   }
 
   .photoWrap {
     width: 163px;
     height: 163px;
     border-radius: 22px;
-  }
-
-  .locationList {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .locationRow {
-    font-size: 0.8125rem;
-  }
-
-  .icon {
-    width: 14px;
-    height: 14px;
   }
 }
