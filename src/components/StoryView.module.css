@@ -88,37 +88,6 @@
   width: 44px;
 }
 
-/* ── Footer nav: visible back/next, works without swipe or gesture ── */
-.footerNav {
-  flex-shrink: 0;
-  display: flex;
-  border-top: 1px solid rgba(46, 40, 32, 0.08);
-}
-
-.footerBtn {
-  flex: 1;
-  padding: 14px 0;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--charcoal);
-  background: none;
-  border: none;
-  transition: color 0.15s ease, background 0.15s ease;
-}
-
-.footerBtn:first-child {
-  border-right: 1px solid rgba(46, 40, 32, 0.08);
-}
-
-.footerBtn:hover:not(:disabled) {
-  color: var(--coral);
-  background: rgba(240, 112, 82, 0.05);
-}
-
-.footerBtn:disabled {
-  opacity: 0.3;
-}
-
 /* ── Company stage / size metadata strip ── */
 .metaStrip {
   flex-shrink: 0;

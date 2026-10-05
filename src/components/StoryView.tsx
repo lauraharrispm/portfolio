@@ -363,20 +363,6 @@ export default function StoryView({
         <span className={styles.sectionLabel}>{section?.label}</span>
         {renderSectionBody()}
       </div>
-
-      {/* ── Visible back/next — works without swipe gestures ── */}
-      <div className={styles.footerNav}>
-        <button
-          className={styles.footerBtn}
-          onClick={() => navigate("back")}
-          disabled={sectionIdx === 0 && projIdx === 0}
-        >
-          ‹ Back
-        </button>
-        <button className={styles.footerBtn} onClick={() => navigate("forward")}>
-          Next ›
-        </button>
-      </div>
     </div>
   );
 }

@@ -20,9 +20,14 @@
      --stack-top offset, not from spacing between them. */
 }
 
+/* Base clears the fixed nav plus room to still read as "just below the
+   Recent Work heading," not jammed under the nav bar; each card then
+   settles 48px lower than the last (--stack-index * 48px), unbounded,
+   which is fine on desktop's tall viewport. The 768px breakpoint below
+   caps this growth instead of letting it keep climbing. */
 .stackItem {
   position: sticky;
-  top: var(--stack-top);
+  top: calc(var(--nav-height) + 32px + var(--stack-index) * 48px);
   padding-bottom: 32px;
 }
 
@@ -319,9 +324,20 @@
    gated to desktop either). A smaller peek and bottom padding than
    desktop's, since mobile cards run taller relative to viewport height
    and don't need as much of the previous card showing to read the
-   stacking. */
+   stacking.
+
+   top is CAPPED here, unlike desktop's unbounded growth: desktop's tall
+   viewport easily absorbs index*48px even for the 6th or 7th card, but
+   on a short mobile viewport that same unbounded growth was pushing the
+   featured card down far enough that its bottom (the key-result block,
+   "See more") got cut off by card 3 or 4. min(...) stops the offset
+   growing past 2 cards' worth of peek (24px each): every card from the
+   3rd on settles at the same top instead of climbing further, which
+   still reads as "a stack" (you see 2 peeking edges above the featured
+   card) without ever hiding the featured card itself. */
 @media (max-width: 768px) {
   .stackItem {
+    top: calc(var(--nav-height) + 20px + min(var(--stack-index) * 24px, 48px));
     padding-bottom: 20px;
   }
 

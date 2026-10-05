@@ -186,9 +186,12 @@ function StackItem({ index, registerRef, children }: StackItemProps) {
       className={styles.stackItem}
       style={
         {
-          // Base clears the fixed nav plus room to still read as "just
-          // below the Recent Work heading," not jammed under the nav bar.
-          "--stack-top": `calc(var(--nav-height) + 32px + ${index * PEEK}px)`,
+          // Raw index, not a precomputed top: .stackItem itself turns this
+          // into a `top` offset (see WorkSummary.module.css), so the same
+          // index can drive two different formulas per breakpoint (desktop
+          // grows it unbounded per card; mobile caps it, see that rule's
+          // own comment for why).
+          "--stack-index": index,
           zIndex: index + 1,
         } as React.CSSProperties
       }

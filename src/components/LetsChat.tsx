@@ -122,11 +122,19 @@ export default function LetsChat() {
     Cal.ns[CAL_NAMESPACE]("inline", {
       elementOrSelector: calTargetRef.current,
       calLink: CAL_LINK,
-      config: { layout: "month_view" },
+      // Pinned to light explicitly: with no theme set, Cal's embed follows
+      // the visitor's OS-level prefers-color-scheme, which rendered the
+      // widget with a black background on an iPhone in dark mode while
+      // looking fine on a light-mode desktop browser. The surrounding
+      // .bookingWrap is always white (see its own rule), so an
+      // unexpectedly dark widget inside it read as a real bug, not a
+      // visitor preference worth honoring here.
+      config: { layout: "month_view", theme: "light" },
     });
     Cal.ns[CAL_NAMESPACE]("ui", {
       hideEventTypeDetails: true,
       layout: "month_view",
+      theme: "light",
     });
   }, [nearViewport]);
 
