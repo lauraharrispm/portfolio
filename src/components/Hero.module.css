@@ -106,14 +106,23 @@
 
 /* Row, not column: three boxes side by side, sized to add up to exactly
    .content's own width (same max-width, same grid column) rather than a
-   separate measurement that could drift out of sync with it. */
+   separate measurement that could drift out of sync with it.
+
+   38px, not 32px: the subhead-to-outcomes gap above this list is also a
+   32px margin, but text carries about 6px of invisible "leading" space
+   below its own visible glyphs (half of line-height minus font-size)
+   that a solid-colored box doesn't have, so a literal 32px box-model
+   match reads as visually SMALLER here than above the boxes. Verified
+   by pixel-measuring a real screenshot: 38px from the box's visible
+   bottom edge to the CTA button's visible top edge reads the same as
+   the ~38px from the subhead's last visible glyph to the box's top. */
 .outcomesList {
   grid-area: outcomes;
   list-style: none;
   display: flex;
   gap: 12px;
   max-width: 640px;
-  margin-bottom: 32px;
+  margin-bottom: 38px;
 }
 
 /* Same fill as the "How I work" comparison table's header row (see
