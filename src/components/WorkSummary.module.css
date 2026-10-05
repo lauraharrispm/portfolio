@@ -130,7 +130,12 @@
 /* A pill like .tag below, but a light cream/tan fill (same var(--warm-tint)
    used for the Hero outcome boxes and the How I Work table's header row)
    with charcoal text instead of coral, so it reads as a distinct,
-   quieter label rather than competing with the real funnel-stage tag. */
+   quieter label rather than competing with the real funnel-stage tag.
+   A sibling of .company in .meta's own flex row now, not nested inside
+   it: spacing comes from .meta's gap (same as every other pill there),
+   not a margin-left of its own, so when it wraps onto its own line at
+   narrow widths it sits flush left instead of carrying that margin over
+   as a stray indent. */
 .engagement {
   display: inline-flex;
   align-items: center;
@@ -143,7 +148,6 @@
   background: var(--warm-tint);
   padding: 4px 10px;
   border-radius: 100px;
-  margin-left: 8px;
 }
 
 .tag {

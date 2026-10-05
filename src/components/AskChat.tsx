@@ -39,13 +39,30 @@ function usePrefersReducedMotion(): boolean {
 }
 
 // ── Rotating typed placeholder ─────────────────────────────────────────
-function useTypedPlaceholder(active: boolean, reducedMotion: boolean): string {
+// `phaseEmpty` gates the whole thing on the empty (pre-conversation)
+// state; `focused` doesn't stop it outright anymore, it just means
+// "finish the word in progress instead of continuing to type further
+// examples" (see below) so a visitor who clicks in mid-type can still
+// read the full question that was on screen, rather than it freezing
+// wherever the animation happened to be. On blur, the effect re-runs
+// and restarts the rotation from the first example, same as a fresh
+// page load.
+function useTypedPlaceholder(phaseEmpty: boolean, focused: boolean, reducedMotion: boolean): string {
   const [text, setText] = useState("");
+  const currentExampleRef = useRef(STARTER_QUESTIONS[0]);
 
   useEffect(() => {
     // Reduced motion returns a constant directly (below) instead of
     // going through state, so the effect has nothing to do in that case.
-    if (!active || reducedMotion) return;
+    if (!phaseEmpty || reducedMotion) return;
+
+    // Focused: snap straight to the full text of whichever example was
+    // on screen (mid-type or not) when focus happened, and stop there.
+    // No further typing/rotation while focused.
+    if (focused) {
+      setText(currentExampleRef.current);
+      return;
+    }
 
     let cancelled = false;
     let exampleIndex = 0;
@@ -53,6 +70,7 @@ function useTypedPlaceholder(active: boolean, reducedMotion: boolean): string {
 
     function typeExample() {
       const example = STARTER_QUESTIONS[exampleIndex % STARTER_QUESTIONS.length];
+      currentExampleRef.current = example;
       let charIndex = 0;
 
       function typeChar() {
@@ -81,7 +99,7 @@ function useTypedPlaceholder(active: boolean, reducedMotion: boolean): string {
       cancelled = true;
       clearTimeout(timeoutId);
     };
-  }, [active, reducedMotion]);
+  }, [phaseEmpty, focused, reducedMotion]);
 
   return reducedMotion ? STARTER_QUESTIONS[0] : text;
 }
@@ -163,7 +181,7 @@ export default function AskChat() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const inputId = useId();
-  const placeholder = useTypedPlaceholder(phase === "empty" && !inputFocused, reducedMotion);
+  const placeholder = useTypedPlaceholder(phase === "empty", inputFocused, reducedMotion);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -303,6 +321,7 @@ export default function AskChat() {
                 placeholder={placeholder}
                 onChange={(e) => setInputValue(e.target.value)}
                 onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
                 maxLength={500}
               />
               <button type="submit" className={styles.emptySubmit} aria-label="Ask">

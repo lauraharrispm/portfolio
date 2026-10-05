@@ -262,12 +262,10 @@ function Card({ project, onOpen }: CardProps) {
 
       <div className={styles.text}>
         <div className={styles.meta}>
-          <span className={styles.company}>
-            {project.company}
-            {project.engagement && (
-              <span className={styles.engagement}>{project.engagement}</span>
-            )}
-          </span>
+          <span className={styles.company}>{project.company}</span>
+          {project.engagement && (
+            <span className={styles.engagement}>{project.engagement}</span>
+          )}
           {project.tags.map((tag) => (
             <span className={styles.tag} key={tag}>
               {tag}

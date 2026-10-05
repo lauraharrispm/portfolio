@@ -236,6 +236,12 @@
 }
 
 .chip {
+  /* text-align:left, not the <button> UA-default of center: invisible on
+     a short, single-line chip (nothing to center against), but obvious
+     once a longer label wraps to two lines, where the shorter second
+     line centered under the first read as misaligned next to chips that
+     never wrapped. */
+  text-align: left;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--charcoal);
