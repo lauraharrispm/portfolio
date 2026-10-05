@@ -30,6 +30,7 @@
    own right. */
 .heading {
   font-family: var(--font-headline);
+  font-style: italic;
   font-weight: 500;
   font-size: 1.0625rem;
   color: var(--charcoal-muted);
@@ -54,6 +55,12 @@
   background: var(--warm-tint);
   border-radius: 10px;
   padding: 12px 14px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 /* Sans, not serif: matches the project summary cards' own stat
@@ -121,6 +128,39 @@
     transition: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ─── Desktop (matches Hero's own 2-column breakpoint, see
+   Hero.module.css): this component is full-width here now, not
+   confined to the content column, so there's room to lay each box out
+   as stat-then-logo instead of stacking all three: wider and shorter
+   boxes, four of them, instead of a taller stack. ──────────────────── */
+@media (min-width: 901px) {
+  .box {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  /* min-width:0 is the real fix here: a flex item's default min-width
+     is its content's own min-content size, and for the masked logo
+     "content" that's its full intrinsic width (GlossGenius's wordmark
+     alone wants ~330px), so without this, .logoSlot claimed that much
+     space no matter what .logo's own max-width:100% said, overlapping
+     .stat beside it. With it, .logoSlot can actually shrink to the
+     room this row has left, and max-width:100% can do its job. */
+  .logoSlot {
+    flex-shrink: 1;
+    min-width: 0;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .stat {
+    flex-shrink: 0;
   }
 }
 

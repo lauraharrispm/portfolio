@@ -98,7 +98,7 @@ export const projects: Project[] = [
     oneLineDesc:
       "A one-size-fits-all intake form was keeping qualified families from getting care. A staged redesign rebuilt it from diagnosis to launch.",
     keyMetric: {
-      number: "~1.5 weeks",
+      number: "1.5 weeks",
       label: "of product time, diagnosis to launch",
     },
     fundingStage: "Series A",

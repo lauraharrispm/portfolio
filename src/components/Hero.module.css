@@ -31,11 +31,16 @@
    column (mobile) can't easily reorder across differently-grouped
    siblings either. Named grid areas handle both without restructuring
    the DOM per breakpoint. ──────────────────────────────────────────── */
+/* Photo only shares a row with content now (row 1): outcomes and ctas
+   span the full width below both columns, not just the content side,
+   since outcomes needs the extra room for its wider stat+logo boxes
+   (see ProductOutcomes.module.css) and there's no "panel" column left
+   beside it for the photo to occupy there anyway. */
 .layout {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 280px;
-  grid-template-areas: "content panel" "outcomes panel" "ctas panel";
+  grid-template-areas: "content panel" "outcomes outcomes" "ctas ctas";
   column-gap: 64px;
 }
 
@@ -45,24 +50,20 @@
   max-width: 640px;
 }
 
-/* align-self:center: HeroProfile (photo + two location lines) is much
-   shorter than the content+outcomes+CTAs column beside it, and unlike
-   the old results panel, nothing here needs to match the CTAs' bottom
-   edge, so simple centering is all this needs. Spans all three rows
-   via grid-template-areas above. */
+/* align-self:center: HeroProfile (photo + two location lines) is
+   shorter than .content beside it, and unlike the old results panel,
+   nothing here needs to match the CTAs' bottom edge, so simple
+   centering within row 1 (the only row this spans now) is all this
+   needs. */
 .panelCol {
   grid-area: panel;
   align-self: center;
 }
 
-/* Sits in its own row between the subhead and the CTAs, confined to
-   the content column's width (not the full container): narrower reads
-   as a subcategory of the hero rather than a separate full-width
-   section, and keeps the named grid areas valid (panel needs the same
-   name in every row it spans). */
 .outcomesSlot {
   grid-area: outcomes;
   min-width: 0;
+  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -162,6 +163,7 @@
   }
 
   .outcomesSlot {
+    margin-top: 0;
     margin-bottom: 0;
   }
 }
@@ -179,6 +181,13 @@
 
   .layout {
     row-gap: 32px;
+  }
+
+  /* Pulls just this one gap (content -> photo) in tighter than the
+     shared 32px row-gap above, without touching the panel -> outcomes
+     or outcomes -> CTAs gaps, which stay at the full 32px. */
+  .panelCol {
+    margin-top: -16px;
   }
 
   .ctas {

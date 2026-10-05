@@ -104,8 +104,14 @@ export default function ProductOutcomes() {
         <div className={styles.boxes}>
           {RESULTS.map((result) => (
             <div key={result.name} className={styles.box}>
-              <span className={styles.number}>{result.number}</span>
-              <span className={styles.label}>{result.label}</span>
+              {/* .stat wraps number+label as one unit: below desktop
+                 width, .box stacks this above .logoSlot (unchanged from
+                 before); at desktop width, .box switches to a row and
+                 this becomes the left-hand column next to the logo. */}
+              <span className={styles.stat}>
+                <span className={styles.number}>{result.number}</span>
+                <span className={styles.label}>{result.label}</span>
+              </span>
               <span className={styles.logoSlot}>
                 <Logo result={result} />
               </span>

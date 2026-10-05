@@ -31,19 +31,12 @@
 }
 
 /* Row, not column: NYC and Remote-friendly sit side by side under the
-   photo now, separated by a dot like the other company/stage/size
-   meta lines elsewhere on the site. */
+   photo now. */
 .locationList {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.locationList li:not(:last-child)::after {
-  content: "·";
-  margin-left: 10px;
-  color: var(--charcoal-muted);
+  gap: 18px;
 }
 
 .locationRow {
