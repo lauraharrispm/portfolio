@@ -210,12 +210,22 @@
 
 /* ─── Tablet and below: panel gets cramped beside the text, so stack
    everything into one column instead of squeezing two. Content, then
-   the profile photo, then the CTAs last. ──────────────────────────── */
+   the profile photo, then the CTAs last.
+
+   row-gap:0, not a shared value: same doubling issue as the 768px
+   breakpoint below (a grid item's own formatting context keeps a
+   child's margin-bottom, like .subhead's, fully contained inside it,
+   so row-gap adds on top rather than replacing it). Each of the three
+   stacked transitions gets its own explicit 40px margin instead, all
+   matching the row-gap value this breakpoint was clearly designed
+   around, rather than three different actual gaps (72/40/78px) from
+   margins silently stacking with row-gap on some transitions but not
+   others. ──────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
     grid-template-areas: "content" "panel" "outcomes" "ctas";
-    row-gap: 40px;
+    row-gap: 0;
   }
 
   .content {
@@ -223,13 +233,19 @@
     width: 100%;
   }
 
+  .subhead {
+    margin-bottom: 40px;
+  }
+
   .panelCol {
     align-self: center;
     width: 100%;
+    margin-bottom: 40px;
   }
 
   .outcomesList {
     max-width: 640px;
+    margin-bottom: 40px;
   }
 }
 
@@ -281,14 +297,16 @@
     margin-bottom: 24px;
   }
 
-  /* align-self:start, not the grid default (stretch): photo/LinkedIn
-     shouldn't stretch to match the outcomes column's height. */
+  /* align-self:center, not the grid default (stretch): now that this
+     column is just the photo (no LinkedIn link to anchor its top edge
+     against), centering it alongside the outcomes column reads more
+     balanced than pinning it to the top. */
   .panelCol {
-    align-self: start;
+    align-self: center;
   }
 
   /* align-self:start, not the grid default (stretch): without this, the
-     list stretches to match panelCol's full height (photo + LinkedIn),
+     list stretches to match panelCol's full height (just the photo now),
      and each box's inherited flex:1 then grows to fill that leftover
      space, leaving empty padding at the bottom of any box whose own
      text is shorter than the tallest one. */

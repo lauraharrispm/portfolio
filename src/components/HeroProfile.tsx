@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./HeroProfile.module.css";
 
-// Just the photo and a LinkedIn link now.
+// Just the photo now.
 export default function HeroProfile() {
   return (
     <div className={styles.wrap}>
@@ -22,14 +22,6 @@ export default function HeroProfile() {
           className={styles.photoImg}
         />
       </div>
-      <a
-        href="https://www.linkedin.com/in/laurakayharris/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.linkedinLink}
-      >
-        LinkedIn
-      </a>
     </div>
   );
 }

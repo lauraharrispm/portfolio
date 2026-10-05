@@ -1,12 +1,9 @@
-/* Centered, not left-aligned: with no panel/card around this anymore,
-   there's no left edge for the photo and location rows to share, so
-   centering them as a single small column reads more intentional than
-   an arbitrary left alignment would. */
+/* Just the photo now, so this is really only here to center it (no
+   left edge left to align anything against). */
 .wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 /* Rounded square, no ring/border anymore (dropped per request). A
@@ -30,33 +27,11 @@
   object-fit: cover;
 }
 
-/* Same underline/hover treatment as the "Reach me at ... or on LinkedIn"
-   link in LetsChat (see .altContact a there): coral underline, charcoal
-   text that turns coral on hover. */
-.linkedinLink {
-  color: var(--charcoal-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--coral);
-  text-underline-offset: 3px;
-  transition: color var(--transition);
-}
-
-.linkedinLink:hover {
-  color: var(--coral);
-}
-
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
    those boxes enough width to stay readable. */
 @media (max-width: 768px) {
-  /* Tighter than the base 20px: pulls LinkedIn's bottom edge up to line
-     up with the bottom of the third outcome box beside it (tuned to
-     that alignment, not an arbitrary mobile value). */
-  .wrap {
-    gap: 10px;
-  }
-
   .photoWrap {
     width: 163px;
     height: 163px;

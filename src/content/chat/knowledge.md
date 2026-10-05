@@ -98,7 +98,7 @@ Every client gets full confidentiality. If there's ever a conflict with a curren
 - The three AI-native points on the site:
   - Choose the right problem: AI can speed up building; product judgment decides what's worth building.
   - Learn through prototypes: Laura can build prototypes in your design system to make ideas tangible and testable.
-  - Leave the team stronger: she works alongside your team and documents decisions and workflows so useful knowledge stays with them.
+  - Strengthen the team: she works alongside your team and documents decisions and workflows so useful knowledge stays with them.
 - The process scales to the stakes: a copy test gets a quick gut check; a new onboarding flow gets the full treatment.
 - 10x faster from idea to shareable artifact: answers from data in minutes, working prototypes the same day.
 - AI starts the work; a human finishes it. AI is sometimes confidently wrong, and its output can look done before it is, so every word and number she hands over is checked by her.

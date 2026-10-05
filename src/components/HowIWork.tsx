@@ -126,7 +126,7 @@ const AI_ITEMS: AIItem[] = [
   },
   {
     icon: <PeopleIcon />,
-    title: "Leave the team stronger.",
+    title: "Strengthen the team.",
     description:
       "I work alongside your team and document decisions and workflows so useful knowledge stays with them.",
   },
