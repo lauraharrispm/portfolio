@@ -220,10 +220,10 @@ export const projects: Project[] = [
     },
     title: "Patient portal redesign",
     oneLineDesc:
-      "After submitting intake, some families were misrouted, silently dropped, or promised coverage we couldn't deliver. A redesigned portal gave every family an honest next step.",
+      "After submitting intake, some families were misrouted, silently dropped, or promised coverage we couldn't deliver. A redesigned portal, built in about a week of product time, gave every family an honest next step.",
     keyMetric: {
-      number: "3",
-      label: "launch blockers fixed in about a week of product time",
+      number: "1 day",
+      label: "faster to first session",
     },
     fundingStage: "Series A",
     employeeRange: "14 employees",
@@ -308,13 +308,14 @@ export const projects: Project[] = [
         label: "Results",
         heading: "Every family gets an honest next step",
         body: [
+          "A full day faster to first session, by unlocking booking as soon as families submitted their member ID",
           "Families needing an evaluation routed to evaluation support, not straight to treatment",
           "Unmatched families shown an honest next step and a call they can book, instead of a silent dead end",
           "Coverage copy rewritten to promise only what the product can deliver",
           "Launched alongside the redesigned intake form in a single release, with a state matrix as engineering's acceptance criteria",
           "Post-launch plan handed to named owners, with a guardrail metric tracking families reaching a first appointment",
         ],
-        resultIcons: ["check", "check", "check", "check", "check"],
+        resultIcons: ["trend", "check", "check", "check", "check", "check"],
       },
       {
         id: "reflection",

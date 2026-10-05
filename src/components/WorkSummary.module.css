@@ -122,6 +122,18 @@
   color: var(--charcoal);
 }
 
+/* Plain-text qualifier next to the company name, not a second pill:
+   explicitly resets .company's uppercase/bold/letter-spacing so it
+   reads as a quiet aside instead of a second loud label competing with
+   the real funnel-stage tag. */
+.engagement {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--charcoal-muted);
+}
+
 .tag {
   font-size: 0.6875rem;
   font-weight: 600;

@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   gap: 32px;
-  background: var(--blush-peach);
+  background: var(--white);
   border-radius: 18px;
   box-shadow: 0 16px 40px rgba(46, 40, 32, 0.12);
   padding: 28px 36px;
@@ -44,15 +44,15 @@
   min-width: 0;
 }
 
-/* White/cream against the strip's own blush background, so each result
-   reads as its own object instead of the whole strip being one flat
-   block of stats. */
+/* Blush against the strip's own white background, so each result reads
+   as its own object instead of the whole strip being one flat block of
+   stats. */
 .box {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  background: var(--white);
+  background: var(--blush-peach);
   border-radius: 12px;
   padding: 16px 18px;
 }
