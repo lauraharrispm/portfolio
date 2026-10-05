@@ -60,6 +60,15 @@
   max-width: 640px;
 }
 
+/* display:contents outside the 768px breakpoint: this wrapper only
+   becomes a real flex row on mobile (see that breakpoint below), so it
+   needs to otherwise get out of the way entirely, letting .panelCol and
+   .outcomesList act as .layout's direct grid items exactly as if this
+   wrapper didn't exist. */
+.photoRow {
+  display: contents;
+}
+
 /* align-self:center: HeroProfile (photo + two location lines) is
    shorter than content+outcomes together beside it, so centering within
    the spanned area is what keeps it looking balanced rather than
@@ -260,18 +269,25 @@
     opacity: 0.5;
   }
 
-  /* Photo and outcomes share a row here instead of stacking: two columns
-     instead of the single column above. The photo column is a fixed
-     163px (matching HeroProfile's own 768px photo size, which doesn't
-     need to scale), but the outcomes column is 1fr, NOT a fixed px
-     value: a fixed second column was what broke fluid scaling between
-     768px and very narrow phones (the photo+outcomes row just sat at a
-     constant pixel width no matter the viewport, while everything else
-     on the page kept scaling). 1fr lets it shrink and grow continuously
-     with the viewport like the rest of the page does, wrapping its text
-     to two lines as needed rather than overflowing.
+  /* 39px (not the floor of the desktop clamp(), 40px): the largest size
+     that still wraps to 2 lines instead of 3 at a typical mobile width
+     (375px), found by binary search against the actual rendered text,
+     not a round guess. */
+  .headline {
+    font-size: 2.4375rem;
+  }
 
-     row-gap:0 here, not a shared value: a grid item establishes its own
+  /* Photo and outcomes share a row here instead of stacking: a single
+     grid area ("photorow") instead of the "panel"/"outcomes" split
+     above, since .photoRow itself becomes the real flex row now (see
+     .photoRow below) rather than two independent grid items whose
+     shared row CSS Grid won't reliably size/center against each other
+     (verified: centering a shorter panel against a taller outcomes
+     column via grid row auto-sizing silently failed, because the grid
+     wasn't unifying both columns' heights into one shared track the
+     way a flex row trivially does).
+
+     row-gap:0, not a shared value: a grid item establishes its own
      formatting context, so a child's margin-bottom (like .subhead's)
      stays fully contained inside its grid item's own box instead of
      collapsing through it, and row-gap would otherwise ADD on top of
@@ -281,13 +297,10 @@
      row vs. photo row->CTA) a single shared row-gap can't give each its
      own value anyway, so each transition is controlled by an explicit
      margin instead: .subhead's margin-bottom for the first, .ctas's
-     margin-top for the second (not a margin on whichever of panelCol/
-     outcomesList happens to be taller, since that could change which
-     column drives the row's height). */
+     margin-top for the second. */
   .layout {
-    grid-template-columns: 163px 1fr;
-    grid-template-areas: "content content" "panel outcomes" "ctas ctas";
-    column-gap: 14px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content" "photorow" "ctas";
     row-gap: 0;
   }
 
@@ -297,21 +310,37 @@
     margin-bottom: 24px;
   }
 
-  /* align-self:center, not the grid default (stretch): now that this
-     column is just the photo (no LinkedIn link to anchor its top edge
-     against), centering it alongside the outcomes column reads more
-     balanced than pinning it to the top. */
-  .panelCol {
-    align-self: center;
+  /* A real flex row now (not display:contents, see the base rule):
+     align-items:center genuinely centers the shorter photo against the
+     taller outcomes column, which CSS Grid's row auto-sizing couldn't
+     reliably do for two side-by-side items. */
+  .photoRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    grid-area: photorow;
   }
 
-  /* align-self:start, not the grid default (stretch): without this, the
-     list stretches to match panelCol's full height (just the photo now),
-     and each box's inherited flex:1 then grows to fill that leftover
-     space, leaving empty padding at the bottom of any box whose own
-     text is shorter than the tallest one. */
+  /* flex:0 0 163px, not a grid column: matches HeroProfile's own 768px
+     photo size (163px, which doesn't need to scale), as a fixed share
+     of the flex row instead of a grid track. margin-bottom:0 resets the
+     900px breakpoint's 40px (still inherited here, since both media
+     conditions match below 768px): that leftover margin was the real
+     cause of centering silently failing, since it inflated panelCol's
+     margin box to 203px, so align-items:center centered THAT inflated
+     box, not the visible 163px photo, making it look top-aligned. */
+  .panelCol {
+    flex: 0 0 163px;
+    margin-bottom: 0;
+  }
+
+  /* flex:1, not a grid column: takes the remaining width after the
+     fixed photo column and scales fluidly with the viewport, same as
+     the grid's 1fr column did, just without the row-sizing/centering
+     quirk that column caused. min-width:0 lets it shrink below its
+     content's own min-content width instead of overflowing. */
   .outcomesList {
-    align-self: start;
+    flex: 1;
     min-width: 0;
     flex-direction: column;
     gap: 8px;

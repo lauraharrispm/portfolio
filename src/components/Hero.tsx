@@ -38,28 +38,36 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className={styles.panelCol}>
-            <HeroProfile />
-          </div>
+          {/* display:contents outside the 768px breakpoint (see .photoRow):
+             this wrapper only exists so photo and outcomes can become a
+             real flex row on mobile, where centering the shorter photo
+             against the boxes needs actual flex alignment, not CSS
+             Grid's row auto-sizing (which doesn't reliably unify two
+             columns' heights into one shared track to center within). */}
+          <div className={styles.photoRow}>
+            <div className={styles.panelCol}>
+              <HeroProfile />
+            </div>
 
-          <ul className={styles.outcomesList}>
-            {OUTCOMES.map((outcome) => (
-              <li key={outcome.company} className={styles.outcomeItem}>
-                <ResultIcon kind="trend" className={styles.outcomeIcon} />
-                <span>
-                  {outcome.stat} at{" "}
-                  <a
-                    href={outcome.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.outcomeLink}
-                  >
-                    {outcome.company}
-                  </a>
-                </span>
-              </li>
-            ))}
-          </ul>
+            <ul className={styles.outcomesList}>
+              {OUTCOMES.map((outcome) => (
+                <li key={outcome.company} className={styles.outcomeItem}>
+                  <ResultIcon kind="trend" className={styles.outcomeIcon} />
+                  <span>
+                    {outcome.stat} at{" "}
+                    <a
+                      href={outcome.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.outcomeLink}
+                    >
+                      {outcome.company}
+                    </a>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className={styles.ctas}>
             <a
