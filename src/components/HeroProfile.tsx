@@ -21,15 +21,6 @@ export default function HeroProfile() {
           preload
           className={styles.photoImg}
         />
-        <Image
-          src="/headshot-hover.jpg"
-          alt=""
-          aria-hidden="true"
-          width={2000}
-          height={2000}
-          quality={90}
-          className={`${styles.photoImg} ${styles.photoImgAlt}`}
-        />
       </div>
     </div>
   );
