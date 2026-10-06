@@ -83,7 +83,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "patient-intake",
-    order: 1,
+    order: 6,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -207,7 +207,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "patient-portal",
-    order: 2,
+    order: 7,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -338,7 +338,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "payments-onboarding",
-    order: 4,
+    order: 1,
     tags: ["Activation"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-payments.png",
@@ -348,6 +348,7 @@ export const projects: Project[] = [
       width: 1717,
       height: 1021,
     },
+    engagement: "Full-time",
     title: "Payments onboarding redesign",
     oneLineDesc:
       "A broken onboarding flow was limiting adoption of one of GlossGenius's most valuable features. An iterative experimentation program fixed it.",
@@ -452,7 +453,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
-    order: 5,
+    order: 3,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
@@ -462,6 +463,7 @@ export const projects: Project[] = [
       width: 2840,
       height: 2564,
     },
+    engagement: "Full-time",
     title: "Scheduling tool for phone agents",
     oneLineDesc:
       "Patients calling their insurer for mental healthcare had no direct path to booking an appointment. I built the bridge, and it became the most impactful feature launch in Rula's history.",
@@ -556,7 +558,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
-    order: 6,
+    order: 4,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
@@ -566,6 +568,7 @@ export const projects: Project[] = [
       width: 1350,
       height: 1261,
     },
+    engagement: "Full-time",
     title: "Therapist directory",
     oneLineDesc:
       "Rula was nearly invisible in organic search. Winning thousands of long-tail searches built a free acquisition channel from scratch.",
@@ -665,7 +668,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
-    order: 3,
+    order: 2,
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
@@ -675,6 +678,7 @@ export const projects: Project[] = [
       width: 1601,
       height: 1163,
     },
+    engagement: "Full-time",
     title: "Billing rebuild for AI add-ons and annual subscriptions",
     oneLineDesc:
       "GlossGenius's billing system could only support one billing structure, which blocked annual plans and the company's AI add-on strategy. I led a full migration to a flexible subscription service.",
@@ -781,7 +785,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
-    order: 7,
+    order: 5,
     tags: ["Acquisition", "Monetization"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
@@ -791,6 +795,7 @@ export const projects: Project[] = [
       width: 842,
       height: 721,
     },
+    engagement: "Full-time",
     title: "Ecommerce website redesign",
     oneLineDesc:
       "The site hadn't kept pace with a growing catalog. Fixing navigation, shipping messaging, and promotions compounded across the funnel.",
