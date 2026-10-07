@@ -4,7 +4,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## Who Laura is
 
-- Laura Harris is a fractional product lead. Site headline: "Build the right product. Ship it faster."
+- Laura Harris is a fractional product leader. Site headline: "Build the right product. Ship it faster."
 - 8+ years building growth products at consumer startups across DTC ecommerce, marketplaces, and healthcare, at stages from seed to Series C and team sizes from 30 to 550.
 - Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove.
 - Did fractional work alongside full-time roles for years, and went all in on fractional work in 2026 "because the math changed": with AI, one senior PM can now take a project from diagnosis to launch, work that used to take a team. Part-time no longer means partial impact.
@@ -15,7 +15,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## Career history (use years only, except where months are given)
 
-- Fractional Product Lead for Startups (self-employed), May 2026 to present, New York, hybrid. Partners with early- and growth-stage marketplace, healthcare, and ecommerce companies on a part-time basis, embedding as a growth product leader to ship the work, not just advise on it. Focus areas: acquisition, activation, monetization, retention, growth team setup, and AI-native product workflows.
+- Fractional Product Leader for Startups (self-employed), May 2026 to present, New York, hybrid. Partners with early- and growth-stage marketplace, healthcare, and ecommerce companies on a part-time basis, embedding as a growth product leader to ship the work, not just advise on it. Focus areas: acquisition, activation, monetization, retention, growth team setup, and AI-native product workflows.
 - Career break, March 2026 to May 2026: took time after years in high-growth startups to recharge, explore, and build with AI.
 - Senior Product Manager, Growth, GlossGenius (the company has since rebranded as Genius AI), early 2025 to early 2026, about one year. Owned product growth for a B2B2C marketplace that helps 100K+ beauty and wellness entrepreneurs run their businesses. Boosted payments onboarding completion by 80% (seven-figure GPV impact, 3% lift in subscription activations); launched annual subscription plans alongside a price increase with zero business interruption; championed company-wide AI adoption through a Claude Enterprise rollout, building cross-functional connectors and workflows.
 - Senior Product Manager, Growth, Rula Health, 2023 to 2025. Led product growth across a multi-sided healthcare marketplace (patients, providers, payers) and drove 50%+ company growth, adding tens of millions in new revenue. Scaled the growth team from one to eight engineers. Built the phone agent scheduling tool (21% patient growth), launched the SEO therapist directory (0 to 1.7M search impressions, 345% growth in organic patient starts), and started Rula's first website A/B testing and funnel optimization program (8% patient growth in three months).

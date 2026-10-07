@@ -31,7 +31,7 @@ export default function Hero() {
           <div className={styles.content}>
             <h1 className={styles.headline}>Product expert impact without a full-time hire.</h1>
             <p className={styles.subhead}>
-              I&apos;m Laura, a fractional product lead. I help consumer startup
+              I&apos;m Laura, a fractional product leader. I help consumer startup
               founders find the right product bets, align engineering, and ship
               faster, all without a full-time hire. I bring 8+ years of experience
               across marketplaces, healthcare, and ecommerce, from seed to Series C.

@@ -42,7 +42,7 @@ export default function Nav({ chatEnabled }: NavProps) {
           </a>
           <span className={styles.divider} aria-hidden="true" />
           <span className={styles.tagline} aria-hidden="true">
-            Fractional Product Lead
+            Fractional Product Leader
           </span>
         </div>
 

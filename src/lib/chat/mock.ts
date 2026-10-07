@@ -311,7 +311,7 @@ const CASES: MockCase[] = [
 
 const DEFAULT_PAYLOAD: RespondPayload = {
   answer:
-    "Laura is a fractional product lead with 8+ years building growth products at consumer startups, from GlossGenius to Rula Health to Burrow. She owns acquisition, activation, monetization, and retention work, usually embedded 1 to 3 days a week. Ask about a specific case study, how she works, or whether she's a fit for your team.",
+    "Laura is a fractional product leader with 8+ years building growth products at consumer startups, from GlossGenius to Rula Health to Burrow. She owns acquisition, activation, monetization, and retention work, usually embedded 1 to 3 days a week. Ask about a specific case study, how she works, or whether she's a fit for your team.",
   followups: [
     { question: "What does a project-based engagement include?", topic: "project_based" },
     { question: "Are we a fit if we just raised a Series A?", topic: "fit" },
