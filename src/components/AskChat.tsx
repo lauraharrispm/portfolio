@@ -178,7 +178,7 @@ export default function AskChat() {
   const apiHistoryRef = useRef<ChatMessage[]>([]);
   const touchedTopicsRef = useRef<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const inputId = useId();
   const placeholder = useTypedPlaceholder(phase === "empty", inputFocused, reducedMotion);
@@ -312,16 +312,22 @@ export default function AskChat() {
               <label htmlFor={inputId} className={styles.srOnly}>
                 Ask a question about Laura&apos;s work
               </label>
-              <input
+              <textarea
                 ref={inputRef}
                 id={inputId}
-                type="text"
+                rows={2}
                 className={styles.emptyInput}
                 value={inputValue}
                 placeholder={placeholder}
                 onChange={(e) => setInputValue(e.target.value)}
                 onFocus={() => setInputFocused(true)}
                 onBlur={() => setInputFocused(false)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    e.currentTarget.form?.requestSubmit();
+                  }
+                }}
                 maxLength={500}
               />
               <button type="submit" className={styles.emptySubmit} aria-label="Ask">

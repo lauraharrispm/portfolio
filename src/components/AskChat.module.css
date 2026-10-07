@@ -67,12 +67,17 @@
 .emptyInput {
   flex: 1;
   min-width: 0;
+  height: 44px;
+  padding: 10px 0;
   border: none;
   outline: none;
   background: transparent;
   font-size: 1.0625rem;
+  line-height: 1.35;
   color: var(--charcoal);
   font-family: var(--font-body);
+  resize: none;
+  overflow-y: auto;
 }
 
 .emptyInput::placeholder {
@@ -372,6 +377,18 @@
 
   .bubbleUser {
     max-width: 90%;
+  }
+
+  .emptyForm {
+    align-items: center;
+    border-radius: 30px;
+    padding: 8px 8px 8px 20px;
+  }
+
+  .emptyInput {
+    height: 84px;
+    padding: 8px 0;
+    font-size: 1rem;
   }
 
   /* Minimum 44px tap targets on touch. */
