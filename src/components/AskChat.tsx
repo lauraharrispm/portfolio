@@ -47,7 +47,11 @@ function usePrefersReducedMotion(): boolean {
 // wherever the animation happened to be. On blur, the effect re-runs
 // and restarts the rotation from the first example, same as a fresh
 // page load.
-function useTypedPlaceholder(phaseEmpty: boolean, focused: boolean, reducedMotion: boolean): string {
+function useTypedPlaceholder(
+  phaseEmpty: boolean,
+  focused: boolean,
+  reducedMotion: boolean
+): { placeholder: string; fullQuestion: string } {
   const [text, setText] = useState("");
   const currentExampleRef = useRef(STARTER_QUESTIONS[0]);
 
@@ -101,7 +105,10 @@ function useTypedPlaceholder(phaseEmpty: boolean, focused: boolean, reducedMotio
     };
   }, [phaseEmpty, focused, reducedMotion]);
 
-  return reducedMotion ? STARTER_QUESTIONS[0] : text;
+  return {
+    placeholder: reducedMotion ? STARTER_QUESTIONS[0] : text,
+    fullQuestion: currentExampleRef.current,
+  };
 }
 
 // ── Word-by-word answer reveal ─────────────────────────────────────────
@@ -177,11 +184,16 @@ export default function AskChat() {
 
   const apiHistoryRef = useRef<ChatMessage[]>([]);
   const touchedTopicsRef = useRef<Set<string>>(new Set());
+  const focusedPlaceholderRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const inputId = useId();
-  const placeholder = useTypedPlaceholder(phase === "empty", inputFocused, reducedMotion);
+  const { placeholder, fullQuestion } = useTypedPlaceholder(
+    phase === "empty",
+    inputFocused,
+    reducedMotion
+  );
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -281,10 +293,13 @@ export default function AskChat() {
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      const question = inputValue.trim() || (phase === "empty" ? placeholder : "");
+      const question =
+        inputValue.trim() ||
+        (phase === "empty" ? focusedPlaceholderRef.current || fullQuestion : "");
+      focusedPlaceholderRef.current = null;
       if (question) send(question);
     },
-    [inputValue, phase, placeholder, send]
+    [inputValue, phase, fullQuestion, send]
   );
 
   const handleChipClick = useCallback(
@@ -320,7 +335,10 @@ export default function AskChat() {
                 value={inputValue}
                 placeholder={placeholder}
                 onChange={(e) => setInputValue(e.target.value)}
-                onFocus={() => setInputFocused(true)}
+                onFocus={() => {
+                  focusedPlaceholderRef.current = fullQuestion;
+                  setInputFocused(true);
+                }}
                 onBlur={() => setInputFocused(false)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
