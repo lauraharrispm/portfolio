@@ -113,11 +113,13 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "Qualified families were dropping off on step one",
         body: [
+          "The company connects families with specialized care for their children.",
           "About a third of qualified families dropped off at step one. Nearly every family arrived through a referral, already qualified and looking for help.",
           "The form treated every family the same. Everyone faced the same insurance-heavy questions, whether they were ready to start care or still seeking a diagnosis. The care-type question that determined routing came last.",
           "Engineering was waiting on product. With no dedicated product support, engineers had little founder guidance, leading to misalignment and wasted build time.",
         ],
         boldPrefixes: [
+          "",
           "About a third of qualified families dropped off at step one.",
           "The form treated every family the same.",
           "Engineering was waiting on product.",
@@ -143,12 +145,12 @@ export const projects: Project[] = [
         body: [
           "Unverified funnel events made drop-off before intake look much larger than it was. I checked what the events actually captured, separated product friction from issues like unsupported insurance, and avoided building against a misleading signal.",
           "Care type determined whether a family needed an evaluation or treatment, but the form asked too late. Coordinators sometimes learned a family's need mid-call and had to restart intake. Moving the question to the start improved conversion and routing at once.",
-          "Traffic was too low for an experiment to reach significance in a useful timeframe, and supporting two versions would add engineering cost. We launched to everyone with pre- and post-launch guardrails and a communication plan.",
+          "Traffic was too low for a useful experiment. Reaching significance would take months, and supporting two versions would add engineering cost. We launched to everyone with pre- and post-launch guardrails and a communication plan.",
         ],
         boldPrefixes: [
           "Unverified funnel events made drop-off before intake look much larger than it was.",
           "Care type determined whether a family needed an evaluation or treatment, but the form asked too late.",
-          "Traffic was too low for an experiment to reach significance in a useful timeframe.",
+          "Traffic was too low for a useful experiment.",
         ],
       },
       {
@@ -235,12 +237,14 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "A portal that left families stuck or misled",
         body: [
+          "The company connects families with specialized care for their children.",
           "A family's path to care depended on their needs, coverage, paperwork, and clinician availability. Yet families who needed an evaluation were routed to treatment.",
           "Families without a match hit a dead end. When insurance, location, or clinician capacity prevented a match, the portal gave no explanation or way to book.",
           "Coverage copy promised what the product couldn't deliver. Out-of-network families were told they'd get a match, even when we couldn't provide one.",
         ],
         boldPrefixes: [
           "",
+          "A family's path to care depended on their needs, coverage, paperwork, and clinician availability.",
           "Families without a match hit a dead end.",
           "Coverage copy promised what the product couldn't deliver.",
         ],
