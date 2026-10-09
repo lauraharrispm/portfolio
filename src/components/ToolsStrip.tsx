@@ -11,12 +11,15 @@ interface Tool {
   height: number;
 }
 
-// No more category grouping/labels: just one row of all 9 tools.
+// No more category grouping/labels: just one row of all 10 tools.
 // Icon heights bumped up again (~25%) now that there's no label row
 // eating into the vertical rhythm above them.
 const TOOLS: Tool[] = [
   { name: "Claude", src: "/logos/tools/claude.png", w: 288, h: 288, height: 38 },
   { name: "Codex", src: "/logos/tools/codex.png", w: 526, h: 526, height: 38 },
+  // The only portrait mark in the row: at the shared 38px height it comes out
+  // ~25px wide, so it sits narrower than the square icons on either side.
+  { name: "Conductor", src: "/logos/tools/conductor.svg", w: 115, h: 174, height: 38 },
   // Cropped to just the "M" swoosh (muse.png has "Muse" baked into the
   // art below it); the name still reads on hover/tap via the tooltip.
   { name: "Muse", src: "/logos/tools/muse-mark.png", w: 506, h: 341, height: 33 },

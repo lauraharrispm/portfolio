@@ -21,7 +21,7 @@
   line-height: 1.4;
 }
 
-/* No more category grouping/labels: one row of all 9 icons. */
+/* No more category grouping/labels: one row of all 10 icons. */
 .row {
   display: flex;
   align-items: center;
@@ -103,5 +103,14 @@
 
   .icon {
     height: calc(var(--icon-h) * 0.72);
+  }
+}
+
+/* At 10 icons the 0.72 step above leaves barely a pixel of air between
+   marks on the narrowest phones (~320px), so step down once more there.
+   Keeps the row single and readable instead of letting icons touch. */
+@media (max-width: 360px) {
+  .icon {
+    height: calc(var(--icon-h) * 0.62);
   }
 }
