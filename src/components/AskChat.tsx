@@ -53,6 +53,7 @@ function useTypedPlaceholder(
   reducedMotion: boolean
 ): { placeholder: string; fullQuestion: string } {
   const [text, setText] = useState("");
+  const [fullQuestion, setFullQuestion] = useState(STARTER_QUESTIONS[0]);
   const currentExampleRef = useRef(STARTER_QUESTIONS[0]);
 
   useEffect(() => {
@@ -75,6 +76,7 @@ function useTypedPlaceholder(
     function typeExample() {
       const example = STARTER_QUESTIONS[exampleIndex % STARTER_QUESTIONS.length];
       currentExampleRef.current = example;
+      setFullQuestion(example);
       let charIndex = 0;
 
       function typeChar() {
@@ -107,7 +109,7 @@ function useTypedPlaceholder(
 
   return {
     placeholder: reducedMotion ? STARTER_QUESTIONS[0] : text,
-    fullQuestion: currentExampleRef.current,
+    fullQuestion,
   };
 }
 
@@ -184,6 +186,7 @@ export default function AskChat() {
 
   const apiHistoryRef = useRef<ChatMessage[]>([]);
   const touchedTopicsRef = useRef<Set<string>>(new Set());
+  const conversationIdRef = useRef<string | null>(null);
   const focusedPlaceholderRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -207,6 +210,7 @@ export default function AskChat() {
     setInputValue("");
     apiHistoryRef.current = [];
     touchedTopicsRef.current = new Set();
+    conversationIdRef.current = null;
     setDisabled(false);
   }, []);
 
@@ -217,6 +221,7 @@ export default function AskChat() {
 
       setPhase("conversation");
       setInputValue("");
+      conversationIdRef.current ??= crypto.randomUUID();
 
       const userMsg: DisplayMessage = { id: nextId(), role: "user", content: trimmed };
       setDisplayMessages((prev) => [...prev, userMsg]);
@@ -230,6 +235,7 @@ export default function AskChat() {
           body: JSON.stringify({
             messages: apiHistoryRef.current,
             touchedTopics: Array.from(touchedTopicsRef.current),
+            conversationId: conversationIdRef.current,
           }),
         });
         const data: ChatApiResponse = await res.json();

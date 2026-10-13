@@ -7,6 +7,19 @@ export interface RateLimitResult {
   limit: number;
 }
 
+export const CHAT_OUTCOMES = [
+  "ok",
+  "blocked_conversation_cap",
+  "blocked_rate_hour",
+  "blocked_rate_day",
+  "error_validation",
+  "error_model",
+  "rejected_payload",
+] as const;
+
+export type ChatOutcome = (typeof CHAT_OUTCOMES)[number];
+const CHAT_STAT_TTL_SECONDS = 90 * 24 * 60 * 60;
+
 /**
  * INCR-then-conditionally-EXPIRE as a single Lua script, so the counter
  * can never end up without a TTL (no window where a crash between two
@@ -35,6 +48,11 @@ function getClient(): Redis {
 async function incrWithTtl(key: string, ttlSeconds: number): Promise<number> {
   const result = await getClient().eval(INCR_WITH_TTL_SCRIPT, [key], [String(ttlSeconds)]);
   return Number(result);
+}
+
+export async function incrementChatOutcome(outcome: ChatOutcome): Promise<number> {
+  const day = new Date().toISOString().slice(0, 10);
+  return incrWithTtl(`chat:stat:${day}:${outcome}`, CHAT_STAT_TTL_SECONDS);
 }
 
 /**

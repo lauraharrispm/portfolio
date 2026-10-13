@@ -389,3 +389,27 @@ Not touched in this worktree: `src/components/HowIWork.tsx` still says
 worktree branched and isn't part of the chat feature: the real rename
 for that component lives in the v2 working copy, not this worktree, per
 the amendment's scope (Part 1 vs. Part 2).
+
+## Amendment 10: chat observability and per-tab conversations
+
+Successful question rows now include `timestamp`, `turn`,
+`conversationId`, `topics`, `intent`, and the redacted, truncated
+`question`. The `topics` field continues to store the model's cited
+sources so existing rows remain readable without migration. The analyzer
+reports rows without both `turn` and `conversationId` as legacy questions
+and excludes them from conversation counts.
+
+Terminal outcomes are counted under `chat:stat:<YYYY-MM-DD>:<outcome>`
+with a 90-day TTL. The outcome is one of `ok`,
+`blocked_conversation_cap`, `blocked_rate_hour`, `blocked_rate_day`,
+`error_validation`, `error_model`, or `rejected_payload`. The increment
+and conditional expiry use the same atomic Lua operation as rate limits.
+Blocked and errored requests stay out of the capped `chat:log` list so a
+burst of failures cannot evict real visitor questions. If both rate
+limits are exceeded, the hourly block is counted once for that terminal
+request.
+
+The conversation ID is generated lazily in a client ref, sent with each
+request, and cleared by Start over. It exists only in page memory, so it
+groups one tab's conversation without becoming a cross-visit identifier.
+The existing no-IP, no-PII stance is unchanged.
