@@ -158,16 +158,6 @@
 /* ─── Alternate contact ────────────────────────────────────────── */
 /* Same size as .body: reads as part of the same paragraph flow rather
    than a smaller footnote under it. */
-/* Points people to Cal.com's existing notes field instead of adding
-   booking questions. Body size, same width as the intro paragraph. */
-.bookingNote {
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--charcoal);
-  max-width: 440px;
-  margin-bottom: 16px;
-}
-
 .altContact {
   font-size: 1.0625rem;
   color: var(--charcoal);

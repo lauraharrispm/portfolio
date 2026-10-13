@@ -165,7 +165,7 @@ export default function LetsChat() {
                 </li>
                 <li>
                   <CheckIcon />
-                  <span>Have product-market fit and want to grow faster (usually Series A to C)</span>
+                  <span>Have product-market fit and want to grow faster</span>
                 </li>
                 <li>
                   <CheckIcon />
@@ -174,11 +174,6 @@ export default function LetsChat() {
               </ul>
             </div>
 
-            <p className={styles.bookingNote}>
-              When you book, add a quick note on your stage, team, and biggest
-              growth problem. We&apos;ll spend our 30 minutes on solutions, not
-              background.
-            </p>
             <p className={styles.altContact}>
               Rather write? Reach me at{" "}
               <a href="mailto:laura@lauraharrispm.com">laura@lauraharrispm.com</a> or on{" "}
