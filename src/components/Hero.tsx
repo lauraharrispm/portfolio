@@ -29,12 +29,11 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            <h1 className={styles.headline}>Product expert impact without a full-time hire.</h1>
+            <h1 className={styles.headline}>Product growth leadership without the full-time hire.</h1>
             <p className={styles.subhead}>
-              I&apos;m Laura, a fractional product leader. I help consumer startup
-              founders find the right product bets, align engineering, and ship
-              faster, all without a full-time hire. I bring 8+ years of experience
-              across marketplaces, healthcare, and ecommerce, from seed to Series C.
+              You found product-market fit. Now it&apos;s time to scale it. I help
+              Series A to C startups find the growth bets worth making, align
+              engineering, and ship faster.
             </p>
           </div>
 
