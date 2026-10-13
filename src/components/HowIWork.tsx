@@ -300,6 +300,9 @@ export default function HowIWork() {
           <h3 className={styles.partStatement}>
             Part-time no longer means partial&nbsp;impact.
           </h3>
+          <p className={styles.part2Lead}>
+            I don&apos;t just advise. I ship the work with your team.
+          </p>
 
           <div
             ref={panelRef}
