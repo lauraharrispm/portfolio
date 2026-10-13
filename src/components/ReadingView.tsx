@@ -309,18 +309,12 @@ function DesktopReadingView({
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}
             </h1>
-            {/* The "At a glance" section right below covers this, so the
-               one-liner only shows for studies without one. */}
+            {/* The Summary section right below already states the key
+               result, and it covers the one-liner too, so that only shows
+               for studies without a Summary. */}
             {project.oneLineDesc && !project.sections.some((sec) => sec.id === "summary") && (
               <p className={styles.oneLiner}>{project.oneLineDesc}</p>
             )}
-            <div className={styles.resultBlock}>
-              <span className={styles.resultTag}>Key result</span>
-              <div className={styles.resultRow}>
-                <span className={styles.resultNumber}>{project.keyMetric.number}</span>
-                <span className={styles.resultLabel}>{project.keyMetric.label}</span>
-              </div>
-            </div>
           </div>
 
           {project.sections.map((section) => (

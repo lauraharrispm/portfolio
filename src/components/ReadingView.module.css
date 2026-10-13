@@ -186,58 +186,6 @@
   max-width: 520px;
 }
 
-/* Exactly the summary card's own "Key result" treatment (see
-   WorkSummary.module.css's .resultBlock/.resultTag/.resultRow/
-   .resultNumber/.resultLabel): same markup, same values, just without
-   the card's scroll-triggered fade-in, since this panel opens directly
-   rather than being scrolled into view. Stacked under the one-liner now
-   instead of sitting beside it, so it no longer needs a fixed width to
-   stay in a consistent spot: the previous drift came from being a
-   variable-width flex sibling in a row, which this isn't anymore. */
-.resultBlock {
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 16px;
-}
-
-.resultTag {
-  display: block;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 6px;
-}
-
-.resultRow {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-/* Sans, not the brand serif: matches WorkSummary's card treatment (see
-   its .resultNumber comment for the full reasoning). */
-.resultNumber {
-  flex-shrink: 0;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--charcoal);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.resultLabel {
-  font-size: 0.875rem;
-  line-height: 1.35;
-  color: var(--charcoal-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 /* ─── Section body ─────────────────────────────────────────────── */
 .section {
   padding: 24px 0;

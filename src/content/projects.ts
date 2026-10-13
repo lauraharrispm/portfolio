@@ -107,7 +107,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: About a third of qualified families dropped off at step one of an intake form that treated every family the same.",
@@ -241,7 +241,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: After intake, some families were misrouted, silently dropped, or promised coverage the company couldn't deliver.",
@@ -378,7 +378,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: Most subscribers never set up payments, one of GlossGenius's most valuable features, because onboarding hid the value and felt untrustworthy.",
@@ -503,7 +503,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: Members calling their insurer for mental healthcare had no direct way to book, so many never made it to an appointment.",
@@ -618,7 +618,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: Rula was nearly invisible in organic search and couldn't win high-volume terms like \"therapist near me.\"",
@@ -738,7 +738,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: A billing system that only supported one monthly structure blocked annual plans, pricing changes, and the company's AI add-on strategy.",
@@ -865,7 +865,7 @@ export const projects: Project[] = [
     sections: [
       {
         id: "summary",
-        label: "At a glance",
+        label: "Summary",
         heading: "",
         body: [
           "Problem: Paid ads brought high-intent shoppers, but as the catalog grew, the site made products harder to find and buy.",

@@ -323,11 +323,11 @@
   }
 }
 
-/* Mobile: a compact list instead of the sticky stack. Pinning every
-   card meant scrolling through all of them to get past Recent Work, so
-   here cards scroll normally and drop the image and one-liner, leaving
-   company, pills, title, and key result. Tapping still opens the story
-   view. The scroll-linked recede in WorkSummary.tsx skips this width. */
+/* Mobile: cards scroll as a normal list instead of the sticky stack.
+   Pinning every card meant scrolling through all of them to get past
+   Recent Work. Cards keep their image but drop the one-liner (each
+   study opens with a Summary). Tapping still opens the story view. The
+   scroll-linked recede in WorkSummary.tsx skips this width. */
 @media (max-width: 768px) {
   .stackItem {
     position: static;
@@ -339,7 +339,10 @@
     box-shadow: 0 6px 18px rgba(46, 40, 32, 0.1);
   }
 
-  .imageWrap,
+  .cardInner {
+    gap: 20px;
+  }
+
   .oneLiner {
     display: none;
   }
