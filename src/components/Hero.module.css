@@ -374,3 +374,8 @@
     width: 100%;
   }
 }
+
+/* Keeps "a full-time hire." together in the headline. */
+.noWrap {
+  white-space: nowrap;
+}

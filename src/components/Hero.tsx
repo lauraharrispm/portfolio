@@ -29,7 +29,13 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            <h1 className={styles.headline}>Product growth leadership without a full-time hire.</h1>
+            {/* "a full-time hire." is kept on one line so the headline never
+               splits "full-" / "time"; on desktop it lands as its own
+               third line. */}
+            <h1 className={styles.headline}>
+              Product growth leadership without{" "}
+              <span className={styles.noWrap}>a full-time hire.</span>
+            </h1>
             <p className={styles.subhead}>
               You found product-market fit. Now it&apos;s time to scale it. I help
               startups from Series A to C find the growth bets worth making,

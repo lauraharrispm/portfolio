@@ -116,7 +116,7 @@ const AI_ITEMS: AIItem[] = [
     icon: <TargetIcon />,
     title: "Choose the right problem.",
     description:
-      "AI can speed up building; product judgment decides what's worth building.",
+      "AI speeds up building. Product judgment decides what's worth building.",
   },
   {
     icon: <BoltIcon />,
