@@ -120,7 +120,8 @@
 
 .metaLine {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -133,8 +134,32 @@
   color: var(--charcoal);
 }
 
-/* Same spacing (8px flex gap + this margin) around every dot in the
-   line, so company/stage/employee-range all read as evenly separated. */
+/* Engagement and funnel-stage pills: same look as the summary card's
+   (see WorkSummary.module.css .engagement / .tag). */
+.engagement,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.engagement {
+  color: var(--charcoal);
+  background: var(--warm-tint);
+}
+
+.tag {
+  color: var(--coral);
+  background: rgba(240, 112, 82, 0.1);
+}
+
+/* Separates the pills from the funding stage that follows them. */
 .metaDot {
   color: var(--charcoal-muted);
   margin: 0 4px;

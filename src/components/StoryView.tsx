@@ -327,8 +327,9 @@ export default function StoryView({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── Fixed header: close/title row, then company/stage/size right
-         under the title, both inside the same header block ── */}
+      {/* ── Fixed header: close/title row, then company, pills, and
+         funding stage right under the title, both inside the same
+         header block ── */}
       <div className={styles.header}>
         <div className={styles.headerTopRow}>
           <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
@@ -338,19 +339,20 @@ export default function StoryView({
           <span className={styles.headerSpacer} aria-hidden="true" />
         </div>
 
-        {(project.fundingStage || project.employeeRange) && (
-          <div className={styles.metaStrip}>
-            {project.company}
-            {(project.fundingStage || project.employeeRange) && (
-              <span className={styles.metaStripDot}> · </span>
-            )}
-            {project.fundingStage}
-            {project.fundingStage && project.employeeRange && (
-              <span className={styles.metaStripDot}> · </span>
-            )}
-            {project.employeeRange}
-          </div>
-        )}
+        <div className={styles.metaStrip}>
+          <span className={styles.metaCompany}>{project.company}</span>
+          {project.engagement && (
+            <span className={styles.engagement}>{project.engagement}</span>
+          )}
+          {project.tags.map((tag) => (
+            <span className={styles.tag} key={tag}>
+              {tag}
+            </span>
+          ))}
+          {project.fundingStage && (
+            <span className={styles.metaStage}>{project.fundingStage}</span>
+          )}
+        </div>
       </div>
 
       {/* ── Progress pips ── */}

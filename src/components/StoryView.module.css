@@ -91,20 +91,47 @@
 /* ── Company stage / size metadata strip ── */
 .metaStrip {
   flex-shrink: 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
   padding: 0 20px;
+  line-height: 1.4;
+}
+
+.metaCompany,
+.metaStage {
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(46, 40, 32, 0.5);
-  line-height: 1.4;
 }
 
-/* Same wider margin on every dot in the line, so company/stage/
-   employee-range all read as evenly separated. */
-.metaStripDot {
-  margin: 0 3px;
+/* Smaller versions of the summary card's engagement and funnel-stage
+   pills (see WorkSummary.module.css .engagement / .tag). */
+.engagement,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.engagement {
+  color: var(--charcoal);
+  background: var(--warm-tint);
+}
+
+.tag {
+  color: var(--coral);
+  background: rgba(240, 112, 82, 0.1);
 }
 
 /* ── Progress pips ── */

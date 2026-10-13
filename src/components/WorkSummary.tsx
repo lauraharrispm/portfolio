@@ -56,9 +56,21 @@ export default function WorkSummary() {
 
     let raf = 0;
 
+    // Mobile shows a plain compact list (no sticky stack; see the 768px
+    // rule in WorkSummary.module.css), so there's nothing to recede.
+    const compactQuery = window.matchMedia("(max-width: 768px)");
+
     const update = () => {
       raf = 0;
       const els = cardRefs.current;
+      if (compactQuery.matches) {
+        els.forEach((el) => {
+          if (!el) return;
+          el.style.transform = "";
+          el.style.filter = "";
+        });
+        return;
+      }
       for (let i = 0; i < els.length - 1; i++) {
         const cur = els[i];
         const next = els[i + 1];

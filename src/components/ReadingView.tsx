@@ -287,25 +287,31 @@ function DesktopReadingView({
         <div ref={contentRef} className={styles.content}>
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
+            {/* Same company + engagement + funnel-stage pills as the
+               summary card, plus funding stage. */}
             <div className={styles.metaLine}>
               <span className={styles.company}>{project.company}</span>
-              {(project.fundingStage || project.employeeRange) && (
-                <span className={styles.metaDot} aria-hidden="true">·</span>
+              {project.engagement && (
+                <span className={styles.engagement}>{project.engagement}</span>
               )}
+              {project.tags.map((tag) => (
+                <span className={styles.tag} key={tag}>
+                  {tag}
+                </span>
+              ))}
               {project.fundingStage && (
-                <span className={styles.stageLine}>{project.fundingStage}</span>
-              )}
-              {project.fundingStage && project.employeeRange && (
-                <span className={styles.metaDot} aria-hidden="true">·</span>
-              )}
-              {project.employeeRange && (
-                <span className={styles.stageLine}>{project.employeeRange}</span>
+                <>
+                  <span className={styles.metaDot} aria-hidden="true">·</span>
+                  <span className={styles.stageLine}>{project.fundingStage}</span>
+                </>
               )}
             </div>
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}
             </h1>
-            {project.oneLineDesc && (
+            {/* The "At a glance" section right below covers this, so the
+               one-liner only shows for studies without one. */}
+            {project.oneLineDesc && !project.sections.some((sec) => sec.id === "summary") && (
               <p className={styles.oneLiner}>{project.oneLineDesc}</p>
             )}
             <div className={styles.resultBlock}>

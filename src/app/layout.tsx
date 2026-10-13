@@ -26,11 +26,11 @@ export const metadata: Metadata = {
   },
   title: "Laura Harris | Fractional Product Leader",
   description:
-    "Fractional product leader for startups from Series A to C, past product-market fit: product growth leadership without a full-time hire.",
+    "Fractional product leader for startups with product-market fit. Product growth leadership without a full-time hire.",
   openGraph: {
     title: "Laura Harris | Fractional Product Leader",
     description:
-      "Fractional product leader for startups from Series A to C, past product-market fit: product growth leadership without a full-time hire.",
+      "Fractional product leader for startups with product-market fit. Product growth leadership without a full-time hire.",
     url: "https://lauraharrispm.com",
     siteName: "Laura Harris",
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Laura Harris | Fractional Product Leader",
     description:
-      "Fractional product leader for startups from Series A to C, past product-market fit: product growth leadership without a full-time hire.",
+      "Fractional product leader for startups with product-market fit. Product growth leadership without a full-time hire.",
   },
 };
 

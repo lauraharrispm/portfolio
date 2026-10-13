@@ -240,7 +240,7 @@ export default function HowIWork() {
 
         {/* ── Part 1: Engagement formats ──────────────────────────── */}
         <h3 className={styles.partStatement}>
-          Support based on what you need right&nbsp;now.
+          What you can hire me to&nbsp;do.
         </h3>
 
         <div

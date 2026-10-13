@@ -323,34 +323,29 @@
   }
 }
 
-/* Same sticky-stack peek effect at every width now, including mobile
-   (see the scroll-linked scale/dim recede in WorkSummary.tsx, no longer
-   gated to desktop either). A smaller peek and bottom padding than
-   desktop's, since mobile cards run taller relative to viewport height
-   and don't need as much of the previous card showing to read the
-   stacking.
-
-   top is CAPPED here, unlike desktop's unbounded growth: desktop's tall
-   viewport easily absorbs index*48px even for the 6th or 7th card, but
-   on a short mobile viewport that same unbounded growth was pushing the
-   featured card down far enough that its bottom (the key-result block,
-   "See more") got cut off by card 3 or 4. min(...) stops the offset
-   growing past 2 cards' worth of peek (24px each): every card from the
-   3rd on settles at the same top instead of climbing further, which
-   still reads as "a stack" (you see 2 peeking edges above the featured
-   card) without ever hiding the featured card itself. */
+/* Mobile: a compact list instead of the sticky stack. Pinning every
+   card meant scrolling through all of them to get past Recent Work, so
+   here cards scroll normally and drop the image and one-liner, leaving
+   company, pills, title, and key result. Tapping still opens the story
+   view. The scroll-linked recede in WorkSummary.tsx skips this width. */
 @media (max-width: 768px) {
   .stackItem {
-    top: calc(var(--nav-height) + 20px + min(var(--stack-index) * 24px, 48px));
-    padding-bottom: 20px;
+    position: static;
+    padding-bottom: 12px;
   }
 
-  /* Full width, matching the card's own content width (the .text
-     column it sits in), instead of shrink-wrapped to the label text. */
-  .seeMore {
-    width: 100%;
-    justify-content: center;
-    align-self: stretch;
+  .card {
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(46, 40, 32, 0.1);
+  }
+
+  .imageWrap,
+  .oneLiner {
+    display: none;
+  }
+
+  .resultBlock {
+    margin-bottom: 16px;
   }
 
   /* Number on its own line, label below it, instead of inline: at card
