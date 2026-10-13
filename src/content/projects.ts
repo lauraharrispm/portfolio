@@ -846,7 +846,7 @@ export const projects: Project[] = ([
   {
     id: "burrow-growth",
     order: 6,
-    tags: ["Acquisition", "Monetization"],
+    tags: ["Acquisition"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
     cardImage: {
