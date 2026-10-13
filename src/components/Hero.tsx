@@ -29,11 +29,11 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            <h1 className={styles.headline}>Product growth leadership without the full-time hire.</h1>
+            <h1 className={styles.headline}>Product growth leadership without a full-time hire.</h1>
             <p className={styles.subhead}>
               You found product-market fit. Now it&apos;s time to scale it. I help
-              Series A to C startups find the growth bets worth making, align
-              engineering, and ship faster.
+              startups from Series A to C find the growth bets worth making,
+              align engineering, and ship faster.
             </p>
           </div>
 
