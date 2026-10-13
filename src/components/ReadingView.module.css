@@ -136,6 +136,15 @@
 
 /* Engagement and funnel-stage pills: same look as the summary card's
    (see WorkSummary.module.css .engagement / .tag). */
+/* Pills wrap as one group, never split across lines (see WorkSummary). */
+.pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .engagement,
 .tag {
   display: inline-flex;

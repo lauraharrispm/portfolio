@@ -275,14 +275,18 @@ function Card({ project, onOpen }: CardProps) {
       <div className={styles.text}>
         <div className={styles.meta}>
           <span className={styles.company}>{project.company}</span>
-          {project.engagement && (
-            <span className={styles.engagement}>{project.engagement}</span>
-          )}
-          {project.tags.map((tag) => (
-            <span className={styles.tag} key={tag}>
-              {tag}
-            </span>
-          ))}
+          {/* Pills wrap as one group: if they don't fit beside the
+             company name, they all move to the next line together. */}
+          <span className={styles.pills}>
+            {project.engagement && (
+              <span className={styles.engagement}>{project.engagement}</span>
+            )}
+            {project.tags.map((tag) => (
+              <span className={styles.tag} key={tag}>
+                {tag}
+              </span>
+            ))}
+          </span>
         </div>
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.oneLiner}>{project.oneLineDesc}</p>

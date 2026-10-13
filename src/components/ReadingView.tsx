@@ -300,14 +300,16 @@ function DesktopReadingView({
                   </>
                 )}
               </span>
-              {project.engagement && (
-                <span className={styles.engagement}>{project.engagement}</span>
-              )}
-              {project.tags.map((tag) => (
-                <span className={styles.tag} key={tag}>
-                  {tag}
-                </span>
-              ))}
+              <span className={styles.pills}>
+                {project.engagement && (
+                  <span className={styles.engagement}>{project.engagement}</span>
+                )}
+                {project.tags.map((tag) => (
+                  <span className={styles.tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </span>
             </div>
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}

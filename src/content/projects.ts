@@ -75,7 +75,9 @@ export interface Project {
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
-export const projects: Project[] = [
+// Sorted by `order` so every consumer (summary cards, reading view and
+// story view next/previous) follows the same sequence.
+export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   // 1. Patient Intake Redesign
   // ─────────────────────────────────────────────────────────────────────────
@@ -961,4 +963,4 @@ export const projects: Project[] = [
       },
     ],
   },
-];
+] satisfies Project[]).sort((a, b) => a.order - b.order);

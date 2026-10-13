@@ -160,19 +160,45 @@ export default function StoryView({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [project.crossLink, onSwitchProject]);
 
-  // ── Touch handling ─────────────────────────────────────────────
+  // ── Touch + mouse handling ─────────────────────────────────────
+  // Touch events on phones; pointer events for a mouse, so the story
+  // view also works in a narrow desktop window or the browser's mobile
+  // inspector without touch emulation. Mouse pointers only, so a phone
+  // tap isn't handled twice.
   function onTouchStart(e: React.TouchEvent) {
     const t = e.touches[0];
-    touchStart.current = { x: t.clientX, y: t.clientY, time: Date.now() };
+    gestureStart(t.clientX, t.clientY);
   }
 
   function onTouchEnd(e: React.TouchEvent) {
-    if (!touchStart.current) return;
     const t = e.changedTouches[0];
-    const dx = t.clientX - touchStart.current.x;
-    const dy = t.clientY - touchStart.current.y;
+    gestureEnd(t.clientX, t.clientY, e.target);
+  }
+
+  function onPointerDown(e: React.PointerEvent) {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    gestureStart(e.clientX, e.clientY);
+  }
+
+  function onPointerUp(e: React.PointerEvent) {
+    if (e.pointerType !== "mouse") return;
+    gestureEnd(e.clientX, e.clientY, e.target);
+  }
+
+  function gestureStart(x: number, y: number) {
+    touchStart.current = { x, y, time: Date.now() };
+  }
+
+  function gestureEnd(x: number, y: number, target: EventTarget) {
+    if (!touchStart.current) return;
+    const dx = x - touchStart.current.x;
+    const dy = y - touchStart.current.y;
     const dt = Date.now() - touchStart.current.time;
     touchStart.current = null;
+
+    // Buttons and links (close, cross-link, design images) do their own
+    // thing; a tap on them shouldn't also page the story.
+    if (target instanceof Element && target.closest("button, a")) return;
 
     // Swipe down to close — only when content is scrolled to top
     const contentScrollTop = contentRef.current?.scrollTop ?? 0;
@@ -188,7 +214,7 @@ export default function StoryView({
     // Tap: left 40% = back, right 60% = forward
     if (Math.abs(dx) < 15 && Math.abs(dy) < 15 && dt < 300) {
       const w = window.innerWidth;
-      navigate(t.clientX < w * 0.4 ? "back" : "forward");
+      navigate(x < w * 0.4 ? "back" : "forward");
     }
   }
 
@@ -326,6 +352,8 @@ export default function StoryView({
       aria-label={`${project.title}${section ? `, ${section.label}` : ""}`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
     >
       {/* ── Fixed header: close/title row, then company · funding stage
          and the card's pills right under the title, both inside the
@@ -344,14 +372,16 @@ export default function StoryView({
             {project.company}
             {project.fundingStage && ` · ${project.fundingStage}`}
           </span>
-          {project.engagement && (
-            <span className={styles.engagement}>{project.engagement}</span>
-          )}
-          {project.tags.map((tag) => (
-            <span className={styles.tag} key={tag}>
-              {tag}
-            </span>
-          ))}
+          <span className={styles.pills}>
+            {project.engagement && (
+              <span className={styles.engagement}>{project.engagement}</span>
+            )}
+            {project.tags.map((tag) => (
+              <span className={styles.tag} key={tag}>
+                {tag}
+              </span>
+            ))}
+          </span>
         </div>
       </div>
 

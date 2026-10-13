@@ -127,6 +127,15 @@
   color: var(--charcoal);
 }
 
+/* Engagement + funnel-stage pills, kept together as one flex item in
+   .meta so they never split across the company line and the next. */
+.pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
 /* A pill like .tag below, but a light cream/tan fill (same var(--warm-tint)
    used for the Hero outcome boxes and the How I Work table's header row)
    with charcoal text instead of coral, so it reads as a distinct,
@@ -160,7 +169,6 @@
   background: rgba(240, 112, 82, 0.1);
   padding: 4px 10px;
   border-radius: 100px;
-  margin-left: 4px;
 }
 
 .title {
