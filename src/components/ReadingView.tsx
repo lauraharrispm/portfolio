@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { projects } from "@/content/projects";
 import type { Project, ProjectSection } from "@/content/projects";
@@ -23,16 +23,28 @@ interface Props {
   originRect?: DOMRect | null;
 }
 
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [breakpoint]);
-  return isMobile;
+// Read straight from matchMedia via useSyncExternalStore (same pattern
+// as AskChat's reduced-motion hook) rather than copying it into state
+// from an effect. The server snapshot is null, so nothing renders until
+// the viewport is known (see the early return below).
+const MOBILE_QUERY = "(max-width: 768px)";
+
+function subscribeToMobile(callback: () => void) {
+  const mq = window.matchMedia(MOBILE_QUERY);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getMobileSnapshot(): boolean | null {
+  return window.matchMedia(MOBILE_QUERY).matches;
+}
+
+function getMobileServerSnapshot(): boolean | null {
+  return null;
+}
+
+function useIsMobile(): boolean | null {
+  return useSyncExternalStore(subscribeToMobile, getMobileSnapshot, getMobileServerSnapshot);
 }
 
 // One component, two presentations: desktop gets a continuous-scroll
