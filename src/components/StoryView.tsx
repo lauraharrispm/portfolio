@@ -327,9 +327,9 @@ export default function StoryView({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* ── Fixed header: close/title row, then company, pills, and
-         funding stage right under the title, both inside the same
-         header block ── */}
+      {/* ── Fixed header: close/title row, then company · funding stage
+         and the card's pills right under the title, both inside the
+         same header block ── */}
       <div className={styles.header}>
         <div className={styles.headerTopRow}>
           <button className={styles.backBtn} onClick={handleClose} aria-label="Close reading view">
@@ -340,7 +340,10 @@ export default function StoryView({
         </div>
 
         <div className={styles.metaStrip}>
-          <span className={styles.metaCompany}>{project.company}</span>
+          <span className={styles.metaCompany}>
+            {project.company}
+            {project.fundingStage && ` · ${project.fundingStage}`}
+          </span>
           {project.engagement && (
             <span className={styles.engagement}>{project.engagement}</span>
           )}
@@ -349,9 +352,6 @@ export default function StoryView({
               {tag}
             </span>
           ))}
-          {project.fundingStage && (
-            <span className={styles.metaStage}>{project.fundingStage}</span>
-          )}
         </div>
       </div>
 

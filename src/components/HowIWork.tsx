@@ -126,9 +126,9 @@ const AI_ITEMS: AIItem[] = [
   },
   {
     icon: <PeopleIcon />,
-    title: "Strengthen the team.",
+    title: "Ship with your team.",
     description:
-      "I work alongside your team and document decisions and workflows so useful knowledge stays with them.",
+      "I don't just advise. I build alongside your team and document decisions so the knowledge stays with them.",
   },
 ];
 
@@ -300,9 +300,6 @@ export default function HowIWork() {
           <h3 className={styles.partStatement}>
             Part-time no longer means partial&nbsp;impact.
           </h3>
-          <p className={styles.part2Lead}>
-            I don&apos;t just advise. I ship the work with your team.
-          </p>
 
           <div
             ref={panelRef}

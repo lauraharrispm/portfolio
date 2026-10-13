@@ -287,10 +287,19 @@ function DesktopReadingView({
         <div ref={contentRef} className={styles.content}>
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
-            {/* Same company + engagement + funnel-stage pills as the
-               summary card, plus funding stage. */}
+            {/* Company and funding stage share one label ("who and
+               when"), then the same engagement + funnel-stage pills as the
+               summary card ("what kind of work"). */}
             <div className={styles.metaLine}>
-              <span className={styles.company}>{project.company}</span>
+              <span className={styles.company}>
+                {project.company}
+                {project.fundingStage && (
+                  <>
+                    <span className={styles.metaDot} aria-hidden="true">·</span>
+                    {project.fundingStage}
+                  </>
+                )}
+              </span>
               {project.engagement && (
                 <span className={styles.engagement}>{project.engagement}</span>
               )}
@@ -299,12 +308,6 @@ function DesktopReadingView({
                   {tag}
                 </span>
               ))}
-              {project.fundingStage && (
-                <>
-                  <span className={styles.metaDot} aria-hidden="true">·</span>
-                  <span className={styles.stageLine}>{project.fundingStage}</span>
-                </>
-              )}
             </div>
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}

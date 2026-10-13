@@ -285,16 +285,6 @@
   margin-bottom: 18px;
 }
 
-/* One plain line under the statement: the "builder, not advisor" point,
-   same body size as the Services intro. */
-.part2Lead {
-  font-size: 1.0625rem;
-  color: var(--charcoal);
-  line-height: 1.65;
-  margin-top: -6px;
-  margin-bottom: 28px;
-}
-
 @media (min-width: 1024px) {
   .part2 .partStatement {
     white-space: nowrap;
