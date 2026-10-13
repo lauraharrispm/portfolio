@@ -116,7 +116,7 @@ const AI_ITEMS: AIItem[] = [
     icon: <TargetIcon />,
     title: "Choose the right problem.",
     description:
-      "AI can speed up building; product judgment decides what's worth building.",
+      "AI speeds up building. Product judgment decides what's worth building.",
   },
   {
     icon: <BoltIcon />,
@@ -126,9 +126,9 @@ const AI_ITEMS: AIItem[] = [
   },
   {
     icon: <PeopleIcon />,
-    title: "Strengthen the team.",
+    title: "Ship with your team.",
     description:
-      "I work alongside your team and document decisions and workflows so useful knowledge stays with them.",
+      "I don't just advise. I build alongside your team and document decisions so the knowledge stays with them.",
   },
 ];
 
@@ -240,7 +240,7 @@ export default function HowIWork() {
 
         {/* ── Part 1: Engagement formats ──────────────────────────── */}
         <h3 className={styles.partStatement}>
-          Support based on what you need right&nbsp;now.
+          What you can hire me to&nbsp;do.
         </h3>
 
         <div

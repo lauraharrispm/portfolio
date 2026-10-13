@@ -57,8 +57,6 @@ export interface Project {
   keyMetric: { number: string; label: string };
   /** Optional company stage shown in hero band metadata line */
   fundingStage?: string;
-  /** Optional employee range shown in hero band metadata line */
-  employeeRange?: string;
   sections: ProjectSection[];
   /** AI project only: structured before/after table, rendered in Results section */
   beforeAfterTable?: BeforeAfterRow[];
@@ -77,13 +75,15 @@ export interface Project {
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
-export const projects: Project[] = [
+// Sorted by `order` so every consumer (summary cards, reading view and
+// story view next/previous) follows the same sequence.
+export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   // 1. Patient Intake Redesign
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "patient-intake",
-    order: 6,
+    order: 2,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -102,12 +102,22 @@ export const projects: Project[] = [
       label: "of product time, diagnosis to launch",
     },
     fundingStage: "Series A",
-    employeeRange: "14 employees",
     crossLink: {
       toId: "patient-portal",
       label: "Designed together with the patient portal. See the patient portal redesign →",
     },
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: About a third of qualified families dropped off at step one of an intake form that treated every family the same.",
+          "What I did: Redesigned intake to start with care type and ask only what matching needs, and launched it together with the portal.",
+          "Result: Diagnosis to launch in 1.5 weeks of product time, with every change merged in five days.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -226,12 +236,22 @@ export const projects: Project[] = [
       label: "faster to patient first session",
     },
     fundingStage: "Series A",
-    employeeRange: "14 employees",
     crossLink: {
       toId: "patient-intake",
       label: "Designed together with the intake form. See the patient intake redesign →",
     },
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: After intake, some families were misrouted, silently dropped, or promised coverage the company couldn't deliver.",
+          "What I did: Mapped every care type, coverage, and capacity combination into a state matrix that became engineering's acceptance criteria.",
+          "Result: Families reach a first session a full day faster, and every family gets an honest next step.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -357,8 +377,18 @@ export const projects: Project[] = [
       label: "lift in payments onboarding completion",
     },
     fundingStage: "Series C",
-    employeeRange: "260→330 employees",
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: Most subscribers never set up payments, one of GlossGenius's most valuable features, because onboarding hid the value and felt untrustworthy.",
+          "What I did: Ran an experimentation program that led with the value, added a progress bar, and made Stripe verification feel native.",
+          "Result: 80% lift in onboarding completion, seven-figure GPV impact, and a 3% lift in subscription activations.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -453,7 +483,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
-    order: 3,
+    order: 4,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
@@ -472,8 +502,18 @@ export const projects: Project[] = [
       label: "patient growth from this launch",
     },
     fundingStage: "Series B→C",
-    employeeRange: "180→550 employees",
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: Members calling their insurer for mental healthcare had no direct way to book, so many never made it to an appointment.",
+          "What I did: Built a scheduling tool that lets insurance phone agents book Rula appointments for members in real time.",
+          "Result: 21% patient growth, Rula's largest feature launch ever, and a 66% conversion lift over the old phone agent flow.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -558,7 +598,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
-    order: 4,
+    order: 5,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
@@ -577,8 +617,18 @@ export const projects: Project[] = [
       label: "lift in organic patient starts",
     },
     fundingStage: "Series B→C",
-    employeeRange: "180→550 employees",
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: Rula was nearly invisible in organic search and couldn't win high-volume terms like \"therapist near me.\"",
+          "What I did: Built an SEO-driven therapist directory that targets thousands of specific searches, each with its own page.",
+          "Result: 0 to 1.7M search impressions and a 345% lift in organic patient starts.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -668,7 +718,7 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
-    order: 2,
+    order: 3,
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
@@ -687,8 +737,18 @@ export const projects: Project[] = [
       label: "business interruptions during a full billing migration",
     },
     fundingStage: "Series C",
-    employeeRange: "260→330 employees",
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: A billing system that only supported one monthly structure blocked annual plans, pricing changes, and the company's AI add-on strategy.",
+          "What I did: Led a full subscription service migration and launched annual plans alongside a price increase for new customers.",
+          "Result: Zero business interruptions, annual plan adoption above projections, and AI add-ons unblocked.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -785,8 +845,8 @@ export const projects: Project[] = [
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
-    order: 5,
-    tags: ["Acquisition", "Monetization"],
+    order: 6,
+    tags: ["Acquisition"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
     cardImage: {
@@ -804,8 +864,18 @@ export const projects: Project[] = [
       label: "revenue growth",
     },
     fundingStage: "Series A→C",
-    employeeRange: "30→110 employees",
     sections: [
+      {
+        id: "summary",
+        label: "Summary",
+        heading: "",
+        body: [
+          "Problem: Paid ads brought high-intent shoppers, but as the catalog grew, the site made products harder to find and buy.",
+          "What I did: Rebuilt navigation and filtering, made fast shipping a visible differentiator, and automated promotions at checkout.",
+          "Result: Contributed to 4x revenue growth, including a 41% lift in add-to-cart and the highest revenue day in company history.",
+        ],
+        boldPrefixes: ["Problem:", "What I did:", "Result:"],
+      },
       {
         id: "problem",
         label: "Problem",
@@ -893,4 +963,4 @@ export const projects: Project[] = [
       },
     ],
   },
-];
+] satisfies Project[]).sort((a, b) => a.order - b.order);

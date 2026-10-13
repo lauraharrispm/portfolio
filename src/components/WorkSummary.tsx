@@ -56,9 +56,21 @@ export default function WorkSummary() {
 
     let raf = 0;
 
+    // Mobile shows a plain compact list (no sticky stack; see the 768px
+    // rule in WorkSummary.module.css), so there's nothing to recede.
+    const compactQuery = window.matchMedia("(max-width: 768px)");
+
     const update = () => {
       raf = 0;
       const els = cardRefs.current;
+      if (compactQuery.matches) {
+        els.forEach((el) => {
+          if (!el) return;
+          el.style.transform = "";
+          el.style.filter = "";
+        });
+        return;
+      }
       for (let i = 0; i < els.length - 1; i++) {
         const cur = els[i];
         const next = els[i + 1];
@@ -263,14 +275,18 @@ function Card({ project, onOpen }: CardProps) {
       <div className={styles.text}>
         <div className={styles.meta}>
           <span className={styles.company}>{project.company}</span>
-          {project.engagement && (
-            <span className={styles.engagement}>{project.engagement}</span>
-          )}
-          {project.tags.map((tag) => (
-            <span className={styles.tag} key={tag}>
-              {tag}
-            </span>
-          ))}
+          {/* Pills wrap as one group: if they don't fit beside the
+             company name, they all move to the next line together. */}
+          <span className={styles.pills}>
+            {project.engagement && (
+              <span className={styles.engagement}>{project.engagement}</span>
+            )}
+            {project.tags.map((tag) => (
+              <span className={styles.tag} key={tag}>
+                {tag}
+              </span>
+            ))}
+          </span>
         </div>
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.oneLiner}>{project.oneLineDesc}</p>

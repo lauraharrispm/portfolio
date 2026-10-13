@@ -120,8 +120,9 @@
 
 .metaLine {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
   margin-bottom: 12px;
 }
 
@@ -133,16 +134,44 @@
   color: var(--charcoal);
 }
 
-/* Same spacing (8px flex gap + this margin) around every dot in the
-   line, so company/stage/employee-range all read as evenly separated. */
-.metaDot {
-  color: var(--charcoal-muted);
-  margin: 0 4px;
+/* Engagement and funnel-stage pills: same look as the summary card's
+   (see WorkSummary.module.css .engagement / .tag). */
+/* Pills wrap as one group, never split across lines (see WorkSummary). */
+.pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.stageLine {
-  font-size: 0.8125rem;
+.engagement,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.engagement {
+  color: var(--charcoal);
+  background: var(--warm-tint);
+}
+
+.tag {
+  color: var(--coral);
+  background: rgba(240, 112, 82, 0.1);
+}
+
+/* Dot between company and funding stage, inside the same label. */
+.metaDot {
   color: var(--charcoal-muted);
+  margin: 0 6px;
 }
 
 .title {
@@ -159,58 +188,6 @@
   line-height: 1.6;
   color: var(--charcoal-muted);
   max-width: 520px;
-}
-
-/* Exactly the summary card's own "Key result" treatment (see
-   WorkSummary.module.css's .resultBlock/.resultTag/.resultRow/
-   .resultNumber/.resultLabel): same markup, same values, just without
-   the card's scroll-triggered fade-in, since this panel opens directly
-   rather than being scrolled into view. Stacked under the one-liner now
-   instead of sitting beside it, so it no longer needs a fixed width to
-   stay in a consistent spot: the previous drift came from being a
-   variable-width flex sibling in a row, which this isn't anymore. */
-.resultBlock {
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 16px;
-}
-
-.resultTag {
-  display: block;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 6px;
-}
-
-.resultRow {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-/* Sans, not the brand serif: matches WorkSummary's card treatment (see
-   its .resultNumber comment for the full reasoning). */
-.resultNumber {
-  flex-shrink: 0;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--charcoal);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.resultLabel {
-  font-size: 0.875rem;
-  line-height: 1.35;
-  color: var(--charcoal-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* ─── Section body ─────────────────────────────────────────────── */

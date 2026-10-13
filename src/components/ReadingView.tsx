@@ -287,34 +287,39 @@ function DesktopReadingView({
         <div ref={contentRef} className={styles.content}>
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
+            {/* Company and funding stage share one label ("who and
+               when"), then the same engagement + funnel-stage pills as the
+               summary card ("what kind of work"). */}
             <div className={styles.metaLine}>
-              <span className={styles.company}>{project.company}</span>
-              {(project.fundingStage || project.employeeRange) && (
-                <span className={styles.metaDot} aria-hidden="true">·</span>
-              )}
-              {project.fundingStage && (
-                <span className={styles.stageLine}>{project.fundingStage}</span>
-              )}
-              {project.fundingStage && project.employeeRange && (
-                <span className={styles.metaDot} aria-hidden="true">·</span>
-              )}
-              {project.employeeRange && (
-                <span className={styles.stageLine}>{project.employeeRange}</span>
-              )}
+              <span className={styles.company}>
+                {project.company}
+                {project.fundingStage && (
+                  <>
+                    <span className={styles.metaDot} aria-hidden="true">·</span>
+                    {project.fundingStage}
+                  </>
+                )}
+              </span>
+              <span className={styles.pills}>
+                {project.engagement && (
+                  <span className={styles.engagement}>{project.engagement}</span>
+                )}
+                {project.tags.map((tag) => (
+                  <span className={styles.tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </span>
             </div>
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}
             </h1>
-            {project.oneLineDesc && (
+            {/* The Summary section right below already states the key
+               result, and it covers the one-liner too, so that only shows
+               for studies without a Summary. */}
+            {project.oneLineDesc && !project.sections.some((sec) => sec.id === "summary") && (
               <p className={styles.oneLiner}>{project.oneLineDesc}</p>
             )}
-            <div className={styles.resultBlock}>
-              <span className={styles.resultTag}>Key result</span>
-              <div className={styles.resultRow}>
-                <span className={styles.resultNumber}>{project.keyMetric.number}</span>
-                <span className={styles.resultLabel}>{project.keyMetric.label}</span>
-              </div>
-            </div>
           </div>
 
           {project.sections.map((section) => (
