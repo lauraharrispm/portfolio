@@ -53,6 +53,7 @@ function useTypedPlaceholder(
   reducedMotion: boolean
 ): { placeholder: string; fullQuestion: string } {
   const [text, setText] = useState("");
+  const [fullQuestion, setFullQuestion] = useState(STARTER_QUESTIONS[0]);
   const currentExampleRef = useRef(STARTER_QUESTIONS[0]);
 
   useEffect(() => {
@@ -75,6 +76,7 @@ function useTypedPlaceholder(
     function typeExample() {
       const example = STARTER_QUESTIONS[exampleIndex % STARTER_QUESTIONS.length];
       currentExampleRef.current = example;
+      setFullQuestion(example);
       let charIndex = 0;
 
       function typeChar() {
@@ -107,7 +109,7 @@ function useTypedPlaceholder(
 
   return {
     placeholder: reducedMotion ? STARTER_QUESTIONS[0] : text,
-    fullQuestion: currentExampleRef.current,
+    fullQuestion,
   };
 }
 
