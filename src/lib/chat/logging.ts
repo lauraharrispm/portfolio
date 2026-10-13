@@ -4,6 +4,9 @@ import type { Intent } from "./types";
 
 export interface QuestionLogEntry {
   timestamp: string;
+  turn: number;
+  conversationId: string;
+  /** Model-cited sources are retained under the original field name for stored-row compatibility. */
   topics: string[];
   intent: Intent;
   /** Redacted, truncated question text, kept short for review, never the full conversation. */
@@ -27,9 +30,17 @@ function getClient(): Redis {
   return client;
 }
 
-export function buildLogEntry(rawQuestion: string, topics: string[], intent: Intent): QuestionLogEntry {
+export function buildLogEntry(
+  rawQuestion: string,
+  topics: string[],
+  intent: Intent,
+  turn: number,
+  conversationId: string
+): QuestionLogEntry {
   return {
     timestamp: new Date().toISOString(),
+    turn,
+    conversationId,
     topics,
     intent,
     question: redact(rawQuestion).slice(0, 500),

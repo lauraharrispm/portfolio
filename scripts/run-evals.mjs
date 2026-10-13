@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { randomUUID } from "node:crypto";
 // Plain Node script, no dependencies: fetches the locally running dev
 // server's /api/chat route with the question list from docs/chat-evals.md
 // and prints each answer, chips, sources, intent, and cache usage (when
@@ -113,17 +114,21 @@ function truncate(s, n) {
   return s.length > n ? s.slice(0, n) + "..." : s;
 }
 
-async function runCase(testCase) {
+async function runCase(testCase, caseIndex) {
   const messages = [];
   const touchedTopics = [];
+  const conversationId = randomUUID();
   let lastData = null;
 
   for (const question of testCase.turns) {
     messages.push({ role: "user", content: question });
     const res = await fetch(`${BASE_URL}/api/chat`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ messages, touchedTopics }),
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": `192.0.2.${caseIndex + 1}`,
+      },
+      body: JSON.stringify({ messages, touchedTopics, conversationId }),
     });
     const data = await res.json();
     lastData = { status: res.status, ...data };
@@ -141,12 +146,12 @@ async function main() {
   const cases = filter ? CASES.filter((c) => c.label.toLowerCase().includes(filter.toLowerCase())) : CASES;
   console.log(`Running ${cases.length} eval case(s) against ${BASE_URL}/api/chat\n`);
 
-  for (const testCase of cases) {
+  for (const [caseIndex, testCase] of cases.entries()) {
     console.log("=".repeat(70));
     console.log(testCase.label);
     testCase.turns.forEach((t, i) => console.log(`  turn ${i + 1}: ${t}`));
     try {
-      const result = await runCase(testCase);
+      const result = await runCase(testCase, caseIndex);
       if (result.status !== "ok" && !("answer" in result)) {
         console.log(`  -> [${result.status}] ${result.message}`);
         continue;

@@ -1,5 +1,5 @@
 import { CHAT_LIMITS } from "@/content/chat/config";
-import type { RateLimitResult } from "./rate-limit";
+import type { ChatOutcome, RateLimitResult } from "./rate-limit";
 
 // In-memory stand-in for rate-limit.ts, used when CHAT_MOCK=true so the
 // full limit UI (and the atomic-counter behavior) can be exercised
@@ -14,6 +14,7 @@ interface Entry {
 }
 
 const store = new Map<string, Entry>();
+const mockOutcomeCounts = new Map<string, Entry>();
 
 function incrWithTtl(key: string, ttlSeconds: number): number {
   const now = Date.now();
@@ -22,6 +23,18 @@ function incrWithTtl(key: string, ttlSeconds: number): number {
     // Creation and expiry set together, same as the Lua script does
     // atomically in Redis: there's never a window with no TTL.
     store.set(key, { count: 1, expiresAt: now + ttlSeconds * 1000 });
+    return 1;
+  }
+  existing.count += 1;
+  return existing.count;
+}
+
+export async function incrementChatOutcomeMock(outcome: ChatOutcome): Promise<number> {
+  const key = `chat:stat:${new Date().toISOString().slice(0, 10)}:${outcome}`;
+  const now = Date.now();
+  const existing = mockOutcomeCounts.get(key);
+  if (!existing || existing.expiresAt <= now) {
+    mockOutcomeCounts.set(key, { count: 1, expiresAt: now + 90 * 24 * 60 * 60 * 1000 });
     return 1;
   }
   existing.count += 1;

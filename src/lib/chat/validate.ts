@@ -1,8 +1,14 @@
 import type { RespondPayload } from "./types";
 import { TOPICS } from "@/content/chat/config";
+import { randomUUID } from "node:crypto";
 
 const INTENTS = new Set(["browsing", "evaluating", "ready"]);
 const TOPIC_SET = new Set<string>(TOPICS);
+const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+export function validateConversationId(value: unknown): string {
+  return typeof value === "string" && UUID_V4.test(value) ? value : randomUUID();
+}
 
 /**
  * Hand-rolled validation of the model's tool input (no zod, per the "no

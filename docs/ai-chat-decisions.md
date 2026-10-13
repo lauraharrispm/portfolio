@@ -65,7 +65,7 @@ Everything in the spec, working end to end against mock data:
   Anthropic client with prompt caching and forced strict tool use, and the
   Upstash-backed rate limiter and logger. See "How to switch from mock to
   real" below.
-- **Evals**: 45 test cases in `docs/chat-evals.md` (see the Amendment 7
+- **Evals**: 62 test cases in `docs/chat-evals.md` (see the Amendment 7
   note near the bottom of this file for the renumbering) plus
   `scripts/run-evals.mjs`, a dependency-free Node script that exercises a
   running dev server. Smoke-tested the script itself against the mock
@@ -247,7 +247,7 @@ against the live API, rather than trusting my estimate.
    availability line, and the full "never say" list).
 5. **Run the evals for real**: `npm run dev` in the worktree with
    `CHAT_MOCK` off and a real key set, then `node scripts/run-evals.mjs`.
-   Read through the 45 answers, especially the anonymization-attack and
+   Read through the 62 answers, especially the anonymization-attack and
    prompt-injection ones (#28-35) and the `[NEEDED]`-topic ones (#16-23),
    before setting `CHAT_ENABLED=true` anywhere real.
 
@@ -370,7 +370,7 @@ Renamed everywhere in this worktree:
   "everything is documented" lines. The `[NEEDED]` line directly below it
   was left untouched per the amendment's explicit instruction, so it still
   reads "Growth Sprint" and "sprint": that's intentional, not a miss.
-- Evals (`docs/chat-evals.md`, `scripts/run-evals.mjs`): renumbered 1-45
+- Evals (`docs/chat-evals.md`, `scripts/run-evals.mjs`): renumbered 1-62
   (was 1-43) to insert two new cases right after the project-based
   description question: "What's the difference between fractional and
   project-based?" and "Does project-based work include building things,
@@ -389,3 +389,35 @@ Not touched in this worktree: `src/components/HowIWork.tsx` still says
 worktree branched and isn't part of the chat feature: the real rename
 for that component lives in the v2 working copy, not this worktree, per
 the amendment's scope (Part 1 vs. Part 2).
+
+## Amendment 10: chat observability and per-tab conversations
+
+Successful question rows now include `timestamp`, `turn`,
+`conversationId`, `topics`, `intent`, and the redacted, truncated
+`question`. The `topics` field continues to store the model's cited
+sources so existing rows remain readable without migration. The analyzer
+reports rows without both `turn` and `conversationId` as legacy questions
+and excludes them from conversation counts.
+
+Terminal outcomes are counted under `chat:stat:<YYYY-MM-DD>:<outcome>`
+with a 90-day TTL. The outcome is one of `ok`,
+`blocked_conversation_cap`, `blocked_rate_hour`, `blocked_rate_day`,
+`error_validation`, `error_model`, or `rejected_payload`. The increment
+and conditional expiry use the same atomic Lua operation as rate limits.
+Blocked and errored requests stay out of the capped `chat:log` list so a
+burst of failures cannot evict real visitor questions. If both rate
+limits are exceeded, the hourly block is counted once for that terminal
+request.
+
+The conversation ID is generated lazily in a client ref, sent with each
+request, and cleared by Start over. It exists only in page memory, so it
+groups one tab's conversation without becoming a cross-visit identifier.
+The existing no-IP, no-PII stance is unchanged.
+
+Counting `rejected_payload` before the rate-limit check means malformed,
+unauthenticated requests now write one Redis counter where they previously
+wrote none. This is accepted: it is bounded to one key per day per outcome,
+with no eviction risk, though Upstash bills per command.
+
+Use a separate Upstash database for the Vercel Preview environment as the
+permanent safeguard for exercising future previews.
