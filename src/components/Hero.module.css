@@ -292,9 +292,12 @@
   }
 
   /* Matches .headline's own margin-bottom (24px), so every gap within
-     the hero's text/photo block reads as the same rhythm. */
+     the hero's text/photo block reads as the same rhythm. Body size
+     (15px) on phones, not the 17px lead: keeps the subhead at about the
+     same height it had before the type cleanup (4 lines at 375-390px). */
   .subhead {
     margin-bottom: 24px;
+    font-size: 0.9375rem;
   }
 
   /* A real flex row now (not display:contents, see the base rule):
