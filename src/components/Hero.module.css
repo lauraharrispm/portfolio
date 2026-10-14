@@ -90,7 +90,15 @@
 
 .headline {
   font-family: var(--font-headline);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  /* 63px ceiling (not 64px): at 64px the headline wraps to 3 lines on
+     desktop, since the content column is a fixed 640px from 1024px up.
+     63.53px is where it flips to 2 lines, measured by binary search
+     against the real rendered text in Chrome, WebKit and Firefox, which
+     all agreed on that threshold. 63px is the largest whole pixel under
+     it, matching how the mobile size below was chosen. The vw term is
+     untouched: it only reaches 63px at ~1260px wide, and every width
+     below that was already wrapping to 2 lines. */
+  font-size: clamp(2.5rem, 5vw, 3.9375rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
