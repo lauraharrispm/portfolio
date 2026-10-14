@@ -256,12 +256,12 @@
     padding-bottom: var(--section-padding-v-mobile);
   }
 
-  /* 39px (not the floor of the desktop clamp(), 40px): the largest size
-     that still wraps to 2 lines instead of 3 at a typical mobile width
-     (375px), found by binary search against the actual rendered text,
-     not a round guess. */
+  /* 36px: about twice the 17px subhead, so the pair reads as balanced
+     instead of a huge headline over small text, while keeping the
+     3-line headline and the CTA above the fold on a 390px iPhone
+     (CTA bottom ~640px vs. Safari's ~659px visible height). */
   .headline {
-    font-size: 2.4375rem;
+    font-size: 2.25rem;
   }
 
   /* Photo and outcomes share a row here instead of stacking: a single
@@ -292,12 +292,9 @@
   }
 
   /* Matches .headline's own margin-bottom (24px), so every gap within
-     the hero's text/photo block reads as the same rhythm. Body size
-     (15px) on phones, not the 17px lead: keeps the subhead at about the
-     same height it had before the type cleanup (4 lines at 375-390px). */
+     the hero's text/photo block reads as the same rhythm. */
   .subhead {
     margin-bottom: 24px;
-    font-size: 0.9375rem;
   }
 
   /* A real flex row now (not display:contents, see the base rule):
