@@ -170,8 +170,8 @@
 }
 
 .startOver {
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--charcoal-muted);
   padding: 6px 12px;
   border: 1px solid rgba(46, 40, 32, 0.2);
@@ -207,7 +207,7 @@
   color: var(--charcoal);
   border-radius: 16px 16px 4px 16px;
   padding: 12px 18px;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
 }
 
@@ -219,7 +219,7 @@
 }
 
 .answer {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--charcoal);
   max-width: 100%;
@@ -247,8 +247,8 @@
      line centered under the first read as misaligned next to chips that
      never wrapped. */
   text-align: left;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--charcoal);
   background: var(--white);
   border: var(--card-border);
@@ -329,7 +329,7 @@
   border: none;
   outline: none;
   background: transparent;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   color: var(--charcoal);
   font-family: var(--font-body);
 }
@@ -388,7 +388,6 @@
   .emptyInput {
     height: 60px;
     padding: 8px 0;
-    font-size: 1rem;
   }
 
   /* Minimum 44px tap targets on touch. */

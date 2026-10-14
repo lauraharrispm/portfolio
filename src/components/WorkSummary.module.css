@@ -120,7 +120,7 @@
 
 .company {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -148,8 +148,8 @@
 .engagement {
   display: inline-flex;
   align-items: center;
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -160,8 +160,8 @@
 }
 
 .tag {
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -182,7 +182,7 @@
 }
 
 .oneLiner {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--charcoal);
   margin-bottom: 24px;
@@ -215,8 +215,8 @@
    cream, short of the 4.5:1 normal-text minimum at this size. */
 .resultTag {
   display: block;
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--coral);
@@ -229,23 +229,25 @@
   gap: 10px;
 }
 
-/* Sans, not the brand serif: no brand-guide doc exists in this repo
-   (checked), and the only two typefaces are Cormorant Garamond (serif
-   display, used for headlines and the italic subheads) and Inter (sans
-   body). A bold sans reads as a confident, data-forward stat, and keeps
-   the serif reserved for editorial voice rather than numerals. */
+/* Brand serif at regular weight, not a bold sans: matches the stat
+   numbers in the mobile story overview and keeps emphasis out of font
+   weight (the site uses no bold). Section-heading size, so the stat
+   keeps its presence without weight. Lining figures because Cormorant's
+   default old-style figures sit at lowercase height and made the stat
+   read smaller than its label. */
 .resultNumber {
   flex-shrink: 0;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 2rem;
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-variant-numeric: lining-nums;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
   color: var(--charcoal);
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .resultLabel {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.35;
   color: var(--charcoal-muted);
   /* At most two lines: past that, truncate rather than grow the block */
@@ -268,8 +270,8 @@
   padding: 10px 20px;
   border: 1.5px solid var(--charcoal);
   border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--charcoal);
   transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
@@ -324,10 +326,6 @@
 
   .card {
     padding: 28px;
-  }
-
-  .resultNumber {
-    font-size: 1.75rem;
   }
 }
 

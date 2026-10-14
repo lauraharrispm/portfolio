@@ -8,22 +8,6 @@
   padding-bottom: var(--section-padding-v);
 }
 
-/* Oversized typographic background element */
-.bgMark {
-  position: absolute;
-  right: -0.05em;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-headline);
-  font-size: clamp(8rem, 20vw, 18rem);
-  font-weight: 300;
-  color: rgba(46, 40, 32, 0.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-}
-
 /* ─── Grid, not flex: the CTAs need to sit in the same left column as
    the text on desktop (second row, under the subhead) while the profile
    column sits beside both, spanning the full height. A flex row can't
@@ -114,7 +98,7 @@
 }
 
 .subhead {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: 1.0625rem;
   color: var(--charcoal);
   line-height: 1.65;
   max-width: 740px;
@@ -173,7 +157,7 @@
 }
 
 .outcomeLink {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--charcoal);
   text-decoration: underline;
   text-decoration-color: var(--coral);
@@ -199,7 +183,7 @@
   background: var(--coral);
   color: #fff;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 4px;
   transition: background var(--transition);
 }
@@ -272,17 +256,12 @@
     padding-bottom: var(--section-padding-v-mobile);
   }
 
-  .bgMark {
-    font-size: 40vw;
-    opacity: 0.5;
-  }
-
-  /* 39px (not the floor of the desktop clamp(), 40px): the largest size
-     that still wraps to 2 lines instead of 3 at a typical mobile width
-     (375px), found by binary search against the actual rendered text,
-     not a round guess. */
+  /* 36px: about twice the 17px subhead, so the pair reads as balanced
+     instead of a huge headline over small text, while keeping the
+     3-line headline and the CTA above the fold on a 390px iPhone
+     (CTA bottom ~640px vs. Safari's ~659px visible height). */
   .headline {
-    font-size: 2.4375rem;
+    font-size: 2.25rem;
   }
 
   /* Photo and outcomes share a row here instead of stacking: a single
@@ -356,10 +335,13 @@
     margin-bottom: 0;
   }
 
+  /* Small label size (12px) here, not body: the outcomes column is only
+     about 100px wide beside the photo at 320px, and "GlossGenius" can't
+     wrap, so body size pushes the whole hero past the screen edge. */
   .outcomeItem {
     flex: none;
     padding: 10px 12px;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     line-height: 1.35;
   }
 

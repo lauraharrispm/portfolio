@@ -33,7 +33,7 @@
   --card-shadow: 0 2px 10px rgba(46, 40, 32, 0.05);
 
   --font-headline: var(--font-cormorant), Georgia, serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-body: var(--font-instrument-sans), system-ui, sans-serif;
 
   --transition: 0.2s ease;
 }
@@ -59,6 +59,13 @@ body {
   background: var(--warm-white);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* No bold anywhere on the site: inline emphasis (case study lead-ins,
+   tool names) steps up to medium instead. */
+strong,
+b {
+  font-weight: 500;
 }
 
 a {

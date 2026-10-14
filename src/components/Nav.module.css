@@ -84,7 +84,7 @@
 }
 
 .links a {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--charcoal);
   white-space: nowrap;
@@ -102,7 +102,7 @@
   padding: 10px 20px;
   background: var(--coral);
   color: #fff !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   border-radius: 4px;
   transition: background var(--transition);
 }
@@ -168,7 +168,7 @@
   display: block;
   text-align: right;
   padding: 14px 0;
-  font-size: 1.1rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--charcoal);
 }

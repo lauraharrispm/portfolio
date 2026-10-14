@@ -20,7 +20,7 @@
 }
 
 .link {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--warm-white);
   transition: color var(--transition);
 }

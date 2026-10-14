@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Instrument_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -8,16 +8,18 @@ const GA_MEASUREMENT_ID = "G-S49DLLQHFT";
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["300", "400"],
   // Italic added for HowIWork's part statements: same brand serif, not a
   // second typeface, just a lighter/smaller supporting-line treatment.
   style: ["normal", "italic"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+// Two weights only: regular for reading text, medium for buttons,
+// links, labels, and inline emphasis. The site uses no bold.
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -50,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${instrumentSans.variable}`}>
       <body>{children}</body>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
