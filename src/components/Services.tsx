@@ -12,22 +12,22 @@ interface FunnelStage {
 const STAGES: FunnelStage[] = [
   {
     category: "Acquisition",
-    body: "Help the right people discover the product and arrive with intent.",
+    body: "Turn the product into a channel, so the right people find it with intent.",
     href: "#work-therapist-directory",
   },
   {
     category: "Activation",
-    body: "Help new customers reach value quickly and commit.",
+    body: "Cut the time to first value so new customers commit on their own.",
     href: "#work-payments-onboarding",
   },
   {
     category: "Monetization",
-    body: "Make pricing, plans, and upgrades support sustainable growth.",
+    body: "Build self-serve plans and upgrades customers say yes to.",
     href: "#work-annual-plans",
   },
   {
     category: "Retention",
-    body: "Give customers reasons to return, stay, and recommend you.",
+    body: "Give customers reasons to stay, expand, and recommend you.",
     // Billing rebuild for AI add-ons and annual subscriptions: the same target as
     // Monetization. That's fine, both formats can point at the same study.
     href: "#work-annual-plans",
@@ -70,7 +70,7 @@ export default function Services() {
       <div className="container">
         <h2 className={styles.heading}>What I do</h2>
         <p className={styles.intro}>
-          I lead growth across the full funnel, from first visit to repeat customer.
+          I lead product growth across the full funnel, from first visit to repeat customer.
           <br className={styles.introBreak} />
           {" "}I untangle messy growth problems and ship what moves the metric.
         </p>

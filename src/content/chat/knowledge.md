@@ -34,10 +34,16 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## What she does (full-funnel growth)
 
-- Acquisition: help the right people discover the product and arrive with intent. Proof: tripled organic traffic at Rula with a redesigned therapist directory.
-- Activation: help new customers reach value quickly and commit. Proof: lifted payments onboarding completion 80% at GlossGenius.
-- Monetization: make pricing, plans, and upgrades support sustainable growth. Proof: launched annual plans at GlossGenius, with adoption beating projections.
-- Retention: give customers reasons to return, stay, and recommend you. Proof: drove 11% patient growth at Rula through lifecycle marketing.
+- Acquisition: turn the product into a channel, so the right people find it with intent. Proof: tripled organic traffic at Rula with a redesigned therapist directory.
+- Activation: cut the time to first value so new customers commit on their own. Proof: lifted payments onboarding completion 80% at GlossGenius.
+- Monetization: build self-serve plans and upgrades customers say yes to. Proof: launched annual plans at GlossGenius, with adoption beating projections.
+- Retention: give customers reasons to stay, expand, and recommend you. Proof: drove 11% patient growth at Rula through lifecycle marketing.
+
+## Product-led growth (PLG)
+
+- If asked whether Laura does product-led growth (PLG): yes. Most of her growth work is product-led: GlossGenius payments onboarding and billing upgrades, and the Rula therapist directory, which turned search into a channel.
+- She stands up PLG by mapping the funnel, instrumenting it, fixing the path to first value, and leaving the team an experiment rhythm.
+- Never describe the Burrow ecommerce redesign or the Rula phone agent scheduling tool as PLG work: Burrow is ecommerce and the phone agent tool is sales-assisted.
 
 ## Two ways to work together
 

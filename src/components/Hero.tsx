@@ -38,8 +38,8 @@ export default function Hero() {
             </h1>
             <p className={styles.subhead}>
               You found product-market fit. Now it&apos;s time to scale it. I help
-              startups from Series A to C find the growth bets worth making,
-              align engineering, and ship faster.
+              seed to Series C startups stand up product-led growth, align
+              engineering, and ship faster.
             </p>
           </div>
 
