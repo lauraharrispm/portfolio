@@ -339,12 +339,20 @@
 }
 
 /* ─── AI-native points (no panel behind them; sit on cream) ──────────── */
-/* A thin peach rule down the left of each point, so the three read as
-   separate items without icons. Same family as the funnel-stage bars in
-   "What I do" (--stage-bar-2). */
+/* A thin rule down the left of each point, so the three read as separate
+   items without icons. Light to full coral, top to bottom, using the same
+   colors as the funnel-stage progression in "What I do". */
 .aiItem {
   border-left: 2px solid var(--stage-bar-2);
   padding-left: 18px;
+}
+
+.aiItem:nth-child(2) {
+  border-left-color: var(--stage-bar-3);
+}
+
+.aiItem:nth-child(3) {
+  border-left-color: var(--coral);
 }
 
 .aiItemText {
