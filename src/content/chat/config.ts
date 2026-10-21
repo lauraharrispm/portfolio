@@ -55,16 +55,15 @@ export const TOPICS: Topic[] = [
 
 /**
  * Case study topics that map to a real, published case study slug (and so
- * can open the reading view / earn the "Read the story" chip).
+ * can open the reading view / earn the "Read the story" chip). Studies
+ * hidden in src/content/projects.ts (phone-agent-tool, burrow-growth,
+ * patient-portal) are left out so the chat never links to them.
  */
 export const CASE_STUDY_SLUGS: Partial<Record<Topic, string>> = {
   case_payments_onboarding: "payments-onboarding",
-  case_phone_agent_tool: "phone-agent-tool",
   case_therapist_directory: "therapist-directory",
   case_annual_plans: "annual-plans",
-  case_burrow_growth: "burrow-growth",
   case_patient_intake: "patient-intake",
-  case_patient_portal: "patient-portal",
 };
 
 /** Case study titles, for the "Read the [title] story" chip label. Kept

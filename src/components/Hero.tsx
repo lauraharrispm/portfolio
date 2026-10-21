@@ -3,7 +3,6 @@
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
-import ResultIcon from "./ResultIcon";
 
 const OUTCOMES = [
   {
@@ -57,7 +56,6 @@ export default function Hero() {
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
-                  <ResultIcon kind="trend" className={styles.outcomeIcon} />
                   <span>
                     {outcome.stat} at{" "}
                     <a

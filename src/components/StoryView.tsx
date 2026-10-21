@@ -322,7 +322,9 @@ export default function StoryView({
           </ul>
         )}
 
-        {section.id === "reflection" && project.crossLink && (
+        {section.id === "reflection" &&
+          project.crossLink &&
+          projects.some((p) => p.id === project.crossLink!.toId) && (
           <button className={styles.crossLink} onClick={goToCrossLink}>
             {project.crossLink.label}
           </button>

@@ -470,7 +470,9 @@ function SectionBlock({ section, project, onLightbox, onSwitchProject }: Section
         </ul>
       )}
 
-      {section.id === "reflection" && project.crossLink && (
+      {section.id === "reflection" &&
+          project.crossLink &&
+          projects.some((p) => p.id === project.crossLink!.toId) && (
         <button
           className={styles.crossLink}
           onClick={() => onSwitchProject(project.crossLink!.toId)}

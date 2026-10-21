@@ -135,25 +135,12 @@
 .outcomeItem {
   flex: 1;
   min-width: 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
   background: var(--warm-tint);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 0.9375rem;
   color: var(--charcoal);
   line-height: 1.4;
-}
-
-/* Same coral trend-line icon used in case studies' Results sections (see
-   ResultIcon.tsx), for a consistent "result" visual language between the
-   hero and the case study content it's previewing. */
-.outcomeIcon {
-  flex-shrink: 0;
-  width: 15px;
-  height: 15px;
-  margin-top: 0.25em;
 }
 
 .outcomeLink {
@@ -343,11 +330,6 @@
     padding: 10px 12px;
     font-size: 0.75rem;
     line-height: 1.35;
-  }
-
-  .outcomeIcon {
-    width: 13px;
-    height: 13px;
   }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px
