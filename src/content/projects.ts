@@ -47,6 +47,9 @@ export interface Project {
   /** Funnel-stage tag(s) shown on the summary card, e.g. ["Acquisition"] or ["Acquisition", "Monetization"] */
   tags: string[];
   company: string;
+  /** Label for the summary card's button, e.g. "Read the Burrow story".
+   * Specific per study, since several studies share a company. */
+  storyLabel: string;
   /** Path to thumbnail image in /public */
   thumbnail: string;
   /** Summary-card image: the study's most representative design-section image */
@@ -87,6 +90,7 @@ export const projects: Project[] = ([
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
+    storyLabel: "Read the intake story",
     thumbnail: "/thumb-intake.png",
     cardImage: {
       src: "/case-studies/intake-card.png",
@@ -221,6 +225,7 @@ export const projects: Project[] = ([
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
+    storyLabel: "Read the portal story",
     thumbnail: "/thumb-portal.png",
     cardImage: {
       src: "/case-studies/portal-card.png",
@@ -361,6 +366,7 @@ export const projects: Project[] = ([
     order: 1,
     tags: ["Activation"],
     company: "GlossGenius",
+    storyLabel: "Read the GlossGenius onboarding story",
     thumbnail: "/thumb-gg-payments.png",
     cardImage: {
       src: "/gg-payments-1.png",
@@ -486,6 +492,7 @@ export const projects: Project[] = ([
     order: 4,
     tags: ["Acquisition"],
     company: "Rula Health",
+    storyLabel: "Read the Rula scheduling story",
     thumbnail: "/thumb-rula-scheduling.png",
     cardImage: {
       src: "/rula-scheduling-1.png",
@@ -601,6 +608,7 @@ export const projects: Project[] = ([
     order: 5,
     tags: ["Acquisition"],
     company: "Rula Health",
+    storyLabel: "Read the Rula directory story",
     thumbnail: "/thumb-rula-directory.png",
     cardImage: {
       src: "/rula-directory-3.png",
@@ -721,6 +729,7 @@ export const projects: Project[] = ([
     order: 3,
     tags: ["Monetization"],
     company: "GlossGenius",
+    storyLabel: "Read the GlossGenius billing story",
     thumbnail: "/thumb-gg-annual.png",
     cardImage: {
       src: "/gg-annual-1.png",
@@ -848,6 +857,7 @@ export const projects: Project[] = ([
     order: 6,
     tags: ["Acquisition"],
     company: "Burrow",
+    storyLabel: "Read the Burrow story",
     thumbnail: "/burrow-3.png",
     cardImage: {
       src: "/burrow-3.png",

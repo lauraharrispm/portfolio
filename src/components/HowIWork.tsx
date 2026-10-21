@@ -58,74 +58,23 @@ const FORMATS: Format[] = [
   { key: "project-based", name: "Project-Based", pill: "Defined outcome" },
 ];
 
-// ── AI-native panel icons: plain inline SVG, no icon library needed ──
-function AIIcon({ children }: { children: ReactNode }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="var(--coral)"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={styles.aiIcon}
-    >
-      {children}
-    </svg>
-  );
-}
-
-function TargetIcon() {
-  return (
-    <AIIcon>
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="12" cy="12" r="5" />
-      <circle cx="12" cy="12" r="1.5" />
-    </AIIcon>
-  );
-}
-
-function BoltIcon() {
-  return (
-    <AIIcon>
-      <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-    </AIIcon>
-  );
-}
-
-function PeopleIcon() {
-  return (
-    <AIIcon>
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-      <circle cx="17" cy="9" r="2.6" />
-      <path d="M16 14.2c2.8.3 5 2.6 5 5.8" />
-    </AIIcon>
-  );
-}
-
 interface AIItem {
-  icon: ReactNode;
   title: string;
   description: string;
 }
 
 const AI_ITEMS: AIItem[] = [
   {
-    icon: <TargetIcon />,
     title: "Choose the right problem.",
     description:
       "AI speeds up building. Product judgment decides what's worth building.",
   },
   {
-    icon: <BoltIcon />,
     title: "Learn through prototypes.",
     description:
       "I can build prototypes in your design system to make ideas tangible and testable.",
   },
   {
-    icon: <PeopleIcon />,
     title: "Ship with your team.",
     description:
       "I don't just advise. I build alongside your team and document decisions so the knowledge stays with them.",
@@ -308,7 +257,6 @@ export default function HowIWork() {
             <div className={styles.aiPoints}>
               {AI_ITEMS.map((item) => (
                 <div className={styles.aiItem} key={item.title}>
-                  <span className={styles.aiIconCircle}>{item.icon}</span>
                   <div className={styles.aiItemText}>
                     <h4 className={styles.aiItemTitle}>{item.title}</h4>
                     <p className={styles.aiItemDesc}>{item.description}</p>

@@ -244,7 +244,7 @@ function Card({ project, onOpen }: CardProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Whole card opens the study; the "See more" button keeps its own
+  // Whole card opens the study; the story button keeps its own
   // visible affordance and is still the keyboard-operable control, but no
   // longer needs its own handler since a native click on it bubbles up to
   // this one.
@@ -293,13 +293,12 @@ function Card({ project, onOpen }: CardProps) {
         <div
           className={`${styles.resultBlock} ${inView ? styles.resultBlockIn : ""}`}
         >
-          <span className={styles.resultTag}>Key result</span>
           <div className={styles.resultRow}>
             <span className={styles.resultNumber}>{project.keyMetric.number}</span>
             <span className={styles.resultLabel}>{project.keyMetric.label}</span>
           </div>
         </div>
-        <button className={styles.seeMore}>See more</button>
+        <button className={styles.seeMore}>{project.storyLabel}</button>
       </div>
     </article>
   );

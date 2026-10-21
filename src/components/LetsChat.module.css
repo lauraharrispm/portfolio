@@ -58,19 +58,9 @@
 }
 
 .fitList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
   font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--charcoal);
-}
-
-.icon {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  margin-top: 0.15em;
 }
 
 /* ─── Booking embed (Cal.com) ───────────────────────────────────── */

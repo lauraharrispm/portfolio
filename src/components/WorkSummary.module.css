@@ -189,12 +189,9 @@
   max-width: 480px;
 }
 
-/* ─── Result line: a small "Key result" eyebrow label over the stat,
-   instead of a filled blush pill or a coral rule, either of which read
-   as a separate colored object competing with the photography rather
-   than a stat inline with the rest of the card's text. Sits flat, no
-   background/radius/border. Fades/rises in with the card's text (no
-   extra delay, unlike the old image-linked badge). ─────────────────── */
+/* ─── Result line: the stat (blush-highlighted, see .resultNumber)
+   with its label beside it. No eyebrow label. Fades/rises in with the
+   card's text. ─────────────────── */
 .resultBlock {
   align-self: flex-start;
   width: fit-content;
@@ -210,19 +207,6 @@
   opacity: 1;
 }
 
-/* Brand coral per your note, not the darkened AA-safe shade used for
-   small text elsewhere on the site: --coral measures ~2.8:1 on white/
-   cream, short of the 4.5:1 normal-text minimum at this size. */
-.resultTag {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 6px;
-}
-
 .resultRow {
   display: flex;
   align-items: baseline;
@@ -235,8 +219,13 @@
    keeps its presence without weight. Lining figures because Cormorant's
    default old-style figures sit at lowercase height and made the stat
    read smaller than its label. */
+/* The site's one emphasis mark: a flat blush highlight, the same one the
+   LinkedIn launch graphic uses, instead of a coral "Key result" label. */
 .resultNumber {
   flex-shrink: 0;
+  background: var(--blush-peach);
+  padding: 0.12em 0.22em 0.04em;
+  border-radius: 2px;
   font-family: var(--font-headline);
   font-weight: 400;
   font-variant-numeric: lining-nums;
@@ -258,7 +247,7 @@
 }
 
 /* A real bordered button, not a bare text link: someone looking at the
-   old plain-text "See more" didn't realize it was clickable. Same
+   old plain-text "See more" link didn't realize it was clickable. Same
    outlined-button treatment as the site's other secondary CTAs (see
    .ctaSecondary in Hero.module.css), sized down to fit a compact card
    footer rather than the hero's full button size. */

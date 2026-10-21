@@ -71,21 +71,6 @@ function installCalEmbedApi() {
   window.Cal = api;
 }
 
-function CheckIcon() {
-  return (
-    <svg className={styles.icon} viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="9" stroke="var(--coral)" strokeWidth="1.5" />
-      <path
-        d="M6 10.5L8.5 13L14 7"
-        stroke="var(--coral)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export default function LetsChat() {
   const [nearViewport, setNearViewport] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -160,15 +145,12 @@ export default function LetsChat() {
               <h3 className={styles.fitHeading}>We&apos;re likely a fit if you:</h3>
               <ul className={styles.fitList}>
                 <li>
-                  <CheckIcon />
                   <span>Run a consumer-facing business</span>
                 </li>
                 <li>
-                  <CheckIcon />
                   <span>Have product-market fit and want to grow faster</span>
                 </li>
                 <li>
-                  <CheckIcon />
                   <span>Have engineers but little or no dedicated product guidance</span>
                 </li>
               </ul>

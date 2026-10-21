@@ -7,6 +7,7 @@ interface FunnelStage {
   category: string;
   body: string;
   href: string;
+  linkLabel: string;
 }
 
 const STAGES: FunnelStage[] = [
@@ -14,16 +15,19 @@ const STAGES: FunnelStage[] = [
     category: "Acquisition",
     body: "Turn the product into a channel, so the right people find it with intent.",
     href: "#work-therapist-directory",
+    linkLabel: "Read the Rula directory story",
   },
   {
     category: "Activation",
     body: "Cut the time to first value so new customers commit on their own.",
     href: "#work-payments-onboarding",
+    linkLabel: "Read the GlossGenius onboarding story",
   },
   {
     category: "Monetization",
     body: "Build self-serve plans and upgrades customers say yes to.",
     href: "#work-annual-plans",
+    linkLabel: "Read the GlossGenius billing story",
   },
   {
     category: "Retention",
@@ -31,6 +35,7 @@ const STAGES: FunnelStage[] = [
     // Billing rebuild for AI add-ons and annual subscriptions: the same target as
     // Monetization. That's fine, both formats can point at the same study.
     href: "#work-annual-plans",
+    linkLabel: "Read the GlossGenius billing story",
   },
 ];
 
@@ -104,7 +109,7 @@ export default function Services() {
                 <p className={styles.stageBody}>
                   {stage.body}{" "}
                   <a className={styles.stageLink} href={stage.href}>
-                    Case study{" "}
+                    {stage.linkLabel}{" "}
                     <span className={styles.stageLinkArrow} aria-hidden="true">
                       →
                     </span>

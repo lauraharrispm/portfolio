@@ -345,22 +345,6 @@
   gap: 18px;
 }
 
-.aiIconCircle {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--coral-tint);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.aiIcon {
-  width: 22px;
-  height: 22px;
-}
-
 .aiItemText {
   min-width: 0;
 }
@@ -422,16 +406,6 @@
   .cta {
     width: 100%;
     justify-content: center;
-  }
-
-  .aiIconCircle {
-    width: 36px;
-    height: 36px;
-  }
-
-  .aiIcon {
-    width: 18px;
-    height: 18px;
   }
 }
 
