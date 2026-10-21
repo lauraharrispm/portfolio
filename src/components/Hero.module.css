@@ -129,11 +129,10 @@
 /* Same fill as the "How I work" comparison table's header row (see
    HowIWork.module.css's .headerRow, var(--warm-tint)), for a consistent
    "tan callout" color across the site rather than a separate one-off
-   shade. Each box is an equal flex share of the row; text wraps to two
-   lines as needed rather than truncating or forcing the row wider than
-   .content. */
+   shade. Each box is only as wide as its text: the stat on line one,
+   "at Company" on line two. */
 .outcomeItem {
-  flex: 1;
+  flex: 0 0 auto;
   min-width: 0;
   background: var(--warm-tint);
   border-radius: 10px;
@@ -141,6 +140,11 @@
   font-size: 0.9375rem;
   color: var(--charcoal);
   line-height: 1.4;
+}
+
+/* The stat on its own line, "at Company" always on the second. */
+.outcomeStat {
+  display: block;
 }
 
 .outcomeLink {

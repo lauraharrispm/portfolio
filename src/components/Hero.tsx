@@ -56,8 +56,9 @@ export default function Hero() {
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
+                  <span className={styles.outcomeStat}>{outcome.stat}</span>
                   <span>
-                    {outcome.stat} at{" "}
+                    at{" "}
                     <a
                       href={outcome.href}
                       target="_blank"

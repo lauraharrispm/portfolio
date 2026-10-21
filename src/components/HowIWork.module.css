@@ -339,10 +339,12 @@
 }
 
 /* ─── AI-native points (no panel behind them; sit on cream) ──────────── */
+/* A thin peach rule down the left of each point, so the three read as
+   separate items without icons. Same family as the funnel-stage bars in
+   "What I do" (--stage-bar-2). */
 .aiItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
+  border-left: 2px solid var(--stage-bar-2);
+  padding-left: 18px;
 }
 
 .aiItemText {

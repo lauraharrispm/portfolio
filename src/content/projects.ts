@@ -490,7 +490,6 @@ export const projects: Project[] = ([
   {
     id: "phone-agent-tool",
     order: 4,
-    hidden: true,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
