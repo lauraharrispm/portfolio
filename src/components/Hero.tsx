@@ -36,9 +36,8 @@ export default function Hero({ chatEnabled }: { chatEnabled: boolean }) {
               <span className={styles.noWrap}>a full-time hire.</span>
             </h1>
             <p className={styles.subhead}>
-              You found product-market fit. Now it&apos;s time to scale it. I help
-              seed to Series C startups stand up product-led growth, align
-              engineering, and ship faster.
+              I help seed to Series C startups stand up product-led growth,
+              align engineering, and ship faster.
             </p>
           </div>
 
