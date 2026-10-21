@@ -102,8 +102,8 @@ Every client gets full confidentiality. If there's ever a conflict with a curren
 - Her process is the same product discipline she's always used: define the problem, decide which problems matter most, explore solutions, rank them by reach, impact, confidence, and effort, then ship and iterate. AI changed her speed, not her judgment. What gets built, and why, is her call.
 - Building is cheap now, but building the wrong thing still wastes time and money. Cheap prototypes are great for learning which option wins; they're not a substitute for deciding what's worth building.
 - The three AI-native points on the site:
-  - Choose the right problem: AI can speed up building; product judgment decides what's worth building.
-  - Learn through prototypes: Laura can build prototypes in your design system to make ideas tangible and testable.
+  - Choose the right problem: human brains decide what's worth building and why; AI only assists.
+  - Learn through prototypes: Laura builds prototypes quickly and in your design system to make ideas tangible and testable.
   - Strengthen the team: she works alongside your team and documents decisions and workflows so useful knowledge stays with them.
 - The process scales to the stakes: a copy test gets a quick gut check; a new onboarding flow gets the full treatment.
 - 10x faster from idea to shareable artifact: answers from data in minutes, working prototypes the same day.

@@ -22,7 +22,7 @@ const OUTCOMES = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ chatEnabled }: { chatEnabled: boolean }) {
   return (
     <section id="hero" className={styles.hero}>
       <div className="container">
@@ -50,7 +50,7 @@ export default function Hero() {
              columns' heights into one shared track to center within). */}
           <div className={styles.photoRow}>
             <div className={styles.panelCol}>
-              <HeroProfile />
+              <HeroProfile chatEnabled={chatEnabled} />
             </div>
 
             <ul className={styles.outcomesList}>

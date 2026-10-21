@@ -67,12 +67,12 @@ const AI_ITEMS: AIItem[] = [
   {
     title: "Choose the right problem.",
     description:
-      "AI speeds up building. Product judgment decides what's worth building.",
+      "Human brains decide what's worth building and why. AI only assists.",
   },
   {
     title: "Learn through prototypes.",
     description:
-      "I can build prototypes in your design system to make ideas tangible and testable.",
+      "I build prototypes quickly and in your design system to make ideas tangible and testable.",
   },
   {
     title: "Ship with your team.",
