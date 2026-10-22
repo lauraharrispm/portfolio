@@ -64,7 +64,22 @@
   list-style: none;
 }
 
+/* A small peach dot per item, the same dot as the "What I do" stages,
+   centered on the first line (15px text at 1.5 line-height). */
+.fitList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(0.75em - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--stage-bar-2);
+}
+
 .fitList li {
+  position: relative;
+  padding-left: 18px;
   font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--charcoal);

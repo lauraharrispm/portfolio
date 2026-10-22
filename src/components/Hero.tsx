@@ -1,5 +1,6 @@
 "use client";
 
+import CursorChat from "./CursorChat";
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
@@ -25,6 +26,7 @@ const OUTCOMES = [
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
+      <CursorChat />
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
@@ -54,7 +56,7 @@ export default function Hero() {
 
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
-                <li key={outcome.company} className={styles.outcomeItem}>
+                <li key={outcome.company} className={styles.outcomeItem} data-outcome>
                   <span className={styles.outcomeStat}>{outcome.stat}</span>
                   <span>
                     at{" "}
