@@ -5,14 +5,14 @@
   padding: var(--section-padding-v) 0;
 }
 
-/* Keep the heading grouped with its supporting statement. */
+/* The table follows the heading directly: same gap as Recent work. */
 .heading {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 /* ─── Part statement (shared by both parts) ───────────────────────── */
@@ -256,7 +256,7 @@
 
 /* ─── Part 2: AI-native approach ──────────────────────────────────── */
 /* Matches .toolsStripSlot's own margin-top below: same gap above both
-   "Part-time no longer..." and "Tools in my stack". */
+   "Part-time no longer..." and "My stack". */
 .part2 {
   margin-top: 64px;
 }
@@ -385,7 +385,7 @@
   }
 
   .heading {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
 
   .partStatement {

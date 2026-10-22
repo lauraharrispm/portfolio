@@ -14,36 +14,18 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   {
     label: "Best for",
-    fractional: "Several growth opportunities with no owner and engineers ready to build",
-    projectBased: "One prioritized growth opportunity with fixed scope and cost",
+    fractional: "Several growth bets and no one owning them",
+    projectBased: "One growth problem, fixed scope and price",
   },
   {
     label: "What you get",
-    fractional:
-      "I own product strategy, the roadmap, design leadership, and engineering alignment.",
-    projectBased: "One project taken from diagnosis to launch",
-  },
-  {
-    label: "Scope",
-    fractional: "Flexible. Shifts to whatever matters most right now",
-    projectBased: "Fixed. Problem, deliverables, and timeline agreed up front",
+    fractional: "I own strategy, roadmap, and design",
+    projectBased: "One project, diagnosis to launch",
   },
   {
     label: "Duration",
-    fractional: "Usually 2 months or more",
-    projectBased: "Usually under 2 months",
-  },
-  {
-    label: "Cadence",
-    fractional: "1 to 3 days a week",
-    projectBased: "1 to 3 days a week",
-  },
-  {
-    label: "How we start",
-    fractional:
-      "Align on business goals, diagnose the biggest product bottlenecks, and set priorities with your team.",
-    projectBased:
-      "Agree on the target outcome, identify the main friction, and take one solution through launch.",
+    fractional: "2+ months at 1 to 3 days a week",
+    projectBased: "Under 2 months at 1 to 3 days a week",
   },
 ];
 
@@ -67,17 +49,17 @@ const AI_ITEMS: AIItem[] = [
   {
     title: "Choose the right problem.",
     description:
-      "Human brains decide what's worth building and why. AI only assists.",
+      "Humans decide what's worth building. AI assists.",
   },
   {
     title: "Learn through prototypes.",
     description:
-      "I build prototypes quickly and in your design system to make ideas tangible and testable.",
+      "Fast prototypes in your design system, tested before anything gets built.",
   },
   {
     title: "Ship with your team.",
     description:
-      "I don't just advise. I build alongside your team and document decisions so the knowledge stays with them.",
+      "I build with your engineers and document decisions, so nothing leaves with me.",
   },
 ];
 
@@ -188,10 +170,6 @@ export default function HowIWork() {
         <h2 className={styles.heading}>How I work</h2>
 
         {/* ── Part 1: Engagement formats ──────────────────────────── */}
-        <h3 className={styles.partStatement}>
-          What you can hire me to&nbsp;do.
-        </h3>
-
         <div
           ref={tableRef}
           className={`${styles.tableReveal} ${tableInView ? styles.tableRevealIn : ""}`}

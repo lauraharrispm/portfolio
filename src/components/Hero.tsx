@@ -38,8 +38,8 @@ export default function Hero() {
               <span className={styles.noWrap}>a full-time hire.</span>
             </h1>
             <p className={styles.subhead}>
-              I help seed to Series B startups stand up product-led growth,
-              <br className={styles.desktopBreak} /> align engineering, and ship faster.
+              I help seed to Series B startups build product-led growth and ship
+              faster.
             </p>
           </div>
 

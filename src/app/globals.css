@@ -21,9 +21,8 @@
   --max-width: 1200px;
   --section-padding-v: 44px;
   --section-padding-v-mobile: 28px;
-  /* Space on each side of a tinted-band edge (hero bottom / next
-     section's top, and the section before Let's chat / its top), so
-     tint and cream get equal room at every transition. */
+  /* Space inside the hero band's bottom, and on each side of the
+     Let's chat band's top edge. */
   --band-gap: calc(var(--section-padding-v) * 2);
   --band-gap-mobile: calc(var(--section-padding-v-mobile) * 2);
   --card-padding: 24px;
@@ -101,22 +100,16 @@ button {
   }
 }
 
-/* ─── Tinted bands (hero, Let's chat): equal space on both sides of
-   each edge. Written against the section order rather than inside each
-   component, so it holds whether or not the AI chat section is on. ── */
-#hero + section {
-  padding-top: var(--band-gap);
-}
-
+/* ─── Tinted bands: equal space on both sides of the Let's chat edge.
+   Written against the section order rather than inside the component,
+   so it holds whether or not the AI chat section is on. Below the hero
+   the next section keeps its regular top padding: a doubled gap there
+   read as too much space above the first heading. ── */
 section:has(+ #book) {
   padding-bottom: var(--band-gap);
 }
 
 @media (max-width: 768px) {
-  #hero + section {
-    padding-top: var(--band-gap-mobile);
-  }
-
   section:has(+ #book) {
     padding-bottom: var(--band-gap-mobile);
   }

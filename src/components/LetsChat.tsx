@@ -168,10 +168,10 @@ export default function LetsChat() {
         <div className={styles.inner}>
           <div className={styles.copy}>
             <p className={styles.body}>
-              Tell me where your product is today and what&apos;s getting in the
-              way. We&apos;ll talk through how I&apos;d approach it and whether
-              working together makes sense. You&apos;ll leave with a next step
-              either way.
+              Tell me about your product and what you want to grow. Not sure
+              what&apos;s holding it back? We can talk about that too.
+              You&apos;ll leave with a next step, whether or not we work
+              together.
             </p>
 
             <div className={styles.fitBlock}>
@@ -180,15 +180,13 @@ export default function LetsChat() {
               </h3>
               <ul className={styles.fitList}>
                 <li>
-                  <span>Run a consumer-facing business</span>
+                  <span>Sell to consumers</span>
                 </li>
                 <li>
-                  <span>Have product-market fit and want to grow faster</span>
+                  <span>Have product-market fit</span>
                 </li>
                 <li>
-                  <span>
-                    Have engineers but little or no dedicated product guidance
-                  </span>
+                  <span>Have engineers but no product lead</span>
                 </li>
               </ul>
             </div>

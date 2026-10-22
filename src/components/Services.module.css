@@ -9,30 +9,11 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
-}
-
-.intro {
-  font-size: 1.0625rem;
-  color: var(--charcoal);
-  max-width: 640px;
-  line-height: 1.65;
-  /* Separate the intro from the funnel without widening its columns. */
-  margin-bottom: 48px;
-}
-
-/* Forces the second sentence onto its own line at desktop widths only;
-   below 768px the paragraph already wraps to several lines on its own,
-   so a forced break there would just look like an odd extra gap. */
-.introBreak {
-  display: none;
+  /* Same heading-to-content gap as Recent work. */
+  margin-bottom: 40px;
 }
 
 @media (min-width: 769px) {
-  .introBreak {
-    display: block;
-  }
-
   /* Back to its own line on desktop (the link is nested inside
      .stageBody now, see Services.tsx): mobile keeps the default inline
      flow so it reads as the end of the sentence instead. */
@@ -221,10 +202,6 @@
   }
 
   .heading {
-    margin-bottom: 16px;
-  }
-
-  .intro {
     margin-bottom: 32px;
   }
 }
