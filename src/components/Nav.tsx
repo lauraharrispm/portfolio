@@ -13,9 +13,17 @@ interface NavProps {
 export default function Nav({ chatEnabled }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    // The nav takes the hero's coral tint while it sits over the hero,
+    // and switches back to cream once the hero has scrolled under it.
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+      const hero = document.getElementById("hero");
+      setOverHero(hero ? hero.getBoundingClientRect().bottom > 64 : false);
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -27,7 +35,9 @@ export default function Nav({ chatEnabled }: NavProps) {
   };
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
+    <nav
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ""} ${overHero ? styles.overHero : ""}`}
+    >
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
           <a

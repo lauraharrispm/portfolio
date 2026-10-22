@@ -1,6 +1,13 @@
 .section {
-  background: var(--warm-white);
-  padding: var(--section-padding-v) 0;
+  /* Same light coral band as the hero, so the page opens and closes on it. */
+  background: var(--coral-tint);
+  padding: var(--band-gap) 0 var(--section-padding-v);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--band-gap-mobile);
+  }
 }
 
 /* ─── Two columns: content left, booking widget right ──────────────── */

@@ -6,11 +6,18 @@
   height: var(--nav-height);
   background: var(--warm-white);
   z-index: 100;
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), background-color 0.3s ease;
 }
 
 .scrolled {
   box-shadow: 0 1px 0 rgba(46, 40, 32, 0.08);
+}
+
+/* Over the hero: same coral tint and no rule, so nav and hero read as one
+   band. Past the hero it falls back to cream with the scrolled rule. */
+.overHero {
+  background: var(--coral-tint);
+  box-shadow: none;
 }
 
 .inner {
@@ -187,6 +194,11 @@
 @media (max-width: 999px) {
   .nav {
     box-shadow: 0 2px 8px rgba(46, 40, 32, 0.1);
+  }
+
+  /* No seam over the hero here either. */
+  .overHero {
+    box-shadow: none;
   }
 
   .links {

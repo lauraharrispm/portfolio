@@ -1,11 +1,13 @@
 .hero {
   position: relative;
-  background: var(--warm-white);
+  /* Light coral band: the hero and Let's chat bookend the page in the
+     same warm tint; everything between stays cream. */
+  background: var(--coral-tint);
   /* More headroom than the shared section token: as the first thing on
      the page, the hero reads cramped under the nav without its own
      larger top space. */
   padding-top: calc(var(--nav-height) + 72px);
-  padding-bottom: var(--section-padding-v);
+  padding-bottom: var(--band-gap);
 }
 
 /* ─── Grid, not flex: the CTAs need to sit in the same left column as
@@ -126,15 +128,12 @@
   margin-bottom: 38px;
 }
 
-/* Same fill as the "How I work" comparison table's header row (see
-   HowIWork.module.css's .headerRow, var(--warm-tint)), for a consistent
-   "tan callout" color across the site rather than a separate one-off
-   shade. Each box is only as wide as its text: the stat on line one,
+/* Page cream on the hero's coral tint (tan went muddy on the tint). Each box is only as wide as its text: the stat on line one,
    "at Company" on line two. */
 .outcomeItem {
   flex: 0 0 auto;
   min-width: 0;
-  background: var(--warm-tint);
+  background: var(--warm-white);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 0.9375rem;
@@ -244,7 +243,7 @@
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--nav-height) + 40px);
-    padding-bottom: var(--section-padding-v-mobile);
+    padding-bottom: var(--band-gap-mobile);
   }
 
   /* 36px: about twice the 17px subhead, so the pair reads as balanced

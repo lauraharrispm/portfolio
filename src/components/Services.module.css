@@ -240,12 +240,20 @@
     gap: 18px;
   }
 
+  /* Center the dot on the stage number's line: the number is 12px text
+     at the body's 1.6 line-height (19.2px line, center 9.6px), the dot
+     is 10px (center 5px), so it drops 4.6px. The connecting lines below
+     start 4.6px lower to match. */
+  .marker {
+    margin-top: 4.6px;
+  }
+
   .stage:nth-child(even)::after {
     display: block;
   }
 
   .stage:not(:last-child)::after {
-    top: 10px;
+    top: 14.6px;
     left: 4.5px;
     width: 1px;
     height: calc(100% - 10px + 8px);
@@ -256,7 +264,7 @@
      stopping flush at the last marker. */
   .stage:last-child::after {
     display: block;
-    top: 10px;
+    top: 14.6px;
     left: 4.5px;
     right: auto;
     width: 1px;
