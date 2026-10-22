@@ -5,7 +5,7 @@ import Image from "next/image";
 import { projects } from "@/content/projects";
 import type { Project } from "@/content/projects";
 import ReadingView from "./ReadingView";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, setProjectEntry, takeProjectEntry } from "@/lib/analytics";
 import styles from "./WorkSummary.module.css";
 
 // Sorted by `order` so adding a new study later is a data change, not a
@@ -21,15 +21,6 @@ export default function WorkSummary() {
   const [originRect, setOriginRect] = useState<DOMRect | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // ── Deep link on load: #work-<slug> opens that study ──────────────
-  useEffect(() => {
-    const hash = window.location.hash.replace("#work-", "");
-    if (hash && projects.some((p) => p.id === hash)) {
-      setOpenId(hash);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // ── Back button closes the reading view instead of leaving the page ──
   useEffect(() => {
     const onPopState = () => {
@@ -40,8 +31,14 @@ export default function WorkSummary() {
         setOpenId(null);
       }
     };
+    const initialSync = requestAnimationFrame(onPopState);
     window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+    window.addEventListener("hashchange", onPopState);
+    return () => {
+      cancelAnimationFrame(initialSync);
+      window.removeEventListener("popstate", onPopState);
+      window.removeEventListener("hashchange", onPopState);
+    };
   }, []);
 
   // ── Stacked-card recede: as the next card slides up to cover the
@@ -51,7 +48,9 @@ export default function WorkSummary() {
   // only reads it. Skipped only under reduced motion; the stack (and
   // this recede effect) now runs at every width, including mobile. ──
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduceMotion) return;
 
     let raf = 0;
@@ -106,10 +105,10 @@ export default function WorkSummary() {
   }, []);
 
   const openProject = useCallback((id: string, rect: DOMRect | null) => {
+    setProjectEntry("work_summary_card");
     setOpenId(id);
     setOriginRect(rect);
     history.pushState(null, "", `#work-${id}`);
-    trackEvent("project_open", { project_id: id, cta_location: "work_summary_card" });
   }, []);
 
   const close = useCallback(() => {
@@ -119,9 +118,20 @@ export default function WorkSummary() {
   }, []);
 
   const switchTo = useCallback((id: string) => {
+    setProjectEntry("reading_view_nav");
     setOpenId(id);
     history.replaceState(null, "", `#work-${id}`);
   }, []);
+
+  const lastOpen = useRef<string | null>(null);
+  useEffect(() => {
+    if (openId && lastOpen.current !== openId)
+      trackEvent("project_open", {
+        project_id: openId,
+        cta_location: takeProjectEntry(),
+      });
+    lastOpen.current = openId;
+  }, [openId]);
 
   return (
     <section id="work" className={styles.section}>
@@ -183,7 +193,7 @@ function StackItem({ index, registerRef, children }: StackItemProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -238,7 +248,7 @@ function Card({ project, onOpen }: CardProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -249,7 +259,9 @@ function Card({ project, onOpen }: CardProps) {
   // longer needs its own handler since a native click on it bubbles up to
   // this one.
   const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
-    const cardEl = (e.currentTarget as HTMLElement).closest(`.${styles.card}`) as HTMLElement | null;
+    const cardEl = (e.currentTarget as HTMLElement).closest(
+      `.${styles.card}`,
+    ) as HTMLElement | null;
     onOpen(cardEl?.getBoundingClientRect() ?? null);
   };
 
@@ -258,7 +270,9 @@ function Card({ project, onOpen }: CardProps) {
       {project.cardImage && (
         <div className={styles.imageWrap}>
           <div className={styles.imageClip}>
-            <div className={`${styles.imageScale} ${inView ? styles.imageScaleIn : ""}`}>
+            <div
+              className={`${styles.imageScale} ${inView ? styles.imageScaleIn : ""}`}
+            >
               <Image
                 src={project.cardImage.src}
                 alt={project.cardImage.alt}
@@ -280,7 +294,9 @@ function Card({ project, onOpen }: CardProps) {
             .filter((label): label is string => Boolean(label))
             .map((label, i) => (
               <Fragment key={`${label}-${i}`}>
-                {i > 0 && <span className={styles.metaDot} aria-hidden="true" />}
+                {i > 0 && (
+                  <span className={styles.metaDot} aria-hidden="true" />
+                )}
                 <span className={styles.company}>{label}</span>
               </Fragment>
             ))}
@@ -292,8 +308,12 @@ function Card({ project, onOpen }: CardProps) {
         >
           <span className={styles.resultTag}>Key result</span>
           <div className={styles.resultRow}>
-            <span className={styles.resultNumber}>{project.keyMetric.number}</span>
-            <span className={styles.resultLabel}>{project.keyMetric.label}</span>
+            <span className={styles.resultNumber}>
+              {project.keyMetric.number}
+            </span>
+            <span className={styles.resultLabel}>
+              {project.keyMetric.label}
+            </span>
           </div>
         </div>
         <button className={styles.seeMore}>Read the full story</button>

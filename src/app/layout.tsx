@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Instrument_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import SiteAnalytics from "@/components/SiteAnalytics";
 
 const GA_MEASUREMENT_ID = "G-S49DLLQHFT";
 
@@ -23,6 +24,8 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.lauraharrispm.com/"),
+  alternates: { canonical: "/" },
   icons: {
     icon: "/favicon.svg",
   },
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     title: "Laura Harris | Fractional Product Leader",
     description:
       "Fractional product leader for startups with product-market fit. Product-led growth (PLG) leadership without a full-time hire.",
-    url: "https://lauraharrispm.com",
+    url: "https://www.lauraharrispm.com/",
     siteName: "Laura Harris",
     type: "website",
     images: [],
@@ -52,20 +55,43 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${instrumentSans.variable}`}>
-      <body>{children}</body>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${instrumentSans.variable}`}
+    >
+      <head>
+        {/* Static head snippet also allows Search Console's GA ownership check. */}
+        {process.env.VERCEL_ENV === "production" && (
+          <script
+            id="google-analytics"
+            dangerouslySetInnerHTML={{
+              __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}');
-        `}
-      </Script>
+          var ownerMode = new URLSearchParams(location.search).get('measurement');
+          var ownerCookie = /(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie);
+          // Renewed on every visit, so owner mode never lapses silently.
+          if (ownerMode === 'internal' || ownerCookie) document.cookie = 'lh_internal=1; Max-Age=2592000; Path=/; SameSite=Lax; Secure';
+          if (ownerMode === 'public') document.cookie = 'lh_internal=; Max-Age=0; Path=/; SameSite=Lax; Secure';
+          if (navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl && !/(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie)) {
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {send_page_view:true, ignore_referrer:false});
+          }
+        `,
+            }}
+          />
+        )}
+      </head>
+      <body>
+        {children}
+        <SiteAnalytics />
+      </body>
+      {process.env.VERCEL_ENV === "production" && (
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+      )}
     </html>
   );
 }

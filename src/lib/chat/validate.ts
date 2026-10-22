@@ -38,6 +38,10 @@ export function validateRespondPayload(input: unknown): RespondPayload | null {
   if (!Array.isArray(obj.sources) || !obj.sources.every((s) => typeof s === "string")) {
     return null;
   }
+  // Unknown ids are dropped rather than failing the whole answer: the tool
+  // schema doesn't constrain `sources`, and source_id is a bounded
+  // reporting dimension, not something worth showing an error state over.
+  obj.sources = (obj.sources as string[]).filter((s) => TOPIC_SET.has(s));
 
   if (typeof obj.intent !== "string" || !INTENTS.has(obj.intent)) return null;
 

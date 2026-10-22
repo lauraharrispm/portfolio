@@ -42,6 +42,7 @@ export type ChipKind = "deeper" | "sideways" | "book_call" | "case_study";
 export interface Chip {
   kind: ChipKind;
   label: string;
+  topic?: string;
   /** For book_call: "#book". For case_study: "#work-<slug>". For deeper/sideways: the question text to ask. */
   href?: string;
   question?: string;
@@ -59,6 +60,7 @@ export interface ChatTurnResponse {
 export interface ChatErrorResponse {
   status: "error" | "limited";
   message: string;
+  errorType?: string;
 }
 
 export type ChatApiResponse = ChatTurnResponse | ChatErrorResponse;
