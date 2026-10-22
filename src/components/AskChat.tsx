@@ -53,6 +53,68 @@ function usePrefersReducedMotion(): boolean {
   );
 }
 
+// ── Start gate for the typed placeholder ───────────────────────────────
+// The hero's cursor-chat greeting plays on load, and two animations
+// moving at once split a visitor's attention. Where that greeting plays
+// (the same media query CursorChat tests), hold the rotating examples
+// until the page has been scrolled, so the greeting reads first and the
+// examples start once the hero has been read. Everywhere else, and under
+// reduced motion, nothing changes.
+//
+// Module state behind useSyncExternalStore, like the reduced-motion hook
+// above: the gate reads an external source and only ever opens once, so
+// there is no component state to keep in sync and nothing to re-close.
+const SCROLL_START_PX = 40;
+
+let examplesArmed = false;
+const armedListeners = new Set<() => void>();
+
+function armExamples() {
+  if (examplesArmed) return;
+  examplesArmed = true;
+  window.removeEventListener("scroll", onArmingScroll);
+  for (const notify of armedListeners) notify();
+}
+
+function onArmingScroll() {
+  if (window.scrollY > SCROLL_START_PX) armExamples();
+}
+
+function subscribeToArmed(onStoreChange: () => void): () => void {
+  armedListeners.add(onStoreChange);
+  if (!examplesArmed) {
+    // No greeting to defer to, or the page was restored partway down and
+    // the hero isn't what's being read: start the examples right away.
+    if (
+      !window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches ||
+      window.scrollY > SCROLL_START_PX
+    ) {
+      armExamples();
+    } else {
+      window.addEventListener("scroll", onArmingScroll, { passive: true });
+    }
+  }
+  return () => {
+    armedListeners.delete(onStoreChange);
+  };
+}
+
+function getArmedSnapshot(): boolean {
+  return examplesArmed;
+}
+
+function getArmedServerSnapshot(): boolean {
+  return false;
+}
+
+function useExamplesArmed(): boolean {
+  return useSyncExternalStore(
+    subscribeToArmed,
+    getArmedSnapshot,
+    getArmedServerSnapshot,
+  );
+}
+
 // ── Rotating typed placeholder ─────────────────────────────────────────
 // `phaseEmpty` gates the whole thing on the empty (pre-conversation)
 // state; `focused` doesn't stop it outright anymore, it just means
@@ -66,6 +128,7 @@ function useTypedPlaceholder(
   phaseEmpty: boolean,
   focused: boolean,
   reducedMotion: boolean,
+  started: boolean,
 ): { placeholder: string; fullQuestion: string } {
   const [text, setText] = useState("");
   const [fullQuestion, setFullQuestion] = useState(STARTER_QUESTIONS[0]);
@@ -74,7 +137,7 @@ function useTypedPlaceholder(
   useEffect(() => {
     // Reduced motion returns a constant directly (below) instead of
     // going through state, so the effect has nothing to do in that case.
-    if (!phaseEmpty || reducedMotion) return;
+    if (!phaseEmpty || reducedMotion || !started) return;
 
     // Focused: snap straight to the full text of whichever example was
     // on screen (mid-type or not) when focus happened, and stop there.
@@ -121,7 +184,7 @@ function useTypedPlaceholder(
       cancelled = true;
       clearTimeout(timeoutId);
     };
-  }, [phaseEmpty, focused, reducedMotion]);
+  }, [phaseEmpty, focused, reducedMotion, started]);
 
   return {
     placeholder: reducedMotion ? STARTER_QUESTIONS[0] : text,
@@ -214,10 +277,12 @@ export default function AskChat() {
 
   const revealedIds = useRef(new Set<string>());
   const inputId = useId();
+  const examplesStarted = useExamplesArmed();
   const { placeholder, fullQuestion } = useTypedPlaceholder(
     phase === "empty",
     inputFocused,
     reducedMotion,
+    examplesStarted,
   );
 
   useEffect(() => {
