@@ -69,7 +69,9 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           var ownerMode = new URLSearchParams(location.search).get('measurement');
-          if (ownerMode === 'internal') document.cookie = 'lh_internal=1; Max-Age=2592000; Path=/; SameSite=Lax; Secure';
+          var ownerCookie = /(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie);
+          // Renewed on every visit, so owner mode never lapses silently.
+          if (ownerMode === 'internal' || ownerCookie) document.cookie = 'lh_internal=1; Max-Age=2592000; Path=/; SameSite=Lax; Secure';
           if (ownerMode === 'public') document.cookie = 'lh_internal=; Max-Age=0; Path=/; SameSite=Lax; Secure';
           if (navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl && !/(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie)) {
             gtag('js', new Date());
