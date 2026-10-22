@@ -490,8 +490,7 @@ export default function AskChat() {
               </button>
             </form>
             <p className={styles.disclaimer}>
-              An AI trained on my work. Questions are saved. For anything
-              else,{" "}
+              An AI trained on my work. For anything else,{" "}
               <a href="#book">let&apos;s chat</a>.
             </p>
           </div>
@@ -554,7 +553,6 @@ export default function AskChat() {
             </form>
             <p className={styles.disclaimer}>
               An AI trained on Laura&apos;s work. It can make mistakes.
-              Questions are saved.
             </p>
           </div>
         )}
