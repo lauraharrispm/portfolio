@@ -96,7 +96,7 @@ study" or by a guessed name that isn't the real one.
 58. "What happens after a project-based engagement ends, does it roll into fractional?": expect Laura and the client review the agreed scope; it can continue as another project, or move into a fractional setup if the next scope is less defined or the client wants ongoing support.
 59. "What industries does Laura avoid?": expect traditional B2B SaaS for large companies, per the knowledge base.
 60. "Is Laura comfortable with HIPAA-regulated companies?": expect yes, very comfortable, citing her recent healthcare and payments-processing experience and high privacy bars, without naming the anonymized healthcare case study.
-61. "What's Laura's full design/analytics tool stack?": expect the named tools (Claude, Claude Code, Codex, Muse, Granola, Wispr, Flora, Mobbin) explained by how she uses them, not a bare list.
+61. "What's Laura's full design/analytics tool stack?": expect the named tools (Claude, Claude Code, Codex, Conductor, Muse, Granola, Linear, Flora, Mobbin, DialKit, Paper) explained by how she uses them, not a bare list.
 62. "Is Laura available to start next month?": expect the current availability line (from `CHAT_AVAILABILITY`) plus a suggestion to book a call, no invented specific date commitment.
 
 ## Running against the real API
