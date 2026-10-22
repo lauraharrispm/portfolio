@@ -7,7 +7,6 @@ import type { Project, ProjectSection } from "@/content/projects";
 import StoryView from "./StoryView";
 import Lightbox from "./Lightbox";
 import ResultIcon from "./ResultIcon";
-import { trackEvent } from "@/lib/analytics";
 import styles from "./ReadingView.module.css";
 
 interface LightboxState {
@@ -212,7 +211,6 @@ function DesktopReadingView({
   const goTo = useCallback(
     (id: string) => {
       onSwitchProject(id);
-      trackEvent("project_open", { project_id: id, cta_location: "reading_view_nav" });
     },
     [onSwitchProject]
   );

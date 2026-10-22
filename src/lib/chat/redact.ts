@@ -1,6 +1,5 @@
-// Strips emails and phone numbers before anything is logged. We only ever
-// store topic tags, intent, and a timestamp, but this runs on the raw
-// visitor text too as a defense-in-depth measure in case that ever changes.
+// Email/phone redaction for restricted question logs. This is not a general
+// personal/confidential-data scrubber; storage access must remain restricted.
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
 

@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { RESPOND_TOOL } from "./respond-tool";
 import { validateRespondPayload } from "./validate";
 import type { ChatMessage, RespondPayload } from "./types";
@@ -19,8 +20,14 @@ function getClient(): Anthropic {
 let cachedSystemPrompt: string | null = null;
 function getSystemPrompt(): string {
   if (cachedSystemPrompt) return cachedSystemPrompt;
-  const promptPath = path.join(process.cwd(), "src/content/chat/system-prompt.md");
-  const knowledgePath = path.join(process.cwd(), "src/content/chat/knowledge.md");
+  const promptPath = path.join(
+    process.cwd(),
+    "src/content/chat/system-prompt.md",
+  );
+  const knowledgePath = path.join(
+    process.cwd(),
+    "src/content/chat/knowledge.md",
+  );
   const prompt = fs.readFileSync(promptPath, "utf-8");
   const knowledge = fs.readFileSync(knowledgePath, "utf-8");
   // CHAT_AVAILABILITY (src/content/chat/config.ts) is the one place to
@@ -39,7 +46,9 @@ export class RespondValidationError extends Error {}
  * guarantee); if it's malformed, retries once with a short nudge message
  * appended, then gives up and lets the caller show the error state.
  */
-export async function askClaude(messages: ChatMessage[]): Promise<RespondPayload> {
+export async function askClaude(
+  messages: ChatMessage[],
+): Promise<RespondPayload> {
   const model = process.env.CHAT_MODEL || DEFAULT_MODEL;
   const client = getClient();
 
@@ -59,7 +68,10 @@ export async function askClaude(messages: ChatMessage[]): Promise<RespondPayload
       ],
       tools: [RESPOND_TOOL],
       tool_choice: { type: "tool", name: "respond" },
-      messages: [...messages, ...extraMessages].map((m) => ({ role: m.role, content: m.content })),
+      messages: [...messages, ...extraMessages].map((m) => ({
+        role: m.role,
+        content: m.content,
+      })),
     });
 
   const first = await call([]);
@@ -79,12 +91,22 @@ export async function askClaude(messages: ChatMessage[]): Promise<RespondPayload
   const retryValid = validateRespondPayload(extractToolInput(retry));
   if (retryValid) return retryValid;
 
-  throw new RespondValidationError("Model did not return a valid respond payload after one retry.");
+  throw new RespondValidationError(
+    "Model did not return a valid respond payload after one retry.",
+  );
 }
 
 function extractToolInput(message: Anthropic.Message): unknown {
   const block = message.content.find(
-    (b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === "respond"
+    (b): b is Anthropic.ToolUseBlock =>
+      b.type === "tool_use" && b.name === "respond",
   );
   return block?.input;
+}
+
+export function getPromptVersion() {
+  return createHash("sha256")
+    .update(getSystemPrompt())
+    .digest("hex")
+    .slice(0, 16);
 }

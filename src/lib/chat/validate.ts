@@ -35,7 +35,7 @@ export function validateRespondPayload(input: unknown): RespondPayload | null {
     if (typeof fo.topic !== "string" || !TOPIC_SET.has(fo.topic)) return null;
   }
 
-  if (!Array.isArray(obj.sources) || !obj.sources.every((s) => typeof s === "string")) {
+  if (!Array.isArray(obj.sources) || !obj.sources.every((s) => typeof s === "string" && TOPIC_SET.has(s))) {
     return null;
   }
 

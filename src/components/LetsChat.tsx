@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./LetsChat.module.css";
+import { trackEvent } from "@/lib/analytics";
 
 // Cal.com's own event-type link (username/event-slug, not the full URL):
 // what their embed API's calLink option expects.
@@ -75,6 +76,7 @@ export default function LetsChat() {
   const [nearViewport, setNearViewport] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const calTargetRef = useRef<HTMLDivElement>(null);
+  const seenBookings = useRef(new Set<string>());
 
   useEffect(() => {
     if (nearViewport) return;
@@ -88,7 +90,7 @@ export default function LetsChat() {
           observer.disconnect();
         }
       },
-      { rootMargin: "400px 0px" }
+      { rootMargin: "400px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -104,6 +106,30 @@ export default function LetsChat() {
     installCalEmbedApi();
     const Cal = window.Cal!;
     Cal("init", CAL_NAMESPACE, { origin: "https://cal.com" });
+    const ready = () => trackEvent("booking_widget_ready", {});
+    const failed = () =>
+      trackEvent("booking_widget_error", { error_type: "embed_load" });
+    const booked = (event: {
+      detail: { data: { uid?: string; status?: string } };
+    }) => {
+      const { uid, status } = event.detail.data;
+      // Without a provider booking ID, don't count an unverifiable callback.
+      if (!uid || seenBookings.current.has(uid)) return;
+      seenBookings.current.add(uid);
+      trackEvent("booking_created", {
+        booking_status: ["accepted", "pending", "confirmed"].includes(
+          status ?? "",
+        )
+          ? status!
+          : "unknown",
+      });
+    };
+    Cal.ns[CAL_NAMESPACE]("on", { action: "linkReady", callback: ready });
+    Cal.ns[CAL_NAMESPACE]("on", { action: "linkFailed", callback: failed });
+    Cal.ns[CAL_NAMESPACE]("on", {
+      action: "bookingSuccessfulV2",
+      callback: booked,
+    });
     Cal.ns[CAL_NAMESPACE]("inline", {
       elementOrSelector: calTargetRef.current,
       calLink: CAL_LINK,
@@ -121,6 +147,14 @@ export default function LetsChat() {
       layout: "month_view",
       theme: "light",
     });
+    return () => {
+      Cal.ns[CAL_NAMESPACE]("off", { action: "linkReady", callback: ready });
+      Cal.ns[CAL_NAMESPACE]("off", { action: "linkFailed", callback: failed });
+      Cal.ns[CAL_NAMESPACE]("off", {
+        action: "bookingSuccessfulV2",
+        callback: booked,
+      });
+    };
   }, [nearViewport]);
 
   return (
@@ -134,14 +168,16 @@ export default function LetsChat() {
         <div className={styles.inner}>
           <div className={styles.copy}>
             <p className={styles.body}>
-              Tell me where your product is today and what&apos;s getting in
-              the way. We&apos;ll talk through how I&apos;d approach it and
-              whether working together makes sense. You&apos;ll leave with a
-              next step either way.
+              Tell me where your product is today and what&apos;s getting in the
+              way. We&apos;ll talk through how I&apos;d approach it and whether
+              working together makes sense. You&apos;ll leave with a next step
+              either way.
             </p>
 
             <div className={styles.fitBlock}>
-              <h3 className={styles.fitHeading}>We&apos;re likely a fit if you:</h3>
+              <h3 className={styles.fitHeading}>
+                We&apos;re likely a fit if you:
+              </h3>
               <ul className={styles.fitList}>
                 <li>
                   <span>Run a consumer-facing business</span>
@@ -150,14 +186,19 @@ export default function LetsChat() {
                   <span>Have product-market fit and want to grow faster</span>
                 </li>
                 <li>
-                  <span>Have engineers but little or no dedicated product guidance</span>
+                  <span>
+                    Have engineers but little or no dedicated product guidance
+                  </span>
                 </li>
               </ul>
             </div>
 
             <p className={styles.altContact}>
               Rather write? Reach me at{" "}
-              <a href="mailto:laura@lauraharrispm.com">laura@lauraharrispm.com</a> or on{" "}
+              <a href="mailto:laura@lauraharrispm.com">
+                laura@lauraharrispm.com
+              </a>{" "}
+              or on{" "}
               <a
                 href="https://www.linkedin.com/in/laurakayharris/"
                 target="_blank"

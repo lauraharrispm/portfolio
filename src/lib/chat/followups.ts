@@ -114,10 +114,10 @@ export function computeChips(input: ComputeChipsInput): Chip[] {
   // ── Chip 3: deterministic action chip ──
   const chips: Chip[] = [];
   if (deeper) {
-    chips.push({ kind: "deeper", label: deeper.question, question: deeper.question });
+    chips.push({ kind: "deeper", topic: deeper.topic, label: deeper.question, question: deeper.question });
   }
   if (sideways) {
-    chips.push({ kind: "sideways", label: sideways.question, question: sideways.question });
+    chips.push({ kind: "sideways", topic: sideways.topic, label: sideways.question, question: sideways.question });
   }
 
   const caseStudySlug = sources
@@ -144,7 +144,7 @@ export function computeChips(input: ComputeChipsInput): Chip[] {
       }
     }
     if (third) {
-      chips.push({ kind: "sideways", label: third.question, question: third.question });
+      chips.push({ kind: "sideways", topic: third.topic, label: third.question, question: third.question });
     } else {
       // Last resort so we always return 3 chips: a call, which is always safe.
       chips.push({ kind: "book_call", label: "Book a call", href: "#book" });

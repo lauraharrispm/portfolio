@@ -14,6 +14,8 @@ export const CHAT_OUTCOMES = [
   "blocked_rate_day",
   "error_validation",
   "error_model",
+  "error_store",
+  "error_logging",
   "rejected_payload",
 ] as const;
 

@@ -30,6 +30,8 @@ const OUTCOMES = [
   "blocked_rate_day",
   "error_validation",
   "error_model",
+  "error_store",
+  "error_logging",
   "rejected_payload",
 ];
 
@@ -65,6 +67,20 @@ if (inputPath) {
     date.setUTCDate(date.getUTCDate() - offset);
     dateKeys.push(date.toISOString().slice(0, 10));
   }
+  // The compatibility list is capped; prefer the complete time-based archive.
+  const archiveResponse=await fetch(`${baseUrl}/pipeline`, {
+    method:"POST", headers:{...headers,"content-type":"application/json"},
+    body:JSON.stringify(dateKeys.map(date=>["HGETALL",`chat:questions:${date}`])),
+  });
+  if(!archiveResponse.ok) throw Error(`Question archive returned ${archiveResponse.status}`);
+  const archived=(await archiveResponse.json()).flatMap(item=>{
+    if(item.error) throw Error(item.error);
+    const pairs=item.result??[];
+    return pairs.filter((_,index)=>index%2===1).map(value=>typeof value==="string"?JSON.parse(value):value);
+  });
+  const combined=new Map();
+  for(const row of [...rawRows,...archived]) combined.set(row.requestId??`${row.timestamp}:${row.conversationId}:${row.turn}`,row);
+  rawRows=[...combined.values()];
   const counterKeys = dateKeys.flatMap((date) => OUTCOMES.map((outcome) => `chat:stat:${date}:${outcome}`));
   const pipelineResponse = await fetch(`${baseUrl}/pipeline`, {
     method: "POST",
@@ -103,9 +119,9 @@ const reportDates = [...new Set([...datesWithCounters, ...datesWithRows])].sort(
 const counter = (date, outcome) => Number(counterValues[`chat:stat:${date}:${outcome}`] ?? 0);
 
 console.log("=".repeat(68));
-console.log(`CHAT QUESTION LOG | ${rows.length} retained question(s)`);
+console.log(`CHAT QUESTION LOG | ${rows.length} retained question(s) across the 90-day archive and legacy buffer`);
 if (first && last) console.log(`${first.toISOString()} to ${last.toISOString()}`);
-console.log(`Storage cap: 2000 | ${rows.length >= 2000 ? "at cap" : `${2000 - rows.length} slots free`}`);
+console.log(`Question archive: 90 days | compatibility buffer: latest 2000`);
 console.log("=".repeat(68));
 
 const byDay = tally(rows.flatMap((row) => typeof row.timestamp === "string" ? [row.timestamp.slice(0, 10)] : []))
@@ -125,11 +141,11 @@ for (const [hour, count] of byHour.slice(0, 6)) {
 
 console.log("\nOUTCOMES BY DAY | block/error rates use all terminal outcomes as denominator");
 for (const date of reportDates) {
-  const total = OUTCOMES.reduce((sum, outcome) => sum + counter(date, outcome), 0);
+  const total = OUTCOMES.filter(outcome=>outcome!=="error_logging").reduce((sum, outcome) => sum + counter(date, outcome), 0);
   if (!total) continue;
   const values = OUTCOMES.map((outcome) => `${outcome}=${counter(date, outcome)}`).join("  ");
   const blocked = counter(date, "blocked_conversation_cap") + counter(date, "blocked_rate_hour") + counter(date, "blocked_rate_day");
-  const errors = counter(date, "error_validation") + counter(date, "error_model");
+  const errors = counter(date, "error_validation") + counter(date, "error_model") + counter(date,"error_store");
   console.log(`  ${date}  ${values}`);
   console.log(`    block rate ${pct(blocked, total)} | error rate ${pct(errors, total)} | total ${total}`);
 }
