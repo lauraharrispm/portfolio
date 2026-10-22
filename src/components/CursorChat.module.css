@@ -40,7 +40,12 @@
 .chatting {
   min-width: 30px;
   min-height: 38px;
-  padding: 8px 14px 9px;
+  /* max-content, not shrink-to-fit: the root has no width, so without
+     this the bubble would wrap at every word. */
+  width: max-content;
+  max-width: var(--bubble-max, 260px);
+  white-space: normal;
+  padding: 8px 12px 9px;
   border-radius: 4px 14px 14px 14px;
   font-size: 15px;
   line-height: 21px;

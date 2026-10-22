@@ -7,8 +7,8 @@ import styles from "./CursorChat.module.css";
 // hello in cursor chat, then fades out. Decoration only: desktop with a
 // real pointer, once per session, never under reduced motion, hidden from
 // screen readers, never blocks a click. Spec: the design partner's
-// .context/site-hero-cursor-chat/notes.md (moved up above the headline
-// and recolored charcoal after review).
+// .context/site-hero-cursor-chat/notes.md (recolored charcoal and moved to
+// the slot between the subhead and the photo after review).
 
 const MESSAGE = "Hey, I'm Laura. Nice to meet you!";
 
@@ -59,21 +59,29 @@ export default function CursorChat() {
     const root = rootRef.current;
     const tag = tagRef.current;
     const hero = document.getElementById("hero");
-    const headline = hero?.querySelector<HTMLElement>("h1");
-    if (!root || !tag || !hero || !headline) return;
+    const subhead = hero?.querySelector<HTMLElement>("h1 + p");
+    const photo = hero?.querySelector<HTMLElement>("img");
+    if (!root || !tag || !hero || !subhead || !photo) return;
 
-    // Resting tip: in the open space just above the headline, over the
-    // end of its first line, so the hello lands where the eye already is
-    // (the bubble sits between the nav and the headline, clear of the
-    // photo). The path comes in from the right, above the photo.
+    // Rest in the open slot between the subhead and the photo: the tip
+    // just past the end of the subhead's first line. The bubble may wrap
+    // to a second line (as FigJam's does) rather than run onto the photo;
+    // if there isn't room for even that, skip it.
     const heroRect = hero.getBoundingClientRect();
-    const h1Rect = headline.getBoundingClientRect();
-    const end = {
-      x: h1Rect.left - heroRect.left + h1Rect.width * 0.55,
-      y: h1Rect.top - heroRect.top - 58,
-    };
-    const start = { x: heroRect.width + 40, y: end.y + 40 };
-    const ctrl = { x: end.x + 360, y: end.y - 20 };
+    const photoLeft = photo.getBoundingClientRect().left - heroRect.left;
+    const range = document.createRange();
+    range.selectNodeContents(subhead);
+    const lineRects = Array.from(range.getClientRects()).filter((r) => r.width > 0);
+    const firstTop = Math.min(...lineRects.map((r) => r.top));
+    const line1Right =
+      Math.max(...lineRects.filter((r) => Math.abs(r.top - firstTop) < 4).map((r) => r.right)) -
+      heroRect.left;
+    const end = { x: line1Right + 8, y: firstTop - heroRect.top - 6 };
+    const bubbleMax = photoLeft - 6 - (end.x + 12);
+    if (bubbleMax < 140) return;
+    root.style.setProperty("--bubble-max", `${bubbleMax}px`);
+    const start = { x: heroRect.width + 40, y: end.y + 260 };
+    const ctrl = { x: end.x + 200, y: end.y + 240 };
 
     const place = (p: number) => {
       const q = 1 - p;
