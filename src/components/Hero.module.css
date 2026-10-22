@@ -151,7 +151,7 @@
   font-weight: 500;
   color: var(--charcoal);
   text-decoration: underline;
-  text-decoration-color: var(--coral);
+  text-decoration-color: currentColor;
   text-underline-offset: 2px;
   transition: color var(--transition);
 }

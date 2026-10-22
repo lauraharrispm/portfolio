@@ -36,7 +36,7 @@ export default function Hero({ chatEnabled }: { chatEnabled: boolean }) {
               <span className={styles.noWrap}>a full-time hire.</span>
             </h1>
             <p className={styles.subhead}>
-              I help seed to Series C startups stand up product-led growth,
+              I help seed to Series B startups stand up product-led growth,
               align engineering, and ship faster.
             </p>
           </div>
