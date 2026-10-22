@@ -38,13 +38,12 @@
 }
 
 .chatting {
+  left: var(--bubble-left, 12px);
   min-width: 30px;
   min-height: 38px;
-  /* max-content, not shrink-to-fit: the root has no width, so without
-     this the bubble would wrap at every word. */
+  /* Keep the whole greeting on one line; placement makes room for it. */
   width: max-content;
-  max-width: var(--bubble-max, 260px);
-  white-space: normal;
+  white-space: nowrap;
   padding: 8px 12px 9px;
   border-radius: 4px 14px 14px 14px;
   font-size: 15px;

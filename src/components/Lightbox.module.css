@@ -16,7 +16,7 @@
   top: 20px;
   right: 24px;
   font-size: 1.25rem;
-  color: rgba(250, 249, 246, 0.6);
+  color: rgba(251, 247, 240, 0.6);
   background: none;
   border: none;
   padding: 10px 12px;
@@ -63,7 +63,7 @@
 
 .counter {
   font-size: 0.75rem;
-  color: rgba(250, 249, 246, 0.5);
+  color: rgba(251, 247, 240, 0.5);
   white-space: nowrap;
   min-width: 56px;
   text-align: center;
@@ -72,7 +72,7 @@
 .navBtn {
   font-size: 2rem;
   line-height: 1;
-  color: rgba(250, 249, 246, 0.6);
+  color: rgba(251, 247, 240, 0.6);
   background: none;
   border: none;
   padding: 10px 16px;

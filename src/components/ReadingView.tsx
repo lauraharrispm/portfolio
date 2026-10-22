@@ -163,7 +163,7 @@ function DesktopReadingView({
       width: originRect.width,
       height: originRect.height,
       margin: 0,
-      borderRadius: 20,
+      borderRadius: "var(--card-radius)",
     };
   });
 
@@ -184,7 +184,7 @@ function DesktopReadingView({
         width,
         height,
         margin: 0,
-        borderRadius: 16,
+        borderRadius: "var(--card-radius)",
         transition: `top ${EXPAND_MS}ms ${EXPAND_EASE}, left ${EXPAND_MS}ms ${EXPAND_EASE}, width ${EXPAND_MS}ms ${EXPAND_EASE}, height ${EXPAND_MS}ms ${EXPAND_EASE}, border-radius ${EXPAND_MS}ms ${EXPAND_EASE}`,
       });
     }

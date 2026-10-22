@@ -141,7 +141,7 @@
   flex: 0 0 auto;
   min-width: 0;
   background: var(--warm-white);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   padding: 14px 16px;
   font-size: 0.9375rem;
   color: var(--charcoal);

@@ -63,81 +63,109 @@ export default function CursorChat() {
     const photo = hero?.querySelector<HTMLElement>("img");
     if (!root || !tag || !hero || !subhead || !photo) return;
 
-    // Rest in the open slot between the subhead and the photo: the tip
-    // just past the end of the subhead's first line. The bubble may wrap
-    // to a second line (as FigJam's does) rather than run onto the photo;
-    // if there isn't room for even that, skip it.
-    const heroRect = hero.getBoundingClientRect();
-    const photoLeft = photo.getBoundingClientRect().left - heroRect.left;
-    const range = document.createRange();
-    range.selectNodeContents(subhead);
-    const lineRects = Array.from(range.getClientRects()).filter((r) => r.width > 0);
-    const firstTop = Math.min(...lineRects.map((r) => r.top));
-    const line1Right =
-      Math.max(...lineRects.filter((r) => Math.abs(r.top - firstTop) < 4).map((r) => r.right)) -
-      heroRect.left;
-    const end = { x: line1Right + 8, y: firstTop - heroRect.top - 6 };
-    const bubbleMax = photoLeft - 6 - (end.x + 12);
-    if (bubbleMax < 140) return;
-    root.style.setProperty("--bubble-max", `${bubbleMax}px`);
-    const start = { x: heroRect.width + 40, y: end.y + 260 };
-    const ctrl = { x: end.x + 200, y: end.y + 240 };
-
-    const place = (p: number) => {
-      const q = 1 - p;
-      const x = q * q * start.x + 2 * q * p * ctrl.x + p * p * end.x;
-      const y = q * q * start.y + 2 * q * p * ctrl.y + p * p * end.y;
-      root.style.transform = `translate(${x}px, ${y}px)`;
-    };
-    place(0);
-
     let frame = 0;
-    // Stop for good if the hero scrolls out of view mid-sequence.
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) {
-        cancelAnimationFrame(frame);
-        setDone(true);
-      }
-    });
-    observer.observe(hero);
-
-    // Mark it seen on the first frame (not in the effect body), so a
-    // cancelled first run never burns the one play for this session.
-    const markSeen = () => {
-      try {
-        sessionStorage.setItem(SEEN_KEY, "1");
-      } catch {
-        // ignore
-      }
+    let observer: IntersectionObserver | undefined;
+    let cancelled = false;
+    const stop = () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      setDone(true);
     };
-    const startedAt = performance.now();
-    let first = true;
-    const tick = () => {
-      if (first) {
-        markSeen();
-        first = false;
-      }
-      const t = performance.now() - startedAt;
-      if (t >= DONE_AT) {
-        setDone(true);
-        return;
-      }
-      root.style.visibility = t < ENTER_AT ? "hidden" : "visible";
-      place(easeOutQuart(Math.min(Math.max((t - ENTER_AT) / ENTER_MS, 0), 1)));
-      // Text and the tag-to-bubble switch go straight to the DOM, in the
-      // same frame as position and opacity, so they can never lag behind.
-      const isChatting = t >= EXPAND_AT;
-      tag.classList.toggle(styles.chatting, isChatting);
-      const text = isChatting ? MESSAGE.slice(0, CHAR_TIMES.filter((ct) => ct <= t).length) : "Laura";
-      if (tag.textContent !== text) tag.textContent = text;
-      root.style.opacity = t < FADE_AT ? "1" : String(1 - (t - FADE_AT) / FADE_MS);
+    const startAnimation = () => {
+      if (cancelled) return;
+      // Measure the complete, single-line greeting at its final type size.
+      // A hidden clone avoids changing the live tag's expansion transition.
+      const measure = tag.cloneNode(false) as HTMLSpanElement;
+      measure.classList.add(styles.chatting);
+      measure.style.transition = "none";
+      measure.textContent = MESSAGE;
+      root.appendChild(measure);
+      const bubbleWidth = measure.getBoundingClientRect().width;
+      measure.remove();
+
+      const heroRect = hero.getBoundingClientRect();
+      const photoRect = photo.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(subhead);
+      const lineRects = Array.from(range.getClientRects()).filter((r) => r.width > 0);
+      if (!lineRects.length) return;
+      const firstTop = Math.min(...lineRects.map((r) => r.top));
+      const firstLine = lineRects.filter((r) => Math.abs(r.top - firstTop) < 4);
+      const line1Right = Math.max(...firstLine.map((r) => r.right)) - heroRect.left;
+      const preferredX = line1Right + 8;
+      // Hair begins about 28% into this portrait. End halfway across
+      // that background strip, keeping the greeting clear of her hair.
+      const bubbleRight = photoRect.left - heroRect.left + photoRect.width * 0.14;
+      const x = Math.max(preferredX, bubbleRight - bubbleWidth - 12);
+      const bubbleLeft = bubbleRight - x - bubbleWidth;
+      root.style.setProperty("--bubble-left", `${bubbleLeft}px`);
+      // Keep the pointer past the last word. If the bubble needs to
+      // extend left, tuck it below that line so the text stays clear.
+      const y = bubbleLeft < 11.5
+        ? Math.max(...firstLine.map((r) => r.bottom)) - heroRect.top + 6 - 19
+        : firstTop - heroRect.top - 6;
+      const end = { x, y };
+      const start = { x: heroRect.width + 40, y: end.y + 260 };
+      const ctrl = { x: end.x + 200, y: end.y + 240 };
+
+      const place = (p: number) => {
+        const q = 1 - p;
+        const x = q * q * start.x + 2 * q * p * ctrl.x + p * p * end.x;
+        const y = q * q * start.y + 2 * q * p * ctrl.y + p * p * end.y;
+        root.style.transform = `translate(${x}px, ${y}px)`;
+      };
+      place(0);
+
+      // Stop for good if the hero scrolls out of view mid-sequence.
+      observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) {
+          stop();
+        }
+      });
+      observer.observe(hero);
+
+      // Mark it seen on the first frame (not in the effect body), so a
+      // cancelled first run never burns the one play for this session.
+      const markSeen = () => {
+        try {
+          sessionStorage.setItem(SEEN_KEY, "1");
+        } catch {
+          // ignore
+        }
+      };
+      const startedAt = performance.now();
+      let first = true;
+      const tick = () => {
+        if (first) {
+          markSeen();
+          first = false;
+        }
+        const t = performance.now() - startedAt;
+        if (t >= DONE_AT) {
+          setDone(true);
+          return;
+        }
+        root.style.visibility = t < ENTER_AT ? "hidden" : "visible";
+        place(easeOutQuart(Math.min(Math.max((t - ENTER_AT) / ENTER_MS, 0), 1)));
+        // Text and the tag-to-bubble switch go straight to the DOM, in the
+        // same frame as position and opacity, so they can never lag behind.
+        const isChatting = t >= EXPAND_AT;
+        tag.classList.toggle(styles.chatting, isChatting);
+        const text = isChatting ? MESSAGE.slice(0, CHAR_TIMES.filter((ct) => ct <= t).length) : "Laura";
+        if (tag.textContent !== text) tag.textContent = text;
+        root.style.opacity = t < FADE_AT ? "1" : String(1 - (t - FADE_AT) / FADE_MS);
+        frame = requestAnimationFrame(tick);
+      };
       frame = requestAnimationFrame(tick);
     };
-    frame = requestAnimationFrame(tick);
+    void document.fonts.ready.then(startAnimation);
+    window.addEventListener("resize", stop);
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
-      observer.disconnect();
+      observer?.disconnect();
+      window.removeEventListener("resize", stop);
     };
   }, []);
 

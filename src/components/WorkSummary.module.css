@@ -10,7 +10,7 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 /* ─── Sticky stack: each card pins near the top of the viewport,
@@ -38,16 +38,17 @@
      transform (never opacity) is used for both the entrance and the
      scroll-linked recede, in the component. */
   background: var(--white);
-  border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(46, 40, 32, 0.14);
+  border-radius: var(--card-radius);
+  border: var(--card-border);
+  box-shadow: none;
   padding: 40px;
   transform: translateY(28px) scale(0.97);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
   transform-origin: top center;
 }
 
 .card:hover {
-  box-shadow: 0 20px 52px rgba(46, 40, 32, 0.2);
+  border-color: rgba(46, 40, 32, 0.18);
 }
 
 .cardEnter {
@@ -300,6 +301,15 @@
    study opens with a Summary). Tapping still opens the story view. The
    scroll-linked recede in WorkSummary.tsx skips this width. */
 @media (max-width: 768px) {
+  .section {
+    padding-top: var(--section-padding-v-mobile);
+    padding-bottom: var(--section-padding-v-mobile);
+  }
+
+  .heading {
+    margin-bottom: 32px;
+  }
+
   .stackItem {
     position: static;
     padding-bottom: 12px;
@@ -307,7 +317,6 @@
 
   .card {
     padding: 20px;
-    box-shadow: 0 6px 18px rgba(46, 40, 32, 0.1);
   }
 
   .cardInner {

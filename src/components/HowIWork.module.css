@@ -5,15 +5,14 @@
   padding: var(--section-padding-v) 0;
 }
 
-/* Same heading-to-content gap as Services' "What I do" (16px), instead
-   of this section's own larger, inconsistent value. */
+/* Keep the heading grouped with its supporting statement. */
 .heading {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 /* ─── Part statement (shared by both parts) ───────────────────────── */
@@ -32,7 +31,7 @@
   color: var(--charcoal-muted);
   letter-spacing: -0.005em;
   line-height: 1.4;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 /* ─── Engagement comparison table (Part 1) ────────────────────────── */
@@ -51,12 +50,10 @@
 
 .tableWrap {
   overflow: hidden;
-  border: 1px solid rgba(46, 40, 32, 0.14);
-  border-radius: 16px;
+  border: var(--card-border);
+  border-radius: var(--card-radius);
   max-width: 920px;
-  /* Same floating-card shadow as the hero results panel and the work
-     summary cards, so the table reads as its own object too. */
-  box-shadow: 0 16px 40px rgba(46, 40, 32, 0.14);
+  box-shadow: none;
 }
 
 .visuallyHidden {
@@ -112,7 +109,7 @@
   text-align: left;
   vertical-align: middle;
   padding: 20px 24px;
-  border-left: 1px solid rgba(46, 40, 32, 0.14);
+  border-left: var(--card-border);
 }
 
 .formatHeaderInner {
@@ -141,7 +138,7 @@
 }
 
 .row {
-  border-top: 1px solid rgba(46, 40, 32, 0.14);
+  border-top: var(--card-border);
 }
 
 /* Sentence case, not a section label: 13px, charcoal, weight 600, no
@@ -162,7 +159,7 @@
   line-height: 1.5;
   color: var(--charcoal);
   padding: 12px 24px;
-  border-left: 1px solid rgba(46, 40, 32, 0.14);
+  border-left: var(--card-border);
 }
 
 /* ─── Mobile/tablet engagement toggle (replaces the table) ────────── */
@@ -174,20 +171,15 @@
    the format name and pill, same as the desktop header cells, instead
    of a plain toggle above a separate header-again inside the panel
    (the old .mobileFormatHeader) repeating the name/pill a second time. */
-/* No border-bottom here: the first .mobileRow's own border-top already
-   draws that line right below, so a bottom border here on top of that
-   stacked two 1px lines into one visibly heavier divider than the
-   plain 1px lines between the rows below it. Dropping this one makes
-   every divider in the table a single, consistent line. 2px, not 1px,
-   on the remaining sides: matches the row dividers' own weight so the
-   table's outer edge doesn't read lighter than its internal lines. */
+/* The first row supplies the divider below the tabs. Keep every seam
+   a single fine line, including the shared outer edge. */
 .tabList {
   display: flex;
   gap: 1px;
-  background: rgba(46, 40, 32, 0.14);
-  border: 2px solid rgba(46, 40, 32, 0.14);
+  background: rgba(46, 40, 32, 0.1);
+  border: var(--card-border);
   border-bottom: none;
-  border-radius: 16px 16px 0 0;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
   overflow: hidden;
 }
 
@@ -226,16 +218,11 @@
   color: var(--charcoal);
 }
 
-/* Matches the desktop table's container treatment: bordered, rounded,
-   flowing directly from .tabList above with no gap, so the two read as
-   one header-plus-body table instead of a separate toggle control.
-   2px, not 1px: matches the row dividers' weight (see .mobileRow)
-   and .tabList's own border above, so the left/right/bottom outer
-   edge of the table doesn't read lighter than everything inside it. */
+/* Join the tabs with no gap or doubled border. */
 .tabPanel {
-  border: 2px solid rgba(46, 40, 32, 0.14);
+  border: var(--card-border);
   border-top: none;
-  border-radius: 0 0 16px 16px;
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
   overflow: hidden;
 }
 
@@ -245,17 +232,12 @@
   background: var(--warm-white);
 }
 
-/* Padding moved here from .mobileRows, so each row's own border-top
-   spans the full card width instead of stopping at the container's
-   inset padding. 2px, not 1px: matches the weight the top divider used
-   to have by accident (from .tabList's border-bottom stacking with this
-   one), now applied deliberately and consistently to every divider,
-   including the one right below the toggle row. */
+/* Full-width, single-line dividers match the outer border. */
 .mobileRow {
   display: flex;
   gap: 16px;
   padding: 14px 20px;
-  border-top: 2px solid rgba(46, 40, 32, 0.14);
+  border-top: var(--card-border);
 }
 
 .mobileRowLabel {
@@ -276,13 +258,13 @@
 /* Matches .toolsStripSlot's own margin-top below: same gap above both
    "Part-time no longer..." and "Tools in my stack". */
 .part2 {
-  margin-top: 56px;
+  margin-top: 64px;
 }
 
 /* Statement stays on one line at 1024px+ (see the min-width query below);
    wraps normally under that. */
 .part2 .partStatement {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 @media (min-width: 1024px) {
@@ -317,7 +299,7 @@
    equal-width columns. */
 .toolsStripSlot {
   max-width: 680px;
-  margin-top: 56px;
+  margin-top: 64px;
 }
 
 .cta {
@@ -402,14 +384,25 @@
     padding: var(--section-padding-v-mobile) 0;
   }
 
-  /* Same gap above "Part-time no longer..." and "Tools in my stack" on
-     mobile too (see .toolsStripSlot's own mobile override below). */
+  .heading {
+    margin-bottom: 16px;
+  }
+
+  .partStatement {
+    margin-bottom: 24px;
+  }
+
+  /* Match the gap above the second part and the tools strip. */
   .part2 {
-    margin-top: 32px;
+    margin-top: 40px;
+  }
+
+  .part2 .partStatement {
+    margin-bottom: 20px;
   }
 
   .toolsStripSlot {
-    margin-top: 32px;
+    margin-top: 40px;
   }
 
   /* Full-width, matching the hero's own CTAs at this breakpoint. */

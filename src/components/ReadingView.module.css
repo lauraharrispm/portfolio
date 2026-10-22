@@ -5,7 +5,7 @@
   z-index: 190;
   /* Light wash instead of a dark scrim: the panel reads as a white card
      growing from the summary card, not a modal punched into a dark page. */
-  background: rgba(250, 249, 246, 0.9);
+  background: rgba(251, 247, 240, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,8 +19,9 @@
   height: 100%;
   max-height: 860px;
   background: var(--white);
-  border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(46, 40, 32, 0.14);
+  border-radius: var(--card-radius);
+  border: var(--card-border);
+  box-shadow: 0 8px 24px rgba(46, 40, 32, 0.08);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -317,7 +318,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(250, 249, 246, 0.9);
+  background: rgba(251, 247, 240, 0.9);
   color: var(--charcoal);
   display: flex;
   align-items: center;
@@ -372,6 +373,7 @@
     max-width: none;
     max-height: none;
     border-radius: 0;
+    border: none;
   }
 
   .content {

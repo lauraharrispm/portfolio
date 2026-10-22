@@ -4,12 +4,6 @@
   padding: var(--band-gap) 0 var(--section-padding-v);
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding-top: var(--band-gap-mobile);
-  }
-}
-
 /* ─── Two columns: content left, booking widget right ──────────────── */
 .inner {
   display: grid;
@@ -30,7 +24,7 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .body {
@@ -189,7 +183,11 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: var(--section-padding-v-mobile) 0;
+    padding: var(--band-gap-mobile) 0 var(--section-padding-v-mobile);
+  }
+
+  .heading {
+    margin-bottom: 20px;
   }
 
   .inner {

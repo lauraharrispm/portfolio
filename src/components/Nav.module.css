@@ -150,13 +150,12 @@
 }
 
 /* ── Mobile drawer ── */
-/* Card-style shadow at the bottom edge, same token as the site's other
-   floating/card elements (AskChat's input, LetsChat's form), so the
-   popout reads as one consistent object with the rest of the page. */
+/* A fine lower edge separates the open menu from the page. */
 .drawer {
   background: var(--warm-white);
   padding: 20px 0 28px;
-  box-shadow: var(--card-shadow);
+  box-shadow: none;
+  border-bottom: 1px solid rgba(46, 40, 32, 0.08);
 }
 
 .drawer ul {
@@ -193,7 +192,7 @@
 
 @media (max-width: 999px) {
   .nav {
-    box-shadow: 0 2px 8px rgba(46, 40, 32, 0.1);
+    box-shadow: 0 1px 0 rgba(46, 40, 32, 0.08);
   }
 
   /* No seam over the hero here either. */
