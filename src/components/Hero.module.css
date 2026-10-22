@@ -99,6 +99,13 @@
   margin-bottom: 20px;
 }
 
+/* Desktop only: the subhead breaks before "align engineering". */
+@media (max-width: 900px) {
+  .desktopBreak {
+    display: none;
+  }
+}
+
 .subhead {
   font-size: 1.0625rem;
   color: var(--charcoal);

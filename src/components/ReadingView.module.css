@@ -134,44 +134,12 @@
   color: var(--charcoal);
 }
 
-/* Engagement and funnel-stage pills: same look as the summary card's
-   (see WorkSummary.module.css .engagement / .tag). */
-/* Pills wrap as one group, never split across lines (see WorkSummary). */
-.pills {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.engagement,
-.tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-
-.engagement {
-  color: var(--charcoal);
-  background: var(--warm-tint);
-}
-
-.tag {
-  color: var(--coral);
-  background: rgba(240, 112, 82, 0.1);
-}
-
-/* Dot between company and funding stage, inside the same label. */
 .metaDot {
-  color: var(--charcoal-muted);
-  margin: 0 6px;
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--charcoal);
 }
 
 .title {

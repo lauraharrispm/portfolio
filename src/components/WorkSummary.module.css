@@ -127,48 +127,13 @@
   color: var(--charcoal);
 }
 
-/* Engagement + funnel-stage pills, kept together as one flex item in
-   .meta so they never split across the company line and the next. */
-.pills {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-
-/* A pill like .tag below, but a light cream/tan fill (same var(--warm-tint)
-   used for the Hero outcome boxes and the How I Work table's header row)
-   with charcoal text instead of coral, so it reads as a distinct,
-   quieter label rather than competing with the real funnel-stage tag.
-   A sibling of .company in .meta's own flex row now, not nested inside
-   it: spacing comes from .meta's gap (same as every other pill there),
-   not a margin-left of its own, so when it wraps onto its own line at
-   narrow widths it sits flush left instead of carrying that margin over
-   as a stray indent. */
-.engagement {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--charcoal);
-  background: var(--warm-tint);
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-
-.tag {
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--coral);
-  background: rgba(240, 112, 82, 0.1);
-  padding: 4px 10px;
-  border-radius: 100px;
+/* Small dot between meta labels, in the label's own color. */
+.metaDot {
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--charcoal);
 }
 
 .title {

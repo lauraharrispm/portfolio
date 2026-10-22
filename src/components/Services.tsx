@@ -104,7 +104,7 @@ export default function Services() {
                 <p className={styles.stageBody}>
                   {stage.body}{" "}
                   <a className={styles.stageLink} href={stage.href}>
-                    Read the full story{" "}
+                    See an example{" "}
                     <span className={styles.stageLinkArrow} aria-hidden="true">
                       →
                     </span>

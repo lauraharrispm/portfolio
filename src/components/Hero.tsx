@@ -39,7 +39,7 @@ export default function Hero() {
             </h1>
             <p className={styles.subhead}>
               I help seed to Series B startups stand up product-led growth,
-              align engineering, and ship faster.
+              <br className={styles.desktopBreak} /> align engineering, and ship faster.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export default function Hero() {
 
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
-                <li key={outcome.company} className={styles.outcomeItem} data-outcome>
+                <li key={outcome.company} className={styles.outcomeItem}>
                   <span className={styles.outcomeStat}>{outcome.stat}</span>
                   <span>
                     at{" "}

@@ -1,7 +1,7 @@
-/* Deep sage: in the brand family (sage = "good" in the LinkedIn series),
-   clearly not the coral CTA color, and white text on it is 5.4:1. */
+/* Brand charcoal: reads as a person's note, never as a coral CTA, and
+   white text on it is 14.6:1. */
 .root {
-  --cursor-chat: #56724f;
+  --cursor-chat: var(--charcoal);
   position: absolute;
   left: 0;
   top: 0;

@@ -7,7 +7,8 @@ import styles from "./CursorChat.module.css";
 // hello in cursor chat, then fades out. Decoration only: desktop with a
 // real pointer, once per session, never under reduced motion, hidden from
 // screen readers, never blocks a click. Spec: the design partner's
-// .context/site-hero-cursor-chat/notes.md.
+// .context/site-hero-cursor-chat/notes.md (moved up above the headline
+// and recolored charcoal after review).
 
 const MESSAGE = "Hey, I'm Laura. Nice to meet you!";
 
@@ -58,16 +59,21 @@ export default function CursorChat() {
     const root = rootRef.current;
     const tag = tagRef.current;
     const hero = document.getElementById("hero");
-    const lastOutcome = hero?.querySelector<HTMLElement>("[data-outcome]:last-of-type");
-    if (!root || !tag || !hero || !lastOutcome) return;
+    const headline = hero?.querySelector<HTMLElement>("h1");
+    if (!root || !tag || !hero || !headline) return;
 
-    // Resting tip: just right of and below the last outcome box. The path
-    // starts off the right edge and curves in below the photo.
+    // Resting tip: in the open space just above the headline, over the
+    // end of its first line, so the hello lands where the eye already is
+    // (the bubble sits between the nav and the headline, clear of the
+    // photo). The path comes in from the right, above the photo.
     const heroRect = hero.getBoundingClientRect();
-    const boxRect = lastOutcome.getBoundingClientRect();
-    const end = { x: boxRect.right - heroRect.left + 34, y: boxRect.bottom - heroRect.top + 21 };
-    const start = { x: heroRect.width + 40, y: end.y + 122 };
-    const ctrl = { x: end.x + 368, y: end.y + 112 };
+    const h1Rect = headline.getBoundingClientRect();
+    const end = {
+      x: h1Rect.left - heroRect.left + h1Rect.width * 0.55,
+      y: h1Rect.top - heroRect.top - 58,
+    };
+    const start = { x: heroRect.width + 40, y: end.y + 40 };
+    const ctrl = { x: end.x + 360, y: end.y - 20 };
 
     const place = (p: number) => {
       const q = 1 - p;

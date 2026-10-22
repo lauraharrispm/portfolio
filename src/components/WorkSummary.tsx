@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { projects } from "@/content/projects";
 import type { Project } from "@/content/projects";
@@ -273,20 +273,17 @@ function Card({ project, onOpen }: CardProps) {
       )}
 
       <div className={styles.text}>
+        {/* Company, engagement and funnel stage(s) as one quiet label,
+           separated by small dots, all in the company's type. */}
         <div className={styles.meta}>
-          <span className={styles.company}>{project.company}</span>
-          {/* Pills wrap as one group: if they don't fit beside the
-             company name, they all move to the next line together. */}
-          <span className={styles.pills}>
-            {project.engagement && (
-              <span className={styles.engagement}>{project.engagement}</span>
-            )}
-            {project.tags.map((tag) => (
-              <span className={styles.tag} key={tag}>
-                {tag}
-              </span>
+          {[project.company, project.engagement, ...project.tags]
+            .filter((label): label is string => Boolean(label))
+            .map((label, i) => (
+              <Fragment key={`${label}-${i}`}>
+                {i > 0 && <span className={styles.metaDot} aria-hidden="true" />}
+                <span className={styles.company}>{label}</span>
+              </Fragment>
             ))}
-          </span>
         </div>
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.oneLiner}>{project.oneLineDesc}</p>

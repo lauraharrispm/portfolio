@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Fragment,
   useEffect,
   useRef,
   useState,
@@ -369,21 +370,17 @@ export default function StoryView({
           <span className={styles.headerSpacer} aria-hidden="true" />
         </div>
 
+        {/* Company, funding stage, engagement and funnel stage(s) as one
+           quiet label, separated by small dots. */}
         <div className={styles.metaStrip}>
-          <span className={styles.metaCompany}>
-            {project.company}
-            {project.fundingStage && ` · ${project.fundingStage}`}
-          </span>
-          <span className={styles.pills}>
-            {project.engagement && (
-              <span className={styles.engagement}>{project.engagement}</span>
-            )}
-            {project.tags.map((tag) => (
-              <span className={styles.tag} key={tag}>
-                {tag}
-              </span>
+          {[project.company, project.fundingStage, project.engagement, ...project.tags]
+            .filter((label): label is string => Boolean(label))
+            .map((label, i) => (
+              <Fragment key={`${label}-${i}`}>
+                {i > 0 && <span className={styles.metaDot} aria-hidden="true" />}
+                <span className={styles.metaCompany}>{label}</span>
+              </Fragment>
             ))}
-          </span>
         </div>
       </div>
 
