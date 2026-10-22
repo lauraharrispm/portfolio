@@ -24,8 +24,8 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   },
   {
     label: "Duration",
-    fractional: "2+ months",
-    projectBased: "Under 2 months",
+    fractional: "2+ months at 1 to 3 days a week",
+    projectBased: "Under 2 months at 1 to 3 days a week",
   },
 ];
 
