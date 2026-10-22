@@ -134,11 +134,10 @@ export default function LetsChat() {
         <div className={styles.inner}>
           <div className={styles.copy}>
             <p className={styles.body}>
-              Tell me where your product is today, what&apos;s getting in the
-              way, and what you want to change. In 30 minutes, we&apos;ll talk
-              through how I&apos;d approach it, whether a fractional or
-              project-based engagement fits, and whether we should work
-              together. You&apos;ll leave with a useful next step either way.
+              Tell me where your product is today and what&apos;s getting in
+              the way. We&apos;ll talk through how I&apos;d approach it and
+              whether working together makes sense. You&apos;ll leave with a
+              next step either way.
             </p>
 
             <div className={styles.fitBlock}>
