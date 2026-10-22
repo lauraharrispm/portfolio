@@ -1,0 +1,57 @@
+/* Brand charcoal: reads as a person's note, never as a coral CTA, and
+   white text on it is 14.6:1. */
+.root {
+  --cursor-chat: var(--charcoal);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.cursor {
+  display: block;
+  filter: drop-shadow(0 1px 1px rgba(46, 40, 32, 0.18));
+}
+
+/* Figma-style name tag: square-ish on the corner nearest the tip. When
+   chatting it widens into the chat bubble and hugs the typed text. */
+.tag {
+  position: absolute;
+  left: 12px;
+  top: 19px;
+  padding: 3px 8px;
+  border-radius: 4px 10px 10px 10px;
+  background: var(--cursor-chat);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  transition:
+    padding 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    line-height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.chatting {
+  left: var(--bubble-left, 12px);
+  min-width: 30px;
+  min-height: 38px;
+  /* Keep the whole greeting on one line; placement makes room for it. */
+  width: max-content;
+  white-space: nowrap;
+  padding: 8px 12px 9px;
+  border-radius: 4px 14px 14px 14px;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+@media (max-width: 1023px) {
+  .root {
+    display: none;
+  }
+}

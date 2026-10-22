@@ -104,7 +104,7 @@ export default function Services() {
                 <p className={styles.stageBody}>
                   {stage.body}{" "}
                   <a className={styles.stageLink} href={stage.href}>
-                    Case study{" "}
+                    See an example{" "}
                     <span className={styles.stageLinkArrow} aria-hidden="true">
                       →
                     </span>

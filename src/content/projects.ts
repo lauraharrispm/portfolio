@@ -71,12 +71,17 @@ export interface Project {
    * Reflection section. Opens the target study in place (reading view on
    * desktop, story view on mobile) rather than closing and reopening. */
   crossLink?: { toId: string; label: string };
+  /** Hidden from the site (not listed, not in next/previous, not offered
+   * by the chat) but kept here so it can be shown again by deleting this
+   * flag. */
+  hidden?: boolean;
 }
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
 // Sorted by `order` so every consumer (summary cards, reading view and
-// story view next/previous) follows the same sequence.
+// story view next/previous) follows the same sequence. Studies marked
+// `hidden` are filtered out here, so no consumer ever sees them.
 export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   // 1. Patient Intake Redesign
@@ -218,6 +223,7 @@ export const projects: Project[] = ([
   {
     id: "patient-portal",
     order: 7,
+    hidden: true,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -846,6 +852,7 @@ export const projects: Project[] = ([
   {
     id: "burrow-growth",
     order: 6,
+    hidden: true,
     tags: ["Acquisition"],
     company: "Burrow",
     thumbnail: "/burrow-3.png",
@@ -963,4 +970,6 @@ export const projects: Project[] = ([
       },
     ],
   },
-] satisfies Project[]).sort((a, b) => a.order - b.order);
+] satisfies Project[])
+  .filter((p) => !p.hidden)
+  .sort((a, b) => a.order - b.order);

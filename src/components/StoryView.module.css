@@ -108,38 +108,13 @@
   color: rgba(46, 40, 32, 0.5);
 }
 
-/* Smaller versions of the summary card's engagement and funnel-stage
-   pills (see WorkSummary.module.css .engagement / .tag). */
-/* Pills wrap as one group, never split across lines (see WorkSummary). */
-.pills {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.engagement,
-.tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 100px;
-}
-
-.engagement {
-  color: var(--charcoal);
-  background: var(--warm-tint);
-}
-
-.tag {
-  color: var(--coral);
-  background: rgba(240, 112, 82, 0.1);
+/* Small dot between meta labels, in the label's own color. */
+.metaDot {
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(46, 40, 32, 0.5);
 }
 
 /* ── Progress pips ── */
@@ -257,7 +232,7 @@
   line-height: 1.6;
   color: var(--charcoal);
   text-decoration: underline;
-  text-decoration-color: var(--coral);
+  text-decoration-color: currentColor;
   text-underline-offset: 3px;
 }
 
@@ -434,12 +409,11 @@
   gap: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .nextProjectCard:hover {
   border-color: var(--coral);
-  box-shadow: 0 4px 20px rgba(46, 40, 32, 0.08);
 }
 
 .nextProjectCard:focus-visible {
@@ -538,7 +512,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.4);
+  color: rgba(251, 247, 240, 0.4);
   margin-bottom: 8px;
 }
 
@@ -555,7 +529,7 @@
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.45);
+  color: rgba(251, 247, 240, 0.45);
   text-align: center;
   max-width: 280px;
   line-height: 1.4;
@@ -565,7 +539,7 @@
   font-family: var(--font-headline);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 300;
-  color: rgba(250, 249, 246, 0.8);
+  color: rgba(251, 247, 240, 0.8);
   text-align: center;
   margin-top: 8px;
 }

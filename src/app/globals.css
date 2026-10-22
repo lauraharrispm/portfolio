@@ -1,14 +1,13 @@
 /* ─── Design Tokens ────────────────────────────────────────────── */
 :root {
   --white: #FFFFFF;
-  --warm-white: #FAF9F6;
+  --warm-white: #FBF7F0;
   --blush-peach: #FAD5C8;
   --coral: #F07052;
   --coral-dark: #d85c3f;
   /* Light coral tint for icon-circle fills (see HowIWork's AI-native panel) */
   --coral-tint: #FBE7DF;
-  /* Warm neutral tint for the engagement table's header row (see HowIWork),
-     also reused for Hero's outcome boxes to match that same fill. */
+  /* Warm neutral tint for the engagement table's header row. */
   --warm-tint: #F3EDE6;
   --charcoal: #2E2820;
   --charcoal-muted: #6b625a;
@@ -20,17 +19,21 @@
   --stage-bar-3: #F39277;
 
   --max-width: 1200px;
-  --section-padding-v: 36px;
-  --section-padding-v-mobile: 22px;
+  --section-padding-v: 44px;
+  --section-padding-v-mobile: 28px;
+  /* Space on each side of a tinted-band edge (hero bottom / next
+     section's top, and the section before Let's chat / its top), so
+     tint and cream get equal room at every transition. */
+  --band-gap: calc(var(--section-padding-v) * 2);
+  --band-gap-mobile: calc(var(--section-padding-v-mobile) * 2);
   --card-padding: 24px;
   --grid-gap: 24px;
   --nav-height: 64px;
 
-  /* Card surface: used wherever a container needs to read as its own
-     shape now that every section shares one cream background. */
+  /* Flat content surfaces: a fine border separates them from the page. */
   --card-radius: 8px;
   --card-border: 1px solid rgba(46, 40, 32, 0.1);
-  --card-shadow: 0 2px 10px rgba(46, 40, 32, 0.05);
+  --card-shadow: none;
 
   --font-headline: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-instrument-sans), system-ui, sans-serif;
@@ -95,5 +98,26 @@ button {
 @media (max-width: 768px) {
   .container {
     padding: 0 20px;
+  }
+}
+
+/* ─── Tinted bands (hero, Let's chat): equal space on both sides of
+   each edge. Written against the section order rather than inside each
+   component, so it holds whether or not the AI chat section is on. ── */
+#hero + section {
+  padding-top: var(--band-gap);
+}
+
+section:has(+ #book) {
+  padding-bottom: var(--band-gap);
+}
+
+@media (max-width: 768px) {
+  #hero + section {
+    padding-top: var(--band-gap-mobile);
+  }
+
+  section:has(+ #book) {
+    padding-bottom: var(--band-gap-mobile);
   }
 }

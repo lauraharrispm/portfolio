@@ -1,6 +1,7 @@
 .section {
-  background: var(--warm-white);
-  padding: var(--section-padding-v) 0;
+  /* Same light coral band as the hero, so the page opens and closes on it. */
+  background: var(--coral-tint);
+  padding: var(--band-gap) 0 var(--section-padding-v);
 }
 
 /* ─── Two columns: content left, booking widget right ──────────────── */
@@ -23,7 +24,7 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .body {
@@ -57,20 +58,25 @@
   list-style: none;
 }
 
+/* A small peach dot per item, the same dot as the "What I do" stages,
+   centered on the first line (15px text at 1.5 line-height). */
+.fitList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(0.75em - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--stage-bar-2);
+}
+
 .fitList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  position: relative;
+  padding-left: 18px;
   font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--charcoal);
-}
-
-.icon {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  margin-top: 0.15em;
 }
 
 /* ─── Booking embed (Cal.com) ───────────────────────────────────── */
@@ -166,7 +172,7 @@
 .altContact a {
   color: var(--charcoal);
   text-decoration: underline;
-  text-decoration-color: var(--coral);
+  text-decoration-color: currentColor;
   text-underline-offset: 3px;
   transition: color var(--transition);
 }
@@ -177,7 +183,11 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: var(--section-padding-v-mobile) 0;
+    padding: var(--band-gap-mobile) 0 var(--section-padding-v-mobile);
+  }
+
+  .heading {
+    margin-bottom: 20px;
   }
 
   .inner {

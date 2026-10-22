@@ -1,9 +1,9 @@
 "use client";
 
+import CursorChat from "./CursorChat";
 import styles from "./Hero.module.css";
 import { trackEvent } from "@/lib/analytics";
 import HeroProfile from "./HeroProfile";
-import ResultIcon from "./ResultIcon";
 
 const OUTCOMES = [
   {
@@ -26,6 +26,7 @@ const OUTCOMES = [
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
+      <CursorChat />
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
@@ -37,9 +38,8 @@ export default function Hero() {
               <span className={styles.noWrap}>a full-time hire.</span>
             </h1>
             <p className={styles.subhead}>
-              You found product-market fit. Now it&apos;s time to scale it. I help
-              seed to Series C startups stand up product-led growth, align
-              engineering, and ship faster.
+              I help seed to Series B startups stand up product-led growth,
+              <br className={styles.desktopBreak} /> align engineering, and ship faster.
             </p>
           </div>
 
@@ -57,9 +57,9 @@ export default function Hero() {
             <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
-                  <ResultIcon kind="trend" className={styles.outcomeIcon} />
+                  <span className={styles.outcomeStat}>{outcome.stat}</span>
                   <span>
-                    {outcome.stat} at{" "}
+                    at{" "}
                     <a
                       href={outcome.href}
                       target="_blank"

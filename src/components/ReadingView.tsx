@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { projects } from "@/content/projects";
 import type { Project, ProjectSection } from "@/content/projects";
@@ -163,7 +163,7 @@ function DesktopReadingView({
       width: originRect.width,
       height: originRect.height,
       margin: 0,
-      borderRadius: 20,
+      borderRadius: "var(--card-radius)",
     };
   });
 
@@ -184,7 +184,7 @@ function DesktopReadingView({
         width,
         height,
         margin: 0,
-        borderRadius: 16,
+        borderRadius: "var(--card-radius)",
         transition: `top ${EXPAND_MS}ms ${EXPAND_EASE}, left ${EXPAND_MS}ms ${EXPAND_EASE}, width ${EXPAND_MS}ms ${EXPAND_EASE}, height ${EXPAND_MS}ms ${EXPAND_EASE}, border-radius ${EXPAND_MS}ms ${EXPAND_EASE}`,
       });
     }
@@ -299,29 +299,17 @@ function DesktopReadingView({
         <div ref={contentRef} className={styles.content}>
           {/* Full study header before Problem */}
           <div className={styles.studyHeader}>
-            {/* Company and funding stage share one label ("who and
-               when"), then the same engagement + funnel-stage pills as the
-               summary card ("what kind of work"). */}
+            {/* Company, funding stage, engagement and funnel stage(s) as
+               one quiet label, separated by small dots. */}
             <div className={styles.metaLine}>
-              <span className={styles.company}>
-                {project.company}
-                {project.fundingStage && (
-                  <>
-                    <span className={styles.metaDot} aria-hidden="true">·</span>
-                    {project.fundingStage}
-                  </>
-                )}
-              </span>
-              <span className={styles.pills}>
-                {project.engagement && (
-                  <span className={styles.engagement}>{project.engagement}</span>
-                )}
-                {project.tags.map((tag) => (
-                  <span className={styles.tag} key={tag}>
-                    {tag}
-                  </span>
+              {[project.company, project.fundingStage, project.engagement, ...project.tags]
+                .filter((label): label is string => Boolean(label))
+                .map((label, i) => (
+                  <Fragment key={`${label}-${i}`}>
+                    {i > 0 && <span className={styles.metaDot} aria-hidden="true" />}
+                    <span className={styles.company}>{label}</span>
+                  </Fragment>
                 ))}
-              </span>
             </div>
             <h1 id="reading-view-title" className={styles.title}>
               {project.title}
@@ -470,7 +458,9 @@ function SectionBlock({ section, project, onLightbox, onSwitchProject }: Section
         </ul>
       )}
 
-      {section.id === "reflection" && project.crossLink && (
+      {section.id === "reflection" &&
+          project.crossLink &&
+          projects.some((p) => p.id === project.crossLink!.toId) && (
         <button
           className={styles.crossLink}
           onClick={() => onSwitchProject(project.crossLink!.toId)}

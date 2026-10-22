@@ -37,7 +37,7 @@
    .convoHeader, which already gets its own margin-bottom and would
    double up if this applied there too. */
 .emptyState > .heading {
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 /* Same treatment as the other section headings (Services/HowIWork/
@@ -59,7 +59,7 @@
   gap: 12px;
   background: var(--white);
   border: var(--card-border);
-  border-radius: 100px;
+  border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 8px 8px 8px 24px;
 }
@@ -162,7 +162,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .convoHeader .heading {
@@ -318,7 +318,7 @@
   gap: 12px;
   background: var(--white);
   border: var(--card-border);
-  border-radius: 100px;
+  border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 6px 6px 6px 20px;
 }
@@ -357,7 +357,7 @@
 .disclaimer a {
   color: var(--charcoal-muted);
   text-decoration: underline;
-  text-decoration-color: var(--coral);
+  text-decoration-color: currentColor;
   text-underline-offset: 2px;
   transition: color var(--transition);
 }
@@ -367,6 +367,14 @@
 }
 
 @media (max-width: 768px) {
+  .emptyState > .heading {
+    margin-bottom: 28px;
+  }
+
+  .convoHeader {
+    margin-bottom: 20px;
+  }
+
   .section {
     padding: var(--section-padding-v-mobile) 0;
   }
@@ -381,7 +389,7 @@
 
   .emptyForm {
     align-items: center;
-    border-radius: 30px;
+    border-radius: var(--card-radius);
     padding: 8px 8px 8px 20px;
   }
 
