@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <Nav chatEnabled={chatEnabled} />
       <main>
-        <Hero chatEnabled={chatEnabled} />
+        <Hero />
         {chatEnabled && <AskChat />}
         <Services />
         <HowIWork />

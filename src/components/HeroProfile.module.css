@@ -9,11 +9,6 @@
 /* Flat photo: no drop shadow, and the same 4px corner radius as the
    buttons, so it reads like a printed photo on the page rather than a
    floating card. Desktop size is 20% bigger than the previous 259px. */
-/* Positioning context for the hello bubble, sized to the photo. */
-.photoFrame {
-  position: relative;
-}
-
 .photoWrap {
   width: 311px;
   height: 311px;
@@ -28,115 +23,6 @@
   object-fit: cover;
 }
 
-/* ─── Hello bubble ─────────────────────────────────────────────────
-   Blush bubble from the testimonials chat language. Its bottom-left
-   corner overlaps the photo's top-right corner, over the wall and never
-   the face; the tail points down-left toward the photo. */
-.bubble {
-  position: absolute;
-  left: 205px;
-  bottom: calc(100% - 16px);
-  padding: 10px 14px;
-  border-radius: 18px 18px 18px 6px;
-  background: var(--blush-peach);
-  color: var(--charcoal);
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  line-height: 1.35;
-  text-align: left;
-  white-space: nowrap;
-  cursor: pointer;
-  transform-origin: bottom left;
-  animation: bubble-in 0.25s ease-out both;
-}
-
-.bubble::before {
-  content: "";
-  position: absolute;
-  left: -5px;
-  bottom: 0;
-  width: 12px;
-  height: 10px;
-  background: var(--blush-peach);
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-
-.bubble:focus-visible {
-  outline: 2px solid var(--coral);
-  outline-offset: 2px;
-}
-
-.bubbleText {
-  display: block;
-  animation: bubble-text-in 0.3s ease-out both;
-}
-
-.typingDots {
-  display: flex;
-  gap: 4px;
-  padding: 6px 2px;
-}
-
-.typingDots span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--charcoal-muted);
-  animation: bubble-typing 1.2s infinite ease-in-out;
-}
-
-.typingDots span:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.typingDots span:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-@keyframes bubble-in {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bubble-text-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bubble-typing {
-  0%, 60%, 100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  30% {
-    transform: translateY(-3px);
-    opacity: 1;
-  }
-}
-
-/* The typing bubble only plays its entrance; the message that replaces
-   it keeps the same box, so don't replay the scale-in. */
-.bubble:not(.bubbleTyping) {
-  animation: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bubble,
-  .bubbleText {
-    animation: none;
-  }
-}
-
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
@@ -146,13 +32,5 @@
     width: 163px;
     height: 163px;
     border-radius: 4px;
-  }
-}
-
-/* Desktop only: once the hero stacks (900px and below) the bubble would
-   crowd the subhead, and the chat is one short scroll away. */
-@media (max-width: 900px) {
-  .bubble {
-    display: none;
   }
 }
