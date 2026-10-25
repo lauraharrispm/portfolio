@@ -39,10 +39,19 @@ export const metadata: Metadata = {
     url: "https://www.lauraharrispm.com/",
     siteName: "Laura Harris",
     type: "website",
-    images: [],
+    images: [
+      {
+        url: "/headshot.jpg",
+        width: 2000,
+        height: 2000,
+        alt: "Laura Harris",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary",
+    images: [{ url: "/headshot.jpg", alt: "Laura Harris" }],
     title: "Laura Harris | Fractional Product Leader",
     description:
       "Fractional product leader for startups with product-market fit. Product-led growth (PLG) leadership without a full-time hire.",
