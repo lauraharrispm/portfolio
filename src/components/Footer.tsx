@@ -38,8 +38,7 @@ export default function Footer() {
         </a>
       </div>
       <p className={`container ${styles.made}`}>
-        Built with Claude Code, with every word and design decision approved
-        by me.
+        Designed and written by me, built with Claude Code.
       </p>
       <div className={`container ${styles.bottom}`}>
         <span>© 2026 Laura Harris Consulting</span>
