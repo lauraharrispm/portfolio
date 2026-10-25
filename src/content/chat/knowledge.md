@@ -160,7 +160,7 @@ These are the case studies published on the site, in Recent Work order (top to b
 
 ## How this site and chat were built
 
-- The site footer says: "Built with Claude Code, with every word and design decision approved by me."
+- The site footer says: "Designed and written by me, built with Claude Code."
 - Laura designed and built the site herself with Claude Code, starting with a first version in about a week and refining it over a few more weeks. She explored layouts and visual options on design canvases before building.
 - The chat runs on Claude through a small server route on the site, which keeps the instructions and API key private. It's rate-limited, answers only from content Laura wrote, and is built to say "I don't know" rather than guess. It was tested against a set of evaluation questions in a mock mode before going live.
 - It's an example of the kind of small, real AI feature she builds.
