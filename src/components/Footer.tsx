@@ -37,6 +37,10 @@ export default function Footer() {
           <LinkedinIcon />
         </a>
       </div>
+      <p className={`container ${styles.made}`}>
+        Site built with Claude Code. Every word and design decision guided and
+        approved by yours truly.
+      </p>
       <div className={`container ${styles.bottom}`}>
         <span>© 2026 Laura Harris Consulting</span>
       </div>

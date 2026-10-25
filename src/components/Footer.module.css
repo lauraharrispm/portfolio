@@ -40,8 +40,18 @@
   color: var(--blush-peach);
 }
 
-.bottom {
+/* AI disclosure line: one plain sentence, brighter than the copyright
+   so it stays legible on charcoal, but still quieter than the name row. */
+.made {
   margin-top: 20px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(251, 247, 240, 0.62);
+  text-align: center;
+}
+
+.bottom {
+  margin-top: 8px;
   font-size: 0.75rem;
   color: rgba(251, 247, 240, 0.35);
   text-align: center;
