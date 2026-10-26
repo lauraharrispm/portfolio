@@ -54,7 +54,11 @@ export default function Hero() {
               <HeroProfile />
             </div>
 
-            <ul className={styles.outcomesList}>
+            {/* Desktop: display:contents, so the list stays the grid item.
+               Mobile: one card holding the heading and a bulleted list. */}
+            <div className={styles.outcomesCard}>
+              <p className={styles.outcomesHeading}>My track record:</p>
+              <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
                   {/* Desktop: the stat, then "at Company" on line two. */}
@@ -87,7 +91,8 @@ export default function Hero() {
                   </span>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
           </div>
 
           <div className={styles.ctas}>

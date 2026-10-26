@@ -146,6 +146,16 @@
   display: block;
 }
 
+/* Desktop: the card wrapper gets out of the way and the heading hides,
+   so the three boxes render exactly as before. */
+.outcomesCard {
+  display: contents;
+}
+
+.outcomesHeading {
+  display: none;
+}
+
 /* Only one of the two layouts shows at a time (see the 768px block). */
 .outcomeInline {
   display: none;
@@ -338,6 +348,49 @@
     padding: 10px 12px;
     font-size: 0.75rem;
     line-height: 1.35;
+  }
+
+  /* One card instead of three boxes: page cream on the hero tint, with
+     a heading and a bulleted list inside. */
+  .outcomesCard {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    background: var(--warm-white);
+    border-radius: var(--card-radius);
+    padding: 12px 14px;
+  }
+
+  .outcomesHeading {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: var(--charcoal-muted);
+    margin-bottom: 8px;
+  }
+
+  /* Bullets match the Let's chat fit list: 6px peach dot, centered on the
+     first line, 18px indent. */
+  .outcomesList {
+    gap: 6px;
+  }
+
+  .outcomeItem {
+    position: relative;
+    background: none;
+    border-radius: 0;
+    padding: 0 0 0 18px;
+  }
+
+  .outcomeItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(0.675em - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--stage-bar-2);
   }
 
   /* "Company: stat" on one line, each box only as wide as its text.
