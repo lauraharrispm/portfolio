@@ -312,8 +312,8 @@
     grid-area: photorow;
   }
 
-  /* flex:0 0 128px, not a grid column: matches HeroProfile's own 768px
-     photo size (128px, which doesn't need to scale), as a fixed share
+  /* flex:0 0 108px, not a grid column: matches HeroProfile's own 768px
+     photo width (108px, which doesn't need to scale), as a fixed share
      of the flex row instead of a grid track. margin-bottom:0 resets the
      900px breakpoint's 40px (still inherited here, since both media
      conditions match below 768px): that leftover margin was the real
@@ -321,7 +321,7 @@
      margin box to 203px, so align-items:center centered THAT inflated
      box, not the visible photo, making it look top-aligned. */
   .panelCol {
-    flex: 0 0 128px;
+    flex: 0 0 108px;
     align-self: stretch;
     margin-bottom: 0;
     display: flex;
@@ -360,7 +360,7 @@
     min-width: 0;
     background: var(--warm-white);
     border-radius: var(--card-radius);
-    padding: 12px 14px;
+    padding: 12px;
     /* Stretched to the photo's height (see .photoRow), with the list
        centered inside when the photo is the taller of the two. */
     display: flex;
@@ -368,12 +368,16 @@
     justify-content: center;
   }
 
+  /* Serif italic, like the Let's chat fit list heading above its own
+     peach-dot list, scaled down for the card. */
   .outcomesHeading {
     display: block;
-    font-size: 0.75rem;
-    line-height: 1.35;
-    color: var(--charcoal-muted);
-    margin-bottom: 8px;
+    font-family: var(--font-headline);
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 6px;
   }
 
   /* Bullets match the Let's chat fit list: 6px peach dot, centered on the

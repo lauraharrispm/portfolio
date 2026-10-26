@@ -35,12 +35,12 @@
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
-   those boxes enough width to stay readable. 128px, not 163px: at 390px
-   wide that leaves the outcomes column 208px, enough for the longest
-   one-line box ("GlossGenius: 80% onboarding lift", 207px). */
+   those boxes enough width to stay readable. 108px, not 163px: at 390px
+   wide that leaves the outcomes card enough width for its longest
+   bullet ("GlossGenius: 80% onboarding lift") on one line. */
 @media (max-width: 768px) {
   /* Fills .panelCol's height so the photo always matches the outcomes
-     card beside it: 128px square at minimum, taller (cropped by
+     card beside it: 108px square at minimum, taller (cropped by
      object-fit) on narrow phones where the card wraps to more lines. */
   .wrap {
     flex: 1;
@@ -48,9 +48,9 @@
 
   .photoWrap {
     flex: 1;
-    width: 128px;
+    width: 108px;
     height: auto;
-    min-height: 128px;
+    min-height: 108px;
     border-radius: 4px;
   }
 }
