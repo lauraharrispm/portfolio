@@ -107,58 +107,58 @@
   margin-bottom: 32px;
 }
 
-/* The proof under the subhead: a plain list on the tint, no boxes.
-   Stacked with peach bullets by default; one line with peach dots
-   between items at 1100px and up (see the min-width block below).
+/* Row, not column: three boxes side by side, sized to add up to exactly
+   .content's own width (same max-width, same grid column) rather than a
+   separate measurement that could drift out of sync with it.
 
    38px, not 32px: the subhead-to-outcomes gap above this list is also a
    32px margin, but text carries about 6px of invisible "leading" space
-   below its glyphs, so 38px reads as the same gap. */
+   below its own visible glyphs (half of line-height minus font-size)
+   that a solid-colored box doesn't have, so a literal 32px box-model
+   match reads as visually SMALLER here than above the boxes. Verified
+   by pixel-measuring a real screenshot: 38px from the box's visible
+   bottom edge to the CTA button's visible top edge reads the same as
+   the ~38px from the subhead's last visible glyph to the box's top. */
 .outcomesList {
   grid-area: outcomes;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+  max-width: 640px;
   margin-bottom: 38px;
 }
 
-/* Bullets match the Let's chat fit list: 6px peach dot centered on the
-   first line, 18px indent. */
+/* Page cream on the hero's coral tint (tan went muddy on the tint). Each box is only as wide as its text: the stat on line one,
+   "at Company" on line two. */
 .outcomeItem {
-  position: relative;
-  padding-left: 18px;
+  flex: 0 0 auto;
+  min-width: 0;
+  background: var(--warm-white);
+  border-radius: var(--card-radius);
+  padding: 14px 16px;
   font-size: 0.9375rem;
-  line-height: 1.5;
   color: var(--charcoal);
+  line-height: 1.4;
 }
 
-.outcomeItem::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: calc(0.75em - 3px);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--stage-bar-2);
+/* The stat on its own line, "at Company" always on the second. */
+.outcomeStat {
+  display: block;
 }
 
-/* Desktop: the card wrapper gets out of the way, so the list stays the
-   grid item. On mobile it becomes the card beside the photo. */
+/* Desktop: the card wrapper gets out of the way, so the three boxes
+   render exactly as before. */
 .outcomesCard {
   display: contents;
 }
 
-/* When a line has to wrap, break after "Company:" and keep the stat
-   whole instead of orphaning "lift". */
-.outcomeStat {
-  white-space: nowrap;
+/* Only one of the two layouts shows at a time (see the 768px block). */
+.outcomeInline {
+  display: none;
 }
 
-/* Regular weight: the underline marks the link. */
 .outcomeLink {
-  font-weight: 400;
+  font-weight: 500;
   color: var(--charcoal);
   text-decoration: underline;
   text-decoration-color: currentColor;
@@ -168,33 +168,6 @@
 
 .outcomeLink:hover {
   color: var(--coral);
-}
-
-/* One line at 1100px and up: the dots move between items instead of
-   before each one. max-content lets the line run a few px past the
-   640px text column; the photo column still clears it at 1100px. */
-@media (min-width: 1100px) {
-  .outcomesList {
-    flex-direction: row;
-    width: max-content;
-    gap: 0;
-  }
-
-  .outcomeItem {
-    padding-left: 0;
-  }
-
-  .outcomeItem:first-child::before {
-    display: none;
-  }
-
-  .outcomeItem + .outcomeItem {
-    padding-left: 26px;
-  }
-
-  .outcomeItem + .outcomeItem::before {
-    left: 10px;
-  }
 }
 
 .ctas {
@@ -351,33 +324,93 @@
     flex-direction: column;
   }
 
-  /* One card instead of the plain list: page cream on the hero tint,
-     stretched to the photo's height (see .photoRow), with the list
-     centered inside when the photo is the taller of the two. */
+  /* flex:none: the list sits inside .outcomesCard (which takes the
+     remaining width beside the photo), so it keeps its natural height
+     and the card can center it vertically. min-width:0 lets it shrink
+     below its content's min-content width instead of overflowing. */
+  .outcomesList {
+    flex: none;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  /* Small label size (12px) here, not body: the outcomes column is only
+     about 100px wide beside the photo at 320px, and "GlossGenius" can't
+     wrap, so body size pushes the whole hero past the screen edge. */
+  .outcomeItem {
+    flex: none;
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  /* One card instead of three boxes: page cream on the hero tint, with
+     a bulleted list inside. */
   .outcomesCard {
+    display: block;
     flex: 1;
     min-width: 0;
     background: var(--warm-white);
     border-radius: var(--card-radius);
     padding: 12px;
+    /* Stretched to the photo's height (see .photoRow), with the list
+       centered inside when the photo is the taller of the two. */
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
+  /* Bullets match the Let's chat fit list: 6px peach dot, centered on the
+     first line, 18px indent. */
   .outcomesList {
-    margin-bottom: 0;
+    gap: 6px;
   }
 
-  /* Small label size (12px) here, not body: the card is only about
-     190px wide beside the photo on a standard iPhone. */
   .outcomeItem {
-    font-size: 0.75rem;
-    line-height: 1.35;
+    position: relative;
+    background: none;
+    border-radius: 0;
+    padding: 0 0 0 18px;
   }
 
   .outcomeItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
     top: calc(0.675em - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--stage-bar-2);
+  }
+
+  /* "Company: stat" on one line, each box only as wide as its text.
+     Below about 390px wide the longest one wraps to two lines rather
+     than overflowing. */
+  .outcomesList {
+    align-items: flex-start;
+  }
+
+  .outcomeStacked {
+    display: none;
+  }
+
+  .outcomeInline {
+    display: inline;
+  }
+
+  /* Regular weight inside the card: the underline marks the link. */
+  .outcomeInline .outcomeLink {
+    font-weight: 400;
+  }
+
+  /* When a box has to wrap (phones under ~390px), break after
+     "Company:" and keep the stat whole instead of orphaning "lift". */
+  .outcomeInlineStat {
+    white-space: nowrap;
   }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px
@@ -398,7 +431,7 @@
 /* The narrowest phones can't fit even the stat alone, so let it wrap
    rather than push the hero past the screen edge. */
 @media (max-width: 359px) {
-  .outcomeStat {
+  .outcomeInlineStat {
     white-space: normal;
   }
 }
