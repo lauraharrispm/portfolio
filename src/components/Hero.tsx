@@ -54,12 +54,29 @@ export default function Hero() {
               <HeroProfile />
             </div>
 
-            <ul className={styles.outcomesList}>
+            {/* Desktop: display:contents, so the list stays the grid item.
+               Mobile: one card holding a bulleted list. */}
+            <div className={styles.outcomesCard}>
+              <ul className={styles.outcomesList}>
               {OUTCOMES.map((outcome) => (
                 <li key={outcome.company} className={styles.outcomeItem}>
-                  <span className={styles.outcomeStat}>{outcome.stat}</span>
-                  <span>
-                    at{" "}
+                  {/* Desktop: the stat, then "at Company" on line two. */}
+                  <span className={styles.outcomeStacked}>
+                    <span className={styles.outcomeStat}>{outcome.stat}</span>
+                    <span>
+                      at{" "}
+                      <a
+                        href={outcome.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.outcomeLink}
+                      >
+                        {outcome.company}
+                      </a>
+                    </span>
+                  </span>
+                  {/* Mobile: "Company: stat" on a single line. */}
+                  <span className={styles.outcomeInline}>
                     <a
                       href={outcome.href}
                       target="_blank"
@@ -68,10 +85,13 @@ export default function Hero() {
                     >
                       {outcome.company}
                     </a>
+                    :{" "}
+                    <span className={styles.outcomeInlineStat}>{outcome.stat}</span>
                   </span>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
           </div>
 
           <div className={styles.ctas}>

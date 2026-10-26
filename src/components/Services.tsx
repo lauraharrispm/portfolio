@@ -90,12 +90,8 @@ export default function Services() {
               <div className={styles.stageContent}>
                 <span className={styles.stageNumber}>{String(i + 1).padStart(2, "0")}</span>
                 <h3 className={styles.stageName}>{stage.category}</h3>
-                {/* .stageLink nested inside the paragraph, not a sibling
-                   after it: on mobile (its default inline display) that
-                   lets it flow right at the end of the body text instead
-                   of forcing its own line; desktop overrides it back to
-                   display:block (see the min-width:769px rule) to keep
-                   the previous on-its-own-line look there. */}
+                {/* .stageLink is display:block, so it always sits on its
+                   own line under the body text (see Services.module.css). */}
                 <p className={styles.stageBody}>
                   {stage.body}{" "}
                   <a className={styles.stageLink} href={stage.href}>
