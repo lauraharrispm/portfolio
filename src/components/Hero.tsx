@@ -55,29 +55,11 @@ export default function Hero() {
             </div>
 
             {/* Desktop: display:contents, so the list stays the grid item.
-               Mobile: one card holding the heading and a bulleted list. */}
+               Mobile: a card beside the photo. */}
             <div className={styles.outcomesCard}>
-              <p className={styles.outcomesHeading}>My track record:</p>
               <ul className={styles.outcomesList}>
-              {OUTCOMES.map((outcome) => (
-                <li key={outcome.company} className={styles.outcomeItem}>
-                  {/* Desktop: the stat, then "at Company" on line two. */}
-                  <span className={styles.outcomeStacked}>
-                    <span className={styles.outcomeStat}>{outcome.stat}</span>
-                    <span>
-                      at{" "}
-                      <a
-                        href={outcome.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.outcomeLink}
-                      >
-                        {outcome.company}
-                      </a>
-                    </span>
-                  </span>
-                  {/* Mobile: "Company: stat" on a single line. */}
-                  <span className={styles.outcomeInline}>
+                {OUTCOMES.map((outcome) => (
+                  <li key={outcome.company} className={styles.outcomeItem}>
                     <a
                       href={outcome.href}
                       target="_blank"
@@ -87,10 +69,9 @@ export default function Hero() {
                       {outcome.company}
                     </a>
                     :{" "}
-                    <span className={styles.outcomeInlineStat}>{outcome.stat}</span>
-                  </span>
-                </li>
-              ))}
+                    <span className={styles.outcomeStat}>{outcome.stat}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

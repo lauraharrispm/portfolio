@@ -13,15 +13,6 @@
   margin-bottom: 40px;
 }
 
-@media (min-width: 769px) {
-  /* Back to its own line on desktop (the link is nested inside
-     .stageBody now, see Services.tsx): mobile keeps the default inline
-     flow so it reads as the end of the sentence instead. */
-  .stageLink {
-    display: block;
-  }
-}
-
 /* ─── Funnel stages ─────────────────────────────────────────────── */
 .stages {
   display: grid;
@@ -125,7 +116,13 @@
   color: var(--charcoal-muted);
 }
 
+/* Always on its own line under the body text, on every screen size, so
+   "See an example →" never splits across two lines. fit-content keeps
+   the tap target and focus ring to the link's own width. */
 .stageLink {
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
   align-self: flex-start;
   margin-top: 4px;
   font-size: 0.9375rem;
