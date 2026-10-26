@@ -17,11 +17,12 @@
 
 /* ─── Panel ────────────────────────────────────────────────────────── */
 /* Every other section sits directly on the cream page; the chat gets its
-   own surface so it reads as a tool. Contrast does the lifting, not a
-   shadow: the white input sits on a slightly darker warm tint. Coral tint
-   stays reserved for the hero and Let's chat bands. */
+   own surface so it reads as a tool. A white panel lifts off the cream
+   without a shadow, and the inputs flip to cream so they read as fields
+   set into it. White (not warm tint) also keeps the coral-tint sent
+   bubbles visible: on warm tint the two were nearly the same value. */
 .panel {
-  background: var(--warm-tint);
+  background: var(--white);
   border: var(--card-border);
   border-radius: var(--card-radius);
   padding: 56px 48px;
@@ -68,13 +69,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--white);
+  background: var(--warm-white);
   border: var(--card-border);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 8px 8px 8px 24px;
   text-align: left;
-  transition: border-color var(--transition);
 }
 
 .emptyInput {
@@ -106,40 +106,14 @@
   font-weight: 400;
 }
 
-/* Keyboard cue, desktop only (the same query CursorChat and the
-   placeholder start gate test): there's no Enter key to point at on
-   touch. Rendered only while the field is empty. */
-.enterHint {
-  display: none;
-  flex-shrink: 0;
-  font-size: 0.75rem;
-  color: var(--charcoal-muted);
-  white-space: nowrap;
-}
-
-@media (min-width: 1024px) and (pointer: fine) {
-  .enterHint {
-    display: inline;
-  }
-}
-
 .emptyInput:focus-visible,
 .convoInput:focus-visible {
   outline: none;
 }
 
-.emptyForm:hover,
 .emptyForm:focus-within,
-.convoForm:hover:not(:has(input:disabled)),
 .convoForm:focus-within {
   border-color: var(--coral);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .emptyForm,
-  .convoForm {
-    transition: none;
-  }
 }
 
 .emptySubmit,
@@ -378,12 +352,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--white);
+  background: var(--warm-white);
   border: var(--card-border);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 6px 6px 6px 20px;
-  transition: border-color var(--transition);
 }
 
 .convoInput {

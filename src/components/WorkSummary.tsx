@@ -66,7 +66,7 @@ export default function WorkSummary() {
         els.forEach((el) => {
           if (!el) return;
           el.style.transform = "";
-          el.style.filter = "";
+          el.style.removeProperty("--recede");
         });
         return;
       }
@@ -79,12 +79,14 @@ export default function WorkSummary() {
         const travel = Math.max(curRect.height - PEEK, 1);
         const raw = (nextRect.top - curRect.top - PEEK) / travel;
         const progress = Math.min(Math.max(1 - raw, 0), 1);
-        // Scale + a slight brightness dim, never opacity: this card is
-        // still a fully opaque box sitting in front of the one behind it,
-        // so making it translucent would let that earlier card show
-        // through its whole body instead of just the peek strip above it.
+        // Scale + a warm-tint wash (see .card::after), never opacity: this
+        // card is still a fully opaque box sitting in front of the one
+        // behind it, so making it translucent would let that earlier card
+        // show through its whole body instead of just the peek strip
+        // above it. The wash replaces a brightness() dim, which turned the
+        // white card gray, off palette.
         cur.style.transform = `scale(${1 - progress * 0.04})`;
-        cur.style.filter = `brightness(${1 - progress * 0.08})`;
+        cur.style.setProperty("--recede", String(progress));
       }
     };
 

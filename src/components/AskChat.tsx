@@ -549,13 +549,6 @@ export default function AskChat() {
                   }}
                   maxLength={500}
                 />
-                {/* Desktop-only keyboard cue (see .enterHint); Enter already
-                   submits, so it's hidden from assistive tech. */}
-                {!inputValue && (
-                  <span className={styles.enterHint} aria-hidden="true">
-                    ↵ to ask
-                  </span>
-                )}
                 <button
                   type="submit"
                   className={styles.emptySubmit}
