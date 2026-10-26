@@ -39,9 +39,18 @@
    wide that leaves the outcomes column 208px, enough for the longest
    one-line box ("GlossGenius: 80% onboarding lift", 207px). */
 @media (max-width: 768px) {
+  /* Fills .panelCol's height so the photo always matches the outcomes
+     card beside it: 128px square at minimum, taller (cropped by
+     object-fit) on narrow phones where the card wraps to more lines. */
+  .wrap {
+    flex: 1;
+  }
+
   .photoWrap {
+    flex: 1;
     width: 128px;
-    height: 128px;
+    height: auto;
+    min-height: 128px;
     border-radius: 4px;
   }
 }

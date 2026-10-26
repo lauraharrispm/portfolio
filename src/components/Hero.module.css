@@ -303,12 +303,11 @@
   }
 
   /* A real flex row now (not display:contents, see the base rule):
-     align-items:center genuinely centers the shorter photo against the
-     taller outcomes column, which CSS Grid's row auto-sizing couldn't
-     reliably do for two side-by-side items. */
+     align-items:stretch makes the photo and the outcomes card exactly
+     the same height, whichever one's content is taller. */
   .photoRow {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 14px;
     grid-area: photorow;
   }
@@ -323,7 +322,10 @@
      box, not the visible photo, making it look top-aligned. */
   .panelCol {
     flex: 0 0 128px;
+    align-self: stretch;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   /* flex:1, not a grid column: takes the remaining width after the
@@ -359,6 +361,11 @@
     background: var(--warm-white);
     border-radius: var(--card-radius);
     padding: 12px 14px;
+    /* Stretched to the photo's height (see .photoRow), with the list
+       centered inside when the photo is the taller of the two. */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .outcomesHeading {
@@ -406,6 +413,11 @@
 
   .outcomeInline {
     display: inline;
+  }
+
+  /* Regular weight inside the card: the underline marks the link. */
+  .outcomeInline .outcomeLink {
+    font-weight: 400;
   }
 
   /* When a box has to wrap (phones under ~390px), break after
