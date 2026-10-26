@@ -360,14 +360,6 @@
   .outcomeInlineStat {
     white-space: nowrap;
   }
-}
-
-/* The narrowest phones can't fit even the stat alone, so let it wrap
-   rather than push the hero past the screen edge. */
-@media (max-width: 359px) {
-  .outcomeInlineStat {
-    white-space: normal;
-  }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px
      regardless of whether the photo/LinkedIn column or the outcomes
@@ -381,6 +373,14 @@
   .ctaSecondary {
     justify-content: center;
     width: 100%;
+  }
+}
+
+/* The narrowest phones can't fit even the stat alone, so let it wrap
+   rather than push the hero past the screen edge. */
+@media (max-width: 359px) {
+  .outcomeInlineStat {
+    white-space: normal;
   }
 }
 
