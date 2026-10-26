@@ -146,6 +146,11 @@
   display: block;
 }
 
+/* Only one of the two layouts shows at a time (see the 768px block). */
+.outcomeInline {
+  display: none;
+}
+
 .outcomeLink {
   font-weight: 500;
   color: var(--charcoal);
@@ -298,16 +303,16 @@
     grid-area: photorow;
   }
 
-  /* flex:0 0 163px, not a grid column: matches HeroProfile's own 768px
-     photo size (163px, which doesn't need to scale), as a fixed share
+  /* flex:0 0 128px, not a grid column: matches HeroProfile's own 768px
+     photo size (128px, which doesn't need to scale), as a fixed share
      of the flex row instead of a grid track. margin-bottom:0 resets the
      900px breakpoint's 40px (still inherited here, since both media
      conditions match below 768px): that leftover margin was the real
      cause of centering silently failing, since it inflated panelCol's
      margin box to 203px, so align-items:center centered THAT inflated
-     box, not the visible 163px photo, making it look top-aligned. */
+     box, not the visible photo, making it look top-aligned. */
   .panelCol {
-    flex: 0 0 163px;
+    flex: 0 0 128px;
     margin-bottom: 0;
   }
 
@@ -333,6 +338,35 @@
     padding: 10px 12px;
     font-size: 0.75rem;
     line-height: 1.35;
+  }
+
+  /* "Company: stat" on one line, each box only as wide as its text.
+     Below about 390px wide the longest one wraps to two lines rather
+     than overflowing. */
+  .outcomesList {
+    align-items: flex-start;
+  }
+
+  .outcomeStacked {
+    display: none;
+  }
+
+  .outcomeInline {
+    display: inline;
+  }
+
+  /* When a box has to wrap (phones under ~390px), break after
+     "Company:" and keep the stat whole instead of orphaning "lift". */
+  .outcomeInlineStat {
+    white-space: nowrap;
+  }
+}
+
+/* The narrowest phones can't fit even the stat alone, so let it wrap
+   rather than push the hero past the screen edge. */
+@media (max-width: 359px) {
+  .outcomeInlineStat {
+    white-space: normal;
   }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px

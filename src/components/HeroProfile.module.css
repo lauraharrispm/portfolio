@@ -35,11 +35,13 @@
 /* Shrunk further than a simple mobile scale-down (185px): the photo now
    shares its row with the outcomes boxes (see Hero.module.css's 768px
    breakpoint, which sizes that column to match), so it needs to leave
-   those boxes enough width to stay readable. */
+   those boxes enough width to stay readable. 128px, not 163px: at 390px
+   wide that leaves the outcomes column 208px, enough for the longest
+   one-line box ("GlossGenius: 80% onboarding lift", 207px). */
 @media (max-width: 768px) {
   .photoWrap {
-    width: 163px;
-    height: 163px;
+    width: 128px;
+    height: 128px;
     border-radius: 4px;
   }
 }
