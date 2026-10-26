@@ -368,16 +368,13 @@
     justify-content: center;
   }
 
-  /* Serif italic, like the Let's chat fit list heading above its own
-     peach-dot list, scaled down for the card. */
+  /* Same size and color as the list below it; the gap sets it apart. */
   .outcomesHeading {
     display: block;
-    font-family: var(--font-headline);
-    font-style: italic;
-    font-size: 1.0625rem;
-    line-height: 1.2;
+    font-size: 0.75rem;
+    line-height: 1.35;
     color: var(--charcoal);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   /* Bullets match the Let's chat fit list: 6px peach dot, centered on the
