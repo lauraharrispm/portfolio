@@ -42,6 +42,7 @@
   border: var(--card-border);
   box-shadow: none;
   padding: 40px;
+  position: relative;
   transform: translateY(28px) scale(0.97);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
   transform-origin: top center;
@@ -49,6 +50,21 @@
 
 .card:hover {
   border-color: rgba(46, 40, 32, 0.18);
+}
+
+/* Recede wash for a card being covered by the next one (--recede, 0 to 1,
+   set on its .stackItem in WorkSummary.tsx). Multiply with --warm-tint
+   lands the white card exactly on the brand's warm tint when fully
+   covered, and warms the image slightly instead of graying it. */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--warm-tint);
+  mix-blend-mode: multiply;
+  opacity: var(--recede, 0);
+  pointer-events: none;
 }
 
 .cardEnter {
