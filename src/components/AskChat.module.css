@@ -18,9 +18,10 @@
 /* ─── Panel ────────────────────────────────────────────────────────── */
 /* Every other section sits directly on the cream page; the chat gets its
    own surface so it reads as a tool. A white panel lifts off the cream
-   without a shadow, and the inputs flip to cream so they read as fields
-   set into it. White (not warm tint) also keeps the coral-tint sent
-   bubbles visible: on warm tint the two were nearly the same value. */
+   without a shadow; the inputs stay white with a firmer border so they
+   read as fields within it. White (not warm tint) also keeps the
+   coral-tint sent bubbles visible: on warm tint the two were nearly the
+   same value. */
 .panel {
   background: var(--white);
   border: var(--card-border);
@@ -69,8 +70,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--warm-white);
-  border: var(--card-border);
+  background: var(--white);
+  /* Firmer than --card-border: white on the white panel needs the edge. */
+  border: 1px solid rgba(46, 40, 32, 0.18);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 8px 8px 8px 24px;
@@ -182,8 +184,11 @@
   }
 }
 
+/* Heading stays centered in both states (no jump on the first send):
+   equal side columns keep it centered with Clear in the right one. */
 .convoHeader {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
   /* Room between the heading and the scroll fade below it, so a
@@ -192,7 +197,13 @@
 }
 
 .convoHeader .heading {
-  flex: 1;
+  grid-column: 2;
+  text-align: center;
+}
+
+.convoHeader .startOver {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .startOver {
@@ -352,8 +363,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--warm-white);
-  border: var(--card-border);
+  background: var(--white);
+  /* Firmer than --card-border: white on the white panel needs the edge. */
+  border: 1px solid rgba(46, 40, 32, 0.18);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 6px 6px 6px 20px;
@@ -412,8 +424,19 @@
     margin-bottom: 28px;
   }
 
+  /* No room for a side column next to the centered heading on a phone,
+     so Clear sits centered under it. */
   .convoHeader {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
     margin-bottom: 12px;
+  }
+
+  .convoHeader .heading,
+  .convoHeader .startOver {
+    grid-column: 1;
+    justify-self: center;
   }
 
   .section {
