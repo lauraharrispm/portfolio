@@ -15,10 +15,21 @@
   border: 0;
 }
 
+/* ─── Panel ────────────────────────────────────────────────────────── */
+/* Every other section sits directly on the cream page; the chat gets its
+   own surface so it reads as a tool. Contrast does the lifting, not a
+   shadow: the white input sits on a slightly darker warm tint. Coral tint
+   stays reserved for the hero and Let's chat bands. */
+.panel {
+  background: var(--warm-tint);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 56px 48px;
+}
+
 /* ─── Empty state ──────────────────────────────────────────────────── */
-/* Left-aligned with the rest of the page content; the input row itself
-   is capped at ~720px (see .emptyForm), but this wrapper isn't, so the
-   disclaimer/chips below don't get an arbitrary extra right margin.
+/* Centered inside the panel: centering reads as intentional within a
+   frame, where it would look like a mistake loose on a left-aligned page.
    No flex gap here: that applied the same 28px between every child,
    including the form and the disclaimer below it, so the empty state
    opened with much more space above the disclaimer than the
@@ -29,8 +40,8 @@
 .emptyState {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
 }
 
 /* Scoped to the empty state specifically: .heading is shared with
@@ -62,26 +73,54 @@
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 8px 8px 8px 24px;
+  text-align: left;
+  transition: border-color var(--transition);
 }
 
 .emptyInput {
   flex: 1;
   min-width: 0;
   height: 44px;
-  padding: 10px 0;
+  /* A 30px line box fits the larger serif placeholder below and keeps a
+     visitor's own (smaller) typing vertically centered in the same box. */
+  padding: 7px 0;
   border: none;
   outline: none;
   background: transparent;
   font-size: 1.0625rem;
-  line-height: 1.35;
+  line-height: 30px;
   color: var(--charcoal);
   font-family: var(--font-body);
   resize: none;
   overflow-y: auto;
 }
 
+/* The example questions read in Laura's voice: brand serif italic, the
+   same style as Let's chat's "We're likely a fit if you:". Only the
+   placeholder changes, so a visitor's own typing stays in the body sans. */
 .emptyInput::placeholder {
   color: var(--charcoal-muted);
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: 1.375rem;
+  font-weight: 400;
+}
+
+/* Keyboard cue, desktop only (the same query CursorChat and the
+   placeholder start gate test): there's no Enter key to point at on
+   touch. Rendered only while the field is empty. */
+.enterHint {
+  display: none;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--charcoal-muted);
+  white-space: nowrap;
+}
+
+@media (min-width: 1024px) and (pointer: fine) {
+  .enterHint {
+    display: inline;
+  }
 }
 
 .emptyInput:focus-visible,
@@ -89,9 +128,18 @@
   outline: none;
 }
 
+.emptyForm:hover,
 .emptyForm:focus-within,
+.convoForm:hover:not(:has(input:disabled)),
 .convoForm:focus-within {
   border-color: var(--coral);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emptyForm,
+  .convoForm {
+    transition: none;
+  }
 }
 
 .emptySubmit,
@@ -128,11 +176,13 @@
 }
 
 /* ─── Conversation state ───────────────────────────────────────────── */
-/* Left-aligned with the rest of the page content, same as .emptyState.
-   The section grows into this on first send/chip-click; animated in via
+/* A left-aligned 720px column centered in the panel, so the thread reads
+   normally while the panel gives the scrolling messages visible edges.
+   The panel itself stays put; only this column animates in via
    .conversationEnter below, skipped under reduced motion. */
 .conversation {
   max-width: 720px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -162,7 +212,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  /* Room between the heading and the scroll fade below it, so a
+     half-faded line reads as a scroll edge rather than a glitch. */
+  margin-bottom: 16px;
 }
 
 .convoHeader .heading {
@@ -190,8 +242,18 @@
   gap: 20px;
   max-height: 480px;
   overflow-y: auto;
-  padding: 4px 4px 12px;
-  margin-bottom: 16px;
+  /* Messages fade out at the scroll edges instead of being cut mid-line.
+     The fade sits over the padding, so it only shows once something has
+     actually scrolled under it. */
+  padding: 20px 4px;
+  margin-bottom: 8px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 20px,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
 }
 
 .rowUser {
@@ -321,6 +383,7 @@
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 6px 6px 6px 20px;
+  transition: border-color var(--transition);
 }
 
 .convoInput {
@@ -338,13 +401,8 @@
   color: var(--charcoal-muted);
 }
 
-/* No align-self:center here: that centers this (narrower, capped) box
-   within the full-width flex container, not within the 720px input box
-   above it, since the input stays pinned flex-start/left. Leaving this
-   at the default flex-start keeps its box flush left with the input, so
-   text-align:center then centers the text within that same width,
-   directly under the input instead of drifting toward the page's own
-   center. */
+/* Same 720px cap as the input, so in both states the text centers
+   directly under the input it describes. */
 .disclaimer {
   font-size: 0.75rem;
   color: var(--charcoal-muted);
@@ -366,13 +424,23 @@
   color: var(--coral);
 }
 
+@media (max-width: 1023px) {
+  .panel {
+    padding: 48px 32px;
+  }
+}
+
 @media (max-width: 768px) {
+  .panel {
+    padding: 20px 16px;
+  }
+
   .emptyState > .heading {
     margin-bottom: 28px;
   }
 
   .convoHeader {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   .section {
@@ -393,9 +461,12 @@
     padding: 8px 8px 8px 20px;
   }
 
+  /* Two lines of the serif placeholder: the longer examples wrap on a
+     phone-width input. */
   .emptyInput {
-    height: 60px;
-    padding: 8px 0;
+    height: 76px;
+    padding: 10px 0;
+    line-height: 28px;
   }
 
   /* Minimum 44px tap targets on touch. */
@@ -404,5 +475,12 @@
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+  }
+}
+
+/* The narrowest phones need a third line for the longest examples. */
+@media (max-width: 360px) {
+  .emptyInput {
+    height: 104px;
   }
 }

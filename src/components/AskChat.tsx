@@ -518,109 +518,120 @@ export default function AskChat() {
       aria-label="Ask my AI anything, an AI assistant"
     >
       <div className="container">
-        {phase === "empty" ? (
-          <div className={styles.emptyState}>
-            <h2 className={styles.heading}>Ask my AI anything</h2>
-            <form onSubmit={handleSubmit} className={styles.emptyForm}>
-              <label htmlFor={inputId} className={styles.srOnly}>
-                Ask a question about Laura&apos;s work
-              </label>
-              <textarea
-                ref={inputRef}
-                id={inputId}
-                rows={2}
-                className={styles.emptyInput}
-                value={inputValue}
-                placeholder={placeholder}
-                onChange={(e) => setInputValue(e.target.value)}
-                onFocus={() => {
-                  focusedPlaceholderRef.current = fullQuestion;
-                  setInputFocused(true);
-                }}
-                onBlur={() => setInputFocused(false)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    e.currentTarget.form?.requestSubmit();
-                  }
-                }}
-                maxLength={500}
-              />
-              <button
-                type="submit"
-                className={styles.emptySubmit}
-                aria-label="Ask"
-              >
-                →
-              </button>
-            </form>
-            <p className={styles.disclaimer}>
-              An AI trained on my work. For anything else,{" "}
-              <a href="#book">let&apos;s chat</a>.
-            </p>
-          </div>
-        ) : (
-          <div className={`${styles.conversation} ${styles.conversationEnter}`}>
-            <div className={styles.convoHeader}>
+        {/* One contained panel for both states: the only section with its
+           own surface, so the chat reads as a tool rather than content. */}
+        <div className={styles.panel}>
+          {phase === "empty" ? (
+            <div className={styles.emptyState}>
               <h2 className={styles.heading}>Ask my AI anything</h2>
-              <button
-                type="button"
-                className={styles.startOver}
-                onClick={startOver}
-              >
-                Clear
-              </button>
-            </div>
-
-            <div className={styles.messages} ref={scrollRef} aria-live="polite">
-              {displayMessages.map((m) => (
-                <MessageBubble
-                  key={m.id}
-                  message={m}
-                  reducedMotion={reducedMotion}
-                  onRevealed={markRevealed}
-                  onChip={handleChipClick}
+              <form onSubmit={handleSubmit} className={styles.emptyForm}>
+                <label htmlFor={inputId} className={styles.srOnly}>
+                  Ask a question about Laura&apos;s work
+                </label>
+                <textarea
+                  ref={inputRef}
+                  id={inputId}
+                  rows={2}
+                  className={styles.emptyInput}
+                  value={inputValue}
+                  placeholder={placeholder}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onFocus={() => {
+                    focusedPlaceholderRef.current = fullQuestion;
+                    setInputFocused(true);
+                  }}
+                  onBlur={() => setInputFocused(false)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      e.currentTarget.form?.requestSubmit();
+                    }
+                  }}
+                  maxLength={500}
                 />
-              ))}
-              {loading && (
-                <div className={styles.typingIndicator} aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              )}
+                {/* Desktop-only keyboard cue (see .enterHint); Enter already
+                   submits, so it's hidden from assistive tech. */}
+                {!inputValue && (
+                  <span className={styles.enterHint} aria-hidden="true">
+                    ↵ to ask
+                  </span>
+                )}
+                <button
+                  type="submit"
+                  className={styles.emptySubmit}
+                  aria-label="Ask"
+                >
+                  →
+                </button>
+              </form>
+              <p className={styles.disclaimer}>
+                An AI trained on my work. For anything else,{" "}
+                <a href="#book">let&apos;s chat</a>.
+              </p>
             </div>
+          ) : (
+            <div className={`${styles.conversation} ${styles.conversationEnter}`}>
+              <div className={styles.convoHeader}>
+                <h2 className={styles.heading}>Ask my AI anything</h2>
+                <button
+                  type="button"
+                  className={styles.startOver}
+                  onClick={startOver}
+                >
+                  Clear
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit} className={styles.convoForm}>
-              <label htmlFor={inputId} className={styles.srOnly}>
-                Ask a follow-up question
-              </label>
-              <input
-                id={inputId}
-                type="text"
-                className={styles.convoInput}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder={
-                  disabled ? "Conversation limit reached" : "Ask a follow-up..."
-                }
-                maxLength={500}
-                disabled={disabled}
-              />
-              <button
-                type="submit"
-                className={styles.convoSubmit}
-                disabled={disabled || loading}
-                aria-label="Send"
-              >
-                →
-              </button>
-            </form>
-            <p className={styles.disclaimer}>
-              An AI trained on Laura&apos;s work. It can make mistakes.
-            </p>
-          </div>
-        )}
+              <div className={styles.messages} ref={scrollRef} aria-live="polite">
+                {displayMessages.map((m) => (
+                  <MessageBubble
+                    key={m.id}
+                    message={m}
+                    reducedMotion={reducedMotion}
+                    onRevealed={markRevealed}
+                    onChip={handleChipClick}
+                  />
+                ))}
+                {loading && (
+                  <div className={styles.typingIndicator} aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                )}
+              </div>
+
+              <form onSubmit={handleSubmit} className={styles.convoForm}>
+                <label htmlFor={inputId} className={styles.srOnly}>
+                  Ask a follow-up question
+                </label>
+                <input
+                  id={inputId}
+                  type="text"
+                  className={styles.convoInput}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder={
+                    disabled ? "Conversation limit reached" : "Ask a follow-up..."
+                  }
+                  maxLength={500}
+                  disabled={disabled}
+                />
+                <button
+                  type="submit"
+                  className={styles.convoSubmit}
+                  disabled={disabled || loading}
+                  aria-label="Send"
+                >
+                  →
+                </button>
+              </form>
+              <p className={styles.disclaimer}>
+                An AI trained on Laura&apos;s work. It can make mistakes.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
