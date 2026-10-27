@@ -38,10 +38,10 @@
 }
 
 .chatting {
-  left: var(--bubble-left, 12px);
+  /* Grow from the name tag's shared 12px anchor beside the cursor. */
   min-width: 30px;
   min-height: 38px;
-  /* Keep the whole greeting on one line; placement makes room for it. */
+  /* Keep the whole greeting on one line as the tag grows to the right. */
   width: max-content;
   white-space: nowrap;
   padding: 8px 12px 9px;

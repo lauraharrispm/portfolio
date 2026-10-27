@@ -93,15 +93,15 @@ export default function CursorChat() {
       const firstLine = lineRects.filter((r) => Math.abs(r.top - firstTop) < 4);
       const line1Right = Math.max(...firstLine.map((r) => r.right)) - heroRect.left;
       const preferredX = line1Right + 8;
-      // Hair begins about 28% into this portrait. End halfway across
-      // that background strip, keeping the greeting clear of her hair.
+      // Prefer fitting the greeting into the portrait's background strip
+      // when there is room, without moving the pointer over the subhead.
       const bubbleRight = photoRect.left - heroRect.left + photoRect.width * 0.14;
       const x = Math.max(preferredX, bubbleRight - bubbleWidth - 12);
-      const bubbleLeft = bubbleRight - x - bubbleWidth;
-      root.style.setProperty("--bubble-left", `${bubbleLeft}px`);
-      // Keep the pointer past the last word. If the bubble needs to
-      // extend left, tuck it below that line so the text stays clear.
-      const y = bubbleLeft < 11.5
+      // Preserve the pointer's landing position. When space is tight,
+      // tuck it below the first line; the bubble keeps the name tag's
+      // fixed offset from the pointer and always expands to the right.
+      const needsBelowLine = x + 12 + bubbleWidth > bubbleRight + 0.5;
+      const y = needsBelowLine
         ? Math.max(...firstLine.map((r) => r.bottom)) - heroRect.top + 6 - 19
         : firstTop - heroRect.top - 6;
       const end = { x, y };
