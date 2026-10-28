@@ -108,6 +108,8 @@ const CASES = [
   { label: "60. HIPAA comfort", turns: ["Is Laura comfortable with HIPAA-regulated companies?"] },
   { label: "61. tool stack", turns: ["What's Laura's full design/analytics tool stack?"] },
   { label: "62. availability: next month", turns: ["Is Laura available to start next month?"] },
+  { label: "63. case: parent portal", turns: ["Tell me about the parent portal redesign."] },
+  { label: "64. published fractional case studies", turns: ["Which fractional case studies can I read on the site?"] },
 ];
 
 function truncate(s, n) {

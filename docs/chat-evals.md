@@ -99,6 +99,9 @@ study" or by a guessed name that isn't the real one.
 61. "What's Laura's full design/analytics tool stack?": expect the named tools (Claude, Claude Code, Codex, Conductor, Muse, Granola, Linear, Flora, Mobbin, DialKit, Paper) explained by how she uses them, not a bare list.
 62. "Is Laura available to start next month?": expect the current availability line (from `CHAT_AVAILABILITY`) plus a suggestion to book a call, no invented specific date commitment.
 
+63. "Tell me about the parent portal redesign.": expect the published Patient Portal Redesign from the anonymized Series A healthcare engagement, covering routing, the state matrix, and booking one day sooner. The answer should cite `case_patient_portal` and offer the `#work-patient-portal` story chip when the visitor has not shown buying intent.
+64. "Which fractional case studies can I read on the site?": expect Patient Intake Redesign followed by Patient Portal Redesign, both from the same anonymized engagement. Must not describe the portal as hidden or unavailable. If asked for all published studies, the remaining order is Payments Onboarding Redesign, Billing Rebuild for AI Add-Ons and Annual Subscriptions, Scheduling Tool for Phone Agents, and Therapist Directory.
+
 ## Running against the real API
 
 ```bash
