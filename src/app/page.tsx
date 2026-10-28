@@ -9,8 +9,7 @@ import Footer from "@/components/Footer";
 
 // Read once, server-side, so the flag never reaches the client bundle.
 // When false, the section is omitted entirely (not just hidden), so
-// there's no leftover #ask anchor or gap and the hero flows straight
-// into "What I do".
+// there's no leftover #ask anchor or gap between Recent work and Let's chat.
 const chatEnabled = process.env.CHAT_ENABLED === "true";
 
 export default function Home() {
@@ -19,10 +18,10 @@ export default function Home() {
       <Nav chatEnabled={chatEnabled} />
       <main>
         <Hero />
-        {chatEnabled && <AskChat />}
         <Services />
         <HowIWork />
         <WorkSummary />
+        {chatEnabled && <AskChat />}
         <LetsChat />
       </main>
       <Footer />

@@ -88,7 +88,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "patient-intake",
-    order: 2,
+    order: 1,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -222,8 +222,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "patient-portal",
-    order: 7,
-    hidden: true,
+    order: 2,
     tags: ["Activation"],
     engagement: "Fractional",
     company: "Healthcare startup",
@@ -364,7 +363,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "payments-onboarding",
-    order: 1,
+    order: 3,
     tags: ["Activation"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-payments.png",
@@ -489,7 +488,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "phone-agent-tool",
-    order: 4,
+    order: 5,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-scheduling.png",
@@ -604,7 +603,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "therapist-directory",
-    order: 5,
+    order: 6,
     tags: ["Acquisition"],
     company: "Rula Health",
     thumbnail: "/thumb-rula-directory.png",
@@ -724,7 +723,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "annual-plans",
-    order: 3,
+    order: 4,
     tags: ["Monetization"],
     company: "GlossGenius",
     thumbnail: "/thumb-gg-annual.png",
@@ -851,7 +850,7 @@ export const projects: Project[] = ([
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "burrow-growth",
-    order: 6,
+    order: 7,
     hidden: true,
     tags: ["Acquisition"],
     company: "Burrow",

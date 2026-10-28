@@ -58,13 +58,6 @@ export default function Nav({ chatEnabled }: NavProps) {
 
         {/* Desktop links */}
         <ul className={styles.links}>
-          {chatEnabled && (
-            <li>
-              <a href="#ask" onClick={() => trackNav("ask_my_ai", "nav_desktop")}>
-                Ask my AI
-              </a>
-            </li>
-          )}
           <li>
             <a href="#services" onClick={() => trackNav("services", "nav_desktop")}>
               What I do
@@ -80,6 +73,13 @@ export default function Nav({ chatEnabled }: NavProps) {
               Recent work
             </a>
           </li>
+          {chatEnabled && (
+            <li>
+              <a href="#ask" onClick={() => trackNav("ask_my_ai", "nav_desktop")}>
+                Ask my AI
+              </a>
+            </li>
+          )}
           <li>
             <a
               href="#book"
@@ -108,19 +108,6 @@ export default function Nav({ chatEnabled }: NavProps) {
       {menuOpen && (
         <div className={styles.drawer}>
           <ul>
-            {chatEnabled && (
-              <li>
-                <a
-                  href="#ask"
-                  onClick={() => {
-                    close();
-                    trackNav("ask_my_ai", "nav_mobile");
-                  }}
-                >
-                  Ask my AI
-                </a>
-              </li>
-            )}
             <li>
               <a
                 href="#services"
@@ -154,6 +141,19 @@ export default function Nav({ chatEnabled }: NavProps) {
                 Recent work
               </a>
             </li>
+            {chatEnabled && (
+              <li>
+                <a
+                  href="#ask"
+                  onClick={() => {
+                    close();
+                    trackNav("ask_my_ai", "nav_mobile");
+                  }}
+                >
+                  Ask my AI
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href="#book"

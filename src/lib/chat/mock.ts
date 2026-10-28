@@ -30,6 +30,19 @@ const CASES: MockCase[] = [
     },
   },
   {
+    test: /\bportal\b/i,
+    payload: {
+      answer:
+        "For a Series A healthcare startup, Laura redesigned the patient portal so every family got a clear, honest next step after intake. She mapped care type, coverage, and clinician capacity into a state matrix for engineering, corrected routing, and unlocked booking as soon as a family submitted its member ID. **Families reached a first session a full day faster.** Built in about a week of product time, it launched alongside the intake redesign as part of the same fractional engagement.",
+      followups: [
+        { question: "How did the portal handle families without a match?", topic: "case_patient_portal" },
+        { question: "What changed in the patient intake form?", topic: "case_patient_intake" },
+      ],
+      sources: ["case_patient_portal"],
+      intent: "evaluating",
+    },
+  },
+  {
     test: /onboarding/i,
     payload: {
       answer:
