@@ -4,7 +4,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## Who Laura is
 
-- Laura Harris is a fractional product leader. Site headline: "Build the right product. Ship it faster."
+- Laura Harris is a fractional product leader. Site headline: "Product growth, from roadmap to revenue." Subhead: "For consumer and marketplace startups with more growth potential than time to chase it." What I do intro: "Product-led growth, hands on. Bring a problem or a project from any stage of the funnel, and I'll see it through to launch with your engineers." She can help find the right projects or execute one the team has already picked.
 - 8+ years building growth products at consumer startups across DTC ecommerce, marketplaces, and healthcare, at stages from seed to Series C and team sizes from 30 to 550.
 - Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove.
 - Did fractional work alongside full-time roles for years, and went all in on fractional work in 2026 "because the math changed": with AI, one senior PM can now take a project from diagnosis to launch, work that used to take a team. Part-time no longer means partial impact.
@@ -83,11 +83,11 @@ Every client gets full confidentiality. If there's ever a conflict with a curren
 
 ## Who it's a fit for
 
-- The three fit criteria on the site: sell to consumers; have product-market fit; have engineers but no product lead.
-- Not a fit, right now: still searching for product-market fit; selling enterprise software to other businesses; needing a full-time PM starting today; needing someone to manage a product team day to day (she's part-time, so she can help build the team but not run it).
+- The fit criteria on the site: have a product people already use; have engineers scoping their own work or waiting on decisions. Product-market fit is not required: seed-stage companies with a live product and users are a good fit.
+- Not a fit, right now: no live product yet (still pre-launch); selling enterprise software to other businesses; needing a full-time PM starting today; needing someone to manage a product team day to day (she's part-time, so she can help build the team but not run it).
 - Industries she loves: products people use in their everyday lives. Consumer is what she finds most interesting and relatable, including ecommerce, consumer tech, and marketplaces. She also loves building for small business owners, because those products serve both the business and its customers, and she cares about helping people build their own businesses.
 - What she avoids: traditional B2B SaaS for large companies. It isn't where her experience is.
-- Regulated spaces: very comfortable. Her recent full-time roles were in healthcare and in small business software that included payments processing. She's comfortable with HIPAA compliance and high privacy bars.
+- Regulated spaces: very comfortable. Her recent full-time roles were in healthcare and in small business software that included payments processing. She's comfortable with HIPAA compliance and high privacy bars. In health tech she has worked across every side of the market (patients, providers, and payers at Rula) and would happily do provider- or payer-side work again.
 - Stage and team size: the sweet spot is defined by the problem more than the stage, usually seed through Series B. For example: an early product works for some people, but the team doesn't know how to scale it or how to build the next product for the same customer from zero to one. Teams range from founders driving product themselves to companies with product people but not enough hours for near-term growth opportunities.
 - Why fractional instead of a full-time PM:
   - Laura can start quickly when she has availability, and she's used to plugging into fast-moving teams.
@@ -138,7 +138,7 @@ Every client gets full confidentiality. If there's ever a conflict with a curren
 1. Friction in onboarding isn't always bad. Cut friction that confuses people. Add friction that builds confidence or shows people why the product is for them. Example: in the GlossGenius payments onboarding redesign, the team added a clear value statement up front and a persistent progress bar, making the flow longer, and completion went up 80%. Growth teams at companies like Mercury, MasterClass, and Calm have found the same: the right extra step can raise conversion.
 2. Always ask if an experiment is the right tool, and don't be afraid to answer no. See the low-traffic example above. Run the math first. Sometimes a pre/post with clear baselines is the smarter call.
 3. AI changed the speed, not the judgment. Building is cheaper and faster than ever, but building the wrong thing is still a waste. The PM's job is still deciding what to build and why. The difference now is that the same person can also design and prototype it, so the team moves faster without skipping the thinking.
-4. Where to start: acquisition, activation, or retention. Look at the full funnel first and find the real constraint, the step where the biggest loss meets a fix the team can ship. For many post-PMF consumer companies, that's activation, because more traffic doesn't help if new users never reach value. It isn't a rule, though. Laura's work spans all of it: an SEO directory that grew organic patient starts (acquisition), payments onboarding (activation), and billing for annual plans (monetization).
+4. Where to start: acquisition, activation, or retention. Look at the full funnel first and find the real constraint, the step where the biggest loss meets a fix the team can ship. For many consumer companies with early traction, that's activation, because more traffic doesn't help if new users never reach value. It isn't a rule, though. Laura's work spans all of it: an SEO directory that grew organic patient starts (acquisition), payments onboarding (activation), and billing for annual plans (monetization).
 5. Marketplaces are different. There are at least two customers, so a win for one side can cost the other. Growth depends on keeping supply and demand in balance, and on knowing which side is constraining growth right now. At Rula, that meant thinking about both patients and therapists.
 6. Healthcare growth. In some ways it's slower (regulation, privacy, trust), but it's more rewarding. In Laura's words: "Working in healthcare truly changes people's lives for the better."
 

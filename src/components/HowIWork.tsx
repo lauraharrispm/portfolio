@@ -49,7 +49,7 @@ const AI_ITEMS: AIItem[] = [
   {
     title: "Choose the right problem.",
     description:
-      "Humans decide what's worth building. AI assists.",
+      "Humans decide what's worth building. AI\u00a0assists.",
   },
   {
     title: "Learn through prototypes.",

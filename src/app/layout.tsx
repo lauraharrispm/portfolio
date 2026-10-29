@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   },
   title: "Laura Harris | Fractional Product Leader",
   description:
-    "Fractional product leader for startups with product-market fit. Product-led growth (PLG) leadership without a full-time hire.",
+    "Fractional product leader for consumer, marketplace, and health tech startups. Product-led growth, from roadmap to revenue.",
   openGraph: {
     title: "Laura Harris | Fractional Product Leader",
     description:
-      "Fractional product leader for startups with product-market fit. Product-led growth (PLG) leadership without a full-time hire.",
+      "Fractional product leader for consumer, marketplace, and health tech startups. Product-led growth, from roadmap to revenue.",
     url: "https://www.lauraharrispm.com/",
     siteName: "Laura Harris",
     type: "website",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     images: [{ url: "/headshot.jpg", alt: "Laura Harris" }],
     title: "Laura Harris | Fractional Product Leader",
     description:
-      "Fractional product leader for startups with product-market fit. Product-led growth (PLG) leadership without a full-time hire.",
+      "Fractional product leader for consumer, marketplace, and health tech startups. Product-led growth, from roadmap to revenue.",
   },
 };
 

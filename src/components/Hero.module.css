@@ -76,20 +76,17 @@
 
 .headline {
   font-family: var(--font-headline);
-  /* 63px ceiling (not 64px): at 64px the headline wraps to 3 lines on
-     desktop, since the content column is a fixed 640px from 1024px up.
-     63.53px is where it flips to 2 lines, measured by binary search
-     against the real rendered text in Chrome, WebKit and Firefox, which
-     all agreed on that threshold. 63px is the largest whole pixel under
-     it, matching how the mobile size below was chosen. The vw term is
-     untouched: it only reaches 63px at ~1260px wide, and every width
-     below that was already wrapping to 2 lines. */
+  /* 63px ceiling, set when the headline was longer: it kept that copy to
+     2 lines in the fixed 640px desktop column. The current headline is
+     shorter and stays at 2 lines at this size; text-wrap: balance splits
+     it evenly instead of leaving a short last line. */
   font-size: clamp(2.5rem, 5vw, 3.9375rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--charcoal);
   margin-bottom: 24px;
+  text-wrap: balance;
 }
 
 .tagline {
@@ -152,17 +149,12 @@
   display: contents;
 }
 
-/* Only one of the two layouts shows at a time (see the 768px block). */
-.outcomeInline {
-  display: none;
-}
-
 .outcomeLink {
   font-weight: 500;
   color: var(--charcoal);
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 2px;
+  /* No underline, so the stats read clean. Still linked, and coral on
+     hover for anyone who reaches for it. */
+  text-decoration: none;
   transition: color var(--transition);
 }
 
@@ -259,7 +251,7 @@
 
   /* 36px: about twice the 17px subhead, so the pair reads as balanced
      instead of a huge headline over small text, while keeping the
-     3-line headline and the CTA above the fold on a 390px iPhone
+     headline and the CTA above the fold on a 390px iPhone
      (CTA bottom ~640px vs. Safari's ~659px visible height). */
   .headline {
     font-size: 2.25rem;
@@ -316,8 +308,12 @@
      cause of centering silently failing, since it inflated panelCol's
      margin box to 203px, so align-items:center centered THAT inflated
      box, not the visible photo, making it look top-aligned. */
+  /* Square photo: as wide as the outcomes card is tall. The card's
+     height is its six 12px lines (1.35 line-height), two 6px bullet gaps,
+     and 12px padding top and bottom, so this tracks it exactly. If the
+     card's type or spacing changes, update this to match. */
   .panelCol {
-    flex: 0 0 108px;
+    flex: 0 0 calc(6 * 0.75rem * 1.35 + 2 * 6px + 2 * 12px);
     align-self: stretch;
     margin-bottom: 0;
     display: flex;
@@ -363,8 +359,8 @@
     justify-content: center;
   }
 
-  /* Bullets match the Let's chat fit list: 6px peach dot, centered on the
-     first line, 18px indent. */
+  /* Peach dot like the Let's chat fit list, scaled down to 4px (14px
+     indent) to suit the card's 12px text, centered on the first line. */
   .outcomesList {
     gap: 6px;
   }
@@ -373,44 +369,22 @@
     position: relative;
     background: none;
     border-radius: 0;
-    padding: 0 0 0 18px;
+    padding: 0 0 0 14px;
   }
 
   .outcomeItem::before {
     content: "";
     position: absolute;
     left: 0;
-    top: calc(0.675em - 3px);
-    width: 6px;
-    height: 6px;
+    top: calc(0.675em - 2px);
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: var(--stage-bar-2);
   }
 
-  /* "Company: stat" on one line, each box only as wide as its text.
-     Below about 390px wide the longest one wraps to two lines rather
-     than overflowing. */
   .outcomesList {
     align-items: flex-start;
-  }
-
-  .outcomeStacked {
-    display: none;
-  }
-
-  .outcomeInline {
-    display: inline;
-  }
-
-  /* Regular weight inside the card: the underline marks the link. */
-  .outcomeInline .outcomeLink {
-    font-weight: 400;
-  }
-
-  /* When a box has to wrap (phones under ~390px), break after
-     "Company:" and keep the stat whole instead of orphaning "lift". */
-  .outcomeInlineStat {
-    white-space: nowrap;
   }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px
@@ -428,15 +402,23 @@
   }
 }
 
-/* The narrowest phones can't fit even the stat alone, so let it wrap
-   rather than push the hero past the screen edge. */
-@media (max-width: 359px) {
-  .outcomeInlineStat {
-    white-space: normal;
+/* Hidden below desktop, where the subhead wraps on its own. */
+.desktopBreak {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopBreak {
+    display: inline;
   }
 }
 
-/* Keeps "a full-time hire." together in the headline. */
-.noWrap {
-  white-space: nowrap;
+/* The narrowest phones: a 133px square leaves the outcomes card too
+   narrow, so its bullets wrap to three lines. Narrow the photo back to
+   108px instead, which keeps two lines per bullet; the photo stretches
+   to the card's height, so it goes portrait here. */
+@media (max-width: 339px) {
+  .panelCol {
+    flex-basis: 108px;
+  }
 }

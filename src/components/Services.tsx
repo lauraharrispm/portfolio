@@ -69,6 +69,11 @@ export default function Services() {
     <section id="services" className={styles.section}>
       <div className="container">
         <h2 className={styles.heading}>What I do</h2>
+        <p className={styles.intro}>
+          Product-led growth, hands on. Bring a problem or a project from
+          any stage of the funnel, and I&apos;ll see it through to launch
+          with your engineers.
+        </p>
 
         <ol
           ref={stagesRef}

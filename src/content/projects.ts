@@ -736,7 +736,7 @@ export const projects: Project[] = ([
     engagement: "Full-time",
     title: "Billing rebuild for AI add-ons and annual subscriptions",
     oneLineDesc:
-      "GlossGenius's billing system could only support one billing structure, which blocked annual plans and the company's AI add-on strategy. I led a full migration to a flexible subscription service.",
+      "GlossGenius's billing system could only support one billing structure, which blocked annual plans and the company's AI add-on strategy. I led a full migration to a flexible subscription\u00a0service.",
     keyMetric: {
       number: "0",
       label: "business interruptions during a full billing migration",

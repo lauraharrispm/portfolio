@@ -9,7 +9,17 @@
   font-weight: 300;
   color: var(--charcoal);
   letter-spacing: -0.01em;
-  /* Same heading-to-content gap as Recent work. */
+  margin-bottom: 16px;
+}
+
+/* Same size as the hero subhead, so the page adds no new text size. It
+   takes over the heading's old 40px gap to the stages (the same
+   heading-to-content gap as Recent work), and isn't animated with them. */
+.intro {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  max-width: 560px;
   margin-bottom: 40px;
 }
 
@@ -199,6 +209,10 @@
   }
 
   .heading {
+    margin-bottom: 12px;
+  }
+
+  .intro {
     margin-bottom: 32px;
   }
 }

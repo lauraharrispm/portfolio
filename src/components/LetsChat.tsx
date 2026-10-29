@@ -170,8 +170,8 @@ export default function LetsChat() {
             <p className={styles.body}>
               Tell me about your product and what you want to grow. Not sure
               what&apos;s holding it back? We can talk about that too.
-              You&apos;ll leave with a next step, whether or not we work
-              together.
+              You&apos;ll leave with a next step, whether or not we
+              work&nbsp;together.
             </p>
 
             <div className={styles.fitBlock}>
@@ -180,13 +180,10 @@ export default function LetsChat() {
               </h3>
               <ul className={styles.fitList}>
                 <li>
-                  <span>Sell to consumers</span>
+                  <span>Have a product people already use</span>
                 </li>
                 <li>
-                  <span>Have product-market fit</span>
-                </li>
-                <li>
-                  <span>Have engineers but no product lead</span>
+                  <span>Have engineers scoping their own work or waiting on decisions</span>
                 </li>
               </ul>
             </div>

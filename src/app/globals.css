@@ -70,6 +70,23 @@ b {
   font-weight: 500;
 }
 
+/* No orphans: never leave one word alone on a last line. Short blocks
+   (headings, list items, table cells) balance their lines; paragraphs
+   use pretty, which only reflows the end of the paragraph. */
+h1,
+h2,
+h3,
+h4,
+li,
+td,
+th {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
 a {
   color: inherit;
   text-decoration: none;
