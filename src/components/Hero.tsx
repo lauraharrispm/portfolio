@@ -30,16 +30,12 @@ export default function Hero() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.content}>
-            {/* "a full-time hire." is kept on one line so the headline never
-               splits "full-" / "time"; on desktop it lands as its own
-               third line. */}
             <h1 className={styles.headline}>
-              Product growth leadership without{" "}
-              <span className={styles.noWrap}>a full-time hire.</span>
+              Product growth, from roadmap to revenue.
             </h1>
             <p className={styles.subhead}>
-              I help seed to Series B startups build product-led growth and ship
-              faster.
+              For consumer and marketplace startups with more growth potential
+              than time to chase it.
             </p>
           </div>
 

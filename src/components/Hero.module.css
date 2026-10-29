@@ -76,20 +76,17 @@
 
 .headline {
   font-family: var(--font-headline);
-  /* 63px ceiling (not 64px): at 64px the headline wraps to 3 lines on
-     desktop, since the content column is a fixed 640px from 1024px up.
-     63.53px is where it flips to 2 lines, measured by binary search
-     against the real rendered text in Chrome, WebKit and Firefox, which
-     all agreed on that threshold. 63px is the largest whole pixel under
-     it, matching how the mobile size below was chosen. The vw term is
-     untouched: it only reaches 63px at ~1260px wide, and every width
-     below that was already wrapping to 2 lines. */
+  /* 63px ceiling, set when the headline was longer: it kept that copy to
+     2 lines in the fixed 640px desktop column. The current headline is
+     shorter and stays at 2 lines at this size; text-wrap: balance splits
+     it evenly instead of leaving a short last line. */
   font-size: clamp(2.5rem, 5vw, 3.9375rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--charcoal);
   margin-bottom: 24px;
+  text-wrap: balance;
 }
 
 .tagline {
@@ -259,7 +256,7 @@
 
   /* 36px: about twice the 17px subhead, so the pair reads as balanced
      instead of a huge headline over small text, while keeping the
-     3-line headline and the CTA above the fold on a 390px iPhone
+     headline and the CTA above the fold on a 390px iPhone
      (CTA bottom ~640px vs. Safari's ~659px visible height). */
   .headline {
     font-size: 2.25rem;
@@ -434,9 +431,4 @@
   .outcomeInlineStat {
     white-space: normal;
   }
-}
-
-/* Keeps "a full-time hire." together in the headline. */
-.noWrap {
-  white-space: nowrap;
 }

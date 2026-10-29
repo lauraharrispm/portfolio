@@ -180,13 +180,10 @@ export default function LetsChat() {
               </h3>
               <ul className={styles.fitList}>
                 <li>
-                  <span>Sell to consumers</span>
+                  <span>Have a product people already use</span>
                 </li>
                 <li>
-                  <span>Have product-market fit</span>
-                </li>
-                <li>
-                  <span>Have engineers but no product lead</span>
+                  <span>Have engineers waiting on product</span>
                 </li>
               </ul>
             </div>
