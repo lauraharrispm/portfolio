@@ -157,9 +157,9 @@
 .outcomeLink {
   font-weight: 500;
   color: var(--charcoal);
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 2px;
+  /* No underline, so the stats read clean. Still linked, and coral on
+     hover for anyone who reaches for it. */
+  text-decoration: none;
   transition: color var(--transition);
 }
 
@@ -399,7 +399,7 @@
     display: inline;
   }
 
-  /* Regular weight inside the card: the underline marks the link. */
+  /* Regular weight inside the mobile card. */
   .outcomeInline .outcomeLink {
     font-weight: 400;
   }

@@ -4,7 +4,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## Who Laura is
 
-- Laura Harris is a fractional product leader. Site headline: "Product growth, from roadmap to revenue." Subhead: "For consumer and marketplace startups with more growth potential than time to chase it." What I do intro: "Product-led growth, hands on. Bring a problem or bring a project. Either way, I build with your engineers until it ships." She can help find the right projects or execute one the team has already picked.
+- Laura Harris is a fractional product leader. Site headline: "Product growth, from roadmap to revenue." Subhead: "For consumer and marketplace startups with more growth potential than time to chase it." What I do intro: "Product-led growth, hands on. Bring a problem or a project from any stage of the funnel, and I'll build it with your engineers until it ships." She can help find the right projects or execute one the team has already picked.
 - 8+ years building growth products at consumer startups across DTC ecommerce, marketplaces, and healthcare, at stages from seed to Series C and team sizes from 30 to 550.
 - Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove.
 - Did fractional work alongside full-time roles for years, and went all in on fractional work in 2026 "because the math changed": with AI, one senior PM can now take a project from diagnosis to launch, work that used to take a team. Part-time no longer means partial impact.

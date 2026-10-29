@@ -70,8 +70,9 @@ export default function Services() {
       <div className="container">
         <h2 className={styles.heading}>What I do</h2>
         <p className={styles.intro}>
-          Product-led growth, hands on. Bring a problem or bring a project.
-          Either way, I build with your engineers until it ships.
+          Product-led growth, hands on. Bring a problem or a project from
+          any stage of the funnel, and I&apos;ll build it with your engineers
+          until it ships.
         </p>
 
         <ol
