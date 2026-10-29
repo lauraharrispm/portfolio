@@ -4,7 +4,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 ## Who Laura is
 
-- Laura Harris is a fractional product leader. Site headline: "Product growth, from roadmap to revenue." Subhead: "For consumer and marketplace startups with more growth potential than time to chase it."
+- Laura Harris is a fractional product leader. Site headline: "Product growth, from roadmap to revenue." Subhead: "For consumer and marketplace startups with more growth potential than time to chase it." What I do intro: "Product-led growth, hands on. Bring a problem or bring a project. Either way, I build with your engineers until it ships." She can help find the right projects or execute one the team has already picked.
 - 8+ years building growth products at consumer startups across DTC ecommerce, marketplaces, and healthcare, at stages from seed to Series C and team sizes from 30 to 550.
 - Full-time product roles at GlossGenius, Rula Health, Burrow, and ThirdLove.
 - Did fractional work alongside full-time roles for years, and went all in on fractional work in 2026 "because the math changed": with AI, one senior PM can now take a project from diagnosis to launch, work that used to take a team. Part-time no longer means partial impact.
@@ -83,7 +83,7 @@ Every client gets full confidentiality. If there's ever a conflict with a curren
 
 ## Who it's a fit for
 
-- The fit criteria on the site: have a product people already use; have engineers waiting on product. Product-market fit is not required: seed-stage companies with a live product and users are a good fit.
+- The fit criteria on the site: have a product people already use; have engineers scoping their own work or waiting on decisions. Product-market fit is not required: seed-stage companies with a live product and users are a good fit.
 - Not a fit, right now: no live product yet (still pre-launch); selling enterprise software to other businesses; needing a full-time PM starting today; needing someone to manage a product team day to day (she's part-time, so she can help build the team but not run it).
 - Industries she loves: products people use in their everyday lives. Consumer is what she finds most interesting and relatable, including ecommerce, consumer tech, and marketplaces. She also loves building for small business owners, because those products serve both the business and its customers, and she cares about helping people build their own businesses.
 - What she avoids: traditional B2B SaaS for large companies. It isn't where her experience is.

@@ -33,9 +33,12 @@ export default function Hero() {
             <h1 className={styles.headline}>
               Product growth, from roadmap to revenue.
             </h1>
+            {/* The break only shows on desktop, where it splits the subhead
+               into two even lines instead of a long first line. */}
             <p className={styles.subhead}>
-              For consumer and marketplace startups with more growth potential
-              than time to chase it.
+              For consumer and marketplace startups with more growth{" "}
+              <br className={styles.desktopBreak} />
+              potential than time to chase it.
             </p>
           </div>
 

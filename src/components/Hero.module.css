@@ -432,3 +432,14 @@
     white-space: normal;
   }
 }
+
+/* Hidden below desktop, where the subhead wraps on its own. */
+.desktopBreak {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopBreak {
+    display: inline;
+  }
+}

@@ -183,7 +183,7 @@ export default function LetsChat() {
                   <span>Have a product people already use</span>
                 </li>
                 <li>
-                  <span>Have engineers waiting on product</span>
+                  <span>Have engineers scoping their own work or waiting on decisions</span>
                 </li>
               </ul>
             </div>

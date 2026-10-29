@@ -7,8 +7,9 @@ import styles from "./CursorChat.module.css";
 // hello in cursor chat, then fades out. Decoration only: desktop with a
 // real pointer, once per session, never under reduced motion, hidden from
 // screen readers, never blocks a click. Spec: the design partner's
-// .context/site-hero-cursor-chat/notes.md (recolored charcoal and moved to
-// the slot between the subhead and the photo after review).
+// .context/site-hero-cursor-chat/notes.md (recolored charcoal after review).
+// It lands just right of the headline's last word, with the full greeting
+// centered between the period and the left edge of Laura's hair.
 
 const MESSAGE = "Hey, I'm Laura. Nice to meet you!";
 
@@ -59,9 +60,9 @@ export default function CursorChat() {
     const root = rootRef.current;
     const tag = tagRef.current;
     const hero = document.getElementById("hero");
-    const subhead = hero?.querySelector<HTMLElement>("h1 + p");
+    const headline = hero?.querySelector<HTMLElement>("h1");
     const photo = hero?.querySelector<HTMLElement>("img");
-    if (!root || !tag || !hero || !subhead || !photo) return;
+    if (!root || !tag || !hero || !headline || !photo) return;
 
     let frame = 0;
     let observer: IntersectionObserver | undefined;
@@ -86,25 +87,24 @@ export default function CursorChat() {
       const heroRect = hero.getBoundingClientRect();
       const photoRect = photo.getBoundingClientRect();
       const range = document.createRange();
-      range.selectNodeContents(subhead);
+      range.selectNodeContents(headline);
       const lineRects = Array.from(range.getClientRects()).filter((r) => r.width > 0);
       if (!lineRects.length) return;
-      const firstTop = Math.min(...lineRects.map((r) => r.top));
-      const firstLine = lineRects.filter((r) => Math.abs(r.top - firstTop) < 4);
-      const line1Right = Math.max(...firstLine.map((r) => r.right)) - heroRect.left;
-      const preferredX = line1Right + 8;
-      // Prefer fitting the greeting into the portrait's background strip
-      // when there is room, without moving the pointer over the subhead.
-      const bubbleRight = photoRect.left - heroRect.left + photoRect.width * 0.14;
-      const x = Math.max(preferredX, bubbleRight - bubbleWidth - 12);
-      // Preserve the pointer's landing position. When space is tight,
-      // tuck it below the first line; the bubble keeps the name tag's
-      // fixed offset from the pointer and always expands to the right.
-      const needsBelowLine = x + 12 + bubbleWidth > bubbleRight + 0.5;
-      const y = needsBelowLine
-        ? Math.max(...firstLine.map((r) => r.bottom)) - heroRect.top + 6 - 19
-        : firstTop - heroRect.top - 6;
-      const end = { x, y };
+      const lastTop = Math.max(...lineRects.map((r) => r.top));
+      const lastLine = lineRects.filter((r) => Math.abs(r.top - lastTop) < 4);
+      const periodX = Math.max(...lastLine.map((r) => r.right)) - heroRect.left;
+      const lineMidY =
+        (lastTop + Math.max(...lastLine.map((r) => r.bottom))) / 2 - heroRect.top;
+      // Left edge of the hair at headline height: about 29% into the
+      // portrait, measured against the current headshot. Re-measure if the
+      // photo or its crop changes.
+      const hairX = photoRect.left - heroRect.left + photoRect.width * 0.29;
+      // Center the full greeting between the period and the hair. If the
+      // gap is ever narrower than the bubble, keep it clear of the period.
+      const bubbleLeft = Math.max(periodX + 8, (periodX + hairX - bubbleWidth) / 2);
+      // The bubble sits 12px right of and 19px below the pointer tip (see
+      // .tag), so offset the tip to center the 38px bubble on the line.
+      const end = { x: bubbleLeft - 12, y: lineMidY - 19 - 19 };
       const start = { x: heroRect.width + 40, y: end.y + 260 };
       const ctrl = { x: end.x + 200, y: end.y + 240 };
 
