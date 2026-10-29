@@ -149,11 +149,6 @@
   display: contents;
 }
 
-/* Only one of the two layouts shows at a time (see the 768px block). */
-.outcomeInline {
-  display: none;
-}
-
 .outcomeLink {
   font-weight: 500;
   color: var(--charcoal);
@@ -360,8 +355,8 @@
     justify-content: center;
   }
 
-  /* Bullets match the Let's chat fit list: 6px peach dot, centered on the
-     first line, 18px indent. */
+  /* Peach dot like the Let's chat fit list, scaled down to 4px (14px
+     indent) to suit the card's 12px text, centered on the first line. */
   .outcomesList {
     gap: 6px;
   }
@@ -370,44 +365,22 @@
     position: relative;
     background: none;
     border-radius: 0;
-    padding: 0 0 0 18px;
+    padding: 0 0 0 14px;
   }
 
   .outcomeItem::before {
     content: "";
     position: absolute;
     left: 0;
-    top: calc(0.675em - 3px);
-    width: 6px;
-    height: 6px;
+    top: calc(0.675em - 2px);
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: var(--stage-bar-2);
   }
 
-  /* "Company: stat" on one line, each box only as wide as its text.
-     Below about 390px wide the longest one wraps to two lines rather
-     than overflowing. */
   .outcomesList {
     align-items: flex-start;
-  }
-
-  .outcomeStacked {
-    display: none;
-  }
-
-  .outcomeInline {
-    display: inline;
-  }
-
-  /* Regular weight inside the mobile card. */
-  .outcomeInline .outcomeLink {
-    font-weight: 400;
-  }
-
-  /* When a box has to wrap (phones under ~390px), break after
-     "Company:" and keep the stat whole instead of orphaning "lift". */
-  .outcomeInlineStat {
-    white-space: nowrap;
   }
 
   /* margin-top, not row-gap (see .layout's comment above): 32px
@@ -422,14 +395,6 @@
   .ctaSecondary {
     justify-content: center;
     width: 100%;
-  }
-}
-
-/* The narrowest phones can't fit even the stat alone, so let it wrap
-   rather than push the hero past the screen edge. */
-@media (max-width: 359px) {
-  .outcomeInlineStat {
-    white-space: normal;
   }
 }
 

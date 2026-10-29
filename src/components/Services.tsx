@@ -71,8 +71,8 @@ export default function Services() {
         <h2 className={styles.heading}>What I do</h2>
         <p className={styles.intro}>
           Product-led growth, hands on. Bring a problem or a project from
-          any stage of the funnel, and I&apos;ll build it with your engineers
-          until it ships.
+          any stage of the funnel, and I&apos;ll see it through to launch
+          with your engineers.
         </p>
 
         <ol
