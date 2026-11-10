@@ -38,8 +38,7 @@ export const RESPOND_TOOL = {
         // validation rejects array minItems values other than 0 or 1
         // ("tools.0.custom: For 'array' type, 'minItems' values other
         // than 0 or 1 are not supported"), so the 2-3 count is enforced
-        // entirely by validateRespondPayload in validate.ts after the
-        // call, same as every other content rule that isn't pure shape.
+        // as a prompt instruction; the app can fill in missing chips.
         items: {
           type: "object" as const,
           additionalProperties: false,

@@ -12,7 +12,9 @@ const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 let anthropicClient: Anthropic | null = null;
 function getClient(): Anthropic {
   if (!anthropicClient) {
-    anthropicClient = new Anthropic(); // reads ANTHROPIC_API_KEY from env
+    const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
+    if (!apiKey) throw new Error("chat_missing_api_key");
+    anthropicClient = new Anthropic({ apiKey });
   }
   return anthropicClient;
 }
@@ -48,14 +50,17 @@ export class RespondValidationError extends Error {}
  */
 export async function askClaude(
   messages: ChatMessage[],
+  signal?: AbortSignal,
 ): Promise<RespondPayload> {
   const model = process.env.CHAT_MODEL || DEFAULT_MODEL;
   const client = getClient();
 
-  const call = (extraMessages: ChatMessage[]) =>
+  const deadline = AbortSignal.timeout(22_000);
+  const modelSignal = signal ? AbortSignal.any([signal, deadline]) : deadline;
+  const call = (extraMessages: ChatMessage[], maxTokens: number) =>
     client.messages.create({
       model,
-      max_tokens: CHAT_LIMITS.maxAnswerTokens,
+      max_tokens: maxTokens,
       system: [
         {
           type: "text",
@@ -67,15 +72,15 @@ export async function askClaude(
         },
       ],
       tools: [RESPOND_TOOL],
-      tool_choice: { type: "tool", name: "respond" },
+      tool_choice: { type: "tool", name: "respond", disable_parallel_tool_use: true },
       messages: [...messages, ...extraMessages].map((m) => ({
         role: m.role,
         content: m.content,
       })),
-    });
+    }, { signal: modelSignal, timeout: 12_000, maxRetries: 1 });
 
-  const first = await call([]);
-  const firstValid = validateRespondPayload(extractToolInput(first));
+  const first = await call([], CHAT_LIMITS.maxAnswerTokens);
+  const firstValid = readAnswer(first);
   if (firstValid) return firstValid;
 
   // Retry once: malformed tool input is rare with strict:true, but not
@@ -87,21 +92,30 @@ export async function askClaude(
       content:
         "Your last response didn't match the required format. Call the respond tool again with valid input: answer, 2-3 followups (each with question and topic), sources, and intent.",
     },
-  ]);
-  const retryValid = validateRespondPayload(extractToolInput(retry));
+  ], first.stop_reason === "max_tokens" ? 1000 : CHAT_LIMITS.maxAnswerTokens);
+  const retryValid = readAnswer(retry);
   if (retryValid) return retryValid;
 
   throw new RespondValidationError(
-    "Model did not return a valid respond payload after one retry.",
+    retry.stop_reason ?? "missing_answer",
   );
 }
 
-function extractToolInput(message: Anthropic.Message): unknown {
+function readAnswer(message: Anthropic.Message): RespondPayload | null {
+  if (message.stop_reason === "max_tokens") return null;
+  if (message.stop_reason === "refusal") {
+    return {
+      answer: "I can answer questions about Laura's work and how she approaches product growth.",
+      followups: [],
+      sources: [],
+      intent: "browsing",
+    };
+  }
   const block = message.content.find(
     (b): b is Anthropic.ToolUseBlock =>
       b.type === "tool_use" && b.name === "respond",
   );
-  return block?.input;
+  return validateRespondPayload(block?.input);
 }
 
 export function getPromptVersion() {
@@ -109,4 +123,17 @@ export function getPromptVersion() {
     .update(getSystemPrompt())
     .digest("hex")
     .slice(0, 16);
+}
+
+export function describeModelError(err: unknown) {
+  if (err instanceof Anthropic.APIError) {
+    const reason = err.status === 400 && /credit balance is too low/i.test(err.message)
+      ? "insufficient_credits"
+      : err.type;
+    return { type: err.constructor.name, reason, status: err.status, providerRequestId: err.requestID };
+  }
+  if (err instanceof RespondValidationError) return { type: "invalid_response", reason: err.message };
+  if (err instanceof Error && err.message === "chat_missing_api_key") return { type: "missing_api_key" };
+  if (err instanceof Error && "code" in err && err.code === "ENOENT") return { type: "missing_prompt_file" };
+  return { type: err instanceof Error ? err.constructor.name : "unknown" };
 }

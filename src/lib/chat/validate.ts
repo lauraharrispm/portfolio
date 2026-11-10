@@ -10,40 +10,32 @@ export function validateConversationId(value: unknown): string {
   return typeof value === "string" && UUID_V4.test(value) ? value : randomUUID();
 }
 
-/**
- * Hand-rolled validation of the model's tool input (no zod, per the "no
- * new dependencies" rule). `strict: true` on the tool already guarantees
- * the *shape* matches the JSON schema, but we still check it ourselves:
- * strict mode is enforced by the API, and this route should never trust
- * an upstream guarantee blindly for something a malformed response could
- * break the UI on. Returns null if anything is wrong, so the caller can
- * retry once and then fall back to the error state.
- */
+/** An answer can still be shown when optional suggestions or tags are unusable. */
 export function validateRespondPayload(input: unknown): RespondPayload | null {
   if (typeof input !== "object" || input === null) return null;
-  const obj = input as Record<string, unknown>;
+  const { answer, followups, sources, intent } = input as Record<string, unknown>;
+  if (typeof answer !== "string" || !answer.trim()) return null;
 
-  if (typeof obj.answer !== "string" || !obj.answer.trim()) return null;
-
-  if (!Array.isArray(obj.followups) || obj.followups.length < 2 || obj.followups.length > 3) {
-    return null;
-  }
-  for (const f of obj.followups) {
-    if (typeof f !== "object" || f === null) return null;
-    const fo = f as Record<string, unknown>;
-    if (typeof fo.question !== "string" || !fo.question.trim()) return null;
-    if (typeof fo.topic !== "string" || !TOPIC_SET.has(fo.topic)) return null;
-  }
-
-  if (!Array.isArray(obj.sources) || !obj.sources.every((s) => typeof s === "string")) {
-    return null;
-  }
-  // Unknown ids are dropped rather than failing the whole answer: the tool
-  // schema doesn't constrain `sources`, and source_id is a bounded
-  // reporting dimension, not something worth showing an error state over.
-  obj.sources = (obj.sources as string[]).filter((s) => TOPIC_SET.has(s));
-
-  if (typeof obj.intent !== "string" || !INTENTS.has(obj.intent)) return null;
-
-  return obj as unknown as RespondPayload;
+  const tags = Array.isArray(sources)
+    ? sources.filter((source): source is string =>
+        typeof source === "string" && TOPIC_SET.has(source.toLowerCase()),
+      ).map((source) => source.toLowerCase())
+    : [];
+  const questions = Array.isArray(followups)
+    ? followups.flatMap((item: unknown) => {
+        if (typeof item !== "object" || item === null) return [];
+        const { question, topic } = item as Record<string, unknown>;
+        return typeof question === "string" && question.trim() &&
+          typeof topic === "string" && TOPIC_SET.has(topic.toLowerCase())
+          ? [{ question: question.trim(), topic: topic.toLowerCase() }]
+          : [];
+      }).slice(0, 3)
+    : [];
+  const normalizedIntent = typeof intent === "string" ? intent.toLowerCase() : "";
+  return {
+    answer: answer.trim(),
+    followups: questions,
+    sources: [...new Set(tags)],
+    intent: INTENTS.has(normalizedIntent) ? normalizedIntent as RespondPayload["intent"] : "browsing",
+  };
 }
