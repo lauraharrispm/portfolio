@@ -1,10 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { CHAT_LIMITS } from "@/content/chat/config";
 import {
   askClaude,
   RespondValidationError,
   getPromptVersion,
+  describeModelError,
 } from "@/lib/chat/anthropic-client";
+import { findSavedAnswer } from "@/lib/chat/saved-answers";
 import { mockRespond } from "@/lib/chat/mock";
 import { computeChips } from "@/lib/chat/followups";
 import {
@@ -16,11 +18,12 @@ import { validateConversationId } from "@/lib/chat/validate";
 import { stripEmDashes } from "@/lib/chat/sanitize";
 import { storeEvents } from "@/lib/measurement/store";
 import type { EventParams } from "@/lib/measurement/contract";
-import type { ChatApiResponse, ChatMessage } from "@/lib/chat/types";
+import type { ChatApiResponse, ChatMessage, RespondPayload } from "@/lib/chat/types";
 
 // Reads local .md files (system prompt, knowledge base) via fs, so this
 // must run on the Node runtime, not Edge.
 export const runtime = "nodejs";
+export const maxDuration = 40;
 
 interface ChatRequestBody {
   messages?: ChatMessage[];
@@ -76,12 +79,12 @@ async function rejectPayload(
   message: string,
   status = 400,
 ): Promise<NextResponse<ChatApiResponse>> {
-  await recordOutcome("rejected_payload");
+  after(() => recordOutcome("rejected_payload"));
   return bad(message, status);
 }
 
 const ERROR_MESSAGE =
-  "Something went wrong on my end. Try again, or book a call and ask me directly.";
+  "I couldn’t get an answer just now. Try again, or book a call to ask Laura directly.";
 const LIMIT_MESSAGE =
   "That's all the questions I can take for now. The best next step is a real conversation.";
 
@@ -147,11 +150,14 @@ export async function POST(
     return rejectPayload("No visitor message to respond to.");
   }
 
-  const latest = visitorMessages[visitorMessages.length - 1];
+  const latest = allMessages.at(-1)!;
+  if (latest.role !== "user") {
+    return rejectPayload("The last message must be a visitor message.");
+  }
   if (typeof latest.content !== "string" || !latest.content.trim()) {
     return rejectPayload("Empty message.");
   }
-  if (latest.content.length > CHAT_LIMITS.maxMessageChars) {
+  if (visitorMessages.some((m) => m.content.length > CHAT_LIMITS.maxMessageChars)) {
     return rejectPayload(
       `Message too long (max ${CHAT_LIMITS.maxMessageChars} characters).`,
     );
@@ -160,17 +166,45 @@ export async function POST(
   // Conversation limit: checked before the rate limit / model call, since
   // it's about this one conversation, not this visitor's overall usage.
   if (visitorMessages.length > CHAT_LIMITS.maxVisitorMessages) {
-    await recordOutcome("blocked_conversation_cap");
+    after(() => recordOutcome("blocked_conversation_cap"));
     return limited(LIMIT_MESSAGE, "blocked_conversation_cap");
   }
+
+  const context: EventParams = {
+    conversation_id: conversationId,
+    request_id: requestId,
+    turn_number: visitorMessages.length,
+    input_source: inputSource,
+  };
+  const terminal = (outcome: string) => {
+    const latency = Date.now() - started;
+    return async () => {
+      try {
+        await storeEvents(
+          [
+            {
+              name: "chat_request_completed",
+              event_id: requestId,
+              params: { ...context, outcome, latency_ms: latency },
+            },
+          ],
+          "server",
+        );
+      } catch {
+        console.error("measurement: server outcome persistence failed", {
+          requestId,
+        });
+      }
+    };
+  };
 
   const ip = getIp(req);
   try {
     const rl = await rateLimit(ip);
     if (!rl.hour.allowed || !rl.day.allowed) {
-      await recordOutcome(
+      after(() => recordOutcome(
         !rl.hour.allowed ? "blocked_rate_hour" : "blocked_rate_day",
-      );
+      ));
       return limited(
         LIMIT_MESSAGE,
         !rl.hour.allowed ? "blocked_rate_hour" : "blocked_rate_day",
@@ -183,67 +217,39 @@ export async function POST(
     // chip), not the "limited" copy, since this isn't actually a limit
     // being hit, it's the store being down. Logged either way.
     console.error("chat: rate limit check failed, refusing to answer", err);
-    await recordOutcome("error_store");
+    after(() => recordOutcome("error_store"));
+    after(terminal("error_store"));
     return NextResponse.json(
       { status: "error", message: ERROR_MESSAGE, errorType: "server_error" },
-      { status: 502 },
+      { status: 503 },
     );
   }
 
-  const context: EventParams = {
-    conversation_id: conversationId,
-    request_id: requestId,
-    turn_number: visitorMessages.length,
-    input_source: inputSource,
-  };
-  const terminal = async (outcome: string) => {
-    try {
-      await storeEvents(
-        [
-          {
-            name: "chat_request_completed",
-            event_id: requestId,
-            params: { ...context, outcome, latency_ms: Date.now() - started },
-          },
-        ],
-        "server",
-      );
-    } catch {
-      console.error("measurement: server outcome persistence failed", {
-        requestId,
-      });
-    }
-  };
+  // Anthropic history starts with a visitor turn, even when the slice
+  // falls in the middle of a conversation.
+  const recent = allMessages.slice(-CHAT_LIMITS.maxHistoryMessages);
+  const trimmedHistory = recent.slice(recent.findIndex((m) => m.role === "user"));
 
-  const trimmedHistory = allMessages.slice(-CHAT_LIMITS.maxHistoryMessages);
-
-  let payload;
+  let payload: RespondPayload;
+  let saved = false;
   try {
     payload = isMockMode()
       ? mockRespond(latest.content)
-      : await askClaude(trimmedHistory);
+      : await askClaude(trimmedHistory, req.signal);
   } catch (err) {
-    if (err instanceof RespondValidationError) {
-      await recordOutcome("error_validation");
-      await terminal("error_validation");
+    const outcome = err instanceof RespondValidationError ? "error_validation" : "error_model";
+    console.error("chat: model call failed", { requestId, ...describeModelError(err) });
+    const fallback = findSavedAnswer(latest.content);
+    after(() => recordOutcome(outcome));
+    after(terminal(fallback ? "saved_answer" : outcome));
+    if (!fallback) {
       return NextResponse.json(
         { status: "error", message: ERROR_MESSAGE, errorType: "server_error" },
-        { status: 502 },
+        { status: 503 },
       );
     }
-    // Anthropic.APIError subclasses (rate limit, overloaded, etc.) and any
-    // other unexpected failure all surface the same friendly copy; the
-    // specifics aren't useful to a visitor and shouldn't leak to the client.
-    console.error("chat: model call failed", {
-      requestId,
-      type: err instanceof Error ? err.name : "unknown",
-    });
-    await recordOutcome("error_model");
-    await terminal("error_model");
-    return NextResponse.json(
-      { status: "error", message: ERROR_MESSAGE, errorType: "server_error" },
-      { status: 502 },
-    );
+    saved = true;
+    payload = fallback;
   }
 
   // Belt-and-suspenders against em dashes: the system prompt already says
@@ -251,8 +257,8 @@ export async function POST(
   // consistency, so strip any that slip through before the visitor sees
   // them. Covers both the real model and (harmlessly, since they're
   // already dash-free) the mock payloads.
-  payload.answer = stripEmDashes(payload.answer);
-  payload.followups = payload.followups.map((f) => ({
+  const answer = stripEmDashes(payload.answer);
+  const followups = payload.followups.map((f) => ({
     ...f,
     question: stripEmDashes(f.question),
   }));
@@ -263,7 +269,7 @@ export async function POST(
   const askedQuestions = visitorMessages.map((m) => m.content);
 
   const chips = computeChips({
-    modelFollowups: payload.followups,
+    modelFollowups: followups,
     sources: payload.sources,
     intent: payload.intent,
     askedQuestions,
@@ -271,42 +277,46 @@ export async function POST(
     visitorMessageCount: visitorMessages.length,
   });
 
-  try {
-    await logChatQuestion(
-      latest.content,
-      payload.sources,
-      payload.intent,
-      visitorMessages.length,
-      conversationId,
-      {
-        requestId,
-        inputSource,
-        starterId,
-        latencyMs: Date.now() - started,
-        schemaVersion: 2,
-        isInternal: body.internalVisit === true,
-        modelVersion: process.env.CHAT_MODEL ?? "claude-haiku-4-5-20251001",
-        knowledgeVersion: getPromptVersion(),
-      },
-    );
-    console.info("chat: question persisted", {
-      requestId,
-      turn: visitorMessages.length,
-      schemaVersion: 2,
-      isInternal: body.internalVisit === true,
+  if (!saved) {
+    const latencyMs = Date.now() - started;
+    after(() => recordOutcome("ok"));
+    after(terminal("ok"));
+    after(async () => {
+      try {
+        await logChatQuestion(
+          latest.content,
+          payload.sources,
+          payload.intent,
+          visitorMessages.length,
+          conversationId,
+          {
+            requestId,
+            inputSource,
+            starterId,
+            latencyMs,
+            schemaVersion: 2,
+            isInternal: body.internalVisit === true,
+            modelVersion: process.env.CHAT_MODEL || "claude-haiku-4-5-20251001",
+            knowledgeVersion: getPromptVersion(),
+          },
+        );
+        console.info("chat: question persisted", {
+          requestId,
+          turn: visitorMessages.length,
+          schemaVersion: 2,
+          isInternal: body.internalVisit === true,
+        });
+      } catch (err) {
+        console.error("chat: logging failed", { requestId, type: err instanceof Error ? err.name : "unknown" });
+        await recordOutcome("error_logging");
+      }
     });
-  } catch (err) {
-    // Logging failures shouldn't break the visitor's answer.
-    console.error("chat: logging failed", err);
-    await recordOutcome("error_logging");
   }
-
-  await recordOutcome("ok");
-  await terminal("ok");
 
   return NextResponse.json({
     status: "ok",
-    answer: payload.answer,
+    answer,
+    ...(saved ? { saved: true } : {}),
     chips,
     sources: payload.sources,
     intent: payload.intent,

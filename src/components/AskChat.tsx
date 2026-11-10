@@ -8,7 +8,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { STARTER_QUESTIONS } from "@/content/chat/config";
+import { CHAT_LIMITS, STARTER_QUESTIONS } from "@/content/chat/config";
 import type { Chip, ChatApiResponse, ChatMessage } from "@/lib/chat/types";
 import styles from "./AskChat.module.css";
 import {
@@ -251,6 +251,8 @@ interface DisplayMessage {
   revealing?: boolean;
   variant?: "answer" | "error" | "limited";
   analytics?: EventParams;
+  saved?: boolean;
+  retry?: { question: string; inputSource: string; starterId?: string };
 }
 
 let idCounter = 0;
@@ -268,6 +270,7 @@ export default function AskChat() {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
+  const activeRequestRef = useRef<AbortController | null>(null);
   const apiHistoryRef = useRef<ChatMessage[]>([]);
   const touchedTopicsRef = useRef<Set<string>>(new Set());
   const conversationIdRef = useRef<string | null>(null);
@@ -291,7 +294,13 @@ export default function AskChat() {
     }
   }, [displayMessages]);
 
+  useEffect(() => () => activeRequestRef.current?.abort(), []);
+
   const startOver = useCallback(() => {
+    activeRequestRef.current?.abort();
+    activeRequestRef.current = null;
+    revealedIds.current.clear();
+    focusedPlaceholderRef.current = null;
     if (conversationIdRef.current)
       trackEvent("chat_clear", {
         conversation_id: conversationIdRef.current,
@@ -310,12 +319,15 @@ export default function AskChat() {
   }, []);
 
   const send = useCallback(
-    async (question: string, inputSource = "free_text", starterId?: string) => {
+    async (question: string, inputSource = "free_text", starterId?: string, retryId?: string) => {
       const trimmed = question.trim();
-      if (!trimmed || loading || disabled) return;
+      if (!trimmed || activeRequestRef.current || disabled) return;
+      const controller = new AbortController();
+      activeRequestRef.current = controller;
+      const timeout = setTimeout(() => controller.abort(), 30_000);
 
       setPhase("conversation");
-      setInputValue("");
+      if (!retryId) setInputValue("");
       const first = !conversationIdRef.current;
       conversationIdRef.current ??= crypto.randomUUID();
       const conversationId = conversationIdRef.current;
@@ -333,24 +345,22 @@ export default function AskChat() {
       trackEvent("chat_message_sent", source);
       const started = performance.now();
 
-      const userMsg: DisplayMessage = {
-        id: nextId(),
-        role: "user",
-        content: trimmed,
-      };
-      setDisplayMessages((prev) => [...prev, userMsg]);
-      apiHistoryRef.current = [
-        ...apiHistoryRef.current,
-        { role: "user", content: trimmed },
-      ];
+      const userMessage = { role: "user" as const, content: trimmed };
+      const userId = nextId();
+      setDisplayMessages((prev) => retryId
+        ? prev.filter((message) => message.id !== retryId)
+        : [...prev, { ...userMessage, id: userId }]);
+      const messages = [...apiHistoryRef.current, userMessage];
+      const retry = { question: trimmed, inputSource, starterId };
       setLoading(true);
 
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
+          signal: controller.signal,
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
-            messages: apiHistoryRef.current,
+            messages,
             touchedTopics: Array.from(touchedTopicsRef.current),
             conversationId,
             requestId,
@@ -361,7 +371,13 @@ export default function AskChat() {
         });
         const data: ChatApiResponse = await res.json();
         if (conversationIdRef.current !== conversationId) return;
-        setLoading(false);
+        if (
+          !data ||
+          (data.status === "ok"
+            ? !res.ok || typeof data.answer !== "string" || !data.answer.trim() ||
+              !Array.isArray(data.sources) || !Array.isArray(data.chips)
+            : !["limited", "error"].includes(data.status) || typeof data.message !== "string")
+        ) throw new Error("Invalid chat response");
 
         if (data.status === "ok") {
           const metadata = { ...context, intent: data.intent };
@@ -373,7 +389,7 @@ export default function AskChat() {
             trackEvent("chat_source_cited", { ...context, source_id: source }),
           );
           apiHistoryRef.current = [
-            ...apiHistoryRef.current,
+            ...messages,
             { role: "assistant", content: data.answer },
           ];
           data.sources.forEach((s) => touchedTopicsRef.current.add(s));
@@ -386,6 +402,7 @@ export default function AskChat() {
               chips: data.chips,
               revealing: true,
               variant: "answer",
+              saved: data.saved,
               analytics: metadata,
             },
           ]);
@@ -423,6 +440,7 @@ export default function AskChat() {
                 { kind: "book_call", label: "Book a call", href: "#book" },
               ],
               variant: "error",
+              retry: res.status >= 500 ? retry : undefined,
               analytics: context,
             },
           ]);
@@ -431,24 +449,30 @@ export default function AskChat() {
         if (conversationIdRef.current !== conversationId) return;
         trackEvent("chat_error", {
           ...context,
-          error_type: "network_or_parse",
+          error_type: controller.signal.aborted ? "timeout" : "network_or_parse",
         });
-        setLoading(false);
         setDisplayMessages((prev) => [
           ...prev,
           {
             id: nextId(),
             role: "assistant",
             content:
-              "Something went wrong on my end. Try again, or book a call and ask me directly.",
+              "I couldn’t get an answer just now. Try again, or book a call to ask Laura directly.",
             chips: [{ kind: "book_call", label: "Book a call", href: "#book" }],
             variant: "error",
+            retry,
             analytics: context,
           },
         ]);
+      } finally {
+        clearTimeout(timeout);
+        if (activeRequestRef.current === controller) {
+          activeRequestRef.current = null;
+          setLoading(false);
+        }
       }
     },
-    [loading, disabled],
+    [disabled],
   );
 
   const handleSubmit = useCallback(
@@ -504,9 +528,11 @@ export default function AskChat() {
         revealedIds.current.add(id);
         trackEvent("chat_response_displayed", message.analytics);
       }
-      setDisplayMessages((prev) =>
-        prev.map((m) => (m.id === id ? { ...m, revealing: false } : m)),
-      );
+      if (message?.revealing) {
+        setDisplayMessages((prev) =>
+          prev.map((m) => (m.id === id ? { ...m, revealing: false } : m)),
+        );
+      }
     },
     [displayMessages],
   );
@@ -542,12 +568,12 @@ export default function AskChat() {
                   }}
                   onBlur={() => setInputFocused(false)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
+                    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
                       e.preventDefault();
                       e.currentTarget.form?.requestSubmit();
                     }
                   }}
-                  maxLength={500}
+                  maxLength={CHAT_LIMITS.maxMessageChars}
                 />
                 <button
                   type="submit"
@@ -576,13 +602,19 @@ export default function AskChat() {
               </div>
 
               <div className={styles.messages} ref={scrollRef} aria-live="polite">
-                {displayMessages.map((m) => (
+                {displayMessages.map((m, index) => (
                   <MessageBubble
                     key={m.id}
                     message={m}
                     reducedMotion={reducedMotion}
                     onRevealed={markRevealed}
                     onChip={handleChipClick}
+                    onRetry={m.retry && index === displayMessages.length - 1
+                      ? () => {
+                        const { question, inputSource, starterId } = m.retry!;
+                        void send(question, inputSource, starterId, m.id);
+                      }
+                      : undefined}
                   />
                 ))}
                 {loading && (
@@ -607,7 +639,7 @@ export default function AskChat() {
                   placeholder={
                     disabled ? "Conversation limit reached" : "Ask a follow-up..."
                   }
-                  maxLength={500}
+                  maxLength={CHAT_LIMITS.maxMessageChars}
                   disabled={disabled}
                 />
                 <button
@@ -636,11 +668,13 @@ function MessageBubble({
   reducedMotion,
   onRevealed,
   onChip,
+  onRetry,
 }: {
   message: DisplayMessage;
   reducedMotion: boolean;
   onRevealed: (id: string) => void;
   onChip: (chip: Chip, message: DisplayMessage, index: number) => void;
+  onRetry?: () => void;
 }) {
   const chipsRef = useRef<HTMLDivElement>(null);
   const impressionSent = useRef(false);
@@ -689,8 +723,12 @@ function MessageBubble({
         className={`${styles.answer} ${message.variant === "error" || message.variant === "limited" ? styles.answerMuted : ""}`}
         dangerouslySetInnerHTML={{ __html: renderLightMarkdown(shown) }}
       />
+      {message.saved && <small className={styles.disclaimer}>From Laura’s portfolio</small>}
       {chipsReady && message.chips && message.chips.length > 0 && (
         <div className={styles.chips} ref={chipsRef}>
+          {onRetry && (
+            <button type="button" className={styles.chip} onClick={onRetry}>Try again</button>
+          )}
           {message.chips.map((chip, i) => (
             <button
               key={i}

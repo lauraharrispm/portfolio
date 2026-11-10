@@ -51,6 +51,7 @@ export interface Chip {
 /** What the API route returns to the client on a normal turn. */
 export interface ChatTurnResponse {
   status: "ok";
+  saved?: true;
   answer: string;
   chips: Chip[];
   sources: string[];

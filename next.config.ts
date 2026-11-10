@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   env: { NEXT_PUBLIC_MEASUREMENT_ENV: process.env.VERCEL_ENV ?? "development" },
+  outputFileTracingIncludes: {
+    "/api/chat": ["./src/content/chat/system-prompt.md", "./src/content/chat/knowledge.md"],
+  },
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
