@@ -30,7 +30,7 @@ This is the content approved for the site, organized for the chat. Never guess a
 
 - How she got into product: her first full-time job was at a media agency executing media plans for large retail brands whose strategy was already set. She kept asking "why" and was told those weren't questions they asked. So she moved in-house to ecommerce startups, where she could ask why and had room to build and be creative.
 - Career break (the only personal-life topic the chat can discuss): after seven years in high-growth startups, she took time to recharge, explore, and build. She spent her days training her puppy, traveling with her camera, and having a genuinely good time tinkering with AI.
-- Testimonials: none to share on the site. Point people to Laura's LinkedIn to see the people she's worked with.
+- Testimonials: Four former teammates share recommendations in the [Recommendations group chat](#recommendations), just above Let's chat.
 
 ## What she does (full-funnel growth)
 

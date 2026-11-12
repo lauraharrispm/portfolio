@@ -73,10 +73,10 @@
 
 /* Matches the mobile-menu breakpoint below (.links/.hamburger): the
    all-caps tagline plus its divider need more room than the old plain
-   tagline did, so the collapse point moved from 768px to 999px to keep
+   tagline did, so the collapse point moved from 768px to 1199px to keep
    full desktop spacing everywhere the tagline is visible, with no
    crowding or wrapping in between. */
-@media (max-width: 999px) {
+@media (max-width: 1199px) {
   .divider,
   .tagline {
     display: none;
@@ -190,7 +190,7 @@
   margin-top: 8px;
 }
 
-@media (max-width: 999px) {
+@media (max-width: 1199px) {
   .nav {
     box-shadow: 0 1px 0 rgba(46, 40, 32, 0.08);
   }

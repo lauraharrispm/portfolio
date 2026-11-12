@@ -81,6 +81,11 @@ export default function Nav({ chatEnabled }: NavProps) {
             </li>
           )}
           <li>
+            <a href="#recommendations" onClick={() => trackNav("references", "nav_desktop")}>
+              References
+            </a>
+          </li>
+          <li>
             <a
               href="#book"
               className={styles.ctaButton}
@@ -154,6 +159,17 @@ export default function Nav({ chatEnabled }: NavProps) {
                 </a>
               </li>
             )}
+            <li>
+              <a
+                href="#recommendations"
+                onClick={() => {
+                  close();
+                  trackNav("references", "nav_mobile");
+                }}
+              >
+                References
+              </a>
+            </li>
             <li>
               <a
                 href="#book"
