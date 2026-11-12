@@ -94,10 +94,10 @@ export const projects: Project[] = ([
     company: "Healthcare startup",
     thumbnail: "/thumb-intake.png",
     cardImage: {
-      src: "/case-studies/intake-card.png",
+      src: "/case-studies/intake-card-refined.png",
       alt: "Redesigned intake form starting with a care-type choice",
-      width: 1262,
-      height: 873,
+      width: 1260,
+      height: 945,
     },
     title: "Patient intake redesign",
     oneLineDesc:
@@ -178,8 +178,8 @@ export const projects: Project[] = ([
           "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
-          "/case-studies/intake-1.png",
-          "/case-studies/intake-2.png",
+          "/case-studies/intake-1-refined.png",
+          "/case-studies/intake-2-refined.png",
         ],
         altTexts: [
           "Care-type selection at the start of intake.",
@@ -228,10 +228,10 @@ export const projects: Project[] = ([
     company: "Healthcare startup",
     thumbnail: "/thumb-portal.png",
     cardImage: {
-      src: "/case-studies/portal-card.png",
+      src: "/case-studies/portal-card-refined.png",
       alt: "Patient portal step tracker with a next-action header",
-      width: 883,
-      height: 842,
+      width: 1260,
+      height: 945,
     },
     title: "Patient portal redesign",
     oneLineDesc:
@@ -314,8 +314,8 @@ export const projects: Project[] = ([
           "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
-          "/case-studies/portal-1.png",
-          "/case-studies/portal-2.png",
+          "/case-studies/portal-1-refined.png",
+          "/case-studies/portal-2-refined.png",
         ],
         altTexts: [
           "Step tracker with a next-action header.",
