@@ -207,9 +207,6 @@ export default function Recommendations() {
                 </span>
               </div>
               <div className={styles.chatHeader}>
-                <svg className={styles.back} viewBox="0 0 11 19" aria-hidden="true">
-                  <path d="M9.5 1.5 2 9.5l7.5 8" />
-                </svg>
                 <span className={styles.groupName}>Teammates <span aria-hidden="true">🩶</span></span>
               </div>
               <ol className={styles.thread} ref={threadRef} aria-label="Group chat: former teammates on working with Laura" role="list">
