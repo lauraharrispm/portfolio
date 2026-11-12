@@ -5,7 +5,7 @@ A visual-only refresh of the anonymous patient intake and patient portal recreat
 - Retains the existing screen wording, sample identities, clinical steps, and insurance examples.
 - Uses ivory surfaces, deep green actions, lighter outlines, serif headings, consistent spacing, and restrained status treatments.
 - Keeps the existing individual image dimensions. Recent Work previews use 1260 × 945 (4:3) so the website does not crop their sides.
-- Original PNGs remain in `public/case-studies/`. The site references the new `*-refined.png` exports (second pass); `*-polished.png` retains the first pass.
+- Original PNGs remain in `public/case-studies/`. The site references the new `*-review.png` exports (spacing review); `*-refined.png` retains the second pass; `*-polished.png` retains the first pass.
 
 ## Editing
 
@@ -40,3 +40,7 @@ Read Laura’s canonical persona at `/Users/lauraharris/context-directory-person
 Measured contrasts: secondary text on white 6.15:1; on selected fill 5.53:1; on disabled fill 5.14:1; white on primary green 6.43:1; primary text on ivory 11.48:1.
 
 Second-pass website screenshots: `refined-intake.jpg`, `refined-portal.jpg`. The original homepage screenshots retain the first pass for comparison. TypeScript and local browser review passed.
+
+## Review spacing and content audit
+
+The summary cards now render company, funding stage, engagement, and funnel stage, using the existing data and dot separators. The insurance information callout is shorter, DONE/NOW badges are centered with wider padding, and portal progress summaries have more separation from the NOW heading. See `content-audit.md` for the content comparison.

@@ -289,10 +289,10 @@ function Card({ project, onOpen }: CardProps) {
       )}
 
       <div className={styles.text}>
-        {/* Company, engagement and funnel stage(s) as one quiet label,
+        {/* Company, funding stage, engagement and funnel stage(s) as one quiet label,
            separated by small dots, all in the company's type. */}
         <div className={styles.meta}>
-          {[project.company, project.engagement, ...project.tags]
+          {[project.company, project.fundingStage, project.engagement, ...project.tags]
             .filter((label): label is string => Boolean(label))
             .map((label, i) => (
               <Fragment key={`${label}-${i}`}>

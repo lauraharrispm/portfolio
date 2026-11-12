@@ -94,7 +94,7 @@ export const projects: Project[] = ([
     company: "Healthcare startup",
     thumbnail: "/thumb-intake.png",
     cardImage: {
-      src: "/case-studies/intake-card-refined.png",
+      src: "/case-studies/intake-card-review.png",
       alt: "Redesigned intake form starting with a care-type choice",
       width: 1260,
       height: 945,
@@ -178,8 +178,8 @@ export const projects: Project[] = ([
           "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
-          "/case-studies/intake-1-refined.png",
-          "/case-studies/intake-2-refined.png",
+          "/case-studies/intake-1-review.png",
+          "/case-studies/intake-2-review.png",
         ],
         altTexts: [
           "Care-type selection at the start of intake.",
@@ -228,7 +228,7 @@ export const projects: Project[] = ([
     company: "Healthcare startup",
     thumbnail: "/thumb-portal.png",
     cardImage: {
-      src: "/case-studies/portal-card-refined.png",
+      src: "/case-studies/portal-card-review.png",
       alt: "Patient portal step tracker with a next-action header",
       width: 1260,
       height: 945,
@@ -314,8 +314,8 @@ export const projects: Project[] = ([
           "Note the images below are abstracted recreations that illustrate the design, not screenshots of the live product, to maintain anonymity.",
         ],
         images: [
-          "/case-studies/portal-1-refined.png",
-          "/case-studies/portal-2-refined.png",
+          "/case-studies/portal-1-review.png",
+          "/case-studies/portal-2-review.png",
         ],
         altTexts: [
           "Step tracker with a next-action header.",
