@@ -41,17 +41,17 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/headshot.jpg",
-        width: 2000,
-        height: 2000,
-        alt: "Laura Harris",
-        type: "image/jpeg",
+        url: "/share-preview-square.png",
+        width: 1200,
+        height: 1200,
+        alt: "Product growth, from roadmap to revenue.",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary",
-    images: [{ url: "/headshot.jpg", alt: "Laura Harris" }],
+    images: [{ url: "/share-preview-square.png", alt: "Product growth, from roadmap to revenue." }],
     title: "Laura Harris | Fractional Product Leader",
     description:
       "Fractional product leader for consumer, marketplace, and health tech startups. Product-led growth, from roadmap to revenue.",
