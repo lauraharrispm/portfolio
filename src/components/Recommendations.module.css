@@ -85,13 +85,6 @@
   text-align: center;
   border-bottom: 1px solid rgba(46, 40, 32, 0.08);
 }
-.back {
-  position: absolute;
-  left: 16px; top: 6px;
-  width: 11px; height: 19px;
-  fill: none; stroke: var(--coral); stroke-width: 2.6;
-  stroke-linecap: round; stroke-linejoin: round;
-}
 /* Title only: no avatar cluster, so the label is the first thing read and
    the messages get the ~24px the avatars took. Body size and medium
    weight, like an iOS title. The heart is the system grey heart emoji. */
@@ -261,7 +254,7 @@
   .phoneWrap { display: block; }
   .phone { width: 100%; height: auto; padding: 0; border-radius: var(--card-radius); background: none; box-shadow: none; }
   .screen { border-radius: var(--card-radius); border: var(--card-border); overflow: visible; }
-  .island, .statusBar, .homeBar, .back { display: none; }
+  .island, .statusBar, .homeBar { display: none; }
   .chatHeader { padding: 12px 16px 10px; }
   .thread { overflow: visible; padding: 12px 4% 18px; }
 }
