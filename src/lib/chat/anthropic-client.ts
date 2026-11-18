@@ -105,7 +105,7 @@ function readAnswer(message: Anthropic.Message): RespondPayload | null {
   if (message.stop_reason === "max_tokens") return null;
   if (message.stop_reason === "refusal") {
     return {
-      answer: "I can answer questions about Laura's work and how she approaches product growth.",
+      answer: "I can answer questions about Laura's work and how she approaches product-led growth.",
       followups: [],
       sources: [],
       intent: "browsing",
