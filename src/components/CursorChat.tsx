@@ -80,7 +80,7 @@ export default function CursorChat() {
       // Anchor to the rendered word, so placement follows its font and
       // position rather than relying on a fixed desktop offset.
       const end = {
-        x: wordRect.right - heroRect.left + 8,
+        x: wordRect.right - heroRect.left + 24,
         y: wordRect.top - heroRect.top + (wordRect.height - 23) / 2,
       };
       const start = { x: heroRect.width + 40, y: end.y + 260 };
