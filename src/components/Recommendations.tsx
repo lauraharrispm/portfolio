@@ -11,6 +11,12 @@ const replies = [
     quote: "Laura is a dream PM. She really gets the full picture and can translate and build on complex concepts effortlessly.",
   },
   {
+    name: "Stephanie Fung",
+    initials: "SF",
+    profile: "stephaniedfung",
+    quote: "Anyone who works with Laura should count themselves lucky. As an engineer, I really appreciated how easy she made collaboration.\n\nAs our startup’s first PM, she brought a clear focus on data-driven decisions, experimentation, and bringing teams together.",
+  },
+  {
     name: "Gianna Gross",
     initials: "GG",
     profile: "giannafischer",
@@ -207,7 +213,7 @@ export default function Recommendations() {
                 </span>
               </div>
               <div className={styles.chatHeader}>
-                <span className={styles.groupName}>Teammates <span aria-hidden="true">🩶</span></span>
+                <span className={styles.groupName}>Teammates</span>
               </div>
               <ol className={styles.thread} ref={threadRef} aria-label="Group chat: former teammates on working with Laura" role="list">
                 <li className={styles.stamp} aria-hidden="true">Today 9:41 AM</li>
