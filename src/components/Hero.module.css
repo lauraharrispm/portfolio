@@ -42,6 +42,7 @@
 
 .content {
   grid-area: content;
+  container-type: inline-size;
   min-width: 0;
   max-width: 640px;
 }
@@ -76,17 +77,19 @@
 
 .headline {
   font-family: var(--font-headline);
-  /* 63px ceiling, set when the headline was longer: it kept that copy to
-     2 lines in the fixed 640px desktop column. The current headline is
-     shorter and stays at 2 lines at this size; text-wrap: balance splits
-     it evenly instead of leaving a short last line. */
-  font-size: clamp(2.5rem, 5vw, 3.9375rem);
+  /* Size against the actual copy column so the longer second line
+     fits even between breakpoints and on narrow screens. */
+  font-size: min(3.9375rem, 9.8cqi);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--charcoal);
   margin-bottom: 24px;
-  text-wrap: balance;
+}
+
+.headlineLine {
+  display: block;
+  white-space: nowrap;
 }
 
 .tagline {
@@ -249,12 +252,8 @@
     padding-bottom: var(--band-gap-mobile);
   }
 
-  /* 36px: about twice the 17px subhead, so the pair reads as balanced
-     instead of a huge headline over small text, while keeping the
-     headline and the CTA above the fold on a 390px iPhone
-     (CTA bottom ~640px vs. Safari's ~659px visible height). */
   .headline {
-    font-size: 2.25rem;
+    font-size: min(2.25rem, 9.8cqi);
   }
 
   /* Photo and outcomes share a row here instead of stacking: a single
