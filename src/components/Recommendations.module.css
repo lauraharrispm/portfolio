@@ -87,7 +87,7 @@
 }
 /* Title only: no avatar cluster, so the label is the first thing read and
    the messages get the ~24px the avatars took. Body size and medium
-   weight, like an iOS title. The heart is the system grey heart emoji. */
+   weight, like an iOS title. */
 .groupName { display: block; font-size: 0.9375rem; font-weight: 500; color: var(--charcoal); line-height: 1.3; }
 
 .homeBar {
