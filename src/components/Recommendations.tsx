@@ -178,7 +178,7 @@ export default function Recommendations() {
   }, []);
 
   return (
-    <section className={styles.recs} id="recommendations" aria-labelledby="recs-heading">
+    <section className={styles.recs} id="references" aria-labelledby="recs-heading">
       <div className={`container ${styles.recsInner}`}>
         <div>
           <h2 className={styles.heading} id="recs-heading">Your reference check, done.</h2>
