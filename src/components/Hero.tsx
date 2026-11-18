@@ -31,7 +31,8 @@ export default function Hero() {
         <div className={styles.layout}>
           <div className={styles.content}>
             <h1 className={styles.headline}>
-              Product-led growth, from roadmap to revenue.
+              <span className={styles.headlineLine}>Product-led growth,</span>{" "}
+              <span className={styles.headlineLine}>from roadmap to revenue.</span>
             </h1>
             {/* The break only shows on desktop, where it splits the subhead
                into two even lines instead of a long first line. */}
