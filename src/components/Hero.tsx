@@ -37,7 +37,8 @@ export default function Hero() {
             {/* The break only shows on desktop, where it splits the subhead
                into two even lines instead of a long first line. */}
             <p className={styles.subhead}>
-              For consumer and marketplace startups with more growth{" "}
+              For consumer and marketplace startups with more{" "}
+              <span data-cursor-chat-anchor>growth</span>{" "}
               <br className={styles.desktopBreak} />
               potential than time to chase it.
             </p>
