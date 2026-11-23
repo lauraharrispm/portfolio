@@ -82,7 +82,8 @@ export default function RootLayout({
           // Renewed on every visit, so owner mode never lapses silently.
           if (ownerMode === 'internal' || ownerCookie) document.cookie = 'lh_internal=1; Max-Age=2592000; Path=/; SameSite=Lax; Secure';
           if (ownerMode === 'public') document.cookie = 'lh_internal=; Max-Age=0; Path=/; SameSite=Lax; Secure';
-          if (navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl && !/(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie)) {
+          var productionHost = ['www.lauraharrispm.com', 'lauraharrispm.com'].includes(location.hostname);
+          if (productionHost && navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl && !/(?:^|; )lh_internal=1(?:;|$)/.test(document.cookie)) {
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}', {send_page_view:true, ignore_referrer:false});
           }
