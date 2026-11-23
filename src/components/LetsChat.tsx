@@ -116,11 +116,12 @@ export default function LetsChat() {
       // Without a provider booking ID, don't count an unverifiable callback.
       if (!uid || seenBookings.current.has(uid)) return;
       seenBookings.current.add(uid);
+      const normalizedStatus = status?.toLowerCase();
       trackEvent("booking_created", {
         booking_status: ["accepted", "pending", "confirmed"].includes(
-          status ?? "",
+          normalizedStatus ?? "",
         )
-          ? status!
+          ? normalizedStatus!
           : "unknown",
       });
     };
