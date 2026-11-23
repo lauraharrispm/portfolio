@@ -4,7 +4,7 @@ Reviewed November 23, 2026 against production JavaScript, current `origin/main` 
 
 **The low chat and case-study numbers have supporting server evidence. The six legacy CTA clicks were navigation, not booking intent.** Two booking creations agree across GA and the event store. Direct traffic is an attribution limitation, not proof that 34 visitors typed the address. Owner contamination cannot be estimated reliably from these records.
 
-Production settings, Redis records, and appointments were unchanged. No production chat or booking was submitted. Redis queries used `HLEN`, `HGETALL`, `GET`, and `LRANGE` inside enforced read-only `EVAL_RO`; they returned counts and bounded metadata, never question text. No credentials or raw exports are committed. The GA booking aggregate CSV is retained outside the repository with owner-only permissions.
+No production settings, existing Redis records, or appointments were edited or deleted. After explicit approval, one tagged diagnostic page visit on November 23 generated ordinary analytics events; this is the only authorized exception to the original read-only scope. No production chat or booking was submitted. Redis queries used `HLEN`, `HGETALL`, `GET`, and `LRANGE` inside enforced read-only `EVAL_RO`; they returned counts and bounded metadata, never question text. No credentials or raw exports are committed. The GA booking aggregate CSV is retained outside the repository with owner-only permissions.
 
 ## 1. Chat usage
 
@@ -40,15 +40,15 @@ Visitors can reach the inline booking widget by scrolling or loading a hash link
 
 ## 4. Direct attribution and campaign tags
 
-**Status: working for the inspected URL path; end-to-end receipt of a new tagged test remains unverified.**
+**Status: working; receipt of all four campaign fields verified in GA Realtime.**
 
 **Evidence:** Traffic acquisition confirms 35 sessions: 34 `(direct) / (none)` and one `linkedin.com / referral`. A public HTTP request to the bare domain returned a 308 to `www` with all four UTM parameters intact, then a 200. The campaign-link script generates a tagged canonical URL. No application redirect strips its query. Fragment-only case-study history updates preserve the current query. GA configuration does not override campaign/source/medium or `page_location`.
 
 The custom `traffic_source` parameter describes the current document referrer; it does not parse campaign tags and is not GA's session attribution. One booking has a LinkedIn referrer even though GA attributes both booking sessions to Direct. Those are different measurements and must not be substituted for each other.
 
-A new tagged production visit was blocked by automatic approval review because it would add data despite the briefing's read-only constraint. It was not executed. The proposed tag is `utm_campaign=analytics_audit_20261123`, `utm_content=tagged_link_check` and requires an explicit exception before use.
+Laura explicitly approved one tagged diagnostic production visit on November 23 after the initial read-only restriction prevented it. The visit began at approximately **10:28 a.m. Eastern / 15:28 UTC**, in an isolated browser session, with no chat submission or booking. GA Realtime received one page view and session/first-visit events. Its page-view parameter drilldowns independently showed `source=linkedin`, `medium=social`, `campaign=analytics_audit_20261123`, and `content=tagged_link_check`, each with count 1. This verifies receipt of the script-generated tags by GA. The aggregate First user campaign card was still empty during this check; processed acquisition reporting was not yet verified. Exclude this labeled diagnostic visit from November 23 performance analysis. It does not affect the November 13–19 reporting interval.
 
-**Fix:** use consistently tagged links for posts, profile, Slack, and outreach. No evidence supports changing the domain redirect. Confirm actual campaign receipt with an approved labeled diagnostic visit before describing that part as verified.
+**Fix:** use consistently tagged links for posts, profile, Slack, and outreach. No evidence supports changing the domain redirect. Campaign parameters now have a verified path into GA; allow normal processing before assessing the diagnostic visit in standard acquisition reports.
 
 ## 5. Owner exclusion and November 18
 
@@ -97,7 +97,7 @@ Trust the week as **33 measured users and 35 measured sessions**, subject to ord
 
 Discount the interpretation of six navigation clicks as leads, 16 widget-ready events as booking attempts, Direct as intentional typed traffic, or two creations as two qualified leads. GA records fewer custom events than Upstash (for example, 64 versus 74 section exposures); the systems have different delivery failure modes and should not be assumed to count every interaction identically. Historical `unknown` booking status remains unknown. Owner share cannot be reconstructed reliably.
 
-Laura's remaining actions: review and merge the PR if desired; set owner mode on each device/browser; keep campaign tags consistent; record actual lead qualification privately. A labeled production campaign-receipt check requires the explicit exception described in section 4.
+Laura's remaining actions: review and merge the PR if desired; set owner mode on each device/browser; keep campaign tags consistent; record actual lead qualification privately. Exclude the November 23 diagnostic campaign described in section 4 from business performance reporting.
 
 ## References
 
