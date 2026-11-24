@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WorkSummary from "@/components/WorkSummary";
 import Recommendations from "@/components/Recommendations";
+import FAQ from "@/components/FAQ";
 import LetsChat from "@/components/LetsChat";
 import Footer from "@/components/Footer";
 
@@ -24,6 +25,7 @@ export default function Home() {
         <WorkSummary />
         {chatEnabled && <AskChat />}
         <Recommendations />
+        <FAQ />
         <LetsChat />
       </main>
       <Footer />
