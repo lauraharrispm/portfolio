@@ -23,9 +23,9 @@ export default function Home() {
         <Services />
         <HowIWork />
         <WorkSummary />
+        <FAQ />
         {chatEnabled && <AskChat />}
         <Recommendations />
-        <FAQ />
         <LetsChat />
       </main>
       <Footer />

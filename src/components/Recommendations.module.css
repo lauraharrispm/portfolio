@@ -4,7 +4,7 @@
   --bubble-them: var(--warm-tint);
   --avatar-fill: #E5D7C8;
   --reaction-fill: var(--warm-tint);
-  padding-block: var(--section-padding-v);
+  padding-block: var(--section-padding-v) var(--band-gap);
 }
 
 /* Equal columns give the desktop heading room for one line. */
@@ -249,7 +249,7 @@
 
 /* ─── Mobile: no device frame, the thread sits on a plain card ─────── */
 @media (max-width: 768px) {
-  .recs { padding-block: var(--section-padding-v-mobile); }
+  .recs { padding-block: var(--section-padding-v-mobile) var(--band-gap-mobile); }
   .recsInner { grid-template-columns: 1fr; gap: 20px; }
   .phoneWrap { display: block; }
   .phone { width: 100%; height: auto; padding: 0; border-radius: var(--card-radius); background: none; box-shadow: none; }
