@@ -6,8 +6,8 @@
 
 .inner {
   display: grid;
-  /* Keep desktop answers at a comfortable reading width. */
-  grid-template-columns: 180px minmax(0, 640px);
+  /* Keep the reading column narrow and aligned to the content's right edge. */
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 640px);
   gap: 32px;
   align-items: start;
 }
