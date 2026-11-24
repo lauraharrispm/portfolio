@@ -6,7 +6,8 @@
 
 .inner {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
+  /* Keep desktop answers at a comfortable reading width. */
+  grid-template-columns: 180px minmax(0, 640px);
   gap: 32px;
   align-items: start;
 }
