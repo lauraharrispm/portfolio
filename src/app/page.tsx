@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WorkSummary from "@/components/WorkSummary";
 import Recommendations from "@/components/Recommendations";
+import FAQ from "@/components/FAQ";
 import LetsChat from "@/components/LetsChat";
 import Footer from "@/components/Footer";
 
@@ -16,12 +17,13 @@ const chatEnabled = process.env.CHAT_ENABLED === "true";
 export default function Home() {
   return (
     <>
-      <Nav chatEnabled={chatEnabled} />
+      <Nav />
       <main>
         <Hero />
         <Services />
         <HowIWork />
         <WorkSummary />
+        <FAQ />
         {chatEnabled && <AskChat />}
         <Recommendations />
         <LetsChat />

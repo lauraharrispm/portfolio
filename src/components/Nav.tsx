@@ -4,13 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./Nav.module.css";
 import { trackEvent } from "@/lib/analytics";
 
-interface NavProps {
-  /** Mirrors the server-side CHAT_ENABLED flag (see page.tsx): the "Ask my
-   * AI" link only makes sense when the #ask section actually renders. */
-  chatEnabled: boolean;
-}
-
-export default function Nav({ chatEnabled }: NavProps) {
+export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [overHero, setOverHero] = useState(true);
@@ -73,13 +67,11 @@ export default function Nav({ chatEnabled }: NavProps) {
               Recent work
             </a>
           </li>
-          {chatEnabled && (
-            <li>
-              <a href="#ask" onClick={() => trackNav("ask_my_ai", "nav_desktop")}>
-                Ask my AI
-              </a>
-            </li>
-          )}
+          <li>
+            <a href="#faq" onClick={() => trackNav("faq", "nav_desktop")}>
+              FAQ
+            </a>
+          </li>
           <li>
             <a href="#references" onClick={() => trackNav("references", "nav_desktop")}>
               References
@@ -146,19 +138,17 @@ export default function Nav({ chatEnabled }: NavProps) {
                 Recent work
               </a>
             </li>
-            {chatEnabled && (
-              <li>
-                <a
-                  href="#ask"
-                  onClick={() => {
-                    close();
-                    trackNav("ask_my_ai", "nav_mobile");
-                  }}
-                >
-                  Ask my AI
-                </a>
-              </li>
-            )}
+            <li>
+              <a
+                href="#faq"
+                onClick={() => {
+                  close();
+                  trackNav("faq", "nav_mobile");
+                }}
+              >
+                FAQ
+              </a>
+            </li>
             <li>
               <a
                 href="#references"
