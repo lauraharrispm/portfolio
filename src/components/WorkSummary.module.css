@@ -20,14 +20,11 @@
      --stack-top offset, not from spacing between them. */
 }
 
-/* Base clears the fixed nav plus room to still read as "just below the
-   Recent Work heading," not jammed under the nav bar; each card then
-   settles 48px lower than the last (--stack-index * 48px), unbounded,
-   which is fine on desktop's tall viewport. The 768px breakpoint below
-   caps this growth instead of letting it keep climbing. */
+/* WorkSummary measures the cards and reduces their peek spacing when
+   the viewport cannot fit the full stack offset plus the card footer. */
 .stackItem {
   position: sticky;
-  top: calc(var(--nav-height) + 32px + var(--stack-index) * 48px);
+  top: var(--stack-top, calc(var(--nav-height) + 32px));
   padding-bottom: 32px;
 }
 
@@ -79,7 +76,6 @@
   /* Substantial but not full-viewport, per spec: sized to content
      with a floor so short case studies still feel like a real card. */
   min-height: 420px;
-  max-height: 520px;
   /* Whole card opens the study now, not just the "See more" button. */
   cursor: pointer;
 }

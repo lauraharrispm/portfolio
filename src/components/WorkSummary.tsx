@@ -12,14 +12,46 @@ import styles from "./WorkSummary.module.css";
 // layout one: just give it the next number.
 const VISIBLE_PROJECTS = [...projects].sort((a, b) => a.order - b.order);
 
-// Vertical offset between each stuck card's `top`, in px: this is how much
-// of a covered card stays peeking above the one that settles over it.
+// Maximum peek between cards; shorter viewports use a smaller offset.
 const PEEK = 48;
 
 export default function WorkSummary() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<DOMRect | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Fit the entire stack's pinned positions to the tallest card. Measure
+  // untransformed layout height so the recede animation cannot feed back
+  // into these offsets. A card taller than the viewport gets a negative
+  // inset: it scrolls far enough to reveal its footer before sticking.
+  useEffect(() => {
+    const cards = cardRefs.current.filter(
+      (card): card is HTMLDivElement => card !== null,
+    );
+    if (!cards.length) return;
+
+    const fitStack = () => {
+      const navHeight = document.querySelector("nav")?.getBoundingClientRect().height ?? 64;
+      const tallest = Math.max(...cards.map((card) => card.offsetHeight));
+      const lastTop = window.innerHeight - tallest - 24;
+      const firstTop = Math.min(navHeight + 32, lastTop);
+      const peek = Math.min(PEEK, Math.max(0, (lastTop - firstTop) / Math.max(cards.length - 1, 1)));
+
+      cards.forEach((card, index) => {
+        card.style.setProperty("--stack-top", `${firstTop + index * peek}px`);
+        card.style.setProperty("--stack-peek", String(peek));
+      });
+    };
+
+    const observer = new ResizeObserver(fitStack);
+    cards.forEach((card) => observer.observe(card));
+    window.addEventListener("resize", fitStack);
+    fitStack();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", fitStack);
+    };
+  }, []);
 
   // ── Back button closes the reading view instead of leaving the page ──
   useEffect(() => {
@@ -45,8 +77,7 @@ export default function WorkSummary() {
   // current one, ease the current one's scale/opacity down slightly for
   // depth. Scroll-linked, so it's a rAF-throttled passive listener rather
   // than IntersectionObserver; it never touches scroll position itself,
-  // only reads it. Skipped only under reduced motion; the stack (and
-  // this recede effect) now runs at every width, including mobile. ──
+  // only reads it. Skipped on mobile and under reduced motion. ──
   useEffect(() => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -76,8 +107,9 @@ export default function WorkSummary() {
         if (!cur || !next) continue;
         const curRect = cur.getBoundingClientRect();
         const nextRect = next.getBoundingClientRect();
-        const travel = Math.max(curRect.height - PEEK, 1);
-        const raw = (nextRect.top - curRect.top - PEEK) / travel;
+        const peek = Number(cur.style.getPropertyValue("--stack-peek") || PEEK);
+        const travel = Math.max(curRect.height - peek, 1);
+        const raw = (nextRect.top - curRect.top - peek) / travel;
         const progress = Math.min(Math.max(1 - raw, 0), 1);
         // Scale + a warm-tint wash (see .card::after), never opacity: this
         // card is still a fully opaque box sitting in front of the one
@@ -208,17 +240,7 @@ function StackItem({ index, registerRef, children }: StackItemProps) {
         registerRef(el);
       }}
       className={styles.stackItem}
-      style={
-        {
-          // Raw index, not a precomputed top: .stackItem itself turns this
-          // into a `top` offset (see WorkSummary.module.css), so the same
-          // index can drive two different formulas per breakpoint (desktop
-          // grows it unbounded per card; mobile caps it, see that rule's
-          // own comment for why).
-          "--stack-index": index,
-          zIndex: index + 1,
-        } as React.CSSProperties
-      }
+      style={{ zIndex: index + 1 }}
     >
       <div className="container">
         <div className={`${styles.card} ${entered ? styles.cardEnter : ""}`}>
